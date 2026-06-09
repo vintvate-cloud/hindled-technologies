@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { SmoothScroll } from "../components/SmoothScroll";
 
 function NotFoundComponent() {
   return (
@@ -98,11 +99,13 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar />
-      <main className="min-h-screen bg-paper text-ink">
-        <Outlet />
-      </main>
-      <Footer />
+      <SmoothScroll>
+        <Navbar />
+        <main className="min-h-screen bg-paper text-ink">
+          <Outlet />
+        </main>
+        <Footer />
+      </SmoothScroll>
     </QueryClientProvider>
   );
 }
