@@ -3,11 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const links = [
-  { to: "/", label: "Index" },
   { to: "/products", label: "Products" },
-  { to: "/applications", label: "Applications" },
-  { to: "/technology", label: "Technology" },
-  { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -30,21 +26,21 @@ export function Navbar() {
       <motion.header
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled ? "glass hairline-b" : "bg-transparent"
         }`}
       >
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 lg:px-10">
-          <Link to="/" className="group flex items-center gap-2">
-            <span className="block h-2 w-2 rounded-full bg-signal" />
-            <span className="text-display text-base tracking-[-0.02em] text-ink">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 lg:px-10">
+          <Link to="/" className="group flex items-center gap-2.5">
+            <span className="block h-1.5 w-1.5 rounded-full bg-signal" />
+            <span className="text-display text-[15px] tracking-[-0.02em] text-ink">
               LUMEN<span className="text-signal">/</span>X
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex">
-            {links.slice(1).map((l) => {
+          <nav className="hidden items-center gap-10 md:flex">
+            {links.map((l) => {
               const active = pathname === l.to;
               return (
                 <Link
@@ -65,21 +61,13 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-4">
-            <Link
-              to="/contact"
-              className="text-mono hidden text-ink/70 hover:text-signal md:inline"
-            >
-              Inquire →
-            </Link>
-            <button
-              aria-label="Menu"
-              onClick={() => setOpen((v) => !v)}
-              className="text-mono md:hidden"
-            >
-              {open ? "Close" : "Menu"}
-            </button>
-          </div>
+          <button
+            aria-label="Menu"
+            onClick={() => setOpen((v) => !v)}
+            className="text-mono md:hidden"
+          >
+            {open ? "Close" : "Menu"}
+          </button>
         </div>
       </motion.header>
 
@@ -89,7 +77,7 @@ export function Navbar() {
           animate={{ opacity: 1 }}
           className="fixed inset-0 z-40 flex flex-col bg-paper pt-24 md:hidden"
         >
-          {links.slice(1).map((l, i) => (
+          {links.map((l, i) => (
             <motion.div
               key={l.to}
               initial={{ y: 30, opacity: 0 }}
