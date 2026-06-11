@@ -5,23 +5,23 @@ import { imageUrls } from "@/assets/products";
 export const Route = createFileRoute("/applications")({
   head: () => ({
     meta: [
-      { title: "Applications — Lumen/X" },
-      { name: "description", content: "Stadiums, sports venues, infrastructure, urban grids and landscape environments lit by Lumen/X." },
-      { property: "og:title", content: "Applications — Lumen/X" },
-      { property: "og:description", content: "Where Lumen/X engineering meets the field." },
-      { property: "og:image", content: imageUrls["light-3"] },
+      { title: "Applications — Handled Technologies" },
+      { name: "description", content: "Stadiums, sports venues, infrastructure, urban grids and landscape environments lit by Handled Technologies." },
+      { property: "og:title", content: "Applications — Handled Technologies" },
+      { property: "og:description", content: "Where HANDLED engineering meets the field." },
+      { property: "og:image", content: imageUrls["fl18"] },
     ],
   }),
   component: AppsPage,
 });
 
 const apps = [
-  { t: "Stadiums", d: "Broadcast-grade uniformity for football, cricket and athletics venues from regional to international scale.", img: "light-1", series: "FL15 · FL07" },
-  { t: "Tennis & Padel", d: "Court-optimised optics, strict glare control and uniform play surfaces.", img: "light-6", series: "PL08" },
-  { t: "Training Grounds", d: "Versatile floodlights for multi-sport complexes and academy facilities.", img: "light-3", series: "FL10 · FL08" },
-  { t: "Highways & Roads", d: "Autonomous solar street lighting from 6m to 12m. Smart dimming and LiFePO₄ storage.", img: "light-5", series: "JUNO Street" },
-  { t: "Civic & Commercial", d: "Architectural area lighting for business parks, plazas and public infrastructure.", img: "light-4", series: "JUNO Area · FL12" },
-  { t: "Landscape & Hospitality", d: "Bollards and post-tops crafted for resorts, gardens and pedestrian environments.", img: "light-5", series: "JUNO Bollard · Post-Top" },
+  { t: "Stadiums", d: "Broadcast-grade uniformity for football, cricket and athletics venues from regional to international scale.", img: "fl18", series: "FL18 · SP02" },
+  { t: "High-Mast & Ports", d: "Long-throw distribution for airports, ports, interchanges and logistics yards.", img: "sp02", series: "SP02" },
+  { t: "Industrial High Bay", d: "9-in-1 switchable high-bay luminaires for warehousing and manufacturing.", img: "hb12", series: "HB12" },
+  { t: "Highways & Roads", d: "Autonomous solar street lighting from 6m to 12m. Smart dimming and LiFePO₄ storage.", img: "juno-street", series: "JUNO Street" },
+  { t: "Civic & Commercial", d: "Architectural area lighting for business parks, plazas and public infrastructure.", img: "juno-area-a", series: "JUNO Area" },
+  { t: "Landscape & Hospitality", d: "Bollards and post-tops crafted for resorts, gardens and pedestrian environments.", img: "juno-bollard", series: "JUNO Bollard · Post-Top" },
 ];
 
 function AppsPage() {

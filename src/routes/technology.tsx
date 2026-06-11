@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/technology")({
   head: () => ({
     meta: [
-      { title: "Technology — Lumen/X Engineering" },
-      { name: "description", content: "Optics, thermal architecture, drivers, control protocols and solar autonomy. The engineering behind Lumen/X." },
-      { property: "og:title", content: "Technology — Lumen/X Engineering" },
-      { property: "og:description", content: "The engineering systems behind every Lumen/X luminaire." },
+      { title: "Technology — Handled Technologies Engineering" },
+      { name: "description", content: "Optics, thermal architecture, drivers, control protocols and solar autonomy. The engineering behind Handled Technologies." },
+      { property: "og:title", content: "Technology — Handled Technologies Engineering" },
+      { property: "og:description", content: "The engineering systems behind every Handled Technologies luminaire." },
     ],
   }),
   component: TechPage,
@@ -34,7 +34,7 @@ function TechPage() {
             <span className="text-signal">PHOTON BY PHOTON.</span>
           </h1>
           <p className="mt-8 max-w-xl text-sm leading-relaxed text-ink/70">
-            Every Lumen/X luminaire is the sum of six engineering disciplines working in concert.
+            Every Handled Technologies luminaire is the sum of six engineering disciplines working in concert.
             Below: the systems behind the performance.
           </p>
         </div>

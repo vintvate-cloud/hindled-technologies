@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { products, imageUrls } from "@/assets/products";
+import { featured, catalogue } from "@/assets/products";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -12,11 +12,11 @@ if (typeof window !== "undefined") {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lumen/X — Engineered Outdoor Lighting" },
-      { name: "description", content: "Stadium floodlights, sports lighting and solar systems engineered for the world's most demanding environments." },
-      { property: "og:title", content: "Lumen/X — Engineered Outdoor Lighting" },
-      { property: "og:description", content: "Stadium floodlights, sports lighting and solar systems engineered for the world's most demanding environments." },
-      { property: "og:image", content: imageUrls["light-1"] },
+      { title: "Handled Technologies — Engineered Outdoor Lighting" },
+      { name: "description", content: "Stadium floodlights, high-mast, industrial high-bay and a complete solar lighting portfolio. Engineered in India, shipped worldwide." },
+      { property: "og:title", content: "Handled Technologies — We Make It Happen" },
+      { property: "og:description", content: "Engineered outdoor lighting systems for stadiums, infrastructure, and autonomous solar grids." },
+      { property: "og:image", content: featured[0].image },
     ],
   }),
   component: Index,
@@ -27,10 +27,11 @@ function Index() {
     <>
       <Hero />
       <Philosophy />
-      <Ecosystem />
+      <Showcase />
       <About />
-      <SolarBlock />
+      <Testimonials />
       <Stats />
+      <FAQ />
       <Closer />
     </>
   );
@@ -61,39 +62,34 @@ function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden bg-paper pt-28">
-      {/* Lamp — centered, contained, visible */}
       <motion.div
         style={{ y: productY, scale: productScale, opacity: productOpacity }}
         className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
       >
         <motion.div
           style={{ x: sx, y: sy }}
-          animate={{ rotate: [0, 1.5, 0, -1.5, 0] }}
+          animate={{ rotate: [0, 1.2, 0, -1.2, 0] }}
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-          className="relative aspect-square h-[62vh] max-h-[640px] w-auto"
+          className="relative aspect-square h-[58vh] max-h-[640px] w-auto"
         >
           <img
-            src={imageUrls["light-1"]}
-            alt="FL15 Performance Stadium Floodlight"
+            src={featured[0].image}
+            alt={featured[0].name}
             className="h-full w-full object-contain"
             style={{ filter: "drop-shadow(0 30px 80px rgba(0,0,0,0.18))" }}
           />
-          {/* Light beam */}
           <div
             className="absolute -bottom-32 left-1/2 h-64 w-[140%] -translate-x-1/2 opacity-40 blur-2xl"
             style={{
-              background: "radial-gradient(ellipse at center, oklch(0.85 0.18 60 / 0.6), transparent 70%)",
+              background:
+                "radial-gradient(ellipse at center, oklch(0.85 0.18 60 / 0.6), transparent 70%)",
             }}
           />
         </motion.div>
       </motion.div>
 
-      {/* Layered text — refined, not cluttered */}
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] max-w-[1600px] flex-col justify-between px-6 lg:px-10">
-        <motion.div
-          style={{ y: textY }}
-          className="pt-6"
-        >
+        <motion.div style={{ y: textY }} className="pt-6">
           <div className="overflow-hidden">
             <motion.div
               initial={{ y: "110%" }}
@@ -101,12 +97,11 @@ function Hero() {
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-mono text-ink/60"
             >
-              EST · MMXXV — ENGINEERED WORLDWIDE
+              HANDLED TECHNOLOGIES · CATALOGUE MMXXVI
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Hero typography — split left/right to give the lamp space */}
         <div className="grid grid-cols-12 items-end gap-6 pb-16">
           <motion.h1
             style={{ y: textY }}
@@ -126,15 +121,15 @@ function Hero() {
             className="col-span-12 flex flex-col gap-6 md:col-span-4 md:col-start-9"
           >
             <p className="max-w-sm text-sm leading-relaxed text-ink/70">
-              From international stadiums to autonomous urban grids, Lumen/X
+              From international stadiums to autonomous solar grids, HANDLED
               designs lighting systems where every photon is engineered, not decorated.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 to="/products"
-                className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-5 py-3 text-paper transition-colors hover:bg-signal hover:border-signal"
+                className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-5 py-3 text-paper transition-colors hover:border-signal hover:bg-signal"
               >
-                Explore Products
+                Explore the catalogue
                 <span className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
             </div>
@@ -143,7 +138,7 @@ function Hero() {
       </div>
 
       <div className="text-mono pointer-events-none absolute bottom-6 right-6 z-10 text-ink/60">
-        FL15 · Flagship Floodlight
+        FL18 · Stadium Floodlight
       </div>
     </section>
   );
@@ -184,23 +179,10 @@ function Philosophy() {
   }, []);
 
   const lines = ["Engineered", "for the world's", "most demanding", "environments."];
-
   const tenets = [
-    {
-      k: "Precision Optics",
-      v: "Beam control engineered to fractions of a degree. Spill is solved at the lens — not masked by shields.",
-      n: "01",
-    },
-    {
-      k: "Thermal Architecture",
-      v: "Die-cast aluminium pathways move heat continuously, sustaining drivers at 185 lm/W under load.",
-      n: "02",
-    },
-    {
-      k: "Built To Outlast",
-      v: "IP66 / IK10 housings field-tested for monsoon, salt-fog, vibration, and broadcast-grade UV exposure.",
-      n: "03",
-    },
+    { k: "Precision Optics", v: "Beam control engineered to fractions of a degree. Spill is solved at the lens — not masked by shields.", n: "01" },
+    { k: "Thermal Architecture", v: "Die-cast aluminium pathways move heat continuously, sustaining drivers at 185 lm/W under load.", n: "02" },
+    { k: "Built To Outlast", v: "IP66 / IK10 housings field-tested for monsoon, salt-fog, vibration, and broadcast-grade UV exposure.", n: "03" },
   ];
 
   return (
@@ -234,7 +216,6 @@ function Philosophy() {
           ))}
         </div>
 
-        {/* Manifesto paragraph block */}
         <div className="mt-32 grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-4">
             <div className="text-mono text-ink/50">Philosophy</div>
@@ -251,113 +232,88 @@ function Philosophy() {
   );
 }
 
-/* ============================================================ ECOSYSTEM (horizontal) */
-function Ecosystem() {
+/* ============================================================ SHOWCASE (premium grid w/ GSAP) */
+function Showcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return;
-
     const ctx = gsap.context(() => {
-      const totalScroll = () => track.scrollWidth - window.innerWidth;
-      const tween = gsap.to(track, {
-        x: () => -totalScroll(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${totalScroll()}`,
-          scrub: 1,
-          pin: true,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        },
+      gsap.from(".show-card", {
+        y: 100,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
       });
-      return () => {
-        tween.scrollTrigger?.kill();
-        tween.kill();
-      };
-    }, section);
-
+      if (headingRef.current) {
+        gsap.from(headingRef.current.querySelectorAll(".sw"), {
+          yPercent: 110,
+          stagger: 0.08,
+          duration: 1,
+          ease: "power4.out",
+          scrollTrigger: { trigger: headingRef.current, start: "top 80%" },
+        });
+      }
+      gsap.utils.toArray<HTMLElement>(".parallax-img").forEach((el) => {
+        gsap.to(el, {
+          yPercent: -12,
+          ease: "none",
+          scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+        });
+      });
+    }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-ink text-paper">
-      <div className="absolute left-0 right-0 top-0 z-10 px-6 pt-28 lg:px-10">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-display text-[6vw] leading-[0.9] tracking-[-0.04em] md:text-[3.6vw]"
+    <section ref={sectionRef} className="relative overflow-hidden bg-ink py-32 text-paper lg:py-48">
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
+        <div className="text-mono text-paper/50">Selected Platforms</div>
+        <h2
+          ref={headingRef}
+          className="text-display mt-4 text-[12vw] leading-[0.9] tracking-[-0.04em] md:text-[6vw]"
         >
-          The <span className="text-signal">floodlight</span> series.
-        </motion.h2>
-      </div>
+          <div className="overflow-hidden"><span className="sw inline-block">Light shaped</span></div>
+          <div className="overflow-hidden"><span className="sw inline-block">for every <span className="text-signal">scale.</span></span></div>
+        </h2>
 
-      <div className="h-screen overflow-hidden">
-        <div ref={trackRef} className="flex h-full items-center will-change-transform">
-          {products.map((p, i) => (
-            <div
-              key={p.slug}
-              className="flex h-full w-screen shrink-0 items-center px-6 lg:px-10"
-            >
-              <div className="grid w-full max-w-[1600px] grid-cols-1 items-center gap-10 md:grid-cols-2">
-                <div className="relative h-[55vh] md:h-[70vh]">
-                  <div className="text-display absolute inset-0 z-0 flex items-center justify-center text-[26vw] leading-none text-paper/[0.05] md:text-[18vw]">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <img
-                    src={imageUrls[p.image]}
-                    alt={p.name}
-                    className="relative z-10 mx-auto h-full w-full object-contain"
-                    style={{ filter: "drop-shadow(0 40px 80px rgba(0,0,0,.4))" }}
-                  />
+        <div className="mt-20 grid grid-cols-1 gap-px bg-paper/10 md:grid-cols-2 lg:grid-cols-3">
+          {featured.map((p) => (
+            <div key={p.slug} className="show-card group relative overflow-hidden bg-ink">
+              <div className="relative aspect-[4/5] overflow-hidden bg-[oklch(0.18_0_0)]">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="parallax-img absolute inset-0 h-[120%] w-full object-contain p-10 transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="text-display absolute left-6 top-6 text-6xl leading-none text-paper/[0.07]">
+                  {p.code}
                 </div>
-                <div>
-                  <div className="text-mono mb-4 text-signal">{p.tagline}</div>
-                  <h3 className="text-display text-[14vw] leading-[0.9] tracking-[-0.04em] md:text-[6vw]">
-                    {p.name}
-                  </h3>
-                  <p className="mt-6 max-w-md text-sm leading-relaxed text-paper/70">
-                    {p.description}
-                  </p>
-                  <dl className="mt-8 grid max-w-md grid-cols-2 gap-x-6 gap-y-4 border-t border-paper/15 pt-6">
-                    <div>
-                      <dt className="text-mono text-paper/50">Efficacy</dt>
-                      <dd className="text-display mt-1 text-2xl">{p.efficiency}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-mono text-paper/50">Output</dt>
-                      <dd className="text-display mt-1 text-2xl">{p.lumens.split("–")[1]?.trim() ?? p.lumens}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-mono text-paper/50">Protection</dt>
-                      <dd className="mt-1 text-sm">{p.ip}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-mono text-paper/50">CCT</dt>
-                      <dd className="mt-1 text-sm">{p.cct}</dd>
-                    </div>
-                  </dl>
-                  <Link
-                    to="/products"
-                    className="text-mono mt-8 inline-flex items-center gap-2 border-b border-paper pb-1"
-                  >
-                    Full spec sheet →
-                  </Link>
-                </div>
+              </div>
+              <div className="p-6 lg:p-8">
+                <div className="text-mono text-signal">{p.series}</div>
+                <h3 className="text-display mt-2 text-2xl">{p.name}</h3>
+                <p className="mt-3 line-clamp-2 text-sm text-paper/60">{p.tagline}</p>
               </div>
             </div>
           ))}
         </div>
-      </div>
 
-      <div className="text-mono pointer-events-none absolute bottom-6 right-6 z-10 text-paper/50">
-        Scroll · {products.length} platforms
+        <div className="mt-16 flex items-end justify-between">
+          <p className="max-w-md text-sm text-paper/60">
+            A condensed selection — explore the full {catalogue.length}-model catalogue spanning
+            solar lighting, high-mast, stadium and industrial luminaires.
+          </p>
+          <Link
+            to="/products"
+            className="text-mono group inline-flex items-center gap-2 border-b border-paper pb-1"
+          >
+            Full catalogue
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -374,7 +330,7 @@ function About() {
     <section ref={ref} className="relative overflow-hidden bg-paper py-32 lg:py-48">
       <motion.div
         style={{ y: bigY }}
-        className="pointer-events-none absolute -left-[5vw] top-10 text-display text-[26vw] leading-[0.85] tracking-[-0.05em] text-ink/[0.04]"
+        className="text-display pointer-events-none absolute -left-[5vw] top-10 text-[26vw] leading-[0.85] tracking-[-0.05em] text-ink/[0.04]"
       >
         STUDIO
       </motion.div>
@@ -390,8 +346,8 @@ function About() {
           >
             <motion.img
               style={{ y: imgY }}
-              src={imageUrls["light-3"]}
-              alt="Lumen/X engineering"
+              src={featured[1].image}
+              alt="Handled Technologies engineering"
               className="absolute inset-0 h-[120%] w-full object-contain p-10"
             />
           </motion.div>
@@ -409,9 +365,7 @@ function About() {
 
           <h2 className="text-display mt-6 text-[10vw] leading-[0.92] tracking-[-0.04em] text-ink md:text-[5.5vw]">
             <Reveal>A studio of</Reveal>
-            <Reveal delay={0.1}>
-              engineers,
-            </Reveal>
+            <Reveal delay={0.1}>engineers,</Reveal>
             <Reveal delay={0.2}>
               <span className="text-signal">opticists</span> &amp;
             </Reveal>
@@ -419,15 +373,15 @@ function About() {
           </h2>
 
           <p className="mt-10 max-w-lg text-base leading-relaxed text-ink/70">
-            Lumen/X is a quiet collective focused on a single discipline: precision
-            outdoor lighting. We don't follow catalogues. Every luminaire begins as
-            a thermal sketch and ends as an instrument calibrated to a project's
-            geometry, code, and atmosphere.
+            HANDLED Technologies is a quiet collective focused on a single discipline:
+            precision outdoor lighting. We don't follow catalogues. Every luminaire
+            begins as a thermal sketch and ends as an instrument calibrated to a
+            project's geometry, code, and atmosphere.
           </p>
 
           <div className="mt-12 grid grid-cols-2 gap-8 border-t border-ink/10 pt-8 md:grid-cols-3">
             {[
-              { k: "12+", v: "Years of optics R&D" },
+              { k: "21", v: "Engineered platforms" },
               { k: "40+", v: "Countries deployed" },
               { k: "200+", v: "Sports venues lit" },
             ].map((s, i) => (
@@ -449,57 +403,70 @@ function About() {
   );
 }
 
-/* ============================================================ SOLAR */
-function SolarBlock() {
+/* ============================================================ TESTIMONIALS */
+const testimonials = [
+  {
+    quote:
+      "The FL18 array delivered acceptance-grade photometrics on the first measurement pass. We've never seen a project move this cleanly from spec to commissioning.",
+    name: "Arjun Mehta",
+    role: "Principal · Stadia Consultancy",
+  },
+  {
+    quote:
+      "HANDLED engineered our solar street-lighting upgrade with a quiet rigor — every pole, every photon accounted for. Years on, the system is still hitting day-one outputs.",
+    name: "Karina Vasquez",
+    role: "Director of Infrastructure · Vista Municipality",
+  },
+  {
+    quote:
+      "Working with HANDLED is closer to working with a research lab than a manufacturer. They challenge the brief, then deliver fixtures that quietly outperform it.",
+    name: "Daniel Okafor",
+    role: "Lighting Designer · ATELIER 9",
+  },
+];
+
+function Testimonials() {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".t-card", {
+        y: 60,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ref.current, start: "top 75%" },
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-paper py-32 lg:py-48">
+    <section ref={ref} className="relative overflow-hidden bg-stone py-32 lg:py-48">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <h2 className="text-display text-ink text-[12vw] leading-[0.9] tracking-[-0.04em] md:text-[7vw]">
-              <Reveal>The future of</Reveal>
-              <Reveal delay={0.1}>
-                <span className="text-signal">self-sustaining</span>
-              </Reveal>
-              <Reveal delay={0.2}>lighting.</Reveal>
+        <div className="grid grid-cols-12 items-end gap-6">
+          <div className="col-span-12 md:col-span-5">
+            <div className="text-mono text-ink/50">Field Reports</div>
+            <h2 className="text-display mt-4 text-ink text-[10vw] leading-[0.92] tracking-[-0.04em] md:text-[5.5vw]">
+              Trusted on the <span className="text-signal">ground.</span>
             </h2>
           </div>
-          <div className="self-end lg:col-span-5">
-            <p className="text-sm leading-relaxed text-ink/70">
-              The JUNO Series is a self-contained lighting platform — HPBC photovoltaics,
-              LiFePO₄ storage, and DALI-grade luminaires fused into a single architectural
-              object. Highways, parks, gardens, and post-grid environments.
-            </p>
-            <Link
-              to="/products"
-              className="text-mono mt-6 inline-flex items-center gap-2 border-b border-ink pb-1 text-ink"
-            >
-              Discover JUNO →
-            </Link>
-          </div>
+          <p className="col-span-12 self-end text-sm leading-relaxed text-ink/70 md:col-span-5 md:col-start-8">
+            A small selection from architects, consultants and infrastructure leads who
+            specify HANDLED on the projects that matter most.
+          </p>
         </div>
 
-        <div className="mt-20 grid gap-6 md:grid-cols-3">
-          {[
-            { n: "JUNO Street", spec: "12m · 30W×2 · 400W HPBC" },
-            { n: "JUNO Area", spec: "8m · 20W×2 · LiFePO₄" },
-            { n: "JUNO Bollard", spec: "1140mm · 1.5W · 170 lm/W" },
-          ].map((c, i) => (
-            <motion.div
-              key={c.n}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="hairline-t group flex items-end justify-between pt-6"
-            >
-              <div>
-                <div className="text-mono text-signal">0{i + 1}</div>
-                <h3 className="text-display mt-2 text-3xl text-ink">{c.n}</h3>
-                <div className="text-mono mt-2 text-ink/60">{c.spec}</div>
+        <div className="mt-20 grid grid-cols-1 gap-px bg-ink/10 md:grid-cols-3">
+          {testimonials.map((t, i) => (
+            <div key={i} className="t-card flex flex-col gap-10 bg-stone p-10 lg:p-12">
+              <div className="text-display text-6xl leading-none text-signal">"</div>
+              <p className="text-lg leading-relaxed text-ink md:text-xl">{t.quote}</p>
+              <div className="hairline-t mt-auto pt-5">
+                <div className="text-display text-lg text-ink">{t.name}</div>
+                <div className="text-mono mt-1 text-ink/60">{t.role}</div>
               </div>
-              <span className="text-mono text-ink/40 transition-all group-hover:translate-x-1 group-hover:text-signal">→</span>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -510,13 +477,13 @@ function SolarBlock() {
 /* ============================================================ STATS */
 function Stats() {
   const stats = [
-    { v: "185", u: "lm/W", l: "Peak Efficacy" },
-    { v: "528K", u: "lumens", l: "Single Luminaire Output" },
+    { v: "200", u: "Lm/W", l: "Peak Efficacy" },
+    { v: "261K", u: "lumens", l: "Single Luminaire Output" },
     { v: "IP66", u: "/ IK10", l: "Ingress + Impact" },
-    { v: "07", u: "series", l: "Floodlight Platforms" },
+    { v: "21", u: "series", l: "Engineered Platforms" },
   ];
   return (
-    <section className="bg-stone py-24">
+    <section className="bg-paper py-24">
       <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
         {stats.map((s, i) => (
           <motion.div
@@ -538,10 +505,106 @@ function Stats() {
   );
 }
 
+/* ============================================================ FAQ */
+const faqs = [
+  {
+    q: "Which environments are HANDLED luminaires built for?",
+    a: "Every fixture targets IP66 / IK10 with salt-spray, monsoon and broadcast-grade UV testing. Our portfolio is deployed across stadiums, airports, highways, ports and remote off-grid landscapes.",
+  },
+  {
+    q: "What is the warranty across the catalogue?",
+    a: "Solar platforms ship with a 5–10 year warranty depending on configuration. Outdoor & industrial luminaires (SP02, FL18, HB12, FL17) carry a 5-year warranty as standard.",
+  },
+  {
+    q: "Do you support DALI, DMX and 0-10V controls?",
+    a: "Yes — flagship floodlights including FL18 support DMX512, DALI, DALI-2 and 0-10V. Most HB12 and SP02 SKUs are dimming-ready and project-configurable.",
+  },
+  {
+    q: "Can the solar systems run fully off-grid?",
+    a: "Yes. The JUNO and Mars platforms pair HPBC monocrystalline panels with LiFePO4 storage and adaptive 4-step dimming, sized for 3–8 days of autonomy depending on geography.",
+  },
+  {
+    q: "Do you offer OEM / ODM and custom specifications?",
+    a: "Absolutely. The engineering team co-develops bespoke optics, finishes and control profiles. Talk to engineering with a brief and we'll respond with a project file.",
+  },
+];
+
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".faq-row", {
+        y: 30,
+        opacity: 0,
+        stagger: 0.08,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ref.current, start: "top 75%" },
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={ref} className="bg-paper py-32 lg:py-48">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-10 px-6 lg:px-10">
+        <div className="col-span-12 md:col-span-4">
+          <div className="text-mono text-ink/50">FAQ</div>
+          <h2 className="text-display mt-4 text-ink text-[10vw] leading-[0.92] tracking-[-0.04em] md:text-[4.5vw]">
+            Engineering <span className="text-signal">questions,</span> answered.
+          </h2>
+          <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink/70">
+            Specifications, controls, warranty, OEM — the most-asked questions from
+            consultants and infrastructure leads.
+          </p>
+        </div>
+
+        <div className="col-span-12 md:col-span-7 md:col-start-6">
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={i} className="faq-row hairline-t">
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                >
+                  <span className="text-display text-xl text-ink md:text-2xl">
+                    {f.q}
+                  </span>
+                  <span
+                    className={`text-mono text-signal transition-transform duration-500 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                  >
+                    +
+                  </span>
+                </button>
+                <div
+                  className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="min-h-0 overflow-hidden">
+                    <p className="pb-6 pr-12 text-sm leading-relaxed text-ink/70">
+                      {f.a}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ============================================================ CLOSER */
 function Closer() {
   return (
-    <section className="bg-paper py-32 lg:py-48">
+    <section className="bg-paper pb-32 pt-16 lg:pb-48">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         <h2 className="text-display text-ink text-[12vw] leading-[0.9] tracking-[-0.04em] md:text-[8vw]">
           <Reveal>Built for the</Reveal>
@@ -553,7 +616,7 @@ function Closer() {
         <div className="mt-12 flex flex-wrap items-center gap-4">
           <Link
             to="/contact"
-            className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-6 py-4 text-paper hover:bg-signal hover:border-signal"
+            className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-6 py-4 text-paper hover:border-signal hover:bg-signal"
           >
             Start a project
             <span className="transition-transform group-hover:translate-x-1">→</span>

@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="relative overflow-hidden bg-ink text-paper">
       <div className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.04]">
         <div className="text-display marquee whitespace-nowrap text-[22vw] leading-[0.85] text-paper">
-          LUMEN/X · LUMEN/X · LUMEN/X · LUMEN/X · LUMEN/X ·
+          HANDLED · HANDLED · HANDLED · HANDLED ·
         </div>
       </div>
 
@@ -18,26 +18,26 @@ export function Footer() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-display text-[24vw] leading-[0.82] tracking-[-0.05em] md:text-[18vw]"
         >
-          LUMEN<span className="text-signal">/</span>X
+          HAND<span className="text-signal">LED</span>
         </motion.h2>
 
         <div className="mt-24 grid grid-cols-2 gap-10 border-t border-paper/15 pt-10 md:grid-cols-4">
           <div>
             <div className="text-mono mb-4 text-paper/50">Studio</div>
             <p className="text-sm leading-relaxed text-paper/80">
-              Lumen/X Engineering
+              Handled Technologies India Pvt. Ltd.
               <br />
-              Suite 7, Lighting Pavilion
+              Lighting & Energy Division
               <br />
-              Dubai · Berlin · Mumbai
+              India · Worldwide
             </p>
           </div>
           <div>
             <div className="text-mono mb-4 text-paper/50">Contact</div>
             <p className="text-sm leading-relaxed text-paper/80">
-              hello@lumenx.studio
+              hello@handled.in
               <br />
-              +971 4 000 0000
+              +91 00 0000 0000
             </p>
           </div>
           <div>
@@ -66,7 +66,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col justify-between gap-4 border-t border-paper/15 pt-6 text-mono text-paper/50 md:flex-row">
-          <span>© {new Date().getFullYear()} Lumen/X — All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Handled Technologies — All rights reserved.</span>
           <span>Engineered in silence. Shipped worldwide.</span>
         </div>
       </div>
