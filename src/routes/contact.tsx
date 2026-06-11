@@ -6,8 +6,8 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Let's Build The Future Of Light" },
-      { name: "description", content: "Talk to Lumen/X engineering. Stadium consultations, technical specifications and project quotes." },
-      { property: "og:title", content: "Contact — Lumen/X" },
+      { name: "description", content: "Talk to Handled Technologies engineering. Stadium consultations, technical specifications and project quotes." },
+      { property: "og:title", content: "Contact — Handled Technologies" },
       { property: "og:description", content: "Let's build the future of light." },
     ],
   }),
@@ -48,8 +48,8 @@ function ContactPage() {
             </div>
             <div className="mt-12">
               <div className="text-mono text-ink/50 mb-2">Direct</div>
-              <a href="mailto:hello@lumenx.studio" className="text-display text-3xl text-ink hover:text-signal">
-                hello@lumenx.studio
+              <a href="mailto:hello@handled.in" className="text-display text-3xl text-ink hover:text-signal">
+                hello@handled.in
               </a>
               <div className="text-mono mt-2 text-ink/60">+971 4 000 0000</div>
             </div>

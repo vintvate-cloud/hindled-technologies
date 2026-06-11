@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Lumen/X" },
+      { title: "About — Handled Technologies" },
       { name: "description", content: "A professional outdoor lighting manufacturer engineering luminaires for the world's most demanding venues." },
-      { property: "og:title", content: "About — Lumen/X" },
+      { property: "og:title", content: "About — Handled Technologies" },
       { property: "og:description", content: "Engineering luminaires for the world's most demanding venues." },
     ],
   }),
@@ -40,7 +40,7 @@ function AboutPage() {
               housing tested against the environments most manufacturers retreat from.
             </p>
             <p className="mt-8 max-w-xl text-sm leading-relaxed text-ink/70">
-              From international stadiums to off-grid roads, Lumen/X ships luminaires that perform
+              From international stadiums to off-grid roads, Handled Technologies ships luminaires that perform
               when the lights matter most. Our work is quiet, our standards are not.
             </p>
           </div>
