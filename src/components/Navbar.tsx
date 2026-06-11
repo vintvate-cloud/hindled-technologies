@@ -35,7 +35,7 @@ export function Navbar() {
           <Link to="/" className="group flex items-center gap-2.5">
             <span className="block h-1.5 w-1.5 rounded-full bg-signal" />
             <span className="text-display text-[15px] tracking-[-0.02em] text-ink">
-              LUMEN<span className="text-signal">/</span>X
+              HAND<span className="text-signal">LED</span>
             </span>
           </Link>
 
