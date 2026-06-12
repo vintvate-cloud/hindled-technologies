@@ -61,14 +61,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Handled Technologies — Engineered Lighting For The World's Biggest Stages" },
+      { title: "HINDLED-TECHNOLOGIES Technologies — Engineered Lighting For The World's Biggest Stages" },
       { name: "description", content: "Stadium floodlights, sports lighting, solar street and area luminaires engineered for the most demanding environments." },
-      { property: "og:title", content: "Handled Technologies — We Make It Happen" },
+      { property: "og:title", content: "HINDLED-TECHNOLOGIES Technologies — We Make It Happen" },
       { property: "og:description", content: "Stadium, high-mast, industrial and solar luminaires engineered for performance." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -85,6 +86,33 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var matchLogs = ['[vite] connected.'];
+                var matchWarns = ['ObjectMultiplex'];
+                function filterLogs(orig, matchStrings) {
+                  return function() {
+                    if (arguments[0] && typeof arguments[0] === 'string') {
+                      for (var i = 0; i < matchStrings.length; i++) {
+                        if (arguments[0].indexOf(matchStrings[i]) !== -1) {
+                          return;
+                        }
+                      }
+                    }
+                    if (orig) orig.apply(console, arguments);
+                  };
+                }
+                if (typeof console !== 'undefined') {
+                  console.log = filterLogs(console.log, matchLogs);
+                  console.info = filterLogs(console.info, matchLogs);
+                  console.warn = filterLogs(console.warn, matchWarns);
+                }
+              })();
+            `,
+          }}
+        />
         <HeadContent />
       </head>
       <body>

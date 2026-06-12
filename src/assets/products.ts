@@ -33,7 +33,37 @@ export type CatalogueItem = {
   features?: string[];
 };
 
-export const catalogue: CatalogueItem[] = [
+const getProductImage = (slug: string, defaultUrl: string): string => {
+  if (defaultUrl.startsWith("/") || defaultUrl.includes("__l5e")) {
+    const images: Record<string, string> = {
+      "hera": "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=600&auto=format&fit=crop",
+      "apollo": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=600&auto=format&fit=crop",
+      "juno-module": "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600&auto=format&fit=crop",
+      "juno-street": "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=600&auto=format&fit=crop",
+      "juno-area-a": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
+      "juno-area-b": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
+      "juno-post-top": "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600&auto=format&fit=crop",
+      "juno-bollard": "https://images.unsplash.com/photo-1508333706533-1ab43ecb1606?q=80&w=600&auto=format&fit=crop",
+      "mars-area": "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=600&auto=format&fit=crop",
+      "mars-smart-pole": "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=600&auto=format&fit=crop",
+      "mercury": "https://images.unsplash.com/photo-1508333706533-1ab43ecb1606?q=80&w=600&auto=format&fit=crop",
+      "ares": "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600&auto=format&fit=crop",
+      "phoenix": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop",
+      "lightning": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
+      "orion": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
+      "mars-wooden": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600&auto=format&fit=crop",
+      "jupiter-wooden": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600&auto=format&fit=crop",
+      "sp02": "https://images.unsplash.com/photo-1540747737956-37872f76d9ee?q=80&w=600&auto=format&fit=crop",
+      "fl18": "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=600&auto=format&fit=crop",
+      "hb12": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600&auto=format&fit=crop",
+      "fl17": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=600&auto=format&fit=crop",
+    };
+    return images[slug] || "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=600&auto=format&fit=crop";
+  }
+  return defaultUrl;
+};
+
+const rawCatalogue: CatalogueItem[] = [
   {
     slug: "hera",
     code: "01",
@@ -499,6 +529,11 @@ export const catalogue: CatalogueItem[] = [
     features: ["Sealed driver bay", "Thermal chimney cooling", "Modular service", "Long-life lumen maintenance"],
   },
 ];
+
+export const catalogue: CatalogueItem[] = rawCatalogue.map(item => ({
+  ...item,
+  image: getProductImage(item.slug, item.image)
+}));
 
 export const featured = [
   catalogue.find((c) => c.slug === "fl18")!,

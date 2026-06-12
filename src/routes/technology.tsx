@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 export const Route = createFileRoute("/technology")({
   head: () => ({
     meta: [
-      { title: "Technology — Handled Technologies Engineering" },
-      { name: "description", content: "Optics, thermal architecture, drivers, control protocols and solar autonomy. The engineering behind Handled Technologies." },
-      { property: "og:title", content: "Technology — Handled Technologies Engineering" },
-      { property: "og:description", content: "The engineering systems behind every Handled Technologies luminaire." },
+      { title: "Technology — HINDLED-TECHNOLOGIES Technologies Engineering" },
+      { name: "description", content: "Optics, thermal architecture, drivers, control protocols and solar autonomy. The engineering behind HINDLED-TECHNOLOGIES Technologies." },
+      { property: "og:title", content: "Technology — HINDLED-TECHNOLOGIES Technologies Engineering" },
+      { property: "og:description", content: "The engineering systems behind every HINDLED-TECHNOLOGIES Technologies luminaire." },
     ],
   }),
   component: TechPage,
@@ -34,7 +34,7 @@ function TechPage() {
             <span className="text-signal">PHOTON BY PHOTON.</span>
           </h1>
           <p className="mt-8 max-w-xl text-sm leading-relaxed text-ink/70">
-            Every Handled Technologies luminaire is the sum of six engineering disciplines working in concert.
+            Every HINDLED-TECHNOLOGIES Technologies luminaire is the sum of six engineering disciplines working in concert.
             Below: the systems behind the performance.
           </p>
         </div>

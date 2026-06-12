@@ -12,9 +12,9 @@ if (typeof window !== "undefined") {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Handled Technologies — Engineered Outdoor Lighting" },
+      { title: "HINDLED-TECHNOLOGIES Technologies — Engineered Outdoor Lighting" },
       { name: "description", content: "Stadium floodlights, high-mast, industrial high-bay and a complete solar lighting portfolio. Engineered in India, shipped worldwide." },
-      { property: "og:title", content: "Handled Technologies — We Make It Happen" },
+      { property: "og:title", content: "HINDLED-TECHNOLOGIES Technologies — We Make It Happen" },
       { property: "og:description", content: "Engineered outdoor lighting systems for stadiums, infrastructure, and autonomous solar grids." },
       { property: "og:image", content: featured[0].image },
     ],
@@ -97,7 +97,7 @@ function Hero() {
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-mono text-ink/60"
             >
-              HANDLED TECHNOLOGIES · CATALOGUE MMXXVI
+              HINDLED-TECHNOLOGIES TECHNOLOGIES · CATALOGUE MMXXVI
             </motion.div>
           </div>
         </motion.div>
@@ -121,7 +121,7 @@ function Hero() {
             className="col-span-12 flex flex-col gap-6 md:col-span-4 md:col-start-9"
           >
             <p className="max-w-sm text-sm leading-relaxed text-ink/70">
-              From international stadiums to autonomous solar grids, HANDLED
+              From international stadiums to autonomous solar grids, HINDLED-TECHNOLOGIES
               designs lighting systems where every photon is engineered, not decorated.
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -347,7 +347,7 @@ function About() {
             <motion.img
               style={{ y: imgY }}
               src={featured[1].image}
-              alt="Handled Technologies engineering"
+              alt="HINDLED-TECHNOLOGIES Technologies engineering"
               className="absolute inset-0 h-[120%] w-full object-contain p-10"
             />
           </motion.div>
@@ -373,7 +373,7 @@ function About() {
           </h2>
 
           <p className="mt-10 max-w-lg text-base leading-relaxed text-ink/70">
-            HANDLED Technologies is a quiet collective focused on a single discipline:
+            HINDLED-TECHNOLOGIES Technologies is a quiet collective focused on a single discipline:
             precision outdoor lighting. We don't follow catalogues. Every luminaire
             begins as a thermal sketch and ends as an instrument calibrated to a
             project's geometry, code, and atmosphere.
@@ -413,13 +413,13 @@ const testimonials = [
   },
   {
     quote:
-      "HANDLED engineered our solar street-lighting upgrade with a quiet rigor — every pole, every photon accounted for. Years on, the system is still hitting day-one outputs.",
+      "HINDLED-TECHNOLOGIES engineered our solar street-lighting upgrade with a quiet rigor — every pole, every photon accounted for. Years on, the system is still hitting day-one outputs.",
     name: "Karina Vasquez",
     role: "Director of Infrastructure · Vista Municipality",
   },
   {
     quote:
-      "Working with HANDLED is closer to working with a research lab than a manufacturer. They challenge the brief, then deliver fixtures that quietly outperform it.",
+      "Working with HINDLED-TECHNOLOGIES is closer to working with a research lab than a manufacturer. They challenge the brief, then deliver fixtures that quietly outperform it.",
     name: "Daniel Okafor",
     role: "Lighting Designer · ATELIER 9",
   },
@@ -453,7 +453,7 @@ function Testimonials() {
           </div>
           <p className="col-span-12 self-end text-sm leading-relaxed text-ink/70 md:col-span-5 md:col-start-8">
             A small selection from architects, consultants and infrastructure leads who
-            specify HANDLED on the projects that matter most.
+            specify HINDLED-TECHNOLOGIES on the projects that matter most.
           </p>
         </div>
 
@@ -508,7 +508,7 @@ function Stats() {
 /* ============================================================ FAQ */
 const faqs = [
   {
-    q: "Which environments are HANDLED luminaires built for?",
+    q: "Which environments are HINDLED-TECHNOLOGIES luminaires built for?",
     a: "Every fixture targets IP66 / IK10 with salt-spray, monsoon and broadcast-grade UV testing. Our portfolio is deployed across stadiums, airports, highways, ports and remote off-grid landscapes.",
   },
   {
@@ -574,17 +574,15 @@ function FAQ() {
                     {f.q}
                   </span>
                   <span
-                    className={`text-mono text-signal transition-transform duration-500 ${
-                      isOpen ? "rotate-45" : ""
-                    }`}
+                    className={`text-mono text-signal transition-transform duration-500 ${isOpen ? "rotate-45" : ""
+                      }`}
                   >
                     +
                   </span>
                 </button>
                 <div
-                  className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                  }`}
+                  className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
                 >
                   <div className="min-h-0 overflow-hidden">
                     <p className="pb-6 pr-12 text-sm leading-relaxed text-ink/70">

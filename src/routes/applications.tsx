@@ -5,10 +5,10 @@ import { imageUrls } from "@/assets/products";
 export const Route = createFileRoute("/applications")({
   head: () => ({
     meta: [
-      { title: "Applications — Handled Technologies" },
-      { name: "description", content: "Stadiums, sports venues, infrastructure, urban grids and landscape environments lit by Handled Technologies." },
-      { property: "og:title", content: "Applications — Handled Technologies" },
-      { property: "og:description", content: "Where HANDLED engineering meets the field." },
+      { title: "Applications — HINDLED-TECHNOLOGIES Technologies" },
+      { name: "description", content: "Stadiums, sports venues, infrastructure, urban grids and landscape environments lit by HINDLED-TECHNOLOGIES Technologies." },
+      { property: "og:title", content: "Applications — HINDLED-TECHNOLOGIES Technologies" },
+      { property: "og:description", content: "Where HINDLED-TECHNOLOGIES engineering meets the field." },
       { property: "og:image", content: imageUrls["fl18"] },
     ],
   }),

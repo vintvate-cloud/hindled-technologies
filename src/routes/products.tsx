@@ -6,9 +6,9 @@ import { catalogue, type CatalogueItem } from "@/assets/products";
 export const Route = createFileRoute("/products")({
   head: () => ({
     meta: [
-      { title: "Products — Handled Technologies" },
-      { name: "description", content: "The complete Handled Technologies catalogue: solar street, area, garden, bollard and wall-wash lighting plus FL18 / SP02 / HB12 / FL17 outdoor & industrial luminaires." },
-      { property: "og:title", content: "Handled Technologies — Product Catalogue 2026" },
+      { title: "Products — HINDLED-TECHNOLOGIES Technologies" },
+      { name: "description", content: "The complete HINDLED-TECHNOLOGIES Technologies catalogue: solar street, area, garden, bollard and wall-wash lighting plus FL18 / SP02 / HB12 / FL17 outdoor & industrial luminaires." },
+      { property: "og:title", content: "HINDLED-TECHNOLOGIES Technologies — Product Catalogue 2026" },
       { property: "og:description", content: "21 platforms across solar lighting and outdoor & industrial luminaires." },
       { property: "og:image", content: catalogue[18].image },
     ],
@@ -40,7 +40,7 @@ function ProductsPage() {
           <p className="mt-10 max-w-xl text-sm leading-relaxed text-ink/70">
             Twenty-one platforms across two disciplines — a full solar-lighting portfolio
             and mains-powered outdoor & industrial luminaires. Every model carries
-            specifications transcribed directly from HANDLED engineering data.
+            specifications transcribed directly from HINDLED-TECHNOLOGIES engineering data.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-2">
@@ -48,11 +48,10 @@ function ProductsPage() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`text-mono border px-4 py-2 transition-all ${
-                  filter === f
+                className={`text-mono border px-4 py-2 transition-all ${filter === f
                     ? "border-ink bg-ink text-paper"
                     : "border-ink/20 text-ink/70 hover:border-ink hover:text-ink"
-                }`}
+                  }`}
               >
                 {f}
               </button>
