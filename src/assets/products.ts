@@ -1,24 +1,26 @@
-import p5 from "./catalogue/p5.jpg.asset.json";
-import p7 from "./catalogue/p7.jpg.asset.json";
-import p8 from "./catalogue/p8.jpg.asset.json";
-import p9 from "./catalogue/p9.jpg.asset.json";
-import p10 from "./catalogue/p10.jpg.asset.json";
-import p11 from "./catalogue/p11.jpg.asset.json";
-import p12 from "./catalogue/p12.jpg.asset.json";
-import p13 from "./catalogue/p13.jpg.asset.json";
-import p14 from "./catalogue/p14.jpg.asset.json";
-import p15 from "./catalogue/p15.jpg.asset.json";
-import p16 from "./catalogue/p16.jpg.asset.json";
-import p17 from "./catalogue/p17.jpg.asset.json";
-import p18 from "./catalogue/p18.jpg.asset.json";
-import p19 from "./catalogue/p19.jpg.asset.json";
-import p20 from "./catalogue/p20.jpg.asset.json";
-import p21 from "./catalogue/p21.jpg.asset.json";
-import p22 from "./catalogue/p22.jpg.asset.json";
-import p24 from "./catalogue/p24.jpg.asset.json";
-import p25 from "./catalogue/p25.jpg.asset.json";
-import p26 from "./catalogue/p26.jpg.asset.json";
-import p27 from "./catalogue/p27.jpg.asset.json";
+import p5_spec from "./catalogue/p5_spec.jpg";
+import p8_spec from "./catalogue/p8_spec.jpg";
+import p5 from "./catalogue/p5.jpg";
+import p7 from "./catalogue/p7.jpg";
+import p8 from "./catalogue/p8.jpg";
+import p9 from "./catalogue/p9.jpg";
+import p10 from "./catalogue/p10.jpg";
+import p11 from "./catalogue/p11.jpg";
+import p12 from "./catalogue/p12.jpg";
+import p13 from "./catalogue/p13.jpg";
+import p14 from "./catalogue/p14.jpg";
+import p15 from "./catalogue/p15.jpg";
+import p16 from "./catalogue/p16.jpg";
+import p17 from "./catalogue/p17.jpg";
+import p18 from "./catalogue/p18.jpg";
+import p19 from "./catalogue/p19.jpg";
+import p20 from "./catalogue/p20.jpg";
+import p21 from "./catalogue/p21.jpg";
+import p22 from "./catalogue/p22.jpg";
+import p24 from "./catalogue/p24.jpg";
+import p25 from "./catalogue/p25.jpg";
+import p26 from "./catalogue/p26.jpg";
+import p27 from "./catalogue/p27.jpg";
 
 export type CatalogueItem = {
   slug: string;
@@ -31,35 +33,34 @@ export type CatalogueItem = {
   description: string;
   specs: Record<string, string>;
   features?: string[];
+  specImage?: string; // Mechanical specification blueprint
 };
 
+export type KeyFeatureCard = {
+  title: string;
+  desc: string;
+  icon: string;
+};
+
+export type ApplicationCard = {
+  title: string;
+  desc: string;
+  icon: string;
+};
+
+export type BusinessBenefit = {
+  title: string;
+  desc: string;
+};
+
+export interface EnrichedProduct extends CatalogueItem {
+  overview: string;
+  featuresDetails: KeyFeatureCard[];
+  applicationsList: ApplicationCard[];
+  benefitsList: BusinessBenefit[];
+}
+
 const getProductImage = (slug: string, defaultUrl: string): string => {
-  if (defaultUrl.startsWith("/") || defaultUrl.includes("__l5e")) {
-    const images: Record<string, string> = {
-      "hera": "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=600&auto=format&fit=crop",
-      "apollo": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=600&auto=format&fit=crop",
-      "juno-module": "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600&auto=format&fit=crop",
-      "juno-street": "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=600&auto=format&fit=crop",
-      "juno-area-a": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
-      "juno-area-b": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
-      "juno-post-top": "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600&auto=format&fit=crop",
-      "juno-bollard": "https://images.unsplash.com/photo-1508333706533-1ab43ecb1606?q=80&w=600&auto=format&fit=crop",
-      "mars-area": "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=600&auto=format&fit=crop",
-      "mars-smart-pole": "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=600&auto=format&fit=crop",
-      "mercury": "https://images.unsplash.com/photo-1508333706533-1ab43ecb1606?q=80&w=600&auto=format&fit=crop",
-      "ares": "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600&auto=format&fit=crop",
-      "phoenix": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=600&auto=format&fit=crop",
-      "lightning": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
-      "orion": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=600&auto=format&fit=crop",
-      "mars-wooden": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600&auto=format&fit=crop",
-      "jupiter-wooden": "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=600&auto=format&fit=crop",
-      "sp02": "https://images.unsplash.com/photo-1540747737956-37872f76d9ee?q=80&w=600&auto=format&fit=crop",
-      "fl18": "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=600&auto=format&fit=crop",
-      "hb12": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600&auto=format&fit=crop",
-      "fl17": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=600&auto=format&fit=crop",
-    };
-    return images[slug] || "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=600&auto=format&fit=crop";
-  }
   return defaultUrl;
 };
 
@@ -71,7 +72,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "HERA-LED Solar Vertical Street Lights",
     tagline: "Integrated vertical PV pole modules · 100W – 600W",
     category: "Solar",
-    image: p5.url,
+    image: p5,
     description:
       "Slim, all-in-one vertical photovoltaic modules engineered to wrap around the pole itself — turning the entire pole into a power-generating surface. HPBC mono cells across six faces deliver high yield with minimal footprint, while the TPE-clad body withstands harsh outdoor environments.",
     specs: {
@@ -87,6 +88,7 @@ const rawCatalogue: CatalogueItem[] = [
       Warranty: "5–10 years",
     },
     features: ["HPBC monocrystalline", "Salt spray 1000 hrs", "1000V DC system", "Six-face capture"],
+    specImage: p5_spec,
   },
   {
     slug: "apollo",
@@ -95,7 +97,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Apollo Solar Light Solution",
     tagline: "High-performance solar LED luminaire · 20W – 150W",
     category: "Solar",
-    image: p7.url,
+    image: p7,
     description:
       "A premium die-cast luminaire built for split solar street-light systems. Large internal cavity stores batteries, MPPT controller and motion sensor; ADC12 body cuts wind drag and resists dust build-up.",
     specs: {
@@ -117,7 +119,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "JUNO-LED Solar Vertical Module",
     tagline: "PV pole modules · 100W / 150W / 200W",
     category: "Solar",
-    image: p8.url,
+    image: p8,
     description:
       "The JUNO vertical module powers the JUNO solar family — street lights, area lights, post-tops and bollards. Six-sided HPBC mono in a compact Φ26.5 cm body integrates directly onto poles from Φ60 to Φ168 mm.",
     specs: {
@@ -130,6 +132,7 @@ const rawCatalogue: CatalogueItem[] = [
       Weight: "8.5–13.5 kg",
       Connection: "Max 5 parallel",
     },
+    specImage: p8_spec,
   },
   {
     slug: "juno-street",
@@ -138,7 +141,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "JUNO-LED Solar Street Light",
     tagline: "All-in-two solar street light · 6 – 12 m",
     category: "Solar",
-    image: p9.url,
+    image: p9,
     description:
       "Roadway and highway solar street lighting on die-cast ADC12 fixtures with extruded aluminium poles. Single and twin (D) configurations scale from 6 m residential streets to 12 m arterial roads.",
     specs: {
@@ -162,7 +165,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "JUNO Solar Area Light – A",
     tagline: "Architectural area & campus light · 4 – 8 m",
     category: "Solar",
-    image: p10.url,
+    image: p10,
     description:
       "A clean, contemporary area luminaire for plazas, campuses and commercial frontages. Aluminium 6063 body, Philips LEDs and T2 / T5 optics deliver uniform wide-area illumination with single or twin heads.",
     specs: {
@@ -184,7 +187,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "JUNO Solar Area Light – B",
     tagline: "Tapered-arm area light · 6 – 10 m",
     category: "Solar",
-    image: p11.url,
+    image: p11,
     description:
       "The B variant carries the same JUNO platform on a sculpted, curved arm for taller 6–10 m installations — ideal for boulevards, parks and mixed-use developments where form matters as much as output.",
     specs: {
@@ -204,7 +207,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "JUNO Solar Post-Top",
     tagline: "Decorative pedestrian post-top · 4 m",
     category: "Solar",
-    image: p12.url,
+    image: p12,
     description:
       "A refined post-top for residential streets, pathways and landscaped grounds. The vertical solar module integrates seamlessly into the column, giving a tidy, glare-controlled light with full LiFePO4 autonomy.",
     specs: {
@@ -225,7 +228,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "JUNO Solar Bollard Light",
     tagline: "Pathway & landscape bollard · 1140 mm",
     category: "Solar",
-    image: p13.url,
+    image: p13,
     description:
       "A sculptural twisted-form bollard for walkways, gardens and entrances. Low 1.5W draw with a 25W × 2 HPBC module and 3.2V 16Ah cell delivers dependable all-night accent and wayfinding light.",
     specs: {
@@ -245,7 +248,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Mars Solar LED Area Lights",
     tagline: "Adjustable-power area light · 3 – 5 m",
     category: "Solar",
-    image: p14.url,
+    image: p14,
     description:
       "A versatile area-lighting platform with factory-set, site-adjustable power. Single, double-down and dual-side heads cover everything from pathways to large open yards.",
     specs: {
@@ -267,7 +270,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Mars-Solar Smart Pole",
     tagline: "Integrated smart pole platform · 6 – 10 m",
     category: "Solar",
-    image: p15.url,
+    image: p15,
     description:
       "A multi-service smart pole combining solar area lighting with capacity for surveillance, sensors and connectivity hardware. Built on the JUNO area-light electrical platform with LiFePO4 storage.",
     specs: {
@@ -288,7 +291,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Mercury-LED Solar Area Lights",
     tagline: "Slim louvred column · 3 / 4 / 5 m",
     category: "Solar",
-    image: p16.url,
+    image: p16,
     description:
       "A minimalist, louvred column light for parks, trails and premium landscapes. Three sizes (S/M/L) scale power and storage, with T5 optics for controlled, low-glare distribution.",
     specs: {
@@ -309,7 +312,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Ares-LED Solar Garden Light",
     tagline: "Classic lantern garden light · 3 – 8 m",
     category: "Solar",
-    image: p17.url,
+    image: p17,
     description:
       "A traditional lantern-style solar garden light marrying heritage looks with modern monocrystalline solar and LiFePO4 storage. Suits gardens, courtyards and estate roads.",
     specs: {
@@ -330,7 +333,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Phoenix-LED Solar Recessed Underground",
     tagline: "In-ground drive-over solar marker",
     category: "Solar",
-    image: p18.url,
+    image: p18,
     description:
       "A sealed, drive-over recessed luminaire in 2205 & 304 stainless steel for paths, driveways and plazas. Available as a pure-solar style or a solar + AC supplement type for higher output.",
     specs: {
@@ -352,7 +355,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "ST-Lightning Wall Wash",
     tagline: "Linear solar wall-wash · 1000 mm",
     category: "Solar",
-    image: p19.url,
+    image: p19,
     description:
       "A 1-metre linear solar wall-wash with an adjustable-angle bracket and selectable wide / middle / narrow optics. Aluminium 6063 body with a 20W panel and 15Ah battery delivers ≥400 lm.",
     specs: {
@@ -374,7 +377,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Orion Recessed Wall Wash",
     tagline: "Recessed asymmetric wall-wash · S / M / L",
     category: "Solar",
-    image: p20.url,
+    image: p20,
     description:
       "A flush, recessed solar wall-wash with asymmetric optics for steps, retaining walls and architectural niches. Three sizes scale output from 120 lm to 1200 lm.",
     specs: {
@@ -396,7 +399,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Mars-WD-LED Solar Area Lights",
     tagline: "Wooden-pole area light · 3 – 5 m",
     category: "Solar",
-    image: p21.url,
+    image: p21,
     description:
       "The Mars platform in a natural wooden-pole finish for parks, waterfronts and eco-sensitive sites. Single (S-WD) and double-down (DD-WD) heads combine warm material aesthetics with high-output mono solar.",
     specs: {
@@ -418,7 +421,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "Jupiter-WD-LED Solar Bollard",
     tagline: "Wooden-finish bollard · 500 – 1000 mm",
     category: "Solar",
-    image: p22.url,
+    image: p22,
     description:
       "A warm, wood-grain bollard for garden paths, resorts and premium landscapes. Aluminium 6063 + carbon-steel core with symmetric optics, Philips/Seoul LEDs and a compact 4Ah LiFePo4 cell.",
     specs: {
@@ -440,7 +443,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "SP02 High-Mast Floodlight",
     tagline: "Heavy-duty round high-mast · 500W – 1200W",
     category: "Outdoor & Industrial",
-    image: p24.url,
+    image: p24,
     description:
       "A heavy-duty round high-mast floodlight engineered for demanding large-area illumination — airports, ports, interchanges and logistics yards. Long-throw distribution with glare and spill control.",
     specs: {
@@ -465,7 +468,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "FL18 Stadium Floodlight",
     tagline: "High-power integrated square · 600W – 1800W",
     category: "Outdoor & Industrial",
-    image: p25.url,
+    image: p25,
     description:
       "A high-power integrated square stadium floodlight engineered for professional performance with a cost-optimised project approach. Strong uniformity and glare control for mainstream tenders and upgrades.",
     specs: {
@@ -491,7 +494,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "HB12 Industrial High Bay",
     tagline: "Warehouse & manufacturing high bay · 100W – 240W",
     category: "Outdoor & Industrial",
-    image: p26.url,
+    image: p26,
     description:
       "A 9-in-1 high-output industrial high bay luminaire for warehousing and manufacturing — three beam angles × three power levels × three CCT options in a single fixture.",
     specs: {
@@ -516,7 +519,7 @@ const rawCatalogue: CatalogueItem[] = [
     name: "FL17 Sealed-Driver Floodlight",
     tagline: "Modular outdoor floodlight · 50W – 500W",
     category: "Outdoor & Industrial",
-    image: p27.url,
+    image: p27,
     description:
       "Sealed-driver floodlight with thermal-chimney cooling. A modular outdoor luminaire that maintains driver reliability across the 50–500W range for facades, courts and perimeter lighting.",
     specs: {
@@ -550,3 +553,140 @@ export const solar = catalogue.filter((c) => c.category === "Solar");
 export const imageUrls: Record<string, string> = Object.fromEntries(
   catalogue.map((c) => [c.slug, c.image]),
 );
+
+// B2B Dynamic Data Enricher for Premium Showcase
+export const enrichProduct = (item: CatalogueItem): EnrichedProduct => {
+  const isSolar = item.category === "Solar";
+  
+  // Dynamic Overview
+  const overview = `The HINDLED ${item.series} Series represents a milestone in professional ${
+    isSolar ? "autonomous solar-powered outdoor illumination" : "high-efficacy industrial lighting systems"
+  }. Specifically engineered to deliver elite-grade performance under extreme environmental stress, this platform integrates ${
+    isSolar 
+      ? "state-of-the-art HPBC monocrystalline PV modules and balance-of-system LiFePO4 battery storage" 
+      : "advanced sports-grade optics and modular thermal convective pathways"
+  }. Designed to align with the rigid compliance demands of municipalities, commercial developers, and smart-city planners, the ${
+    item.name
+  } combines robust construction with low maintenance overheads, offering an authentic utility-grade asset with long-term return on investment.`
+
+  // Dynamic Key Features
+  const featuresDetails: KeyFeatureCard[] = isSolar ? [
+    {
+      title: "HPBC Photovoltaics",
+      desc: `High-yield ${item.specs["Cell Type"] || "HPBC Mono"} modules offering ${item.specs["PV Faces"] || "multi-face"} solar capture and efficiency up to 26% for rapid solar recharging.`,
+      icon: "Sun"
+    },
+    {
+      title: "LiFePO4 Storage",
+      desc: `High-capacity ${item.specs["Battery"] || "LiFePO4"} cells paired with balance-of-system thermal management, supporting 3000+ deep cycles.`,
+      icon: "BatteryCharging"
+    },
+    {
+      title: "Weatherproof Shell",
+      desc: `Heavy-duty ADC12 die-cast aluminum or 6063 alloy housing with ${item.specs["Protection"] || "IP65 / IK08"} ratings against monsoons and high winds.`,
+      icon: "ShieldAlert"
+    },
+    {
+      title: "MPPT Energy Management",
+      desc: "Smart microcontrollers featuring adaptive 4-step dimming schedules and integrated motion sensing for max battery autonomy.",
+      icon: "Cpu"
+    }
+  ] : [
+    {
+      title: "High-Efficacy LED",
+      desc: `Delivers up to ${item.specs["Efficiency"] || item.specs["Efficacy"] || "170 lm/W"} light output utilizing elite ${item.specs["LEDs"] || item.specs["LED Source"] || "Nichia / Philips"} chip arrays.`,
+      icon: "Lightbulb"
+    },
+    {
+      title: "Thermal Chimney Cooling",
+      desc: "Signature hollow ventilation vents creating a passive convection chimney effect to draw heat away from vital electronics.",
+      icon: "Thermometer"
+    },
+    {
+      title: "Broadcast-Grade Controls",
+      desc: `Native compatibility with ${item.specs["Controls"] || "0-10V, DALI, and DMX512"} systems, ensuring flicker-free, HDTV-ready output.`,
+      icon: "Cpu"
+    },
+    {
+      title: "Advanced Durability",
+      desc: `Ingress protected up to ${item.specs["Protection"] || "IP66 / IK10"} with 20kV surge suppression and marine-grade corrosion-resistant powder coat.`,
+      icon: "ShieldCheck"
+    }
+  ];
+
+  // Dynamic Applications
+  const applicationsList: ApplicationCard[] = isSolar ? [
+    {
+      title: "Smart Highways & Roadways",
+      desc: "Off-grid highway illumination, tollways, and arterial roads requiring high uniformity and autonomous operation.",
+      icon: "Milestone"
+    },
+    {
+      title: "Municipalities & Plazas",
+      desc: "Pedestrian corridors, municipal gardens, campuses, civic squares, and public business parks.",
+      icon: "Building"
+    },
+    {
+      title: "Perimeters & Parking Lots",
+      desc: "High-security facility perimeters, transport hubs, and industrial parking lots needing continuous all-night coverage.",
+      icon: "Car"
+    }
+  ] : [
+    {
+      title: "Sports Stadiums & Arenas",
+      desc: "Broadcast-compliant illumination for soccer, cricket, athletics, and regional multi-sport complexes.",
+      icon: "Trophy"
+    },
+    {
+      title: "Ports & High-Mast Sites",
+      desc: "Long-throw projection for container terminals, dry docks, airport aprons, and highway interchanges.",
+      icon: "Ship"
+    },
+    {
+      title: "Heavy Manufacturing & Logistics",
+      desc: "High-ceiling logistics warehouses, manufacturing bays, packaging depots, and distribution centers.",
+      icon: "Warehouse"
+    }
+  ];
+
+  // Dynamic Business Benefits (ROI)
+  const benefitsList: BusinessBenefit[] = isSolar ? [
+    {
+      title: "Zero Monthly Energy Bills",
+      desc: "100% solar independence removes reliance on municipal grids, eliminating lighting-related electrical utility bills."
+    },
+    {
+      title: "Negligible Maintenance Loops",
+      desc: "LiFePO4 battery balancing and long-life LEDs eliminate frequent servicing, cutting labor and maintenance costs."
+    },
+    {
+      title: "ESG & Carbon Reduction",
+      desc: "Provides verifiable carbon offsets, assisting municipal and commercial enterprises in achieving green-building and ESG objectives."
+    }
+  ] : [
+    {
+      title: "Up to 65% Utility Reductions",
+      desc: "High lumen-per-watt efficiency replaces legacy MH or HPS arrays, cutting facility power costs immediately."
+    },
+    {
+      title: "Unmatched Operational Lifespan",
+      desc: "An L90/B10 rating beyond 100,000 hours ensures continuous luminaire operation, virtually eliminating lamp downtime."
+    },
+    {
+      title: "Enhanced Safety Compliance",
+      desc: "High-uniformity, glare-controlled, and flicker-free lighting reduces accident rates in industrial and warehouse environments."
+    }
+  ];
+
+  return {
+    ...item,
+    overview,
+    featuresDetails,
+    applicationsList,
+    benefitsList
+  };
+};
+
+export const enrichedCatalogue: EnrichedProduct[] = catalogue.map(enrichProduct);
+export const enrichedFeatured: EnrichedProduct[] = featured.map(enrichProduct);
+export const enrichedSolar: EnrichedProduct[] = solar.map(enrichProduct);
