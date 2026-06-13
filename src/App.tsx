@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer";
 import { SmoothScroll } from "./components/SmoothScroll";
 import { CustomCursor } from "./components/CustomCursor";
 import { ContactDrawerProvider, ContactDrawer } from "./components/ContactDrawer";
+import { ScrollToTop } from "./components/ScrollToTop";
 import IndexPage from "./pages/Index";
 import AboutPage from "./pages/About";
 import AppsPage from "./pages/Applications";
@@ -16,6 +17,7 @@ export default function App() {
     <BrowserRouter>
       <ContactDrawerProvider>
         <SmoothScroll>
+          <ScrollToTop />
           <CustomCursor />
           <Navbar />
           <main className="min-h-screen bg-paper text-ink">

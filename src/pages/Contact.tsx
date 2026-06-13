@@ -23,7 +23,7 @@ export default function ContactPage() {
       <section className="bg-paper pt-40 pb-20">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-8 text-ink/60">— Signal / Contact</div>
-          <h1 className="text-display text-ink text-[12vw] leading-[0.88] md:text-[9vw]">
+          <h1 className="text-display text-ink text-[11vw] leading-[0.88] sm:text-[10vw] md:text-[9vw]">
             LET'S BUILD
             <br />
             THE FUTURE OF
@@ -51,7 +51,7 @@ export default function ContactPage() {
             </div>
             <div className="mt-12">
               <div className="text-mono text-ink/50 mb-2">Direct</div>
-              <a href="mailto:hello@HINDLED-TECHNOLOGIES.in" className="text-display text-3xl text-ink hover:text-signal">
+              <a href="mailto:hello@HINDLED-TECHNOLOGIES.in" className="text-display text-xl sm:text-2xl md:text-3xl text-ink hover:text-signal break-all">
                 hello@HINDLED-TECHNOLOGIES.in
               </a>
               <div className="text-mono mt-2 text-ink/60">+971 4 000 0000</div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
             <div className="absolute inset-0 grid place-items-center">
               <div className="text-center text-paper">
                 <div className="text-mono text-paper/60">Headquarters</div>
-                <div className="text-display mt-2 text-4xl md:text-6xl">25.2048° N · 55.2708° E</div>
+                <div className="text-display mt-2 text-2xl sm:text-4xl md:text-6xl">25.2048° N · 55.2708° E</div>
               </div>
             </div>
           </div>

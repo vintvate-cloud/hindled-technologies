@@ -25,7 +25,7 @@ export default function AppsPage() {
       <section className="bg-paper pt-40 pb-20">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-8 text-ink/60">— Field / Applications</div>
-          <h1 className="text-display text-ink text-[12vw] leading-[0.88] md:text-[9vw]">
+          <h1 className="text-display text-ink text-[13vw] leading-[0.88] sm:text-[11vw] md:text-[9vw]">
             WHERE THE LIGHT
             <br />
             <span className="text-signal">HAS TO PERFORM.</span>
@@ -50,7 +50,7 @@ export default function AppsPage() {
               </div>
               <div className="md:col-span-5">
                 <div className="text-mono text-signal">{String(i + 1).padStart(2, "0")} · {a.series}</div>
-                <h2 className="text-display mt-3 text-5xl text-ink md:text-7xl">{a.t}</h2>
+                <h2 className="text-display mt-3 text-4xl text-ink sm:text-5xl md:text-7xl">{a.t}</h2>
                 <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/70">{a.d}</p>
                 <button
                   onClick={openDrawer}

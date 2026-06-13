@@ -12,7 +12,7 @@ export default function AboutPage() {
       <section className="bg-paper pt-40 pb-32">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-8 text-ink/60">— Studio / About</div>
-          <h1 className="text-display text-ink text-[12vw] leading-[0.88] md:text-[9vw]">
+          <h1 className="text-display text-ink text-[13vw] leading-[0.88] sm:text-[11vw] md:text-[9vw]">
             WE DON'T MAKE
             <br />
             FIXTURES. WE
@@ -28,7 +28,7 @@ export default function AboutPage() {
             <div className="text-mono text-ink/50">Manifesto</div>
           </div>
           <div className="md:col-span-7">
-            <p className="text-display text-3xl leading-tight text-ink md:text-5xl">
+            <p className="text-display text-2xl sm:text-3xl leading-tight text-ink md:text-5xl">
               Light is infrastructure. We engineer it like aerospace — every optic, driver and
               housing tested against the environments most manufacturers retreat from.
             </p>
@@ -67,7 +67,7 @@ export default function AboutPage() {
           <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw]">
             VENUES WE'VE LIT.
           </h2>
-          <div className="text-display marquee mt-12 flex gap-12 whitespace-nowrap text-4xl text-ink/30 md:text-6xl">
+          <div className="text-display marquee mt-12 flex gap-12 whitespace-nowrap text-3xl sm:text-4xl text-ink/30 md:text-6xl">
             <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
             <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
           </div>

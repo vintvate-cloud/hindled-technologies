@@ -235,7 +235,7 @@ export default function ProductsPage() {
               <img
                 src={card.image}
                 alt={card.title}
-                className="absolute inset-0 h-full w-full object-contain p-8 transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/10 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-paper">
@@ -673,7 +673,7 @@ export default function ProductsPage() {
                     </div>
 
                     {/* Modal CTA footer */}
-                    <div className="flex gap-4 pt-6 border-t border-slate-200">
+                    <div className="flex gap-4 pt-6 pb-8 md:pb-2 border-t border-slate-200">
                       <button
                         onClick={() => setIsSpecDrawerOpen(true)}
                         className="flex-1 rounded-full bg-[#0a192f] py-4 text-center text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-signal cursor-pointer"
@@ -742,7 +742,7 @@ export default function ProductsPage() {
               </div>
 
               {/* Drawer Body */}
-              <div className="flex-grow overflow-y-auto p-6 md:p-8 flex flex-col justify-between bg-[#fafbfc] no-scrollbar" data-lenis-prevent>
+              <div className="flex-grow overflow-y-auto p-6 pb-10 md:p-8 md:pb-8 flex flex-col justify-between bg-[#fafbfc] no-scrollbar" data-lenis-prevent>
                 <div className="space-y-6">
                   {/* Miniature Product Banner */}
                   <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">
@@ -850,13 +850,13 @@ function ProductCard({
     >
       <div>
         {/* Product Image Wrapper */}
-        <div className="relative aspect-square w-full overflow-hidden rounded-[28px] bg-[#f1f5f9] border border-slate-200/60 p-6 flex items-center justify-center shadow-sm transition-shadow hover:shadow-md">
+        <div className="relative aspect-square w-full overflow-hidden rounded-[28px] bg-[#f1f5f9] border border-slate-200/60 p-1.5 flex items-center justify-center shadow-sm transition-shadow hover:shadow-md">
           <img
             src={p.image}
             alt={p.name}
-            className="max-h-[85%] max-w-[85%] object-contain transition-transform duration-500 group-hover:scale-105"
+            className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
           />
-          <span className="text-mono absolute top-4 left-4 text-[9px] text-slate-400">
+          <span className="text-mono absolute top-3 left-3 text-[9px] bg-white/85 backdrop-blur-xs px-2.5 py-1 rounded-full text-slate-600 shadow-sm border border-slate-200/30 z-20">
             {p.series} · {p.code}
           </span>
         </div>
