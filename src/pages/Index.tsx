@@ -89,9 +89,9 @@ function Hero() {
               initial={{ y: "110%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="text-mono text-ink/60"
+              className="text-mono text-ink/60 truncate"
             >
-              HINDLED-TECHNOLOGIES TECHNOLOGIES · CATALOGUE MMXXVI
+              HINDLED-TECHNOLOGIES · CATALOGUE MMXXVI
             </motion.div>
           </div>
         </motion.div>
@@ -131,7 +131,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="text-mono pointer-events-none absolute bottom-6 right-6 z-10 text-ink/60">
+      <div className="text-mono pointer-events-none absolute bottom-6 right-6 z-10 text-ink/60 text-[10px] sm:text-xs truncate max-w-[40%]">
         FL18 · Stadium Floodlight
       </div>
     </section>

@@ -31,21 +31,25 @@ export function Navbar() {
     <>
       {/* Floating Glassmorphism Navbar */}
       <motion.nav
-        initial={{ y: -100, x: 24, opacity: 0 }}
-        animate={{ y: 0, x: 24, opacity: 1 }}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed left-[4%] right-[4%] z-50 mx-auto flex max-w-[1200px] items-center justify-between rounded-full border px-4 py-2.5 sm:px-6 sm:py-3.5 shadow-lg transition-all duration-500 backdrop-blur-md ${
+        className={`fixed left-[4%] right-[4%] z-50 mx-auto flex max-w-[1200px] items-center justify-between rounded-full border px-3 py-2.5 sm:px-6 sm:py-3.5 shadow-lg transition-all duration-500 backdrop-blur-md ${
           scrolled
-            ? "top-4 border-ink/10 bg-paper/85 shadow-black/[0.04] hover:bg-paper/90"
-            : "top-6 border-white/20 bg-white/70 shadow-black/[0.02] hover:bg-white/80"
+            ? "top-4 border-ink/10 bg-paper/90 shadow-black/[0.06]"
+            : "top-6 border-ink/10 bg-white/80 shadow-black/[0.04]"
         }`}
       >
-        <Link to="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2 font-display text-[13px] sm:text-[15px] font-semibold tracking-[-0.02em] text-ink">
-          <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-          HINDLED<span className="hidden sm:inline">-TECHNOLOGIES</span>
+        {/* Logo / Brand */}
+        <Link
+          to="/"
+          className="flex shrink-0 items-center gap-1.5 font-display font-semibold tracking-[-0.02em] text-ink text-[11px] sm:text-[13px] md:text-[15px]"
+        >
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />
+          <span className="whitespace-nowrap">HINDLED-TECHNOLOGIES</span>
         </Link>
 
-        {/* Center menu links */}
+        {/* Center menu links (desktop) */}
         <div className="hidden items-center gap-1 md:flex">
           {links.map((l) => {
             if (l.to === "/contact") {
@@ -77,18 +81,18 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Right menu CTA */}
-        <div className="flex items-center gap-3">
+        {/* Right side: CTA + hamburger */}
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <button
             onClick={openDrawer}
-            className="rounded-full bg-ink px-3.5 py-2 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15 cursor-pointer"
+            className="rounded-full bg-ink px-3 py-1.5 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15 cursor-pointer whitespace-nowrap"
           >
             Get Quote
           </button>
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle Menu"
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-ink/10 text-ink hover:bg-ink hover:text-paper transition-colors md:hidden"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ink/10 text-ink hover:bg-ink hover:text-paper transition-colors md:hidden"
           >
             {open ? "✕" : "≡"}
           </button>
@@ -103,7 +107,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-24 left-1/2 z-40 flex w-[90%] -translate-x-1/2 flex-col gap-2 rounded-[28px] border border-ink/10 bg-paper p-6 shadow-xl md:hidden"
+            className="fixed top-24 left-1/2 z-40 flex w-[90%] max-w-sm -translate-x-1/2 flex-col gap-2 rounded-[28px] border border-ink/10 bg-paper p-6 shadow-xl md:hidden"
           >
             {links.map((l, i) => {
               if (l.to === "/contact") {
