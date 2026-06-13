@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
 import { catalogue, type CatalogueItem } from "@/assets/products";
+import { useContactDrawer } from "../components/ContactDrawer";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -23,6 +24,7 @@ function ProductsPage() {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [activeTab, setActiveTab] = useState<"all" | "solar" | "industrial">("all");
+  const { openDrawer } = useContactDrawer();
 
   const solarItems = useMemo(() => catalogue.filter((c) => c.category === "Solar"), []);
   const industrialItems = useMemo(() => catalogue.filter((c) => c.category === "Outdoor & Industrial"), []);
@@ -243,12 +245,12 @@ function ProductsPage() {
             Our engineering lab builds custom distributions, mounting structures, and battery enclosures matched to your site's physical parameters.
           </p>
           <div className="mt-8 flex justify-center gap-4">
-            <Link
-              to="/contact"
-              className="rounded-full bg-ink px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-lg"
+            <button
+              onClick={openDrawer}
+              className="rounded-full bg-ink px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-lg cursor-pointer"
             >
               Talk to Engineering →
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -410,12 +412,12 @@ function ProductsPage() {
                     >
                       Request Spec Sheets
                     </button>
-                    <Link
-                      to="/contact"
-                      className="flex-1 rounded-full border border-ink/20 py-4 text-center text-xs font-bold uppercase tracking-wider text-ink transition-all hover:border-ink"
+                    <button
+                      onClick={openDrawer}
+                      className="flex-1 rounded-full border border-ink/20 py-4 text-center text-xs font-bold uppercase tracking-wider text-ink transition-all hover:border-ink cursor-pointer"
                     >
                       Get Quote
-                    </Link>
+                    </button>
                   </div>
                 </div>
               )}

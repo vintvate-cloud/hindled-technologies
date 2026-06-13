@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { featured, catalogue } from "@/assets/products";
+import { useContactDrawer } from "../components/ContactDrawer";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -601,6 +602,7 @@ function FAQ() {
 
 /* ============================================================ CLOSER */
 function Closer() {
+  const { openDrawer } = useContactDrawer();
   return (
     <section className="bg-paper pb-32 pt-16 lg:pb-48">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
@@ -612,13 +614,13 @@ function Closer() {
           </Reveal>
         </h2>
         <div className="mt-12 flex flex-wrap items-center gap-4">
-          <Link
-            to="/contact"
-            className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-6 py-4 text-paper hover:border-signal hover:bg-signal"
+          <button
+            onClick={openDrawer}
+            className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-6 py-4 text-paper hover:border-signal hover:bg-signal cursor-pointer"
           >
             Start a project
             <span className="transition-transform group-hover:translate-x-1">→</span>
-          </Link>
+          </button>
         </div>
       </div>
     </section>

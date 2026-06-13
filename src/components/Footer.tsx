@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useContactDrawer } from "./ContactDrawer";
 
 export function Footer() {
+  const { openDrawer } = useContactDrawer();
   return (
     <footer className="relative overflow-hidden bg-ink text-paper">
       <div className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.04]">
@@ -44,7 +46,7 @@ export function Footer() {
             <div className="text-mono mb-4 text-paper/50">Navigate</div>
             <div className="flex flex-col gap-2 text-sm text-paper/80">
               <Link to="/products" className="hover:text-signal">Products</Link>
-              <Link to="/contact" className="hover:text-signal">Contact</Link>
+              <button onClick={openDrawer} className="hover:text-signal text-left cursor-pointer">Contact</button>
             </div>
           </div>
           <div>

@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useContactDrawer } from "./ContactDrawer";
 
 const links = [
   { to: "/products", label: "Products" },
@@ -14,6 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { openDrawer } = useContactDrawer();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -39,12 +41,26 @@ export function Navbar() {
       >
         <Link to="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2 font-display text-[13px] sm:text-[15px] font-semibold tracking-[-0.02em] text-ink">
           <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-          HIND<span className="text-signal font-bold">LED</span><span className="hidden sm:inline">-TECHNOLOGIES</span>
+          HINDLED<span className="hidden sm:inline">-TECHNOLOGIES</span>
         </Link>
 
         {/* Center menu links */}
         <div className="hidden items-center gap-1 md:flex">
           {links.map((l) => {
+            if (l.to === "/contact") {
+              const active = pathname === "/contact";
+              return (
+                <button
+                  key={l.to}
+                  onClick={openDrawer}
+                  className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
+                    active ? "bg-ink text-paper" : "text-ink/60 hover:text-ink"
+                  }`}
+                >
+                  {l.label}
+                </button>
+              );
+            }
             const active = pathname === l.to;
             return (
               <Link
@@ -62,12 +78,12 @@ export function Navbar() {
 
         {/* Right menu CTA */}
         <div className="flex items-center gap-3">
-          <Link
-            to="/contact"
-            className="rounded-full bg-ink px-3.5 py-2 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15"
+          <button
+            onClick={openDrawer}
+            className="rounded-full bg-ink px-3.5 py-2 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15 cursor-pointer"
           >
             Get Quote
-          </Link>
+          </button>
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle Menu"
@@ -89,6 +105,29 @@ export function Navbar() {
             className="fixed top-24 left-1/2 z-40 flex w-[90%] -translate-x-1/2 flex-col gap-2 rounded-[28px] border border-ink/10 bg-paper p-6 shadow-xl md:hidden"
           >
             {links.map((l, i) => {
+              if (l.to === "/contact") {
+                const active = pathname === "/contact";
+                return (
+                  <motion.div
+                    key={l.to}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <button
+                      onClick={() => {
+                        setOpen(false);
+                        openDrawer();
+                      }}
+                      className={`w-full text-left block rounded-2xl px-4 py-3 text-base font-display font-semibold transition-colors cursor-pointer ${
+                        active ? "bg-stone text-signal" : "text-ink hover:bg-stone/50"
+                      }`}
+                    >
+                      {l.label}
+                    </button>
+                  </motion.div>
+                );
+              }
               const active = pathname === l.to;
               return (
                 <motion.div
@@ -109,12 +148,15 @@ export function Navbar() {
               );
             })}
             <div className="mt-4 pt-4 border-t border-ink/5">
-              <Link
-                to="/contact"
-                className="block text-center rounded-2xl bg-ink py-3 text-xs font-bold uppercase tracking-wider text-paper hover:bg-signal transition-colors"
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  openDrawer();
+                }}
+                className="w-full text-center block rounded-2xl bg-ink py-3 text-xs font-bold uppercase tracking-wider text-paper hover:bg-signal transition-colors cursor-pointer"
               >
                 Get Quote
-              </Link>
+              </button>
             </div>
           </motion.div>
         )}

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { imageUrls } from "@/assets/products";
+import { useContactDrawer } from "../components/ContactDrawer";
 
 export const Route = createFileRoute("/applications")({
   head: () => ({
@@ -25,6 +26,7 @@ const apps = [
 ];
 
 function AppsPage() {
+  const { openDrawer } = useContactDrawer();
   return (
     <>
       <section className="bg-paper pt-40 pb-20">
@@ -57,9 +59,12 @@ function AppsPage() {
                 <div className="text-mono text-signal">{String(i + 1).padStart(2, "0")} · {a.series}</div>
                 <h2 className="text-display mt-3 text-5xl text-ink md:text-7xl">{a.t}</h2>
                 <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/70">{a.d}</p>
-                <Link to="/contact" className="text-mono mt-6 inline-flex border-b border-ink pb-1">
+                <button
+                  onClick={openDrawer}
+                  className="text-mono mt-6 inline-flex border-b border-ink pb-1 cursor-pointer text-left"
+                >
                   Plan a project →
-                </Link>
+                </button>
               </div>
             </motion.div>
           ))}

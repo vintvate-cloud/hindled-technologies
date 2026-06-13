@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useContactDrawer } from "../components/ContactDrawer";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -15,6 +16,15 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { openDrawer, closeDrawer } = useContactDrawer();
+
+  useEffect(() => {
+    openDrawer();
+    return () => {
+      closeDrawer();
+    };
+  }, [openDrawer, closeDrawer]);
+
   return (
     <>
       <section className="bg-paper pt-40 pb-20">
