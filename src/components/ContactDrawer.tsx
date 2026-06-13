@@ -85,19 +85,19 @@ export function ContactDrawer() {
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 220 }}
-            className="fixed bottom-0 left-0 right-0 z-50 mx-auto flex max-h-[96vh] w-full max-w-[1250px] flex-col overflow-y-auto rounded-t-[32px] md:rounded-t-[40px] bg-white p-6 md:p-10 lg:p-12 shadow-2xl text-ink border-t border-ink/5 no-scrollbar"
+            className="fixed bottom-0 left-0 right-0 z-50 mx-auto flex max-h-[96vh] w-full max-w-[1250px] flex-col overflow-y-auto rounded-t-[32px] md:rounded-t-[40px] bg-white px-6 pb-8 pt-10 md:px-10 md:pb-10 md:pt-10 lg:px-12 lg:pb-12 lg:pt-10 shadow-2xl text-ink border-t border-ink/5 no-scrollbar"
           >
             {/* Close Button */}
             <button
               onClick={closeDrawer}
               aria-label="Close Contact Drawer"
-              className="absolute top-6 right-6 flex h-10 w-10 items-center justify-center rounded-full bg-stone text-ink hover:bg-ink hover:text-paper transition-colors z-10 text-base cursor-pointer"
+              className="absolute top-5 right-6 flex h-10 w-10 items-center justify-center rounded-full bg-stone text-ink hover:bg-ink hover:text-paper transition-colors z-10 text-base cursor-pointer"
             >
               ✕
             </button>
 
             {/* Layout Grid */}
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-14 pt-6">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-14 pt-1">
               
               {/* Left Column: Info & Locations */}
               <div className="md:col-span-5 flex flex-col justify-between gap-6">
