@@ -1,23 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { catalogue, type CatalogueItem } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
+import { useMeta } from "../hooks/use-meta";
 
-export const Route = createFileRoute("/products")({
-  head: () => ({
-    meta: [
-      { title: "Products — HINDLED-TECHNOLOGIES Technologies" },
-      { name: "description", content: "The complete HINDLED-TECHNOLOGIES Technologies catalogue: solar street, area, garden, bollard and wall-wash lighting plus FL18 / SP02 / HB12 / FL17 outdoor & industrial luminaires." },
-      { property: "og:title", content: "HINDLED-TECHNOLOGIES Technologies — Product Catalogue 2026" },
-      { property: "og:description", content: "21 platforms across solar lighting and outdoor & industrial luminaires." },
-      { property: "og:image", content: catalogue[0].image },
-    ],
-  }),
-  component: ProductsPage,
-});
-
-function ProductsPage() {
+export default function ProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState<CatalogueItem | null>(null);
   const [isSpecModalOpen, setIsSpecModalOpen] = useState(false);
   const [specFormSubmitted, setSpecFormSubmitted] = useState(false);
@@ -25,6 +13,11 @@ function ProductsPage() {
   const [company, setCompany] = useState("");
   const [activeTab, setActiveTab] = useState<"all" | "solar" | "industrial">("all");
   const { openDrawer } = useContactDrawer();
+
+  useMeta({
+    title: "Products — HINDLED-TECHNOLOGIES Technologies",
+    description: "The complete HINDLED-TECHNOLOGIES Technologies catalogue: solar street, area, garden, bollard and wall-wash lighting plus FL18 / SP02 / HB12 / FL17 outdoor & industrial luminaires.",
+  });
 
   const solarItems = useMemo(() => catalogue.filter((c) => c.category === "Solar"), []);
   const industrialItems = useMemo(() => catalogue.filter((c) => c.category === "Outdoor & Industrial"), []);
@@ -39,8 +32,6 @@ function ProductsPage() {
 
   return (
     <div className="relative min-h-screen bg-paper pb-20 font-sans selection:bg-signal selection:text-white">
-
-
       {/* Hero Section (85vh) */}
       <section className="relative h-[85vh] w-full overflow-hidden bg-ink">
         {/* Background Image */}
@@ -184,7 +175,6 @@ function ProductsPage() {
 
       {/* Product Lists (Catalog Grids) */}
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-        
         {/* Section 1: Solar Lighting Solutions */}
         {(activeTab === "all" || activeTab === "solar") && (
           <section id="solar-solutions" className="mb-24">
@@ -317,7 +307,7 @@ function ProductsPage() {
                       onSubmit={(e) => {
                         e.preventDefault();
                         if (email) {
-                          setSpecFormSubmitted(true);
+                           setSpecFormSubmitted(true);
                         }
                       }}
                       className="mt-8 space-y-4"

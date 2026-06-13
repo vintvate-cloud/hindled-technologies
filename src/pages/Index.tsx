@@ -1,29 +1,22 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { featured, catalogue } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
+import { useMeta } from "../hooks/use-meta";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "HINDLED-TECHNOLOGIES Technologies — Engineered Outdoor Lighting" },
-      { name: "description", content: "Stadium floodlights, high-mast, industrial high-bay and a complete solar lighting portfolio. Engineered in India, shipped worldwide." },
-      { property: "og:title", content: "HINDLED-TECHNOLOGIES Technologies — We Make It Happen" },
-      { property: "og:description", content: "Engineered outdoor lighting systems for stadiums, infrastructure, and autonomous solar grids." },
-      { property: "og:image", content: featured[0].image },
-    ],
-  }),
-  component: Index,
-});
+export default function IndexPage() {
+  useMeta({
+    title: "HINDLED-TECHNOLOGIES Technologies — Engineered Outdoor Lighting",
+    description: "Stadium floodlights, high-mast, industrial high-bay and a complete solar lighting portfolio. Engineered in India, shipped worldwide.",
+  });
 
-function Index() {
   return (
     <>
       <Hero />
@@ -233,7 +226,7 @@ function Philosophy() {
   );
 }
 
-/* ============================================================ SHOWCASE (premium grid w/ GSAP) */
+/* ============================================================ SHOWCASE */
 function Showcase() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);

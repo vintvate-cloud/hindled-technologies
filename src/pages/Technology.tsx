@@ -1,28 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useMeta } from "../hooks/use-meta";
 
-export const Route = createFileRoute("/technology")({
-  head: () => ({
-    meta: [
-      { title: "Technology — HINDLED-TECHNOLOGIES Technologies Engineering" },
-      { name: "description", content: "Optics, thermal architecture, drivers, control protocols and solar autonomy. The engineering behind HINDLED-TECHNOLOGIES Technologies." },
-      { property: "og:title", content: "Technology — HINDLED-TECHNOLOGIES Technologies Engineering" },
-      { property: "og:description", content: "The engineering systems behind every HINDLED-TECHNOLOGIES Technologies luminaire." },
-    ],
-  }),
-  component: TechPage,
-});
+export default function TechPage() {
+  useMeta({
+    title: "Technology — HINDLED-TECHNOLOGIES Technologies Engineering",
+    description: "Optics, thermal architecture, drivers, control protocols and solar autonomy. The engineering behind HINDLED-TECHNOLOGIES Technologies.",
+  });
 
-const pillars = [
-  { n: "01", t: "Precision Optics", d: "Custom-cast PMMA lenses delivering beam angles from 10° to 120°, with FT6 and P-series asymmetric distributions for spill-critical environments." },
-  { n: "02", t: "Thermal Architecture", d: "Die-cast aluminium heat pathways engineered for continuous output at ambient temperatures up to 50°C — preserving lumen maintenance beyond L90/B10 at 100,000h." },
-  { n: "03", t: "Driver Platform", d: "Flicker-free constant-current drivers with surge protection to 20kV. DALI-2, DMX512, and 0–10V integration for broadcast and architectural control." },
-  { n: "04", t: "Solar Autonomy", d: "HPBC photovoltaics paired with LiFePO₄ banks rated for 3000+ cycles. Onboard MPPT, smart dimming, and bird-spike protection." },
-  { n: "05", t: "Modular Service", d: "Tool-free module replacement on flagship FL07 keeps stadiums lit during maintenance windows. Independent driver-per-module redundancy." },
-  { n: "06", t: "Ingress & Impact", d: "Tested to IP66 and IK10. Salt-fog, vibration, monsoon and UV cycles validated against IEC 60598." },
-];
+  const pillars = [
+    { n: "01", t: "Precision Optics", d: "Custom-cast PMMA lenses delivering beam angles from 10° to 120°, with FT6 and P-series asymmetric distributions for spill-critical environments." },
+    { n: "02", t: "Thermal Architecture", d: "Die-cast aluminium heat pathways engineered for continuous output at ambient temperatures up to 50°C — preserving lumen maintenance beyond L90/B10 at 100,000h." },
+    { n: "03", t: "Driver Platform", d: "Flicker-free constant-current drivers with surge protection to 20kV. DALI-2, DMX512, and 0–10V integration for broadcast and architectural control." },
+    { n: "04", t: "Solar Autonomy", d: "HPBC photovoltaics paired with LiFePO₄ banks rated for 3000+ cycles. Onboard MPPT, smart dimming, and bird-spike protection." },
+    { n: "05", t: "Modular Service", d: "Tool-free module replacement on flagship FL07 keeps stadiums lit during maintenance windows. Independent driver-per-module redundancy." },
+    { n: "06", t: "Ingress & Impact", d: "Tested to IP66 and IK10. Salt-fog, vibration, monsoon and UV cycles validated against IEC 60598." },
+  ];
 
-function TechPage() {
   return (
     <>
       <section className="bg-paper pt-40 pb-20">

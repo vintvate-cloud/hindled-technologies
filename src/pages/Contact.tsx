@@ -1,22 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useContactDrawer } from "../components/ContactDrawer";
+import { useMeta } from "../hooks/use-meta";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Let's Build The Future Of Light" },
-      { name: "description", content: "Talk to HINDLED-TECHNOLOGIES Technologies engineering. Stadium consultations, technical specifications and project quotes." },
-      { property: "og:title", content: "Contact — HINDLED-TECHNOLOGIES Technologies" },
-      { property: "og:description", content: "Let's build the future of light." },
-    ],
-  }),
-  component: ContactPage,
-});
-
-function ContactPage() {
+export default function ContactPage() {
   const { openDrawer, closeDrawer } = useContactDrawer();
+
+  useMeta({
+    title: "Contact — Let's Build The Future Of Light",
+    description: "Talk to HINDLED-TECHNOLOGIES Technologies engineering. Stadium consultations, technical specifications and project quotes.",
+  });
 
   useEffect(() => {
     openDrawer();

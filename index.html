@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HINDLED-TECHNOLOGIES Technologies — Engineered Lighting For The World's Biggest Stages</title>
+    <meta name="description" content="Stadium floodlights, sports lighting, solar street and area luminaires engineered for the most demanding environments." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HINDLED-TECHNOLOGIES Technologies — We Make It Happen" />
+    <meta property="og:description" content="Stadium, high-mast, industrial and solar luminaires engineered for performance." />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- Console filters -->
+    <script>
+      (function() {
+        var matchLogs = ['[vite] connected.'];
+        var matchWarns = ['ObjectMultiplex'];
+        function filterLogs(orig, matchStrings) {
+          return function() {
+            if (arguments[0] && typeof arguments[0] === 'string') {
+              for (var i = 0; i < matchStrings.length; i++) {
+                if (arguments[0].indexOf(matchStrings[i]) !== -1) {
+                  return;
+                }
+              }
+            }
+            if (orig) orig.apply(console, arguments);
+          };
+        }
+        if (typeof console !== 'undefined') {
+          console.log = filterLogs(console.log, matchLogs);
+          console.info = filterLogs(console.info, matchLogs);
+          console.warn = filterLogs(console.warn, matchWarns);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

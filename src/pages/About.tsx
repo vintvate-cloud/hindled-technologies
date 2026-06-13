@@ -1,19 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { useMeta } from "../hooks/use-meta";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — HINDLED-TECHNOLOGIES Technologies" },
-      { name: "description", content: "A professional outdoor lighting manufacturer engineering luminaires for the world's most demanding venues." },
-      { property: "og:title", content: "About — HINDLED-TECHNOLOGIES Technologies" },
-      { property: "og:description", content: "Engineering luminaires for the world's most demanding venues." },
-    ],
-  }),
-  component: AboutPage,
-});
+export default function AboutPage() {
+  useMeta({
+    title: "About — HINDLED-TECHNOLOGIES Technologies",
+    description: "A professional outdoor lighting manufacturer engineering luminaires for the world's most demanding venues.",
+  });
 
-function AboutPage() {
   return (
     <>
       <section className="bg-paper pt-40 pb-32">

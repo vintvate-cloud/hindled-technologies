@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate, useRouterState } from "@tanstack/react-router";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface ContactDrawerContextType {
   isOpen: boolean;
@@ -13,7 +13,8 @@ const ContactDrawerContext = createContext<ContactDrawerContextType | undefined>
 export function ContactDrawerProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const location = useLocation();
+  const pathname = location.pathname;
 
   const openDrawer = () => setIsOpen(true);
   
@@ -26,11 +27,11 @@ export function ContactDrawerProvider({ children }: { children: ReactNode }) {
         // Fallback check: if we are still on /contact after 100ms, go to home
         setTimeout(() => {
           if (window.location.pathname === "/contact") {
-            navigate({ to: "/" });
+            navigate("/");
           }
         }, 100);
       } else {
-        navigate({ to: "/" });
+        navigate("/");
       }
     }
   };

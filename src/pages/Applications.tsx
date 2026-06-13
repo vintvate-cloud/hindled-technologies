@@ -1,32 +1,25 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { imageUrls } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
+import { useMeta } from "../hooks/use-meta";
 
-export const Route = createFileRoute("/applications")({
-  head: () => ({
-    meta: [
-      { title: "Applications — HINDLED-TECHNOLOGIES Technologies" },
-      { name: "description", content: "Stadiums, sports venues, infrastructure, urban grids and landscape environments lit by HINDLED-TECHNOLOGIES Technologies." },
-      { property: "og:title", content: "Applications — HINDLED-TECHNOLOGIES Technologies" },
-      { property: "og:description", content: "Where HINDLED-TECHNOLOGIES engineering meets the field." },
-      { property: "og:image", content: imageUrls["fl18"] },
-    ],
-  }),
-  component: AppsPage,
-});
-
-const apps = [
-  { t: "Stadiums", d: "Broadcast-grade uniformity for football, cricket and athletics venues from regional to international scale.", img: "fl18", series: "FL18 · SP02" },
-  { t: "High-Mast & Ports", d: "Long-throw distribution for airports, ports, interchanges and logistics yards.", img: "sp02", series: "SP02" },
-  { t: "Industrial High Bay", d: "9-in-1 switchable high-bay luminaires for warehousing and manufacturing.", img: "hb12", series: "HB12" },
-  { t: "Highways & Roads", d: "Autonomous solar street lighting from 6m to 12m. Smart dimming and LiFePO₄ storage.", img: "juno-street", series: "JUNO Street" },
-  { t: "Civic & Commercial", d: "Architectural area lighting for business parks, plazas and public infrastructure.", img: "juno-area-a", series: "JUNO Area" },
-  { t: "Landscape & Hospitality", d: "Bollards and post-tops crafted for resorts, gardens and pedestrian environments.", img: "juno-bollard", series: "JUNO Bollard · Post-Top" },
-];
-
-function AppsPage() {
+export default function AppsPage() {
   const { openDrawer } = useContactDrawer();
+
+  useMeta({
+    title: "Applications — HINDLED-TECHNOLOGIES Technologies",
+    description: "Stadiums, sports venues, infrastructure, urban grids and landscape environments lit by HINDLED-TECHNOLOGIES Technologies.",
+  });
+
+  const apps = [
+    { t: "Stadiums", d: "Broadcast-grade uniformity for football, cricket and athletics venues from regional to international scale.", img: "fl18", series: "FL18 · SP02" },
+    { t: "High-Mast & Ports", d: "Long-throw distribution for airports, ports, interchanges and logistics yards.", img: "sp02", series: "SP02" },
+    { t: "Industrial High Bay", d: "9-in-1 switchable high-bay luminaires for warehousing and manufacturing.", img: "hb12", series: "HB12" },
+    { t: "Highways & Roads", d: "Autonomous solar street lighting from 6m to 12m. Smart dimming and LiFePO₄ storage.", img: "juno-street", series: "JUNO Street" },
+    { t: "Civic & Commercial", d: "Architectural area lighting for business parks, plazas and public infrastructure.", img: "juno-area-a", series: "JUNO Area" },
+    { t: "Landscape & Hospitality", d: "Bollards and post-tops crafted for resorts, gardens and pedestrian environments.", img: "juno-bollard", series: "JUNO Bollard · Post-Top" },
+  ];
+
   return (
     <>
       <section className="bg-paper pt-40 pb-20">
