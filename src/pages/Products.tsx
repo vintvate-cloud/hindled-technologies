@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { enrichedCatalogue, type EnrichedProduct } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
 import { useMeta } from "../hooks/use-meta";
@@ -84,6 +84,18 @@ export default function ProductsPage() {
     title: "Products — HINDLED Technologies",
     description: "The complete HINDLED Technologies catalogue: solar street, area, garden, bollard and wall-wash lighting plus FL18 / SP02 / HB12 / FL17 outdoor & industrial luminaires.",
   });
+
+  // Prevent background scrolling when spec drawer or detail modal is open
+  useEffect(() => {
+    if (isSpecDrawerOpen || isDetailModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isSpecDrawerOpen, isDetailModalOpen]);
 
   const solarItems = useMemo(() => enrichedCatalogue.filter((c) => c.category === "Solar"), []);
   const industrialItems = useMemo(() => enrichedCatalogue.filter((c) => c.category === "Outdoor & Industrial"), []);
@@ -413,7 +425,7 @@ export default function ProductsPage() {
               </div>
 
               {/* Showcase Body (Scrollable content) */}
-              <div className="flex-grow overflow-y-auto p-6 md:p-10">
+              <div className="flex-grow overflow-y-auto p-6 md:p-10 no-scrollbar" data-lenis-prevent>
                 {/* Splitted Double-Column Layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start h-full">
                   {/* Left Column: Premium Interactive Gallery */}
@@ -730,7 +742,7 @@ export default function ProductsPage() {
               </div>
 
               {/* Drawer Body */}
-              <div className="flex-grow overflow-y-auto p-6 md:p-8 flex flex-col justify-between bg-[#fafbfc]">
+              <div className="flex-grow overflow-y-auto p-6 md:p-8 flex flex-col justify-between bg-[#fafbfc] no-scrollbar" data-lenis-prevent>
                 <div className="space-y-6">
                   {/* Miniature Product Banner */}
                   <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">

@@ -87,6 +87,7 @@ export function ContactDrawer() {
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 220 }}
             className="fixed bottom-0 left-0 right-0 z-50 mx-auto flex max-h-[96vh] w-full max-w-[1250px] flex-col overflow-y-auto rounded-t-[32px] md:rounded-t-[40px] bg-white px-6 pb-8 pt-10 md:px-10 md:pb-10 md:pt-10 lg:px-12 lg:pb-12 lg:pt-10 shadow-2xl text-ink border-t border-ink/5 no-scrollbar"
+            data-lenis-prevent
           >
             {/* Close Button */}
             <button
