@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
+import { useLenis } from "lenis/react";
 import { enrichedCatalogue, type EnrichedProduct } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
 import { useMeta } from "../hooks/use-meta";
@@ -85,17 +86,22 @@ export default function ProductsPage() {
     description: "The complete HINDLED Technologies catalogue: solar street, area, garden, bollard and wall-wash lighting plus FL18 / SP02 / HB12 / FL17 outdoor & industrial luminaires.",
   });
 
+  const lenis = useLenis();
+
   // Prevent background scrolling when spec drawer or detail modal is open
   useEffect(() => {
     if (isSpecDrawerOpen || isDetailModalOpen) {
       document.body.style.overflow = "hidden";
+      lenis?.stop();
     } else {
       document.body.style.overflow = "";
+      lenis?.start();
     }
     return () => {
       document.body.style.overflow = "";
+      lenis?.start();
     };
-  }, [isSpecDrawerOpen, isDetailModalOpen]);
+  }, [isSpecDrawerOpen, isDetailModalOpen, lenis]);
 
   const solarItems = useMemo(() => enrichedCatalogue.filter((c) => c.category === "Solar"), []);
   const industrialItems = useMemo(() => enrichedCatalogue.filter((c) => c.category === "Outdoor & Industrial"), []);
@@ -315,11 +321,6 @@ export default function ProductsPage() {
                     setIsNightMode(false);
                     setViewingSpecImage(false);
                   }}
-                  onRequestSpec={() => {
-                    setSelectedProduct(p);
-                    setIsSpecDrawerOpen(true);
-                    setIsDetailModalOpen(false);
-                  }}
                 />
               ))}
             </div>
@@ -346,11 +347,6 @@ export default function ProductsPage() {
                     setActiveInfoTab("overview");
                     setIsNightMode(false);
                     setViewingSpecImage(false);
-                  }}
-                  onRequestSpec={() => {
-                    setSelectedProduct(p);
-                    setIsSpecDrawerOpen(true);
-                    setIsDetailModalOpen(false);
                   }}
                 />
               ))}
@@ -430,7 +426,7 @@ export default function ProductsPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start h-full">
                   {/* Left Column: Premium Interactive Gallery */}
                   <div className="lg:col-span-5 lg:sticky lg:top-0 space-y-6">
-                    <div className={`relative aspect-square w-full rounded-[24px] overflow-hidden shadow-md border border-slate-200/50 transition-colors duration-500 flex items-center justify-center p-6 ${
+                    <div className={`relative w-full rounded-[24px] overflow-hidden shadow-md border border-slate-200/50 transition-colors duration-500 flex items-center justify-center ${
                       isNightMode ? "bg-[#090d16]" : "bg-white"
                     }`}>
                       
@@ -441,7 +437,7 @@ export default function ProductsPage() {
                       <img
                         src={viewingSpecImage && selectedProduct.specImage ? selectedProduct.specImage : selectedProduct.image}
                         alt={selectedProduct.name}
-                        className={`max-h-[85%] max-w-[85%] object-contain z-10 transition-all duration-500 ${
+                        className={`w-full h-auto object-cover z-10 transition-all duration-500 ${
                           isNightMode && !viewingSpecImage ? "brightness-125 drop-shadow-[0_0_25px_rgba(253,224,71,0.5)]" : ""
                         }`}
                       />
@@ -455,60 +451,7 @@ export default function ProductsPage() {
                       )}
                     </div>
 
-                    {/* Gallery Controls (Toggle Day/Night + Blueprint spec) */}
-                    <div className="flex gap-2.5">
-                      <button
-                        onClick={() => {
-                          setViewingSpecImage(false);
-                          setIsNightMode(false);
-                        }}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
-                          !isNightMode && !viewingSpecImage
-                            ? "bg-[#0a192f] border-[#0a192f] text-white"
-                            : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
-                        }`}
-                      >
-                        <Sun className="w-3.5 h-3.5" />
-                        Day Shot
-                      </button>
-                      <button
-                        onClick={() => {
-                          setViewingSpecImage(false);
-                          setIsNightMode(true);
-                        }}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
-                          isNightMode && !viewingSpecImage
-                            ? "bg-yellow-500 border-yellow-500 text-slate-950 font-extrabold shadow-lg shadow-yellow-500/10"
-                            : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
-                        }`}
-                      >
-                        <Lightbulb className="w-3.5 h-3.5" />
-                        Night Beam
-                      </button>
-                      {selectedProduct.specImage && (
-                        <button
-                          onClick={() => {
-                            setIsNightMode(false);
-                            setViewingSpecImage(true);
-                          }}
-                          className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
-                            viewingSpecImage
-                              ? "bg-[#0a192f] border-[#0a192f] text-white"
-                              : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
-                          }`}
-                        >
-                          <FileText className="w-3.5 h-3.5" />
-                          Blueprint
-                        </button>
-                      )}
-                    </div>
-                    <p className="text-[11px] text-center text-slate-500 italic">
-                      {viewingSpecImage 
-                        ? "Rendering structural layout and mechanical dimensioning drawings." 
-                        : isNightMode 
-                          ? "Simulating beam dispersion, light cone angle, and luminance wash." 
-                          : "Professional isolated product photography of clean physical fixture."}
-                    </p>
+
                   </div>
 
                   {/* Right Column: Premium Showcase Tabs */}
@@ -675,14 +618,8 @@ export default function ProductsPage() {
                     {/* Modal CTA footer */}
                     <div className="flex gap-4 pt-6 pb-8 md:pb-2 border-t border-slate-200">
                       <button
-                        onClick={() => setIsSpecDrawerOpen(true)}
-                        className="flex-1 rounded-full bg-[#0a192f] py-4 text-center text-xs font-bold uppercase tracking-wider text-white transition-all hover:bg-signal cursor-pointer"
-                      >
-                        Request Spec Sheets
-                      </button>
-                      <button
                         onClick={openDrawer}
-                        className="flex-1 rounded-full border border-slate-300 hover:border-slate-800 py-4 text-center text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-slate-900 transition-all cursor-pointer"
+                        className="flex-1 rounded-full bg-[#0a192f] hover:bg-signal py-4 text-center text-xs font-bold uppercase tracking-wider text-white transition-all cursor-pointer"
                       >
                         Get Quote
                       </button>
@@ -833,11 +770,9 @@ export default function ProductsPage() {
 function ProductCard({
   p,
   onLearnMore,
-  onRequestSpec,
 }: {
   p: EnrichedProduct;
   onLearnMore: () => void;
-  onRequestSpec: () => void;
 }) {
   return (
     <motion.article
@@ -850,11 +785,11 @@ function ProductCard({
     >
       <div>
         {/* Product Image Wrapper */}
-        <div className="relative aspect-square w-full overflow-hidden rounded-[28px] bg-[#f1f5f9] border border-slate-200/60 p-1.5 flex items-center justify-center shadow-sm transition-shadow hover:shadow-md">
+        <div className="relative w-full overflow-hidden rounded-[28px] bg-[#f1f5f9] border border-slate-200/60 flex items-center justify-center shadow-sm transition-shadow hover:shadow-md">
           <img
             src={p.image}
             alt={p.name}
-            className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
           />
           <span className="text-mono absolute top-3 left-3 text-[9px] bg-white/85 backdrop-blur-xs px-2.5 py-1 rounded-full text-slate-600 shadow-sm border border-slate-200/30 z-20">
             {p.series} · {p.code}
@@ -876,16 +811,10 @@ function ProductCard({
       </div>
 
       {/* Action Buttons Row */}
-      <div className="mt-5 flex items-center gap-2 px-1">
-        <button
-          onClick={onRequestSpec}
-          className="flex-1 rounded-full bg-ink py-2.5 text-center text-[10px] font-bold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15"
-        >
-          Request Spec
-        </button>
+      <div className="mt-5 flex items-center px-1">
         <button
           onClick={onLearnMore}
-          className="flex-1 rounded-full border border-ink/10 py-2.5 text-center text-[10px] font-bold uppercase tracking-wider text-ink/80 transition-all hover:border-ink hover:text-ink"
+          className="flex-1 rounded-full bg-ink py-2.5 text-center text-[10px] font-bold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15"
         >
           Learn More
         </button>

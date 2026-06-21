@@ -58,43 +58,18 @@ function Hero() {
     <section ref={ref} className="relative min-h-screen overflow-hidden bg-paper pt-28">
       <motion.div
         style={{ y: productY, scale: productScale, opacity: productOpacity }}
-        className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center"
+        className="pointer-events-none absolute inset-0 z-0"
       >
-        <motion.div
-          style={{ x: sx, y: sy }}
-          animate={{ rotate: [0, 1.2, 0, -1.2, 0] }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-          className="relative aspect-square h-[58vh] max-h-[640px] w-auto"
-        >
-          <img
-            src={featured[0].image}
-            alt={featured[0].name}
-            className="h-full w-full object-contain"
-            style={{ filter: "drop-shadow(0 30px 80px rgba(0,0,0,0.18))" }}
+        <div className="absolute inset-0 h-full w-full">
+          <img 
+            src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2400&auto=format&fit=crop" 
+            alt="Minimalist subtle architectural background" 
+            className="h-full w-full object-cover opacity-60"
           />
-          <div
-            className="absolute -bottom-32 left-1/2 h-64 w-[140%] -translate-x-1/2 opacity-40 blur-2xl"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, oklch(0.85 0.18 60 / 0.6), transparent 70%)",
-            }}
-          />
-        </motion.div>
+        </div>
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] max-w-[1600px] flex-col justify-between px-6 lg:px-10">
-        <motion.div style={{ y: textY }} className="pt-6">
-          <div className="overflow-hidden">
-            <motion.div
-              initial={{ y: "110%" }}
-              animate={{ y: "0%" }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="text-mono text-ink/60 truncate"
-            >
-              HINDLED-TECHNOLOGIES · CATALOGUE MMXXVI
-            </motion.div>
-          </div>
-        </motion.div>
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] max-w-[1600px] flex-col justify-end px-6 lg:px-10">
 
         <div className="grid grid-cols-12 items-end gap-6 pb-16">
           <motion.h1
@@ -115,7 +90,7 @@ function Hero() {
             className="col-span-12 flex flex-col gap-6 md:col-span-4 md:col-start-9"
           >
             <p className="max-w-sm text-sm leading-relaxed text-ink/70">
-              From international stadiums to autonomous solar grids, HINDLED-TECHNOLOGIES
+              From international stadiums to autonomous solar grids, HINDLED
               designs lighting systems where every photon is engineered, not decorated.
             </p>
             <div className="flex flex-wrap items-center gap-3">
@@ -131,9 +106,7 @@ function Hero() {
         </div>
       </div>
 
-      <div className="text-mono pointer-events-none absolute bottom-6 right-6 z-10 text-ink/60 text-[10px] sm:text-xs truncate max-w-[40%]">
-        FL18 · Stadium Floodlight
-      </div>
+
     </section>
   );
 }
@@ -262,9 +235,9 @@ function Showcase() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-ink py-32 text-paper lg:py-48">
+    <section ref={sectionRef} className="relative overflow-hidden bg-paper py-32 text-ink lg:py-48">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-        <div className="text-mono text-paper/50">Selected Platforms</div>
+        <div className="text-mono text-ink/50">Selected Platforms</div>
         <h2
           ref={headingRef}
           className="text-display mt-4 text-[12vw] leading-[0.9] tracking-[-0.04em] md:text-[6vw]"
@@ -273,36 +246,36 @@ function Showcase() {
           <div className="overflow-hidden"><span className="sw inline-block">for every <span className="text-signal">scale.</span></span></div>
         </h2>
 
-        <div className="mt-20 grid grid-cols-1 gap-px bg-paper/10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 grid grid-cols-1 gap-px bg-ink/10 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((p) => (
-            <div key={p.slug} className="show-card group relative overflow-hidden bg-ink">
-              <div className="relative aspect-[4/5] overflow-hidden bg-[oklch(0.18_0_0)]">
+            <div key={p.slug} className="show-card group relative overflow-hidden bg-paper">
+              <div className="relative aspect-[4/5] overflow-hidden bg-stone">
                 <img
                   src={p.image}
                   alt={p.name}
-                  className="parallax-img absolute inset-0 h-[120%] w-full object-contain p-10 transition-transform duration-700 group-hover:scale-105"
+                  className="parallax-img absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="text-display absolute left-6 top-6 text-6xl leading-none text-paper/[0.07]">
+                <div className="text-display absolute left-6 top-6 text-6xl leading-none text-ink/[0.07]">
                   {p.code}
                 </div>
               </div>
               <div className="p-6 lg:p-8">
                 <div className="text-mono text-signal">{p.series}</div>
                 <h3 className="text-display mt-2 text-2xl">{p.name}</h3>
-                <p className="mt-3 line-clamp-2 text-sm text-paper/60">{p.tagline}</p>
+                <p className="mt-3 line-clamp-2 text-sm text-ink/60">{p.tagline}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="mt-16 flex items-end justify-between">
-          <p className="max-w-md text-sm text-paper/60">
+          <p className="max-w-md text-sm text-ink/60">
             A condensed selection — explore the full {catalogue.length}-model catalogue spanning
             solar lighting, high-mast, stadium and industrial luminaires.
           </p>
           <Link
             to="/products"
-            className="text-mono group inline-flex items-center gap-2 border-b border-paper pb-1"
+            className="text-mono group inline-flex items-center gap-2 border-b border-ink pb-1"
           >
             Full catalogue
             <span className="transition-transform group-hover:translate-x-1">→</span>

@@ -1,76 +1,80 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useContactDrawer } from "./ContactDrawer";
+import { Leaf } from "lucide-react";
 
 export function Footer() {
   const { openDrawer } = useContactDrawer();
   return (
-    <footer className="relative overflow-hidden bg-ink text-paper">
-      <div className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.04]">
-        <div className="text-display marquee whitespace-nowrap text-[22vw] leading-[0.85] text-paper">
-          HINDLED-TECHNOLOGIES · HINDLED-TECHNOLOGIES · HINDLED-TECHNOLOGIES · HINDLED-TECHNOLOGIES ·
-        </div>
-      </div>
-
-      <div className="relative mx-auto flex max-w-[1600px] flex-col px-6 pt-32 pb-12 lg:px-10">
-        <motion.h2
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-display text-[12.5vw] leading-[0.82] tracking-[-0.05em] md:text-[9.2vw]"
-        >
-          HIND<span className="text-signal">LED</span>-TECHNOLOGIES
-        </motion.h2>
-
-        <div className="mt-24 grid grid-cols-2 gap-10 border-t border-paper/15 pt-10 md:grid-cols-4">
-          <div>
-            <div className="text-mono mb-4 text-paper/50">Studio</div>
-            <p className="text-sm leading-relaxed text-paper/80">
-              HINDLED-TECHNOLOGIES Technologies India Pvt. Ltd.
-              <br />
-              Lighting & Energy Division
-              <br />
-              India · Worldwide
+    <footer className="bg-ink text-paper pt-24 pb-8 md:pt-32 md:pb-12 mt-12 rounded-t-[40px] md:rounded-t-[80px] overflow-hidden">
+      <div className="mx-auto flex max-w-[1600px] flex-col px-6 lg:px-10">
+        
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-16 md:pb-24 border-b border-paper/10">
+          {/* Brand Column */}
+          <div className="md:col-span-5 flex flex-col items-start">
+            <Link to="/" className="flex items-center gap-2.5 mb-6 group">
+              <Leaf className="h-7 w-7 text-signal transition-transform group-hover:rotate-12" />
+              <span className="font-display text-3xl font-bold tracking-tight text-paper">HINDLED</span>
+            </Link>
+            <p className="max-w-sm text-paper/60 text-sm leading-relaxed font-light">
+              Designing instruments that shape photons into architecture. 
+              Precision outdoor lighting engineered for the world's most demanding environments.
             </p>
           </div>
-          <div>
-            <div className="text-mono mb-4 text-paper/50">Contact</div>
-            <p className="text-sm leading-relaxed text-paper/80">
-              hello@HINDLED-TECHNOLOGIES.in
-              <br />
-              +91 00 0000 0000
-            </p>
+
+          {/* Links Columns */}
+          <div className="md:col-span-2 md:col-start-7">
+            <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Catalogue</h4>
+            <ul className="space-y-4 text-sm text-paper/80 font-light">
+              <li><Link to="/products" className="hover:text-signal transition-colors">Solar Systems</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Stadium Floodlights</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Industrial High-Bays</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Area Lighting</Link></li>
+            </ul>
           </div>
-          <div>
-            <div className="text-mono mb-4 text-paper/50">Navigate</div>
-            <div className="flex flex-col gap-2 text-sm text-paper/80">
-              <Link to="/products" className="hover:text-signal">Products</Link>
-              <button onClick={openDrawer} className="hover:text-signal text-left cursor-pointer">Contact</button>
-            </div>
+
+          <div className="md:col-span-2">
+            <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Studio</h4>
+            <ul className="space-y-4 text-sm text-paper/80 font-light">
+              <li><Link to="/about" className="hover:text-signal transition-colors">About Us</Link></li>
+              <li><Link to="/technology" className="hover:text-signal transition-colors">Engineering</Link></li>
+              <li><Link to="/applications" className="hover:text-signal transition-colors">Applications</Link></li>
+              <li><button onClick={openDrawer} className="hover:text-signal transition-colors cursor-pointer text-left">Contact</button></li>
+            </ul>
           </div>
-          <div>
-            <div className="text-mono mb-4 text-paper/50">Signal</div>
-            <form onSubmit={(e) => e.preventDefault()} className="flex border-b border-paper/30">
-              <input
-                type="email"
-                placeholder="email@studio.com"
-                className="w-full bg-transparent py-2 text-sm text-paper outline-none placeholder:text-paper/40"
-              />
-              <button className="text-mono text-signal">→</button>
-            </form>
-            <div className="mt-6 flex gap-4 text-mono text-paper/60">
-              <a href="#" className="hover:text-signal">IG</a>
-              <a href="#" className="hover:text-signal">LI</a>
-              <a href="#" className="hover:text-signal">YT</a>
-            </div>
+
+          <div className="md:col-span-2">
+            <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Connect</h4>
+            <ul className="space-y-4 text-sm text-paper/80 font-light">
+              <li><a href="#" className="hover:text-signal transition-colors">LinkedIn</a></li>
+              <li><a href="#" className="hover:text-signal transition-colors">Instagram</a></li>
+              <li><a href="#" className="hover:text-signal transition-colors">Twitter</a></li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-paper/15 pt-6 text-mono text-paper/50 md:flex-row">
-          <span>© {new Date().getFullYear()} HINDLED-TECHNOLOGIES Technologies — All rights reserved.</span>
-          <span>Engineered in silence. Shipped worldwide.</span>
+        {/* Huge Bottom Typography */}
+        <div className="w-full flex items-center justify-center py-8 md:py-12 pointer-events-none">
+          <motion.h1 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 0.05, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-[22vw] md:text-[18vw] leading-none tracking-[-0.04em] font-extrabold text-paper select-none"
+          >
+            HINDLED.
+          </motion.h1>
         </div>
+
+        {/* Copyright */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-paper/40 font-mono uppercase tracking-widest">
+          <p>© {new Date().getFullYear()} Hindled Technologies India Pvt. Ltd.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-paper transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-paper transition-colors">Terms of Service</a>
+          </div>
+        </div>
+
       </div>
     </footer>
   );

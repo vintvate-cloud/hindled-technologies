@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useContactDrawer } from "./ContactDrawer";
+import { Leaf } from "lucide-react";
 
 const links = [
   { to: "/products", label: "Products" },
@@ -43,10 +44,10 @@ export function Navbar() {
         {/* Logo / Brand */}
         <Link
           to="/"
-          className="flex shrink-0 items-center gap-1.5 font-display font-semibold tracking-[-0.02em] text-ink text-[11px] sm:text-[13px] md:text-[15px]"
+          className="flex shrink-0 items-center gap-2 font-display font-semibold tracking-[-0.02em] text-ink text-[11px] sm:text-[13px] md:text-[15px]"
         >
-          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-signal" />
-          <span className="whitespace-nowrap">HINDLED-TECHNOLOGIES</span>
+          <Leaf className="h-5 w-5 text-signal" strokeWidth={2.5} />
+          <span className="whitespace-nowrap">HINDLED</span>
         </Link>
 
         {/* Center menu links (desktop) */}
