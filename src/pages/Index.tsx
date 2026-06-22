@@ -96,7 +96,7 @@ function Hero() {
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 to="/products"
-                className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-5 py-3 text-paper transition-colors hover:border-signal hover:bg-signal"
+                className="text-mono group inline-flex items-center gap-3 border border-signal bg-signal px-5 py-3 text-paper transition-colors hover:border-ink hover:bg-ink"
               >
                 Explore the catalogue
                 <span className="transition-transform group-hover:translate-x-1">→</span>

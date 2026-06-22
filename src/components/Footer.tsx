@@ -13,8 +13,17 @@ export function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-5 flex flex-col items-start">
             <Link to="/" className="flex items-center gap-2.5 mb-6 group">
-              <Leaf className="h-7 w-7 text-signal transition-transform group-hover:rotate-12" />
-              <span className="font-display text-3xl font-bold tracking-tight text-paper">HINDLED</span>
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 transition-transform group-hover:scale-105">
+                <path d="M22 10 H30 V16 H26 V22 H22 V10 Z" fill="var(--color-paper)" />
+                <path d="M10 18 H14 V12 H18 V30 H10 V18 Z" fill="var(--color-signal)" />
+              </svg>
+              <span className="whitespace-nowrap font-display text-3xl font-bold tracking-[-0.01em]">
+                <span className="text-signal">HINDL</span>
+                <span className="relative inline-block">
+                  <span className="text-paper">ED</span>
+                  <span className="absolute top-[52%] left-[-2px] right-[-10px] h-[3px] bg-paper -translate-y-1/2" />
+                </span>
+              </span>
             </Link>
             <p className="max-w-sm text-paper/60 text-sm leading-relaxed font-light">
               Designing instruments that shape photons into architecture. 
@@ -33,14 +42,20 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-2">
+          <div className="md:col-span-3">
             <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Studio</h4>
-            <ul className="space-y-4 text-sm text-paper/80 font-light">
-              <li><Link to="/about" className="hover:text-signal transition-colors">About Us</Link></li>
-              <li><Link to="/technology" className="hover:text-signal transition-colors">Engineering</Link></li>
-              <li><Link to="/applications" className="hover:text-signal transition-colors">Applications</Link></li>
-              <li><button onClick={openDrawer} className="hover:text-signal transition-colors cursor-pointer text-left">Contact</button></li>
-            </ul>
+            <div className="space-y-4 text-sm text-paper/80 font-light leading-relaxed">
+              <p>
+                <strong className="block text-paper">HINDLED TECHNOLOGIES INDIA PVT. LTD.</strong>
+                B-302, Plot No.95, Maurya Apartment<br />
+                Patparganj, New Delhi - 110092
+              </p>
+              <div className="pt-2">
+                <p>Anitya Kumar Rai, <span className="text-paper/50">Managing Director</span></p>
+                <a href="mailto:hindled77@gmail.com" className="block hover:text-signal transition-colors">hindled77@gmail.com</a>
+                <a href="tel:+919560121310" className="block hover:text-signal transition-colors">+91 9560121310</a>
+              </div>
+            </div>
           </div>
 
           <div className="md:col-span-2">
@@ -57,7 +72,7 @@ export function Footer() {
         <div className="w-full flex items-center justify-center py-8 md:py-12 pointer-events-none">
           <motion.h1 
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 0.05, y: 0 }}
+            whileInView={{ opacity: 0.15, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-[22vw] md:text-[18vw] leading-none tracking-[-0.04em] font-extrabold text-paper select-none"

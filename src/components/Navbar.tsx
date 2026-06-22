@@ -44,10 +44,19 @@ export function Navbar() {
         {/* Logo / Brand */}
         <Link
           to="/"
-          className="flex shrink-0 items-center gap-2 font-display font-semibold tracking-[-0.02em] text-ink text-[11px] sm:text-[13px] md:text-[15px]"
+          className="flex shrink-0 items-center gap-2"
         >
-          <Leaf className="h-5 w-5 text-signal" strokeWidth={2.5} />
-          <span className="whitespace-nowrap">HINDLED</span>
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 transition-transform hover:scale-105">
+            <path d="M22 10 H30 V16 H26 V22 H22 V10 Z" fill="var(--color-ink)" />
+            <path d="M10 18 H14 V12 H18 V30 H10 V18 Z" fill="var(--color-signal)" />
+          </svg>
+          <span className="whitespace-nowrap font-display text-[15px] sm:text-[17px] md:text-[20px] font-bold tracking-[-0.01em]">
+            <span className="text-signal">HINDL</span>
+            <span className="relative inline-block">
+              <span className="text-ink">ED</span>
+              <span className="absolute top-[52%] left-[-2px] right-[-10px] h-[2.5px] bg-ink -translate-y-1/2" />
+            </span>
+          </span>
         </Link>
 
         {/* Center menu links (desktop) */}
@@ -86,7 +95,7 @@ export function Navbar() {
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <button
             onClick={openDrawer}
-            className="rounded-full bg-ink px-3 py-1.5 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15 cursor-pointer whitespace-nowrap"
+            className="rounded-full bg-signal px-3 py-1.5 sm:px-5 sm:py-2.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-paper transition-all hover:bg-ink hover:shadow-md hover:shadow-ink/15 cursor-pointer whitespace-nowrap"
           >
             Get Quote
           </button>

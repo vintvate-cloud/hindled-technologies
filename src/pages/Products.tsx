@@ -368,7 +368,7 @@ export default function ProductsPage() {
           <div className="mt-8 flex justify-center gap-4">
             <button
               onClick={openDrawer}
-              className="rounded-full bg-ink px-8 py-3.5 text-xs font-semibold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-lg cursor-pointer"
+              className="rounded-full bg-signal px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-paper transition-all hover:bg-ink hover:shadow-lg cursor-pointer"
             >
               Talk to Engineering →
             </button>
@@ -619,7 +619,7 @@ export default function ProductsPage() {
                     <div className="flex gap-4 pt-6 pb-8 md:pb-2 border-t border-slate-200">
                       <button
                         onClick={openDrawer}
-                        className="flex-1 rounded-full bg-[#0a192f] hover:bg-signal py-4 text-center text-xs font-bold uppercase tracking-wider text-white transition-all cursor-pointer"
+                        className="flex-1 rounded-full bg-signal hover:bg-ink py-4 text-center text-xs font-bold uppercase tracking-wider text-white transition-all cursor-pointer"
                       >
                         Get Quote
                       </button>
@@ -814,7 +814,7 @@ function ProductCard({
       <div className="mt-5 flex items-center px-1">
         <button
           onClick={onLearnMore}
-          className="flex-1 rounded-full bg-ink py-2.5 text-center text-[10px] font-bold uppercase tracking-wider text-paper transition-all hover:bg-signal hover:shadow-md hover:shadow-signal/15"
+          className="flex-1 rounded-full bg-signal py-2.5 text-center text-[10px] font-bold uppercase tracking-wider text-paper transition-all hover:bg-ink hover:shadow-md hover:shadow-ink/15"
         >
           Learn More
         </button>
