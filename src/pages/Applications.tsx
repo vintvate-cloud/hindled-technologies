@@ -1,63 +1,117 @@
 import { motion } from "framer-motion";
-import { imageUrls } from "@/assets/products";
+import { Link } from "react-router-dom";
+import { solutionApplications } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
 import { useMeta } from "../hooks/use-meta";
+import { FileDown, Compass, Sparkles } from "lucide-react";
+
+const CATALOGUE_PDF_PATH = encodeURI("/(21 x 25 cm) HINDLED Catalogue 2026.pdf");
 
 export default function AppsPage() {
   const { openDrawer } = useContactDrawer();
 
   useMeta({
-    title: "Applications — HINDLED-TECHNOLOGIES Technologies",
-    description: "Stadiums, sports venues, infrastructure, urban grids and landscape environments lit by HINDLED-TECHNOLOGIES Technologies.",
+    title: "Applications — HINDLED Technologies Lighting Solutions",
+    description: "Solar Smart Poles, Sports Arenas, Industrial Warehouses, Façades, Tunnels, Airports, and EV Charging Poles engineered for India and global environments.",
   });
-
-  const apps = [
-    { t: "Stadiums", d: "Broadcast-grade uniformity for football, cricket and athletics venues from regional to international scale.", img: "fl18", series: "FL18 · SP02" },
-    { t: "High-Mast & Ports", d: "Long-throw distribution for airports, ports, interchanges and logistics yards.", img: "sp02", series: "SP02" },
-    { t: "Industrial High Bay", d: "9-in-1 switchable high-bay luminaires for warehousing and manufacturing.", img: "hb12", series: "HB12" },
-    { t: "Highways & Roads", d: "Autonomous solar street lighting from 6m to 12m. Smart dimming and LiFePO₄ storage.", img: "juno-street", series: "JUNO Street" },
-    { t: "Civic & Commercial", d: "Architectural area lighting for business parks, plazas and public infrastructure.", img: "juno-area-a", series: "JUNO Area" },
-    { t: "Landscape & Hospitality", d: "Bollards and post-tops crafted for resorts, gardens and pedestrian environments.", img: "juno-bollard", series: "JUNO Bollard · Post-Top" },
-  ];
 
   return (
     <>
-      <section className="bg-paper pt-40 pb-20">
+      <section className="bg-paper pt-40 pb-16">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <div className="text-mono mb-8 text-ink/60">— Field / Applications</div>
-          <h1 className="text-display text-ink text-[13vw] leading-[0.88] sm:text-[11vw] md:text-[9vw]">
+          <div className="flex items-center gap-2 text-mono mb-6 text-signal font-bold uppercase tracking-widest">
+            <Compass className="w-4 h-4" /> Lighting Infrastructure Applications
+          </div>
+          <h1 className="text-display text-ink text-[12vw] leading-[0.88] sm:text-[10vw] md:text-[8vw] max-w-6xl font-bold tracking-tight">
             WHERE THE LIGHT
             <br />
             <span className="text-signal">HAS TO PERFORM.</span>
           </h1>
+          <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-ink/75 font-light">
+            We consult, engineer, and deploy high-performance illumination solutions across 8 specialized infrastructure categories. Tailored for extreme thermal, electrical, and environmental demands.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <button
+              onClick={openDrawer}
+              className="rounded-full bg-signal px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-ink transition-all cursor-pointer"
+            >
+              Request Application Audit →
+            </button>
+            <a
+              href={CATALOGUE_PDF_PATH}
+              download="HINDLED_Catalogue_2026.pdf"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-stone/60 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-paper transition-all cursor-pointer"
+            >
+              <FileDown className="w-4 h-4 text-signal" />
+              Download 2026 Catalogue PDF
+            </a>
+          </div>
         </div>
       </section>
+
       <section className="bg-paper pb-32">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          {apps.map((a, i) => (
+          {solutionApplications.map((app, i) => (
             <motion.div
-              key={a.t}
+              key={app.id}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8 }}
               className={`hairline-t grid items-center gap-10 py-16 md:grid-cols-12 ${i % 2 ? "md:[&>div:first-child]:order-2" : ""}`}
             >
+              {/* Dual Image Box: Luminaire + Project Field Pic */}
               <div className="md:col-span-7">
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone">
-                  <img src={imageUrls[a.img]} alt={a.t} className="absolute inset-0 h-full w-full object-contain mix-blend-multiply" />
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
+                    <img src={app.image} alt={app.title} className="w-full h-full object-cover" />
+                    <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider bg-ink text-paper px-2.5 py-0.5 rounded-full">
+                      Platform Luminaire
+                    </span>
+                  </div>
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
+                    <img src={app.projectPic} alt={`${app.title} field project`} className="w-full h-full object-cover" />
+                    <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider bg-signal text-white px-2.5 py-0.5 rounded-full">
+                      Field Installation
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="md:col-span-5">
-                <div className="text-mono text-signal">{String(i + 1).padStart(2, "0")} · {a.series}</div>
-                <h2 className="text-display mt-3 text-4xl text-ink sm:text-5xl md:text-7xl">{a.t}</h2>
-                <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/70">{a.d}</p>
-                <button
-                  onClick={openDrawer}
-                  className="text-mono mt-6 inline-flex border-b border-ink pb-1 cursor-pointer text-left"
-                >
-                  Plan a project →
-                </button>
+
+              {/* Application Details */}
+              <div className="md:col-span-5 space-y-4">
+                <div className="text-mono text-signal font-bold text-xs">
+                  {String(i + 1).padStart(2, "0")} · {app.category}
+                </div>
+                <h2 className="text-display text-3xl font-bold text-ink sm:text-4xl md:text-5xl tracking-tight">
+                  {app.title}
+                </h2>
+                <p className="text-xs font-semibold text-ink/50 uppercase tracking-wider">
+                  {app.subtitle}
+                </p>
+                <p className="text-sm leading-relaxed text-ink/75 font-light">
+                  {app.description}
+                </p>
+                
+                <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-ink/80 space-y-1">
+                  <span className="font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1.5 text-[11px]">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                    Consultant Guidance
+                  </span>
+                  <p className="text-[11px] leading-relaxed">
+                    {app.consultantNote}
+                  </p>
+                </div>
+
+                <div className="pt-2 flex flex-wrap items-center gap-4">
+                  <Link
+                    to="/products"
+                    className="text-mono text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 text-signal border-b border-signal pb-1 hover:text-ink hover:border-ink transition-colors"
+                  >
+                    View Product Platforms & Photometrics →
+                  </Link>
+                </div>
               </div>
             </motion.div>
           ))}

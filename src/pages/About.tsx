@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { useMeta } from "../hooks/use-meta";
+import { advisorProfile } from "@/assets/products";
+import { useContactDrawer } from "../components/ContactDrawer";
 
 export default function AboutPage() {
+  const { openDrawer } = useContactDrawer();
   useMeta({
     title: "About — HINDLED-TECHNOLOGIES Technologies",
     description: "A professional outdoor lighting manufacturer engineering luminaires for the world's most demanding venues.",
@@ -43,7 +46,7 @@ export default function AboutPage() {
       <section className="bg-stone py-24">
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
           {[
-            { v: "12", l: "Years of R&D" },
+            { v: "45+", l: "Years of Advisor Experience" },
             { v: "40+", l: "Countries served" },
             { v: "320", l: "Stadium projects" },
             { v: "100K", l: "Hour lumen warranty" },
@@ -59,6 +62,64 @@ export default function AboutPage() {
               <div className="text-mono mt-2 text-ink/60">{s.l}</div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Chief Technical Advisor Section */}
+      <section className="bg-paper text-ink py-24 border-t border-ink/10 relative overflow-hidden">
+        <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
+          <div className="mb-12 border-b border-ink/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-2">
+                — TECHNICAL LEADERSHIP & ADVISORY
+              </span>
+              <h2 className="text-display text-ink text-[7vw] leading-[0.92] tracking-[-0.04em] md:text-[3.8vw]">
+                Guided by 45+ Years of <span className="text-signal">Excellence.</span>
+              </h2>
+            </div>
+            <p className="max-w-md text-sm text-ink/70 font-light leading-relaxed">
+              Strategic consulting, energy efficiency, industry standards, and sustainable lighting solutions.
+            </p>
+          </div>
+
+          <div className="rounded-[36px] bg-stone border border-ink/15 p-8 md:p-14 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
+              <div className="relative w-full max-w-[440px] h-[400px] sm:h-[480px] md:h-[540px] lg:h-[580px] rounded-[32px] overflow-hidden border-2 border-ink/20 shadow-2xl bg-paper group">
+                <img
+                  src={advisorProfile.image}
+                  alt={advisorProfile.name}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80" />
+                <span className="absolute bottom-5 left-5 right-5 text-center font-mono text-xs md:text-sm font-bold uppercase tracking-widest bg-paper/95 backdrop-blur-md text-ink py-3 rounded-2xl border border-ink/10 shadow-lg">
+                  {advisorProfile.experienceYears} Industry Leadership
+                </span>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 space-y-8 flex flex-col justify-between">
+              <div className="space-y-6">
+                <div>
+                  <span className="text-mono text-xs font-bold uppercase tracking-widest text-signal block mb-2">
+                    — BIOGRAPHY & IMPACT
+                  </span>
+                  <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
+                    {advisorProfile.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-signal font-mono font-bold tracking-wider uppercase mt-2">
+                    {advisorProfile.title}
+                  </p>
+                </div>
+
+                {/* Refined Editorial Bio */}
+                <div className="border-l-3 border-signal pl-5 py-1">
+                  <p className="text-base sm:text-lg lg:text-xl text-ink/85 font-light leading-relaxed">
+                    "{advisorProfile.bio}"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

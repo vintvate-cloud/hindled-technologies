@@ -1,5 +1,6 @@
 import p5_spec from "./catalogue/p5_spec.jpg";
 import p8_spec from "./catalogue/p8_spec.jpg";
+import p1 from "./catalogue/p1.jpg";
 import p5 from "./catalogue/p5.jpg";
 import p7 from "./catalogue/p7.jpg";
 import p8 from "./catalogue/p8.jpg";
@@ -690,3 +691,191 @@ export const enrichProduct = (item: CatalogueItem): EnrichedProduct => {
 export const enrichedCatalogue: EnrichedProduct[] = catalogue.map(enrichProduct);
 export const enrichedFeatured: EnrichedProduct[] = featured.map(enrichProduct);
 export const enrichedSolar: EnrichedProduct[] = solar.map(enrichProduct);
+
+export type SolutionApplication = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  consultantNote: string;
+  luxRecommendation: string;
+  image: string;
+  projectPic: string;
+  category: "Solar" | "Outdoor & Industrial" | "Specialty";
+  matchingSlugs: string[];
+  keySpecs: { label: string; value: string }[];
+};
+
+export const solutionApplications: SolutionApplication[] = [
+  {
+    id: "solar-smart-poles",
+    title: "Solar Smart Poles",
+    subtitle: "Vertical PV Pole Grids & Zero-Grid Infrastructure",
+    description: "Multi-functional vertical photovoltaic solar poles that harvest clean energy seamlessly from 360 degrees with integrated LiFePO4 battery banks.",
+    consultantNote: "Vertical PV integration increases self-cleaning efficiency by 40% in dusty climates where horizontal panels gather heavy dust.",
+    luxRecommendation: "20 - 40 Lux (Class M3/M4 Roadways)",
+    image: p5,
+    projectPic: p8,
+    category: "Solar",
+    matchingSlugs: ["hera", "juno-module", "mars-smart-pole"],
+    keySpecs: [
+      { label: "Solar Capture", value: "360° 6-Sided Vertical PV" },
+      { label: "Storage", value: "3000+ Cycle LiFePO4" },
+      { label: "Wind Load", value: "Up to 57 m/s (Category 5)" }
+    ]
+  },
+  {
+    id: "sports-lighting",
+    title: "Sports Lighting",
+    subtitle: "High-Mast Arena & Stadium Floodlighting",
+    description: "Broadcast-grade, flicker-free stadium illumination systems designed for HDTV 4K/8K recording with precision beam cut-off optics.",
+    consultantNote: "Requires strict glare control (GR < 45) and color fidelity (TLCI > 90) to meet FIFA, ICC, and Olympic broadcast standards.",
+    luxRecommendation: "750 - 2000 Lux (Class I / II Stadiums)",
+    image: p25,
+    projectPic: p24,
+    category: "Outdoor & Industrial",
+    matchingSlugs: ["fl18", "sp02"],
+    keySpecs: [
+      { label: "Power Range", value: "400W – 1600W Luminaire Arrays" },
+      { label: "Flicker Factor", value: "< 0.2% HDTV Compliant" },
+      { label: "Surge Protection", value: "20kV / 10kA Integrated" }
+    ]
+  },
+  {
+    id: "industrial-warehouse",
+    title: "Industrial & Warehouse Lighting",
+    subtitle: "High-Bay Luminaires & Heavy Manufacturing Bays",
+    description: "Extreme ambient-temperature high-bay fixtures and linear luminaires engineered for logistics depots and assembly plants.",
+    consultantNote: "Indian manufacturing facilities require heavy thermal dissipation (up to 50°C ambient) and high IP65 dust-proof ratings.",
+    luxRecommendation: "300 - 500 Lux (Task & Assembly Lines)",
+    image: p26,
+    projectPic: p20,
+    category: "Outdoor & Industrial",
+    matchingSlugs: ["hb12", "fl17"],
+    keySpecs: [
+      { label: "Efficacy", value: "180 – 200 lm/W High Efficiency" },
+      { label: "Thermal Tolerance", value: "-40°C to +55°C Ambient" },
+      { label: "Switching", value: "9-in-1 Power & CCT Selector" }
+    ]
+  },
+  {
+    id: "architectural-facade",
+    title: "Architectural & Façade Lighting",
+    subtitle: "Urban Landmarks, Monuments & Landscape Aesthetics",
+    description: "Sculpted post-tops, wall-washers, and optical bollards crafted to highlight structural architecture and resort walkways.",
+    consultantNote: "Architectural illumination must harmonize with warm thermal tones (2700K - 3000K) while providing weather durability.",
+    luxRecommendation: "50 - 150 Lux (Façade Grazing & Accents)",
+    image: p12,
+    projectPic: p16,
+    category: "Specialty",
+    matchingSlugs: ["juno-area-a", "juno-post-top", "juno-bollard", "mercury"],
+    keySpecs: [
+      { label: "Finish", value: "Anodized Architectural Aluminium" },
+      { label: "Control", value: "DALI-2 / DMX512 Dimming" },
+      { label: "Optical Polish", value: "Anti-Glare Louvred Optics" }
+    ]
+  },
+  {
+    id: "tunnel-road",
+    title: "Tunnel & Road Lighting",
+    subtitle: "Arterial Highways, Expressways & Subways",
+    description: "Asymmetric distributions and anti-blackhole optical lenses designed to provide continuous visual adaptation for highway drivers.",
+    consultantNote: "Proper luminance transition zones are crucial in Indian tunnels to eliminate the dangerous black hole effect.",
+    luxRecommendation: "30 - 70 Lux (Luminance L1/L2 Compliant)",
+    image: p9,
+    projectPic: p11,
+    category: "Outdoor & Industrial",
+    matchingSlugs: ["juno-street", "apollo"],
+    keySpecs: [
+      { label: "Beam Distribution", value: "Asymmetric T2 / T3 Roadway" },
+      { label: "Lifespan", value: "> 100,000 Hours (L90B10)" },
+      { label: "Dimming", value: "Autonomous 4-Step Solar Dimming" }
+    ]
+  },
+  {
+    id: "airport-port",
+    title: "Airport & Port Lighting",
+    subtitle: "Container Yards, Aprons & High-Mast Terminals",
+    description: "Ultra-long-throw floodlighting platforms designed for 30m - 50m high-mast towers in container ports and airport aprons.",
+    consultantNote: "Port environments demand salt-spray corrosion resistance (1000+ hrs salt fog tested) and zero up-light (ICAO compliant).",
+    luxRecommendation: "100 - 300 Lux (Aprons & Logistics Docks)",
+    image: p24,
+    projectPic: p22,
+    category: "Outdoor & Industrial",
+    matchingSlugs: ["sp02", "fl18"],
+    keySpecs: [
+      { label: "Mounting Height", value: "18m – 45m High-Mast Poles" },
+      { label: "Corrosion Proof", value: "ASTM B117 1000h Salt Fog" },
+      { label: "ICAO Compliant", value: "Zero Glare Apron Projection" }
+    ]
+  },
+  {
+    id: "ev-charging-poles",
+    title: "EV Charging Integrated Smart Poles",
+    subtitle: "Solar Lighting + Integrated Fast EV Charger Hubs",
+    description: "Hybrid infrastructure smart poles combining LED lighting, solar energy storage, and built-in Type-2 AC EV charging sockets.",
+    consultantNote: "Integrating EV charging into public solar poles leverages existing column footprints in Indian cities.",
+    luxRecommendation: "30 - 50 Lux (Urban EV Charging Bays)",
+    image: p15,
+    projectPic: p14,
+    category: "Solar",
+    matchingSlugs: ["mars-smart-pole", "hera"],
+    keySpecs: [
+      { label: "EV Charging Output", value: "7.4kW / 22kW AC Type-2 Socket" },
+      { label: "Smart Connectivity", value: "4G / OCPP 1.6J Protocol" },
+      { label: "Solar Integration", value: "200W - 600W Vertical PV" }
+    ]
+  },
+  {
+    id: "custom-concept",
+    title: "Custom Concept Lighting",
+    subtitle: "Tailored Engineering, Physical Structures & Custom Optics",
+    description: "Bespoke optical engineering, specialized mounting brackets, and site-tailored luminaire housing for iconic infrastructure projects.",
+    consultantNote: "Our engineering team produces custom DIALux simulations, 3D CAD blueprints, and custom-molded optics.",
+    luxRecommendation: "Tailored per project photometric plan",
+    image: p1,
+    projectPic: p25,
+    category: "Specialty",
+    matchingSlugs: ["fl18", "hera", "sp02"],
+    keySpecs: [
+      { label: "Photometric Simulation", value: "DIALux / Relux Custom Plans" },
+      { label: "CAD Blueprints", value: "DWG / DXF Technical Drawings" },
+      { label: "Custom Fabrication", value: "ADC12 & 6063 Custom Molds" }
+    ]
+  }
+];
+
+export const advisorProfile = {
+  name: "Er. Rajeev Sharma",
+  title: "Chief Illumination Advisor & Infrastructure Engineering Lead",
+  image: "/advisorimagefinal.jpeg",
+  experienceYears: "45+ Years",
+  bio: "An accomplished Electrical Engineer with over 45 years of experience in the lighting and energy industry, he brings extensive expertise in leadership, innovation, business strategy, and sustainable solutions. Having mentored numerous professionals into senior leadership roles, he is passionate about guiding talent, nurturing businesses, and sharing industry knowledge. His experience spans strategic consulting, industry standards, energy efficiency, skill development, and entrepreneurship making him a trusted mentor for professionals and emerging businesses alike.",
+  indianMarketAdvice: [
+    {
+      title: "1. Voltage Surge & Grid Fluctuation Immunity",
+      desc: "Indian power grids frequently suffer severe voltage spikes (up to 440V) and lightning strikes during monsoons. We mandate 10kV–20kV Surge Protection Devices (SPD) paired with 90V–305V wide AC drivers for zero field failures."
+    },
+    {
+      title: "2. Extreme Thermal Convection (50°C Tolerance)",
+      desc: "Summer ambient temperatures in North & Central India exceed 45°C–48°C. Standard heatsinks overheat quickly. Our ADC12 die-cast aluminium bodies feature hollow thermal-chimney vents that keep junction temperatures low, guaranteeing 100,000+ hour operational lifespans."
+    },
+    {
+      title: "3. IP66 / IP67 Dust-Storm & Heavy Monsoon Sealing",
+      desc: "From North Indian dust storms ('Andhi') to coastal monsoon downpours, fixtures require strict IP66/IP67 ingress sealing with tempered glass lenses to prevent internal dust coating and optical degradation."
+    },
+    {
+      title: "4. Vertical Solar Modules for High-Dust Indian Regions",
+      desc: "Horizontal solar panels accumulate heavy dust and soot in urban Indian environments, losing 35%+ output. Our 6-sided vertical PV poles (HERA & JUNO) naturally shed dust, delivering 30%+ higher long-term solar yield without costly manual cleaning."
+    },
+    {
+      title: "5. Smart EV Charger Pole Integration",
+      desc: "India's rapid EV push requires dense charging infrastructure. Integrating Type-2 AC EV charging sockets (7.4kW/22kW) into solar smart street poles maximizes urban footprint utility while monetizing municipal lighting poles."
+    },
+    {
+      title: "6. BIS / IS Compliance & Local Spare Serviceability",
+      desc: "Strict compliance with Indian Standards (IS 10322, IS 16102, IS 16106) ensures eligibility for government tenders (CPWD, NHAI, Smart City Mission) with guaranteed pan-India spare part availability."
+    }
+  ]
+};
+

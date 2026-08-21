@@ -35,6 +35,15 @@ export function Footer() {
           <div className="md:col-span-2 md:col-start-7">
             <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Catalogue</h4>
             <ul className="space-y-4 text-sm text-paper/80 font-light">
+              <li>
+                <a 
+                  href={encodeURI("/(21 x 25 cm) HINDLED Catalogue 2026.pdf")} 
+                  download="HINDLED_Catalogue_2026.pdf" 
+                  className="text-signal hover:underline font-semibold flex items-center gap-1"
+                >
+                  2026 Catalogue (PDF) ↓
+                </a>
+              </li>
               <li><Link to="/products" className="hover:text-signal transition-colors">Solar Systems</Link></li>
               <li><Link to="/products" className="hover:text-signal transition-colors">Stadium Floodlights</Link></li>
               <li><Link to="/products" className="hover:text-signal transition-colors">Industrial High-Bays</Link></li>
