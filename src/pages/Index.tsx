@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -204,7 +204,7 @@ function SolutionsShowcase() {
     <section id="solutions-showcase" className="relative bg-paper text-ink py-28 lg:py-36 hairline-t">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16">
           <div>
             <h2 className="text-display text-ink text-[9vw] leading-[0.92] tracking-[-0.04em] md:text-[5vw]">
               Organized around <span className="text-signal">applications.</span>
@@ -213,17 +213,10 @@ function SolutionsShowcase() {
               8 specialized lighting applications engineered for complex environments with field installation optics.
             </p>
           </div>
-
-          <button
-            onClick={openDrawer}
-            className="text-mono text-xs font-bold uppercase tracking-wider bg-ink text-paper px-6 py-3.5 rounded-full hover:bg-signal transition-colors cursor-pointer shrink-0"
-          >
-            Request Audit →
-          </button>
         </div>
 
-        {/* 8 Applications Clean Grid */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+        {/* 8 Applications Clean Grid (2 per row on mobile) */}
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {solutionApplications.map((app: SolutionApplication, idx: number) => (
             <motion.div
               key={app.id}
@@ -231,32 +224,32 @@ function SolutionsShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.6, delay: (idx % 4) * 0.08 }}
-              className="group flex flex-col justify-between rounded-3xl bg-stone p-5 border border-ink/10 hover:border-signal transition-all shadow-sm"
+              className="group flex flex-col justify-between rounded-2xl sm:rounded-3xl bg-stone p-3 sm:p-5 border border-ink/10 hover:border-signal transition-all shadow-sm"
             >
               <div>
                 {/* Project-Based Field Image */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-paper mb-4 border border-ink/5">
+                <div className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-paper mb-2.5 sm:mb-4 border border-ink/5">
                   <img src={app.projectPic} alt={`${app.title} project`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <span className="absolute top-2.5 left-2.5 text-[9px] font-mono font-bold uppercase tracking-wider bg-ink text-paper px-2 py-0.5 rounded-full">
+                  <span className="absolute top-1.5 left-1.5 sm:top-2.5 sm:left-2.5 text-[8px] sm:text-[9px] font-mono font-bold uppercase tracking-wider bg-ink text-paper px-1.5 sm:px-2 py-0.5 rounded-full">
                     {app.category}
                   </span>
                 </div>
 
-                <h3 className="font-display text-xl font-bold text-ink tracking-tight">
+                <h3 className="font-display text-sm sm:text-xl font-bold text-ink tracking-tight leading-snug sm:leading-normal">
                   {app.title}
                 </h3>
-                <p className="mt-2 text-xs text-ink/70 line-clamp-2 leading-relaxed font-light">
+                <p className="mt-1 sm:mt-2 text-[11px] sm:text-xs text-ink/70 line-clamp-2 leading-relaxed font-light">
                   {app.description}
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="text-[10px] font-mono text-signal font-bold">
+              <div className="mt-3 sm:mt-6 pt-2.5 sm:pt-4 border-t border-ink/10 flex items-center justify-between">
+                <span className="text-[8px] sm:text-[10px] font-mono text-signal font-bold truncate max-w-[70%]">
                   {app.luxRecommendation.split("(")[0]}
                 </span>
                 <Link
                   to="/products"
-                  className="text-mono text-xs font-bold uppercase tracking-wider text-ink hover:text-signal transition-colors"
+                  className="text-mono text-[9px] sm:text-xs font-bold uppercase tracking-wider text-ink hover:text-signal transition-colors shrink-0"
                 >
                   Specs →
                 </Link>
@@ -487,6 +480,28 @@ const testimonials = [
 
 function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  // Automatic sideways slide autoplay interval for mobile view
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleNext = () => {
+    setDirection(1);
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".t-card", {
@@ -502,12 +517,11 @@ function Testimonials() {
   }, []);
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-stone py-32 lg:py-48">
+    <section ref={ref} className="relative overflow-hidden bg-white py-24 lg:py-48">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         <div className="grid grid-cols-12 items-end gap-6">
-          <div className="col-span-12 md:col-span-5">
-            <div className="text-mono text-ink/50">Field Reports</div>
-            <h2 className="text-display mt-4 text-ink text-[10vw] leading-[0.92] tracking-[-0.04em] md:text-[5.5vw]">
+          <div className="col-span-12 md:col-span-6">
+            <h2 className="text-display text-ink text-[10vw] leading-[0.92] tracking-[-0.04em] md:text-[5.5vw]">
               Trusted on the <span className="text-signal">ground.</span>
             </h2>
           </div>
@@ -516,13 +530,84 @@ function Testimonials() {
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 gap-px bg-ink/10 md:grid-cols-3">
+        {/* Mobile View: Premium Auto-Sliding Card Carousel */}
+        <div className="mt-12 md:hidden">
+          <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-paper p-7 shadow-xl">
+            {/* Sliding Quote Content with Medium Typography */}
+            <div className="relative min-h-[200px] flex flex-col justify-between">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, x: direction * 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -direction * 40 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col gap-5"
+                >
+                  <div className="text-display text-5xl leading-none text-signal">"</div>
+                  <p className="text-base sm:text-lg leading-relaxed text-ink font-medium">
+                    {testimonials[activeIndex].quote}
+                  </p>
+                  <div className="pt-4 border-t border-black/10">
+                    <div className="text-display text-base font-bold text-ink">
+                      {testimonials[activeIndex].name}
+                    </div>
+                    <div className="text-mono mt-0.5 text-xs text-ink/60">
+                      {testimonials[activeIndex].role}
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom Controls: Dots + Prev / Next Arrows */}
+            <div className="flex items-center justify-between pt-6 border-t border-black/10 mt-6">
+              {/* Pagination Dots */}
+              <div className="flex items-center gap-2">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setDirection(i > activeIndex ? 1 : -1);
+                      setActiveIndex(i);
+                    }}
+                    aria-label={`Go to slide ${i + 1}`}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === activeIndex ? "w-6 bg-signal" : "w-2 bg-black/20 hover:bg-black/40"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Arrow Buttons */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handlePrev}
+                  aria-label="Previous Testimonial"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-stone text-ink hover:bg-ink hover:text-white transition-colors cursor-pointer active:scale-95 shadow-sm"
+                >
+                  ←
+                </button>
+                <button
+                  onClick={handleNext}
+                  aria-label="Next Testimonial"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-stone text-ink hover:bg-ink hover:text-white transition-colors cursor-pointer active:scale-95 shadow-sm"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop View: Grid Layout */}
+        <div className="mt-20 hidden md:grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <div key={i} className="t-card flex flex-col gap-10 bg-stone p-10 lg:p-12">
+            <div key={i} className="t-card flex flex-col gap-10 bg-paper border border-black/10 rounded-3xl p-10 lg:p-12 shadow-sm hover:shadow-xl transition-shadow duration-300">
               <div className="text-display text-6xl leading-none text-signal">"</div>
               <p className="text-lg leading-relaxed text-ink md:text-xl">{t.quote}</p>
               <div className="hairline-t mt-auto pt-5">
-                <div className="text-display text-lg text-ink">{t.name}</div>
+                <div className="text-display text-lg text-ink font-bold">{t.name}</div>
                 <div className="text-mono mt-1 text-ink/60">{t.role}</div>
               </div>
             </div>

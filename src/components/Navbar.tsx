@@ -111,22 +111,12 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Right side: CTA + hamburger */}
-        <div className="flex shrink-0 items-center gap-3">
-          <button
-            onClick={openDrawer}
-            className={`rounded-full bg-signal px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 cursor-pointer whitespace-nowrap ${
-              isDarkHero
-                ? "text-paper hover:bg-white hover:text-black hover:shadow-xl"
-                : "text-white hover:bg-ink hover:text-paper hover:shadow-lg"
-            }`}
-          >
-            Get Quote
-          </button>
+        {/* Right side: hamburger (mobile only) */}
+        <div className="flex shrink-0 items-center gap-3 md:hidden">
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle Menu"
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors md:hidden ${
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ${
               isDarkHero
                 ? "border border-white/20 text-white hover:bg-white/20"
                 : "border border-black/15 text-ink hover:bg-black/5"
@@ -199,17 +189,6 @@ export function Navbar() {
                 </motion.div>
               );
             })}
-            <div className={`mt-4 pt-4 border-t ${isDarkHero ? "border-white/15" : "border-black/10"}`}>
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  openDrawer();
-                }}
-                className="w-full text-center block rounded-2xl bg-signal py-3.5 text-sm font-bold uppercase tracking-wider text-paper hover:bg-ink hover:text-white transition-colors cursor-pointer shadow-md"
-              >
-                Get Quote
-              </button>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
