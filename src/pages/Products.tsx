@@ -164,18 +164,19 @@ export default function ProductsPage() {
             {/* Storytelling Application Banner */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
 
-              {/* Left Editorial Cover Photo (Unclipped) */}
-              <div className="lg:col-span-6 relative rounded-[28px] overflow-hidden border border-ink/10 bg-stone p-4 flex items-center justify-center min-h-[300px] lg:min-h-[360px] shadow-md group">
+              {/* Left Editorial Cover Photo (Full Box Occupancy, Zero Leak) */}
+              <div className="lg:col-span-6 relative w-full h-[280px] sm:h-[340px] lg:h-[380px] rounded-[28px] overflow-hidden border border-ink/10 bg-stone shadow-md group">
                 <img
                   src={app.projectPic}
                   alt={`${app.title} application field`}
-                  className="max-h-[340px] w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-xs">
-                  <span className="bg-signal text-paper px-3 py-1 rounded-full font-bold uppercase tracking-widest text-[10px]">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between font-mono text-xs z-10">
+                  <span className="bg-signal text-paper px-3 py-1 rounded-full font-bold uppercase tracking-widest text-[10px] shadow-sm">
                     {app.category}
                   </span>
-                  <span className="bg-paper/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-ink font-bold border border-ink/10 shadow-xs">
+                  <span className="bg-paper/95 backdrop-blur-md px-3 py-1 rounded-full text-[10px] text-ink font-bold border border-ink/10 shadow-xs">
                     Target: {app.luxRecommendation.split("(")[0]}
                   </span>
                 </div>
@@ -423,7 +424,7 @@ function ProductCard({
           <img
             src={p.image}
             alt={p.name}
-            className="max-h-full max-w-full object-contain transition-transform duration-700 group-hover:scale-105"
+            className="max-h-full max-w-full w-full h-full object-contain transition-transform duration-700 group-hover:scale-105 drop-shadow-sm"
           />
           <span className="text-mono absolute top-2.5 left-2.5 text-[9px] bg-paper/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-ink border border-ink/10 font-bold shadow-xs">
             {p.code}

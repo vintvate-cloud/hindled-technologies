@@ -6,7 +6,7 @@ import { useContactDrawer } from "../components/ContactDrawer";
 export default function AboutPage() {
   const { openDrawer } = useContactDrawer();
   useMeta({
-    title: "About — HINDLED-TECHNOLOGIES Technologies",
+    title: "About — HINDLED Technologies",
     description: "A professional outdoor lighting manufacturer engineering luminaires for the world's most demanding venues.",
   });
 
@@ -15,7 +15,7 @@ export default function AboutPage() {
       <section className="bg-paper pt-40 pb-32">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-8 text-ink/60">— Studio / About</div>
-          <h1 className="text-display text-ink text-[13vw] leading-[0.88] sm:text-[11vw] md:text-[9vw]">
+          <h1 className="text-display text-ink text-[13vw] leading-[0.88] sm:text-[11vw] md:text-[9vw] font-bold">
             WE DON'T MAKE
             <br />
             FIXTURES. WE
@@ -28,28 +28,28 @@ export default function AboutPage() {
       <section className="bg-paper pb-32">
         <div className="mx-auto grid max-w-[1600px] gap-16 px-6 md:grid-cols-12 lg:px-10">
           <div className="md:col-span-5">
-            <div className="text-mono text-ink/50">Manifesto</div>
+            <div className="text-mono text-ink/50 text-xs uppercase tracking-widest font-bold">Manifesto</div>
           </div>
           <div className="md:col-span-7">
-            <p className="text-display text-2xl sm:text-3xl leading-tight text-ink md:text-5xl">
-              Light is infrastructure. We engineer it like aerospace — every optic, driver and
+            <p className="text-display text-2xl sm:text-3xl leading-tight text-ink md:text-5xl font-bold">
+              Light is infrastructure. We engineer it like aerospace — every optic, driver, vertical PV module, and
               housing tested against the environments most manufacturers retreat from.
             </p>
-            <p className="mt-8 max-w-xl text-sm leading-relaxed text-ink/70">
-              From international stadiums to off-grid roads, HINDLED-TECHNOLOGIES Technologies ships luminaires that perform
-              when the lights matter most. Our work is quiet, our standards are not.
+            <p className="mt-8 max-w-xl text-sm sm:text-base leading-relaxed text-ink/70 font-light">
+              From international sports stadiums to off-grid 360° solar smart poles, HINDLED Technologies ships luminaires that perform
+              when the lights matter most. Operating 100% without electricity on solar platforms with zero maintenance overheads.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="bg-stone py-24">
+      <section className="bg-stone py-24 border-t border-b border-ink/10">
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
           {[
-            { v: "45+", l: "Years of Advisor Experience" },
-            { v: "40+", l: "Countries served" },
-            { v: "320", l: "Stadium projects" },
-            { v: "100K", l: "Hour lumen warranty" },
+            { v: "45+", l: "Years Advisor Leadership" },
+            { v: "100%", l: "Solar Grid Autonomy" },
+            { v: "360K", l: "Lumens Peak Output" },
+            { v: "21", l: "Engineered Platforms" },
           ].map((s, i) => (
             <motion.div
               key={s.l}
@@ -58,8 +58,8 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
             >
-              <div className="text-display text-6xl text-ink md:text-7xl">{s.v}</div>
-              <div className="text-mono mt-2 text-ink/60">{s.l}</div>
+              <div className="text-display text-5xl md:text-7xl font-bold text-ink">{s.v}</div>
+              <div className="text-mono mt-2 text-ink/60 text-xs uppercase tracking-wider font-bold">{s.l}</div>
             </motion.div>
           ))}
         </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
               <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-2">
                 — TECHNICAL LEADERSHIP & ADVISORY
               </span>
-              <h2 className="text-display text-ink text-[7vw] leading-[0.92] tracking-[-0.04em] md:text-[3.8vw]">
+              <h2 className="text-display text-ink text-[7vw] leading-[0.92] tracking-[-0.04em] md:text-[3.8vw] font-bold">
                 Guided by 45+ Years of <span className="text-signal">Excellence.</span>
               </h2>
             </div>
@@ -123,12 +123,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-paper py-32">
+      <section className="bg-paper py-32 hairline-t">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw]">
+          <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw] font-bold">
             VENUES WE'VE LIT.
           </h2>
-          <div className="text-display marquee mt-12 flex gap-12 whitespace-nowrap text-3xl sm:text-4xl text-ink/30 md:text-6xl">
+          <div className="text-display marquee mt-12 flex gap-12 whitespace-nowrap text-3xl sm:text-4xl text-ink/30 md:text-6xl font-bold">
             <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
             <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
           </div>

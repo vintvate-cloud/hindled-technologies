@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Mail, Phone, MapPin, ZapOff, CheckCircle2 } from "lucide-react";
 
 interface ContactDrawerContextType {
   isOpen: boolean;
@@ -21,10 +22,8 @@ export function ContactDrawerProvider({ children }: { children: ReactNode }) {
   const closeDrawer = () => {
     setIsOpen(false);
     if (pathname === "/contact") {
-      // Try to go back in history if possible
       if (window.history.length > 1) {
         window.history.back();
-        // Fallback check: if we are still on /contact after 100ms, go to home
         setTimeout(() => {
           if (window.location.pathname === "/contact") {
             navigate("/");
@@ -47,7 +46,6 @@ export function ContactDrawerProvider({ children }: { children: ReactNode }) {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
-
 
   return (
     <ContactDrawerContext.Provider value={{ isOpen, openDrawer, closeDrawer }}>
@@ -101,10 +99,17 @@ export function ContactDrawer() {
             {/* Layout Grid */}
             <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-14 pt-1">
               
-              {/* Left Column: Info & Locations */}
+              {/* Left Column: Info & Official Details */}
               <div className="md:col-span-5 flex flex-col justify-between gap-6">
                 <div>
-                  <div className="text-mono text-signal mb-3">— Signal / Contact</div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-mono text-signal font-bold text-xs uppercase tracking-widest">— Signal / Contact</span>
+                    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-signal font-bold bg-signal/10 px-2.5 py-0.5 rounded-full">
+                      <ZapOff className="w-3 h-3" />
+                      Zero-Grid Infrastructure
+                    </span>
+                  </div>
+
                   <h2 className="text-display text-4xl sm:text-5xl lg:text-6xl text-ink leading-[1.05] tracking-[-0.04em] font-bold">
                     LET'S BUILD
                     <br />
@@ -113,42 +118,56 @@ export function ContactDrawer() {
                     <span className="text-signal">LIGHT.</span>
                   </h2>
                   
-                  <p className="mt-4 text-sm leading-relaxed text-ink/75 max-w-sm">
-                    Connect with our engineering desk for stadium consultations, custom optic profiles, or technical project support.
+                  <p className="mt-4 text-sm leading-relaxed text-ink/75 max-w-sm font-light">
+                    Connect with our engineering desk for 360° solar lighting solutions, zero-grid infrastructure consulting, custom photometric DIALux profiles, and turnkey project execution.
                   </p>
                 </div>
 
                 <div className="space-y-6">
-                  {/* Studios */}
+                  {/* Official Headquarters */}
                   <div className="border-t border-ink/10 pt-4">
-                    <div className="text-mono text-ink/40 mb-3 uppercase tracking-wider text-[9px]">Office Locations</div>
-                    <div className="grid grid-cols-3 gap-4">
-                      {[
-                        { c: "Dubai", a: "DIFC" },
-                        { c: "Berlin", a: "Kreuzberg" },
-                        { c: "Mumbai", a: "BKC" },
-                      ].map((s) => (
-                        <div key={s.c}>
-                          <div className="font-display text-sm font-bold text-ink">{s.c}</div>
-                          <div className="text-[10px] text-ink/60">{s.a}</div>
-                        </div>
-                      ))}
+                    <div className="text-mono text-ink/40 mb-2 uppercase tracking-wider text-[10px] font-bold">Registered Office</div>
+                    <div className="space-y-1 text-xs text-ink/80 leading-relaxed font-light">
+                      <div className="font-display text-sm font-bold text-ink flex items-center gap-1.5">
+                        <MapPin className="w-4 h-4 text-signal shrink-0" />
+                        HINDLED TECHNOLOGIES INDIA PVT. LTD.
+                      </div>
+                      <p className="pl-5 text-ink/70">
+                        B-302, Plot No.95, Maurya Apartment<br />
+                        Patparganj, New Delhi - 110092, India
+                      </p>
                     </div>
                   </div>
 
-                  {/* Direct Contact */}
+                  {/* Direct Contact Channels */}
                   <div className="border-t border-ink/10 pt-4">
-                    <div className="text-mono text-ink/40 mb-1.5 uppercase tracking-wider text-[9px]">Direct Channel</div>
-                    <a href="mailto:hello@HINDLED-TECHNOLOGIES.in" className="font-display text-lg lg:text-xl font-bold text-ink hover:text-signal transition-colors block">
-                      hello@HINDLED-TECHNOLOGIES.in
-                    </a>
-                    <div className="text-xs text-ink/50 mt-0.5 font-mono">+971 4 000 0000</div>
+                    <div className="text-mono text-ink/40 mb-2 uppercase tracking-wider text-[10px] font-bold">Direct Channels</div>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <Mail className="w-4 h-4 text-signal shrink-0" />
+                        <a href="mailto:hindled77@gmail.com" className="font-display text-base font-bold text-ink hover:text-signal transition-colors">
+                          hindled77@gmail.com
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Mail className="w-4 h-4 text-signal shrink-0" />
+                        <a href="mailto:info@hindled.com" className="text-xs font-mono text-ink/70 hover:text-signal transition-colors">
+                          info@hindled.com
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Phone className="w-4 h-4 text-signal shrink-0" />
+                        <a href="tel:+919560121310" className="text-xs font-mono font-bold text-ink hover:text-signal transition-colors">
+                          +91 9560121310
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Right Column: Contact Form */}
-              <div className="md:col-span-7 bg-stone/30 rounded-[28px] p-6 md:p-8 lg:p-10">
+              <div className="md:col-span-7 bg-stone/40 rounded-[28px] p-6 md:p-8 lg:p-10 border border-ink/5">
                 <h3 className="font-display text-xl lg:text-2xl font-bold mb-6 text-ink">Project Inquiry</h3>
                 <ContactForm />
               </div>
@@ -177,9 +196,11 @@ function ContactForm() {
           animate={{ scale: 1, opacity: 1 }}
           className="rounded-[24px] bg-white p-8 text-center border border-ink/5 shadow-inner"
         >
-          <span className="text-4xl">✓</span>
-          <h4 className="font-display font-semibold text-xl mt-3 text-ink">Signal received</h4>
-          <p className="text-xs text-ink/60 mt-2 max-w-xs mx-auto">
+          <div className="w-12 h-12 rounded-full bg-signal/15 text-signal flex items-center justify-center mx-auto mb-3">
+            <CheckCircle2 className="w-6 h-6" />
+          </div>
+          <h4 className="font-display font-semibold text-xl text-ink">Signal received</h4>
+          <p className="text-xs text-ink/60 mt-2 max-w-xs mx-auto font-light">
             Our engineering desk will review your requirements and reach out within 24 hours.
           </p>
         </motion.div>
@@ -187,9 +208,9 @@ function ContactForm() {
         <>
           <Field label="01 / Your Name" name="name" required />
           <Field label="02 / Email" name="email" type="email" required />
-          <Field label="03 / Company" name="company" required />
-          <Field label="04 / Project Type" name="project" placeholder="Stadium, road, hospitality…" required />
-          <Field label="05 / Tell us about it" name="message" textarea required />
+          <Field label="03 / Company / Organization" name="company" required />
+          <Field label="04 / Project Application" name="project" placeholder="Solar smart pole, stadium, highway, campus, CCTV..." required />
+          <Field label="05 / Project Brief & Requirements" name="message" textarea required />
           <div className="pt-4">
             <button
               type="submit"

@@ -38,14 +38,12 @@ export default function AppsPage() {
             >
               Request Application Audit →
             </button>
-            <a
-              href={CATALOGUE_PDF_PATH}
-              download="HINDLED_Catalogue_2026.pdf"
+            <Link
+              to="/products"
               className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-stone/60 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-paper transition-all cursor-pointer"
             >
-              <FileDown className="w-4 h-4 text-signal" />
-              Download 2026 Catalogue PDF
-            </a>
+              Explore 21 Hardware Platforms →
+            </Link>
           </div>
         </div>
       </section>
@@ -64,15 +62,15 @@ export default function AppsPage() {
               {/* Dual Image Box: Luminaire + Project Field Pic */}
               <div className="md:col-span-7">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
-                    <img src={app.image} alt={app.title} className="w-full h-full object-cover" />
-                    <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider bg-ink text-paper px-2.5 py-0.5 rounded-full">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-paper border border-ink/10 shadow-sm p-3 flex items-center justify-center">
+                    <img src={app.image} alt={app.title} className="w-full h-full max-h-full max-w-full object-contain" />
+                    <span className="absolute top-2.5 left-2.5 text-[9px] font-bold uppercase tracking-wider bg-ink text-paper px-2 py-0.5 rounded-full shadow-xs">
                       Platform Luminaire
                     </span>
                   </div>
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
                     <img src={app.projectPic} alt={`${app.title} field project`} className="w-full h-full object-cover" />
-                    <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider bg-signal text-white px-2.5 py-0.5 rounded-full">
+                    <span className="absolute top-2.5 left-2.5 text-[9px] font-bold uppercase tracking-wider bg-signal text-white px-2 py-0.5 rounded-full shadow-xs">
                       Field Installation
                     </span>
                   </div>

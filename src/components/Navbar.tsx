@@ -13,7 +13,6 @@ const links = [
 
 export function Navbar() {
   const [topCompacted, setTopCompacted] = useState(false);
-  const [pastHero, setPastHero] = useState(false);
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const pathname = location.pathname;
@@ -23,9 +22,6 @@ export function Navbar() {
     const onScroll = () => {
       const y = window.scrollY;
       setTopCompacted(y > 24);
-      // Hero section is full height (100vh), trigger light theme transition only when scrolled past 70% of viewport height
-      const heroThreshold = (window.innerHeight || 800) * 0.7;
-      setPastHero(y > heroThreshold);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -34,42 +30,28 @@ export function Navbar() {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  // Determine whether we are over a dark hero section (Index page top until scrolled past hero height)
-  const isDarkHero = pathname === "/" && !pastHero;
-
   return (
     <>
-      {/* Adaptive High-Contrast Glassmorphism Navbar */}
+      {/* Premium Glassmorphism Navbar */}
       <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed left-[2%] right-[2%] sm:left-[3%] sm:right-[3%] lg:left-[4%] lg:right-[4%] z-50 mx-auto flex max-w-[1600px] items-center justify-between rounded-full px-5 py-3.5 sm:px-8 sm:py-4.5 transition-all duration-500 backdrop-blur-2xl backdrop-saturate-180 ${
-          topCompacted ? "top-4" : "top-6"
-        } ${
-          isDarkHero
-            ? "border border-white/20 bg-black/40 text-white"
-            : "border border-black/10 bg-paper/90 text-ink shadow-sm"
+        className={`fixed left-[2%] right-[2%] sm:left-[3%] sm:right-[3%] lg:left-[4%] lg:right-[4%] z-50 mx-auto flex max-w-[1600px] items-center justify-between rounded-full px-5 py-3 sm:px-8 sm:py-3.5 transition-all duration-500 backdrop-blur-2xl backdrop-saturate-180 border border-black/10 bg-paper/90 text-ink shadow-md ${
+          topCompacted ? "top-3 sm:top-4 shadow-lg" : "top-5 sm:top-6"
         }`}
       >
-        {/* Logo / Brand */}
+        {/* Official Brand Logo */}
         <Link
           to="/"
           className="flex shrink-0 items-center gap-3 group"
+          aria-label="HINDLED Technologies Home"
         >
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 transition-transform duration-300 group-hover:scale-105">
-            <path d="M22 10 H30 V16 H26 V22 H22 V10 Z" fill={isDarkHero ? "#FFFFFF" : "var(--color-ink)"} />
-            <path d="M10 18 H14 V12 H18 V30 H10 V18 Z" fill="var(--color-signal)" />
-          </svg>
-          <span className="whitespace-nowrap font-display text-[17px] sm:text-[20px] md:text-[22px] font-bold tracking-[-0.01em]">
-            <span className="text-signal">HINDL</span>
-            <span className="relative inline-block">
-              <span className={isDarkHero ? "text-white" : "text-ink"}>ED</span>
-              <span className={`absolute top-[52%] left-[-2px] right-[-10px] h-[3px] -translate-y-1/2 ${
-                isDarkHero ? "bg-white" : "bg-ink"
-              }`} />
-            </span>
-          </span>
+          <img
+            src="/logo_horizontal.png"
+            alt="HINDLED Technologies Official Logo"
+            className="h-8 sm:h-9 md:h-10 w-auto max-w-[200px] object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         </Link>
 
         {/* Center menu links (desktop) */}
@@ -79,12 +61,8 @@ export function Navbar() {
 
             const baseStyle = `rounded-full px-5 py-2.5 text-xs md:text-sm font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
               active
-                ? isDarkHero
-                  ? "bg-white text-black shadow-md"
-                  : "bg-ink text-paper shadow-md"
-                : isDarkHero
-                  ? "text-white/85 hover:text-white hover:bg-white/15"
-                  : "text-ink/80 hover:text-ink hover:bg-black/5"
+                ? "bg-ink text-paper shadow-md"
+                : "text-ink/80 hover:text-ink hover:bg-black/5"
             }`;
 
             if (l.to === "/contact") {
@@ -111,16 +89,19 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Right side: hamburger (mobile only) */}
-        <div className="flex shrink-0 items-center gap-3 md:hidden">
+        {/* Right side: Contact CTA on desktop & hamburger on mobile */}
+        <div className="flex shrink-0 items-center gap-3">
+          <button
+            onClick={openDrawer}
+            className="hidden lg:inline-flex items-center gap-2 rounded-full bg-signal hover:bg-signal/90 text-white px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-sm cursor-pointer"
+          >
+            Engineering Desk →
+          </button>
+
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle Menu"
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ${
-              isDarkHero
-                ? "border border-white/20 text-white hover:bg-white/20"
-                : "border border-black/15 text-ink hover:bg-black/5"
-            }`}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/15 text-ink hover:bg-black/5 transition-colors md:hidden"
           >
             {open ? "✕" : "≡"}
           </button>
@@ -135,22 +116,14 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className={`fixed top-28 left-1/2 z-40 flex w-[92%] max-w-md -translate-x-1/2 flex-col gap-2 rounded-[32px] p-7 shadow-2xl backdrop-blur-2xl md:hidden ${
-              isDarkHero
-                ? "border border-white/20 bg-black/85 text-white"
-                : "border border-black/10 bg-paper/95 text-ink shadow-xl"
-            }`}
+            className="fixed top-24 left-1/2 z-40 flex w-[92%] max-w-md -translate-x-1/2 flex-col gap-2 rounded-[32px] p-7 shadow-2xl backdrop-blur-2xl md:hidden border border-black/10 bg-paper/95 text-ink"
           >
             {links.map((l, i) => {
               const active = pathname === l.to;
               const linkStyle = `block rounded-2xl px-5 py-3.5 text-base font-display font-semibold transition-colors ${
                 active
-                  ? isDarkHero
-                    ? "bg-white/20 text-signal"
-                    : "bg-black/10 text-signal font-bold"
-                  : isDarkHero
-                    ? "text-white/90 hover:bg-white/10"
-                    : "text-ink/90 hover:bg-black/5"
+                  ? "bg-black/10 text-signal font-bold"
+                  : "text-ink/90 hover:bg-black/5"
               }`;
 
               if (l.to === "/contact") {

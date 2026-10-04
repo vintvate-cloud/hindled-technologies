@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useContactDrawer } from "../components/ContactDrawer";
 import { useMeta } from "../hooks/use-meta";
+import { Mail, Phone, MapPin, ZapOff, CheckCircle2 } from "lucide-react";
 
 export default function ContactPage() {
   const { openDrawer, closeDrawer } = useContactDrawer();
 
   useMeta({
-    title: "Contact — Let's Build The Future Of Light",
-    description: "Talk to HINDLED-TECHNOLOGIES Technologies engineering. Stadium consultations, technical specifications and project quotes.",
+    title: "Contact — HINDLED Technologies",
+    description: "Talk to HINDLED Technologies engineering. 360° solar lighting, zero-grid infrastructure, stadium specifications, and turnkey project quotes.",
   });
 
   useEffect(() => {
@@ -22,8 +23,14 @@ export default function ContactPage() {
     <>
       <section className="bg-paper pt-40 pb-20">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <div className="text-mono mb-8 text-ink/60">— Signal / Contact</div>
-          <h1 className="text-display text-ink text-[11vw] leading-[0.88] sm:text-[10vw] md:text-[9vw]">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="text-mono text-signal font-bold text-xs uppercase tracking-widest">— Signal / Contact</span>
+            <span className="inline-flex items-center gap-1 text-[10px] font-mono text-signal font-bold bg-signal/10 px-3 py-1 rounded-full">
+              <ZapOff className="w-3 h-3" />
+              100% Zero-Grid Solar Infrastructure
+            </span>
+          </div>
+          <h1 className="text-display text-ink text-[11vw] leading-[0.88] sm:text-[10vw] md:text-[8vw] font-bold">
             LET'S BUILD
             <br />
             THE FUTURE OF
@@ -36,117 +43,58 @@ export default function ContactPage() {
       <section className="bg-paper pb-32">
         <div className="mx-auto grid max-w-[1600px] gap-16 px-6 md:grid-cols-12 lg:px-10">
           <div className="md:col-span-5">
-            <div className="text-mono text-ink/50 mb-6">Studios</div>
-            <div className="space-y-8">
-              {[
-                { c: "Dubai", a: "Suite 7, Lighting Pavilion, DIFC" },
-                { c: "Berlin", a: "Atelier 04, Kreuzberg Werks" },
-                { c: "Mumbai", a: "BKC Engineering Block, 12F" },
-              ].map((s) => (
-                <div key={s.c} className="hairline-t pt-4">
-                  <div className="text-display text-2xl text-ink">{s.c}</div>
-                  <div className="text-sm text-ink/60">{s.a}</div>
+            <div className="text-mono text-ink/50 mb-6 text-xs uppercase tracking-widest font-bold">Registered Headquarters</div>
+            <div className="space-y-6">
+              <div className="hairline-t pt-4">
+                <div className="text-display text-xl font-bold text-ink flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-signal" />
+                  New Delhi Head Office
                 </div>
-              ))}
-            </div>
-            <div className="mt-12">
-              <div className="text-mono text-ink/50 mb-2">Direct</div>
-              <a href="mailto:hello@HINDLED-TECHNOLOGIES.in" className="text-display text-xl sm:text-2xl md:text-3xl text-ink hover:text-signal break-all">
-                hello@HINDLED-TECHNOLOGIES.in
-              </a>
-              <div className="text-mono mt-2 text-ink/60">+971 4 000 0000</div>
-            </div>
-          </div>
-
-          <div className="md:col-span-7">
-            <ContactForm />
-          </div>
-        </div>
-      </section>
-
-      <section className="hairline-t bg-paper py-24">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <div className="relative aspect-[16/7] overflow-hidden bg-ink">
-            <div className="absolute inset-0 opacity-30" style={{
-              backgroundImage: "radial-gradient(circle at 30% 40%, #D50000 0%, transparent 35%), radial-gradient(circle at 70% 60%, #fff 0%, transparent 25%)"
-            }} />
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="text-center text-paper">
-                <div className="text-mono text-paper/60">Headquarters</div>
-                <div className="text-display mt-2 text-2xl sm:text-4xl md:text-6xl">25.2048° N · 55.2708° E</div>
+                <div className="text-sm text-ink/70 leading-relaxed font-light mt-2 pl-7">
+                  <strong className="block text-ink font-medium">HINDLED TECHNOLOGIES INDIA PVT. LTD.</strong>
+                  B-302, Plot No.95, Maurya Apartment<br />
+                  Patparganj, New Delhi - 110092, India
+                </div>
               </div>
             </div>
+
+            <div className="mt-12 hairline-t pt-6 space-y-3">
+              <div className="text-mono text-ink/50 text-xs uppercase tracking-widest font-bold">Direct Channels</div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-signal shrink-0" />
+                <a href="mailto:hindled77@gmail.com" className="text-display text-lg sm:text-xl text-ink hover:text-signal font-bold">
+                  hindled77@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-signal shrink-0" />
+                <a href="mailto:info@hindled.com" className="text-sm font-mono text-ink/70 hover:text-signal">
+                  info@hindled.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-signal shrink-0" />
+                <a href="tel:+919560121310" className="text-sm font-mono font-bold text-ink hover:text-signal">
+                  +91 9560121310
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="md:col-span-7 bg-stone/40 p-8 sm:p-12 rounded-[32px] border border-ink/5">
+            <h3 className="font-display text-2xl font-bold text-ink mb-6">Project Inquiry</h3>
+            <p className="text-sm text-ink/70 font-light mb-6">
+              Click below to launch the contact drawer or submit your project requirements to our engineering desk.
+            </p>
+            <button
+              onClick={openDrawer}
+              className="rounded-full bg-ink hover:bg-signal px-8 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
+            >
+              Open Project Signal Drawer →
+            </button>
           </div>
         </div>
       </section>
     </>
-  );
-}
-
-function ContactForm() {
-  const [sent, setSent] = useState(false);
-  return (
-    <form
-      onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-      className="space-y-2"
-    >
-      <Field label="01 / Your Name" name="name" />
-      <Field label="02 / Email" name="email" type="email" />
-      <Field label="03 / Company" name="company" />
-      <Field label="04 / Project Type" name="project" placeholder="Stadium, road, hospitality…" />
-      <Field label="05 / Tell us about it" name="message" textarea />
-      <div className="pt-8">
-        <button
-          type="submit"
-          className="text-mono group inline-flex items-center gap-3 border border-ink bg-ink px-6 py-4 text-paper hover:bg-signal hover:border-signal"
-        >
-          {sent ? "Signal received ✓" : "Send Signal"}
-          <span className="transition-transform group-hover:translate-x-1">→</span>
-        </button>
-      </div>
-    </form>
-  );
-}
-
-function Field({
-  label, name, type = "text", textarea, placeholder,
-}: { label: string; name: string; type?: string; textarea?: boolean; placeholder?: string }) {
-  const [focused, setFocused] = useState(false);
-  const [value, setValue] = useState("");
-  const float = focused || value.length > 0;
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="hairline-b relative pt-6"
-    >
-      <label
-        className={`text-mono pointer-events-none absolute left-0 transition-all duration-300 ${float ? "top-0 text-[0.65rem] text-signal" : "top-6 text-ink/50"
-          }`}
-      >
-        {label}
-      </label>
-      {textarea ? (
-        <textarea
-          name={name}
-          rows={4}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          onChange={(e) => setValue(e.target.value)}
-          className="w-full resize-none bg-transparent py-3 text-lg text-ink outline-none"
-        />
-      ) : (
-        <input
-          name={name}
-          type={type}
-          placeholder={float ? placeholder : undefined}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
-          onChange={(e) => setValue(e.target.value)}
-          className="w-full bg-transparent py-3 text-lg text-ink outline-none"
-        />
-      )}
-    </motion.div>
   );
 }
