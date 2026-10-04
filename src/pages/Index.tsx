@@ -8,7 +8,11 @@ import { useContactDrawer } from "../components/ContactDrawer";
 import { useMeta } from "../hooks/use-meta";
 import { SolarArchitectureAnimation } from "../components/SolarArchitectureAnimation";
 import { FeaturedProductsSection } from "../components/FeaturedProductsSection";
-import { ZapOff, Sun, ArrowRight, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react";
+import { EditorialPreloader } from "../components/EditorialPreloader";
+import { ZapOff, Sun, ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Radio } from "lucide-react";
+
+import heroBgWebp from "@/assets/hero_light_bg_hires.webp";
+import heroBgJpg from "@/assets/hero_light_bg_hires.jpg";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -35,9 +39,12 @@ export default function IndexPage() {
     description: "Lighting consultant & solution provider: 360° Solar Smart Poles, Stadium Floodlights, CCTV Solar Security, Industrial High-Bays, and Custom Off-Grid Lighting without electricity.",
   });
 
+  const [heroReady, setHeroReady] = useState(false);
+
   return (
     <>
-      <Hero />
+      <EditorialPreloader onComplete={() => setHeroReady(true)} />
+      <Hero isReady={heroReady} />
       <Philosophy />
       <SolarArchitectureAnimation />
       <FeaturedProductsSection />
@@ -51,84 +58,141 @@ export default function IndexPage() {
   );
 }
 
-/* ============================================================ HERO */
-function Hero() {
+/* ============================================================ HERO WITH SEQUENTIAL REVEAL */
+function Hero({ isReady = true }: { isReady?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const { openDrawer } = useContactDrawer();
 
+  // Animation variants for sequential editorial reveal
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.14,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 35 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.95,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const lineVariants = {
+    hidden: { y: "120%", opacity: 0 },
+    visible: {
+      y: "0%",
+      opacity: 1,
+      transition: {
+        duration: 1.1,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
   return (
-    <section ref={ref} className="relative min-h-[100vh] lg:min-h-[105vh] w-full overflow-hidden bg-paper flex flex-col justify-end">
-      {/* Architectural Background with High-Contrast Dark Vignette for Crisp Text Visibility */}
+    <section
+      ref={ref}
+      className="relative min-h-[100vh] lg:min-h-[105vh] w-full overflow-hidden bg-[#0A0A0A] flex flex-col justify-end"
+      style={{
+        // Permanent persistent background image fallback so it never disappears after 10+ minutes
+        backgroundImage: `url(${heroBgWebp}), url(${heroBgJpg}), url('/hero_light_bg_hires.webp'), url('/hero_light_bg_hires.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* High-Resolution Dynamic Image Layer with Cinematic Zoom-in Sequence */}
       <motion.div
         style={{ scale: bgScale }}
-        className="absolute inset-0 z-0 h-full w-full"
+        initial={{ scale: 1.12, opacity: 0.8 }}
+        animate={isReady ? { scale: 1.0, opacity: 1 } : { scale: 1.12, opacity: 0.8 }}
+        transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 z-0 h-full w-full pointer-events-none"
       >
-        <img 
-          src="/hero_light_bg_hires.jpg" 
-          alt="HINDLED Solar Infrastructure Illumination" 
-          className="h-full w-full object-cover object-center"
-        />
-        {/* Cinematic Dark Contrast Overlay (No White Flare, Crystal Clear Text) */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent z-1" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent z-1" />
+        <picture className="w-full h-full">
+          <source srcSet={heroBgWebp} type="image/webp" />
+          <img
+            src={heroBgJpg}
+            alt="HINDLED Solar Infrastructure Illumination"
+            loading="eager"
+            decoding="sync"
+            fetchPriority="high"
+            className="h-full w-full object-cover object-center filter brightness-100 contrast-100"
+          />
+        </picture>
+
+        {/* Cinematic Deep Dark Contrast Gradient Overlay for High Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-black/20 z-1" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-transparent z-1" />
       </motion.div>
 
-      {/* Hero Content Container (Pure Text, High Contrast, No Box) */}
+      {/* Hero Content Container with Sequential Reveal */}
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1600px] flex-col justify-end px-6 pb-20 pt-36 md:pb-28 lg:px-12">
         <motion.div
           style={{ y: textY }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isReady ? "visible" : "hidden"}
           className="max-w-3xl text-left"
         >
-          
-          {/* Prominent High-Impact Zero Electricity Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="flex flex-wrap items-center gap-2.5 mb-6"
-          >
+          {/* 1. Sequential Badges */}
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2.5 mb-6">
             <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-mono font-extrabold uppercase tracking-wider bg-signal text-white shadow-xl">
               <ZapOff className="w-3.5 h-3.5" />
               360° Lighting Solutions · Without Electricity
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-black/50 backdrop-blur-md text-white border border-white/20 shadow-md">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-white border border-white/20 shadow-md">
               <Sun className="w-3.5 h-3.5 text-signal" />
               All Custom Solutions Without Electricity
             </span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-white text-[11vw] sm:text-[8vw] md:text-[5.5vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-xl"
-          >
-            POWERED BY DAY.
-            <br />
-            BRIGHT BY <span className="text-signal">NIGHT.</span>
-          </motion.h1>
+          {/* 2. Sequential Staggered Headline */}
+          <div className="overflow-hidden py-0.5">
+            <motion.h1
+              variants={lineVariants}
+              className="font-display text-white text-[11vw] sm:text-[8vw] md:text-[5.5vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-2xl"
+            >
+              POWERED BY DAY.
+            </motion.h1>
+          </div>
+          <div className="overflow-hidden py-0.5 mt-1">
+            <motion.h1
+              variants={lineVariants}
+              className="font-display text-white text-[11vw] sm:text-[8vw] md:text-[5.5vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-2xl"
+            >
+              BRIGHT BY <span className="text-signal">NIGHT.</span>
+            </motion.h1>
+          </div>
 
+          {/* 3. Sequential Paragraph */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.5 }}
+            variants={itemVariants}
             className="mt-6 max-w-xl text-base sm:text-lg text-white/90 font-light leading-relaxed drop-shadow-md"
           >
             Advanced 360° vertical solar smart poles, integrated off-grid CCTV surveillance, and high-power stadium floodlights engineered to operate <strong className="font-bold text-white underline decoration-signal decoration-2 underline-offset-4">100% without electricity</strong> across India and global infrastructure.
           </motion.p>
 
+          {/* 4. Sequential Action Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.7 }}
+            variants={itemVariants}
             className="mt-8 flex flex-wrap items-center gap-4"
           >
             <a
               href="#featured-products"
-              className="rounded-full bg-signal hover:bg-signal/90 text-white font-bold uppercase tracking-widest px-8 py-4 text-xs shadow-xl cursor-pointer inline-flex items-center gap-2 group transition-all"
+              className="rounded-full bg-signal hover:bg-signal/90 text-white font-bold uppercase tracking-widest px-8 py-4 text-xs shadow-2xl cursor-pointer inline-flex items-center gap-2 group transition-all"
             >
               Explore Featured Platforms
               <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -140,6 +204,21 @@ function Hero() {
             >
               Consult Engineering Desk
             </button>
+          </motion.div>
+
+          {/* 5. Live Telemetry Status Bar */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-10 pt-6 border-t border-white/10 flex items-center gap-4 text-[10px] font-mono uppercase tracking-widest text-white/50"
+          >
+            <div className="flex items-center gap-2 text-emerald-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="font-bold">HPBC CORE: 0W GRID DRAW</span>
+            </div>
+            <span>·</span>
+            <span>DIALUX CODE READY</span>
+            <span>·</span>
+            <span className="hidden sm:inline">ALL-WEATHER MONSOON BACKUP</span>
           </motion.div>
 
         </motion.div>
