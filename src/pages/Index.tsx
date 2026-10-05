@@ -58,7 +58,7 @@ export default function IndexPage() {
   );
 }
 
-/* ============================================================ HERO WITH SEQUENTIAL REVEAL */
+/* ============================================================ HERO WITH INSTANT CINEMATIC FADE */
 function Hero({ isReady = true }: { isReady?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -66,59 +66,19 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
   const textY = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const { openDrawer } = useContactDrawer();
 
-  // Animation variants for sequential editorial reveal
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.14,
-        delayChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 35 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.95,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
-  const lineVariants = {
-    hidden: { y: "120%", opacity: 0 },
-    visible: {
-      y: "0%",
-      opacity: 1,
-      transition: {
-        duration: 1.1,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
     <section
       ref={ref}
       className="relative min-h-[100vh] lg:min-h-[105vh] w-full overflow-hidden bg-[#0A0A0A] flex flex-col justify-end"
       style={{
-        // Permanent persistent background image fallback so it never disappears after 10+ minutes
         backgroundImage: `url(${heroBgWebp}), url(${heroBgJpg}), url('/hero_light_bg_hires.webp'), url('/hero_light_bg_hires.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* High-Resolution Dynamic Image Layer with Cinematic Zoom-in Sequence */}
+      {/* High-Resolution Rock-Solid Image Layer */}
       <motion.div
         style={{ scale: bgScale }}
-        initial={{ scale: 1.12, opacity: 0.8 }}
-        animate={isReady ? { scale: 1.0, opacity: 1 } : { scale: 1.12, opacity: 0.8 }}
-        transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
         className="absolute inset-0 z-0 h-full w-full pointer-events-none"
       >
         <picture className="w-full h-full">
@@ -129,7 +89,7 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
             loading="eager"
             decoding="sync"
             fetchPriority="high"
-            className="h-full w-full object-cover object-center filter brightness-100 contrast-100"
+            className="h-full w-full object-cover object-center"
           />
         </picture>
 
@@ -138,17 +98,17 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-transparent z-1" />
       </motion.div>
 
-      {/* Hero Content Container with Sequential Reveal */}
+      {/* Hero Content Container with 100% Butter-Smooth Instant Settle */}
       <div className="relative z-10 mx-auto flex h-full w-full max-w-[1600px] flex-col justify-end px-6 pb-20 pt-36 md:pb-28 lg:px-12">
         <motion.div
           style={{ y: textY }}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isReady ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 16 }}
+          animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl text-left"
         >
-          {/* 1. Sequential Badges */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2.5 mb-6">
+          {/* Zero Electricity Badges */}
+          <div className="flex flex-wrap items-center gap-2.5 mb-6">
             <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-mono font-extrabold uppercase tracking-wider bg-signal text-white shadow-xl">
               <ZapOff className="w-3.5 h-3.5" />
               360° Lighting Solutions · Without Electricity
@@ -157,39 +117,22 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
               <Sun className="w-3.5 h-3.5 text-signal" />
               All Custom Solutions Without Electricity
             </span>
-          </motion.div>
-
-          {/* 2. Sequential Staggered Headline */}
-          <div className="overflow-hidden py-0.5">
-            <motion.h1
-              variants={lineVariants}
-              className="font-display text-white text-[11vw] sm:text-[8vw] md:text-[5.5vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-2xl"
-            >
-              POWERED BY DAY.
-            </motion.h1>
-          </div>
-          <div className="overflow-hidden py-0.5 mt-1">
-            <motion.h1
-              variants={lineVariants}
-              className="font-display text-white text-[11vw] sm:text-[8vw] md:text-[5.5vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-2xl"
-            >
-              BRIGHT BY <span className="text-signal">NIGHT.</span>
-            </motion.h1>
           </div>
 
-          {/* 3. Sequential Paragraph */}
-          <motion.p
-            variants={itemVariants}
-            className="mt-6 max-w-xl text-base sm:text-lg text-white/90 font-light leading-relaxed drop-shadow-md"
-          >
+          {/* Headline */}
+          <h1 className="font-display text-white text-[11vw] sm:text-[8vw] md:text-[5.5vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-2xl">
+            POWERED BY DAY.
+            <br />
+            BRIGHT BY <span className="text-signal">NIGHT.</span>
+          </h1>
+
+          {/* Paragraph */}
+          <p className="mt-6 max-w-xl text-base sm:text-lg text-white/90 font-light leading-relaxed drop-shadow-md">
             Advanced 360° vertical solar smart poles, integrated off-grid CCTV surveillance, and high-power stadium floodlights engineered to operate <strong className="font-bold text-white underline decoration-signal decoration-2 underline-offset-4">100% without electricity</strong> across India and global infrastructure.
-          </motion.p>
+          </p>
 
-          {/* 4. Sequential Action Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-8 flex flex-wrap items-center gap-4"
-          >
+          {/* Action Buttons */}
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#featured-products"
               className="rounded-full bg-signal hover:bg-signal/90 text-white font-bold uppercase tracking-widest px-8 py-4 text-xs shadow-2xl cursor-pointer inline-flex items-center gap-2 group transition-all"
@@ -204,22 +147,7 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
             >
               Consult Engineering Desk
             </button>
-          </motion.div>
-
-          {/* 5. Live Telemetry Status Bar */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-10 pt-6 border-t border-white/10 flex items-center gap-4 text-[10px] font-mono uppercase tracking-widest text-white/50"
-          >
-            <div className="flex items-center gap-2 text-emerald-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-bold">HPBC CORE: 0W GRID DRAW</span>
-            </div>
-            <span>·</span>
-            <span>DIALUX CODE READY</span>
-            <span>·</span>
-            <span className="hidden sm:inline">ALL-WEATHER MONSOON BACKUP</span>
-          </motion.div>
+          </div>
 
         </motion.div>
       </div>
