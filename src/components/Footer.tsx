@@ -11,7 +11,7 @@ export function Footer() {
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-16 md:pb-24 border-b border-paper/10">
           {/* Brand Column */}
-          <div className="md:col-span-5 flex flex-col items-start">
+          <div className="md:col-span-4 lg:col-span-4 flex flex-col items-start">
             <Link to="/" className="flex items-center gap-2.5 mb-6 group" aria-label="HINDLED Technologies">
               <img
                 src="/logo_horizontal_dark.png"
@@ -34,51 +34,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Platforms Column */}
-          <div className="md:col-span-2 md:col-start-7">
-            <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Solutions</h4>
-            <ul className="space-y-4 text-sm text-paper/80 font-light">
-              <li><Link to="/products" className="hover:text-signal transition-colors">360° Solar Smart Poles</Link></li>
-              <li><Link to="/products" className="hover:text-signal transition-colors">Stadium Floodlights (HL GAJ)</Link></li>
-              <li><Link to="/products" className="hover:text-signal transition-colors">CCTV + Solar Lighting (TEJAS)</Link></li>
-              <li><Link to="/products" className="hover:text-signal transition-colors">Solar Heritage Garden (SANDHYA)</Link></li>
-              <li><Link to="/products" className="hover:text-signal transition-colors">Industrial High-Bays (200 lm/W)</Link></li>
-            </ul>
-          </div>
-
-          {/* Studio Headquarters */}
-          <div className="md:col-span-3">
-            <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Registered Office</h4>
-            <div className="space-y-4 text-sm text-paper/80 font-light leading-relaxed">
-              <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-signal shrink-0 mt-0.5" />
-                <p>
-                  <strong className="block text-paper">HINDLED TECHNOLOGIES INDIA PVT. LTD.</strong>
-                  B-302, Plot No.95, Maurya Apartment<br />
-                  Patparganj, New Delhi - 110092, India
-                </p>
-              </div>
-
-              <div className="pt-2 space-y-2">
-                <p className="text-xs text-paper/60">Anitya Kumar Rai, <span className="text-paper/40">Managing Director</span></p>
-                <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-signal" />
-                  <a href="mailto:hindled77@gmail.com" className="hover:text-signal transition-colors font-mono text-xs">
-                    hindled77@gmail.com
-                  </a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-signal" />
-                  <a href="tel:+919560121310" className="hover:text-signal transition-colors font-mono text-xs">
-                    +91 9560121310
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Connect Column (Twitter Removed, Direct Email Link Added) */}
-          <div className="md:col-span-2">
+          {/* Connect Column (Shifted to the right of the Brand description) */}
+          <div className="md:col-span-2 lg:col-span-2">
             <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Connect</h4>
             <ul className="space-y-4 text-sm text-paper/80 font-light">
               <li>
@@ -121,6 +78,49 @@ export function Footer() {
                 </a>
               </li>
             </ul>
+          </div>
+
+          {/* Solutions Column */}
+          <div className="md:col-span-3 lg:col-span-3">
+            <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Solutions</h4>
+            <ul className="space-y-4 text-sm text-paper/80 font-light">
+              <li><Link to="/products" className="hover:text-signal transition-colors">360° Solar Smart Poles</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Stadium Floodlights (HL GAJ)</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">CCTV + Solar Lighting (TEJAS)</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Solar Heritage Garden (SANDHYA)</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Industrial High-Bays (200 lm/W)</Link></li>
+            </ul>
+          </div>
+
+          {/* Studio Headquarters */}
+          <div className="md:col-span-3 lg:col-span-3">
+            <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Registered Office</h4>
+            <div className="space-y-4 text-sm text-paper/80 font-light leading-relaxed">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-signal shrink-0 mt-0.5" />
+                <p>
+                  <strong className="block text-paper">HINDLED TECHNOLOGIES INDIA PVT. LTD.</strong>
+                  B-302, Plot No.95, Maurya Apartment<br />
+                  Patparganj, New Delhi - 110092, India
+                </p>
+              </div>
+
+              <div className="pt-2 space-y-2">
+                <p className="text-xs text-paper/60">Anitya Kumar Rai, <span className="text-paper/40">Managing Director</span></p>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-signal" />
+                  <a href="mailto:hindled77@gmail.com" className="hover:text-signal transition-colors font-mono text-xs">
+                    hindled77@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-signal" />
+                  <a href="tel:+919560121310" className="hover:text-signal transition-colors font-mono text-xs">
+                    +91 9560121310
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
