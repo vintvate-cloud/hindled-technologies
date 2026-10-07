@@ -166,7 +166,7 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
             variants={fadeUpVariants}
             className="mt-6 max-w-2xl text-base sm:text-lg text-white/90 font-light leading-relaxed drop-shadow-md text-center mx-auto"
           >
-            Advanced 360° vertical solar smart poles, integrated off-grid CCTV surveillance, and high-power stadium floodlights engineered to operate <strong className="font-bold text-white underline decoration-signal decoration-2 underline-offset-4">100% without electricity</strong> across India and global infrastructure.
+            Architectural solar smart poles, off-grid roadway lighting, and high-power solar floodlights engineered to operate <strong className="font-bold text-white underline decoration-signal decoration-2 underline-offset-4">100% on solar power</strong> with zero electricity bills across roads, campuses, and infrastructure.
           </motion.p>
 
           {/* Action Buttons */}
@@ -186,7 +186,7 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
               onClick={openDrawer}
               className="rounded-full border border-white/30 hover:border-white bg-black/40 hover:bg-black/60 backdrop-blur-md px-7 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-md"
             >
-              Consult Engineering Desk
+              Get Free Consultation
             </button>
           </motion.div>
         </motion.div>
@@ -195,10 +195,11 @@ function Hero({ isReady = true }: { isReady?: boolean }) {
   );
 }
 
-/* ============================================================ PHILOSOPHY */
+/* ============================================================ PHILOSOPHY / VALUE PROPOSITION */
 function Philosophy() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const { openDrawer } = useContactDrawer();
 
   useEffect(() => {
     if (!titleRef.current) return;
@@ -206,70 +207,158 @@ function Philosophy() {
       const words = titleRef.current!.querySelectorAll(".phil-word");
       gsap.from(words, {
         yPercent: 110,
-        stagger: 0.06,
+        stagger: 0.08,
         duration: 1.1,
         ease: "power4.out",
-        scrollTrigger: { trigger: titleRef.current, start: "top 75%" },
+        scrollTrigger: { trigger: titleRef.current, start: "top 80%" },
       });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
-  const lines = ["Engineered", "for the world's", "demanding zero-grid", "environments."];
+  const lines = [
+    "Engineered for",
+    "pure solar lighting.",
+    "Zero electric bills.",
+  ];
+
   const tenets = [
-    { k: "100% Zero-Grid Independence", v: "Vertical 6-sided HPBC monocrystalline arrays harvest omnidirectional solar energy, eliminating utility grid electricity bills forever.", n: "01" },
-    { k: "Precision Optical Control", v: "Beam control engineered to fractions of a degree. Asymmetric Type II/III and symmetric Type V distributions solve spill at the PMMA lens.", n: "02" },
-    { k: "Passive Convective Chimney", v: "Modular ADC12 aluminium pathways continuously duct heat away, sustaining 190 lm/W output under extreme 50°C Indian summer ambient loads.", n: "03" },
+    {
+      n: "01",
+      icon: Sun,
+      k: "100% Solar-Powered Freedom",
+      v: "Eliminates monthly electricity bills completely. High-efficiency vertical solar cells absorb sunlight from every angle to power your lighting completely free from the electric grid.",
+      tag: "Zero Electricity Bills · Off-Grid",
+    },
+    {
+      n: "02",
+      icon: Sparkles,
+      k: "Brilliant All-Night Illumination",
+      v: "Engineered for high-output, glare-free illumination from dusk until dawn. High-capacity battery storage delivers dependable light even during consecutive rainy or overcast days.",
+      tag: "Dusk-to-Dawn Automation · Multi-Day Backup",
+    },
+    {
+      n: "03",
+      icon: ShieldCheck,
+      k: "Complete Turnkey Solutions",
+      v: "We act as your lighting partner from start to finish — assessing your site, calculating exact lux requirements, and delivering custom solar poles built to withstand extreme climates.",
+      tag: "Custom Pole Design · Turnkey Projects",
+    },
   ];
 
   return (
-    <section ref={sectionRef} className="relative bg-paper py-32 lg:py-48 hairline-t">
+    <section ref={sectionRef} className="relative bg-paper py-28 lg:py-44 hairline-t">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
+        
+        {/* Subtle Category Badge */}
+        <div className="mb-6 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-signal" />
+          <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold">
+            Solar Infrastructure Illumination
+          </span>
+        </div>
+
+        {/* Headline with No Bottom Clipping */}
         <h2
           ref={titleRef}
-          className="text-display text-ink text-[10vw] leading-[0.92] tracking-[-0.04em] md:text-[6.2vw] font-bold"
+          className="text-display text-ink text-[8.5vw] sm:text-[6vw] lg:text-[5vw] leading-[1.08] tracking-[-0.035em] font-bold"
         >
           {lines.map((line, i) => (
-            <div key={i} className="overflow-hidden">
+            <div key={i} className="overflow-hidden pb-2.5 sm:pb-3.5 pt-0.5">
               <span className="phil-word inline-block">{line}</span>
             </div>
           ))}
         </h2>
 
-        <div className="mt-20 grid gap-12 md:grid-cols-3">
+        {/* 3 Premium Glassmorphic Feature Cards with Micro-Animations */}
+        <div className="mt-16 sm:mt-20 grid gap-6 md:grid-cols-3">
           {tenets.map((b, i) => (
             <motion.div
               key={b.k}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 45 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ delay: i * 0.12, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="hairline-t pt-6"
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ delay: i * 0.14, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
+              className="group relative flex flex-col justify-between rounded-3xl bg-white/80 backdrop-blur-md p-7 sm:p-9 border border-ink/10 hover:border-signal/50 hover:shadow-2xl hover:shadow-signal/10 transition-all shadow-sm overflow-hidden"
             >
-              <div className="text-mono mb-3 text-signal font-bold">{b.n}</div>
-              <h3 className="text-display text-2xl text-ink font-bold">{b.k}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink/70 font-light">{b.v}</p>
+              {/* Animated Top Laser Hairline on Hover */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-signal/60 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center" />
+
+              {/* Ambient Glowing Solar Bloom on Hover */}
+              <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full bg-signal/15 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+              {/* Ghost Typography Watermark Number */}
+              <span className="absolute top-5 right-7 font-mono text-7xl font-black text-ink/[0.04] group-hover:text-signal/[0.08] group-hover:-translate-y-1 transition-all duration-500 select-none pointer-events-none">
+                {b.n}
+              </span>
+
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-8">
+                  {/* Badge with Pulsing Live Dot */}
+                  <span className="inline-flex items-center gap-1.5 font-mono text-xs font-bold text-signal px-3 py-1 rounded-full bg-signal/10 border border-signal/25">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75" />
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-signal" />
+                    </span>
+                    {b.n}
+                  </span>
+
+                  {/* Icon with Dynamic Hover Animation */}
+                  <div className="w-11 h-11 rounded-2xl bg-ink/5 flex items-center justify-center text-ink group-hover:text-signal group-hover:bg-signal/10 group-hover:scale-110 transition-all duration-300">
+                    <b.icon className="w-5 h-5 transition-transform duration-500 group-hover:rotate-12" />
+                  </div>
+                </div>
+
+                <h3 className="font-display text-xl sm:text-2xl text-ink font-bold tracking-tight group-hover:text-signal transition-colors duration-300">
+                  {b.k}
+                </h3>
+                <p className="mt-3.5 text-sm leading-relaxed text-ink/70 font-normal">
+                  {b.v}
+                </p>
+              </div>
+
+              {/* Bottom Tag Bar with Interactive Accent */}
+              <div className="relative z-10 mt-8 pt-4 border-t border-ink/10 flex items-center justify-between text-[11px] font-mono font-medium text-ink/50 group-hover:text-ink/80 transition-colors">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-signal/60 group-hover:bg-signal group-hover:scale-125 transition-all" />
+                  <span>{b.tag}</span>
+                </div>
+                <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-signal font-bold">
+                  →
+                </span>
+              </div>
             </motion.div>
           ))}
         </div>
 
         {/* Consultancy & Turnkey Solutions Callout with Scroll Reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-32 grid grid-cols-12 gap-6 hairline-t pt-12"
+          className="mt-20 sm:mt-28 rounded-3xl bg-stone/60 border border-ink/10 p-8 sm:p-12 md:p-16 flex flex-col md:flex-row md:items-center justify-between gap-8 backdrop-blur-sm shadow-sm"
         >
-          <div className="col-span-12 md:col-span-4">
-            <div className="text-mono text-xs uppercase tracking-widest text-signal font-bold">
-              Consultancy &amp; Turnkey Solutions
+          <div className="max-w-2xl">
+            <div className="text-mono text-xs uppercase tracking-widest text-signal font-bold mb-3">
+              Consultancy &amp; Turnkey Projects
             </div>
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-ink leading-tight tracking-tight">
+              We don't just supply lights. We design <span className="text-signal">complete solar illumination systems</span> for your site.
+            </h3>
+            <p className="mt-3 text-sm sm:text-base text-ink/70 leading-relaxed font-light">
+              From site evaluations and lux calculations to custom smart pole engineering and turnkey installation across roads, townships, and industrial facilities.
+            </p>
           </div>
-          <p className="col-span-12 text-display text-2xl leading-[1.2] tracking-[-0.02em] text-ink md:col-span-8 md:text-4xl font-bold">
-            We don't merely supply fixtures. We operate as lighting consultants and solution providers — engineering{" "}
-            <span className="text-signal">custom zero-electricity instruments</span> calibrated to each site's physical geometry, DIALux simulation code, and local atmosphere.
-          </p>
+
+          <button
+            onClick={openDrawer}
+            className="shrink-0 rounded-full bg-signal hover:bg-signal/90 text-white font-bold uppercase tracking-widest px-8 py-4 text-xs transition-all shadow-lg hover:shadow-signal/25 cursor-pointer flex items-center gap-2 group self-start md:self-center"
+          >
+            <span>Request Site Consultation</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </button>
         </motion.div>
       </div>
     </section>

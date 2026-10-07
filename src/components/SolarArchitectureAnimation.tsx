@@ -20,66 +20,66 @@ const solarLayers = [
   {
     id: 1,
     number: "01",
-    title: "360° 6-Sided HPBC Monocrystalline PV",
-    subtitle: "Vertical Multi-Face Solar Harvest",
+    title: "360° Vertical Solar Panels",
+    subtitle: "All-Day Sunlight Harvesting",
     tag: "Energy Generation · 0W Grid Draw",
-    desc: "Hexagonal vertical photovoltaic matrix utilizing high-purity HPBC mono cells with >26% photoelectric conversion efficiency. Captures diffuse, reflected, and direct sunlight from 360 degrees, while naturally shedding dust and soot without maintenance.",
-    specs: [">26% Cell Efficiency", "360° Omnidirectional Capture", "Self-Cleaning Dust Profile", "100% Without Electricity"],
+    desc: "Vertical solar panel design captures sunlight from all 360 degrees throughout the day. Naturally sheds dust and rain without requiring manual cleaning or maintenance.",
+    specs: ["High-Efficiency Solar Cells", "360° Sunlight Capture", "Self-Cleaning Vertical Profile", "Zero Electricity Required"],
     color: "#10B981", // Signal green
     icon: Sun,
   },
   {
     id: 2,
     number: "02",
-    title: "Super-White Tempered Glass & ADC12 Shell",
-    subtitle: "Heavy-Duty Ingress & Impact Armor",
-    tag: "Mechanical Armor · IP66 / IK10",
-    desc: "3.2mm anti-reflective low-iron tempered glass fused to marine-grade ADC12 die-cast aluminum alloy. Engineered to withstand Category 5 hurricanes (57 m/s wind load), 1000+ hours of coastal salt fog, and severe dust storms.",
-    specs: ["3.2mm Super-White Glass", "57 m/s Typhoon Certified", "ASTM B117 1000h Salt Fog", "IK10 Impact Barrier"],
+    title: "Weatherproof Aluminum & Toughened Glass",
+    subtitle: "Storm, Wind & Ingress Protection",
+    tag: "All-Weather Armor · IP66 / IK10",
+    desc: "Toughened protective glass fused with marine-grade die-cast aluminum alloy. Engineered to withstand high-wind storms, coastal salt humidity, and severe weather.",
+    specs: ["Toughened Glass Armor", "High Wind Resistance", "Corrosion & Rust Proof", "Impact Resistant"],
     color: "#3B82F6",
     icon: Shield,
   },
   {
     id: 3,
     number: "03",
-    title: "Intelligent MPPT & Adaptive Microcontroller",
-    subtitle: "Dynamic 4-Step Energy Optimization",
-    tag: "Brain · Smart Power Management",
-    desc: "Onboard Maximum Power Point Tracking (MPPT) logic algorithm that monitors solar irradiance in microsecond intervals. Features 4-step autonomous dimming schedules, microwave radar motion sensing, and cloud telemetry integration.",
-    specs: ["99.2% MPPT Tracking Speed", "4-Step Adaptive Dimming", "PIR / Microwave Radar Bay", "Dusk-to-Dawn Autonomy"],
+    title: "Smart Solar Controller & Motion Sensor",
+    subtitle: "Dusk-to-Dawn Power Automation",
+    tag: "Smart Control · Automatic Dimming",
+    desc: "Intelligent controller optimizes energy storage every second. Features automatic dusk-to-dawn switching, radar motion sensing, and intelligent dimming to preserve power.",
+    specs: ["Automatic Dusk-to-Dawn", "Radar Motion Detection", "Smart Power Conservation", "100% Autonomous Operation"],
     color: "#8B5CF6",
     icon: Cpu,
   },
   {
     id: 4,
     number: "04",
-    title: "Convective Thermal Chimney Core",
-    subtitle: "Passive Convection Heat Dissipation",
-    tag: "Thermodynamics · 50°C Ambient",
-    desc: "Hollow vertical convective air channels that create a natural chimney suction effect. Cool ambient air is drawn in from the base and expels hot thermal energy through top louvres, maintaining diode junction temperatures below 65°C even in 48°C peak Indian summers.",
-    specs: ["Passive Chimney Convection", "Preserves L90B10 @ 100k hrs", "Zero Active Fans or Noise", "-40°C to +55°C Tolerance"],
+    title: "Heat-Dissipating Airflow Core",
+    subtitle: "Natural Cooling for 50°C Summers",
+    tag: "Thermal Design · 50°C Ambient",
+    desc: "Engineered convective airflow channels naturally duct heat away without noisy fans, keeping LED components cool and sustaining peak brightness even in 50°C summer heat.",
+    specs: ["Natural Airflow Cooling", "Long-Life LED Protection", "Zero Moving Parts or Noise", "Built for Harsh Climates"],
     color: "#F59E0B",
     icon: Thermometer,
   },
   {
     id: 5,
     number: "05",
-    title: "High-Capacity LiFePO4 Battery Matrix",
-    subtitle: "Deep-Cycle Balance-of-System Storage",
+    title: "Long-Life Lithium Battery Storage",
+    subtitle: "Multi-Night Continuous Backup",
     tag: "Energy Storage · 3000+ Cycles",
-    desc: "High-density Lithium Iron Phosphate (LiFePO4) energy cells paired with individual BMS balancing circuits. Engineered to deliver 4 to 8 consecutive nights of continuous lighting and surveillance backup during uninterrupted monsoon cloud cover.",
-    specs: ["3000+ Deep Cycles (80% DoD)", "4–8 Rainy Days Autonomy", "Thermal Runaway Immune", "Cell-Level BMS Protection"],
+    desc: "High-density Lithium Iron Phosphate battery storage built inside the pole. Provides 4 to 8 consecutive nights of bright illumination during monsoon rains and heavy cloud cover.",
+    specs: ["3000+ Deep Life Cycles", "Up to 7 Rainy Days Backup", "Safe & Stable Chemistry", "Built-In Battery Management"],
     color: "#EC4899",
     icon: BatteryCharging,
   },
   {
     id: 6,
     number: "06",
-    title: "Precision Optical Lens & Iso-Lux Cutoff",
-    subtitle: "Custom PMMA Photometric Sculpting",
-    tag: "Optics · Anti-Glare GR < 45",
-    desc: "Optical-grade PMMA lens array configured for strict roadway, pathway, or area cut-off. Shapes photons into asymmetric Type II / Type III or symmetric Type V footprints with zero upward light pollution and zero driver glare.",
-    specs: ["Up to 190 lm/W Delivered", "Type II / III / V Distributions", "Zero Upward Light Pollution", "Dark-Sky Compliant"],
+    title: "Anti-Glare Road & Area Optics",
+    subtitle: "Glare-Free Uniform Illumination",
+    tag: "Optics · Anti-Glare Precision",
+    desc: "Precision optical lenses shape light across roads, pathways, and public spaces with uniform brightness, zero driver glare, and zero upward light waste.",
+    specs: ["High Lumen Output", "Roadway & Campus Optics", "Zero Dark Spots", "Dark-Sky Compliant"],
     color: "#10B981",
     icon: Eye,
   },
@@ -182,7 +182,7 @@ export function SolarArchitectureAnimation() {
               className="flex items-center gap-2 mb-3"
             >
               <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold">
-                — DISCIPLINE & ENGINEERING
+                — HOW OUR SOLAR LIGHTING WORKS
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-signal/15 text-signal border border-signal/30">
                 <ZapOff className="w-3 h-3" />
@@ -190,12 +190,12 @@ export function SolarArchitectureAnimation() {
               </span>
             </motion.div>
             
-            <h2 className="text-display text-ink text-[8vw] leading-[0.92] tracking-[-0.04em] md:text-[4.5vw] font-bold">
-              Solar Architecture &amp; <span className="text-signal">Optical Physics.</span>
+            <h2 className="text-display text-ink text-[8vw] leading-[1.04] tracking-[-0.04em] md:text-[4.5vw] font-bold">
+              Solar Architecture &amp; <span className="text-signal">Smart Lighting.</span>
             </h2>
             
             <p className="mt-4 max-w-xl text-sm sm:text-base text-ink/70 font-light leading-relaxed">
-              Explore the 6-layer balance-of-system engineering inside HINDLED solar luminaires and dynamic photometric Iso-Lux light distribution curves.
+              Explore the all-in-one solar lighting engineering inside HINDLED luminaires — from 360° solar energy harvesting to smart power storage and night illumination.
             </p>
           </div>
 
@@ -216,7 +216,7 @@ export function SolarArchitectureAnimation() {
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>Solar Layers (Anatomy)</span>
+              <span>Solar Anatomy (6 Layers)</span>
             </button>
             <button
               onClick={() => setActiveTab("optics")}
@@ -227,7 +227,7 @@ export function SolarArchitectureAnimation() {
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>Iso-Lux Curves (Optics)</span>
+              <span>Light Coverage (Optics)</span>
             </button>
           </motion.div>
         </motion.div>

@@ -15,7 +15,9 @@ import {
   ArrowRight,
   Radio,
   Sparkles,
-  Layers
+  Layers,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 // Curated highlight cards for each of the 4 featured products
@@ -184,6 +186,24 @@ export function FeaturedProductsSection() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
+          {/* Prominent Floating Left Shift Button */}
+          <button
+            onClick={() => goToSlide((currentIndex - 1 + enrichedList.length) % enrichedList.length)}
+            aria-label="Previous product"
+            className="absolute left-2 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer group"
+          >
+            <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
+          </button>
+
+          {/* Prominent Floating Right Shift Button */}
+          <button
+            onClick={() => goToSlide((currentIndex + 1) % enrichedList.length)}
+            aria-label="Next product"
+            className="absolute right-2 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer group"
+          >
+            <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
+          </button>
+
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentProd.slug}
@@ -192,93 +212,72 @@ export function FeaturedProductsSection() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="rounded-[36px] bg-stone border-2 border-signal/30 p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden group"
+              className="rounded-[36px] sm:rounded-[44px] bg-white border border-ink/10 p-7 sm:p-10 lg:p-14 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group"
             >
-              {/* Subtle Accent Glow */}
-              <div className="absolute -right-20 -top-20 w-96 h-96 bg-signal/15 rounded-full blur-[100px] pointer-events-none" />
+              {/* Subtle Ambient Solar Glow */}
+              <div className="absolute -right-20 -top-20 w-96 h-96 bg-signal/10 rounded-full blur-[120px] pointer-events-none" />
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
                 
-                {/* Left Image Showcase */}
-                <div className="lg:col-span-6 relative w-full rounded-[28px] overflow-hidden bg-paper border border-ink/10 p-6 sm:p-8 flex items-center justify-center min-h-[340px] sm:min-h-[420px] shadow-sm">
+                {/* Left Image Showcase - Clean Floating Hero (No Box, No Border) */}
+                <div className="lg:col-span-6 relative w-full flex items-center justify-center py-6 sm:py-8 lg:py-12 min-h-[320px] sm:min-h-[420px]">
                   <img
                     src={currentProd.image}
                     alt={currentProd.name}
-                    className="max-h-[340px] sm:max-h-[400px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-md"
+                    className="max-h-[340px] sm:max-h-[420px] lg:max-h-[460px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)]"
                   />
-
-                  {/* Badges Over Image */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-signal text-white shadow-lg">
-                      <ZapOff className="w-3.5 h-3.5" />
-                      {highlights.badge1}
-                    </span>
-                    {highlights.badge2 && (
-                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-ink text-paper shadow-md">
-                        <Layers className="w-3 h-3 text-signal" />
-                        {highlights.badge2}
-                      </span>
-                    )}
-                  </div>
-
-                  <span className="absolute bottom-4 right-4 text-mono text-xs bg-paper/90 backdrop-blur-md px-3.5 py-1 rounded-full text-ink font-bold border border-ink/10 shadow-sm">
-                    Series {currentProd.code} · {currentProd.series}
-                  </span>
                 </div>
 
-                {/* Right Story & Dynamic System Breakdown */}
+                {/* Right Story & Product Details */}
                 <div className="lg:col-span-6 space-y-6">
                   <div>
-                    <span className="text-mono text-xs font-extrabold uppercase tracking-widest text-signal block mb-2">
-                      ★ FEATURED PRODUCT SPOTLIGHT · 0{currentIndex + 1} OF 0{enrichedList.length}
-                    </span>
-                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.05]">
+                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.08]">
                       {currentProd.name}
                     </h3>
-                    <p className="text-sm font-mono text-ink/60 mt-1 uppercase font-bold">
+                    <p className="text-xs sm:text-sm font-mono text-ink/60 mt-1.5 uppercase tracking-wider font-semibold">
                       {currentProd.tagline}
                     </p>
                   </div>
 
-                  <p className="text-base sm:text-lg text-ink/80 leading-relaxed font-light">
+                  <p className="text-base sm:text-lg text-ink/75 leading-relaxed font-light">
                     {currentProd.description}
                   </p>
 
-                  {/* Dual System Capabilities Callout */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div className="p-4 rounded-2xl bg-paper border border-ink/10 shadow-sm space-y-1.5">
-                      <div className="flex items-center gap-2 text-signal font-bold text-xs uppercase font-mono">
+                  {/* Clean Minimal Architectural Highlights */}
+                  <div className="pt-3 pb-3 border-y border-ink/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-signal/10 flex items-center justify-center text-signal shrink-0 mt-0.5">
                         <highlights.icon1 className="w-4 h-4" />
-                        <span>{highlights.title1}</span>
                       </div>
-                      <p className="text-xs text-ink/70 leading-relaxed font-light">
-                        {highlights.desc1}
-                      </p>
+                      <div>
+                        <div className="font-display text-sm font-bold text-ink">{highlights.title1}</div>
+                        <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc1}</p>
+                      </div>
                     </div>
 
-                    <div className="p-4 rounded-2xl bg-paper border border-ink/10 shadow-sm space-y-1.5">
-                      <div className="flex items-center gap-2 text-signal font-bold text-xs uppercase font-mono">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-signal/10 flex items-center justify-center text-signal shrink-0 mt-0.5">
                         <highlights.icon2 className="w-4 h-4" />
-                        <span>{highlights.title2}</span>
                       </div>
-                      <p className="text-xs text-ink/70 leading-relaxed font-light">
-                        {highlights.desc2}
-                      </p>
+                      <div>
+                        <div className="font-display text-sm font-bold text-ink">{highlights.title2}</div>
+                        <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc2}</p>
+                      </div>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="pt-4 flex flex-wrap items-center gap-4">
+                  <div className="pt-2 flex flex-wrap items-center gap-4">
                     <button
                       onClick={() => setSelectedProduct(currentProd)}
-                      className="rounded-full bg-ink hover:bg-signal px-8 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
+                      className="rounded-full bg-ink hover:bg-signal px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
                     >
                       Inspect Specifications
                       <ArrowRight className="w-4 h-4" />
                     </button>
                     <button
                       onClick={openDrawer}
-                      className="rounded-full border border-ink/20 hover:border-signal bg-paper px-6 py-4 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm"
+                      className="rounded-full border border-ink/20 hover:border-signal bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm"
                     >
                       Consult Engineering
                     </button>
@@ -288,18 +287,43 @@ export function FeaturedProductsSection() {
 
               </div>
 
-              {/* Minimal Dot Indicators */}
-              <div className="mt-8 pt-4 flex items-center justify-center gap-2 border-t border-ink/10">
-                {enrichedList.map((_, dotIdx) => (
+              {/* Minimal Slide Controls */}
+              <div className="mt-8 pt-5 flex items-center justify-between border-t border-ink/10">
+                <div className="text-mono text-xs font-bold text-ink/40 tracking-widest">
+                  0{currentIndex + 1} <span className="text-ink/20">/</span> 0{enrichedList.length}
+                </div>
+
+                {/* Indicator Dots */}
+                <div className="flex items-center gap-2">
+                  {enrichedList.map((_, dotIdx) => (
+                    <button
+                      key={dotIdx}
+                      onClick={() => goToSlide(dotIdx)}
+                      aria-label={`Go to slide ${dotIdx + 1}`}
+                      className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
+                        dotIdx === currentIndex ? "w-8 bg-signal" : "w-2 bg-ink/20 hover:bg-ink/40"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Next / Prev Chevrons */}
+                <div className="flex items-center gap-2">
                   <button
-                    key={dotIdx}
-                    onClick={() => goToSlide(dotIdx)}
-                    aria-label={`Go to slide ${dotIdx + 1}`}
-                    className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
-                      dotIdx === currentIndex ? "w-8 bg-signal" : "w-2 bg-ink/20 hover:bg-ink/40"
-                    }`}
-                  />
-                ))}
+                    onClick={() => goToSlide((currentIndex - 1 + enrichedList.length) % enrichedList.length)}
+                    aria-label="Previous product"
+                    className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center text-ink/60 hover:text-ink hover:bg-ink/5 transition-colors cursor-pointer"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => goToSlide((currentIndex + 1) % enrichedList.length)}
+                    aria-label="Next product"
+                    className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center text-ink/60 hover:text-ink hover:bg-ink/5 transition-colors cursor-pointer"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
             </motion.div>
