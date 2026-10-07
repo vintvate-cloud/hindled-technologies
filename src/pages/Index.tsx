@@ -543,26 +543,6 @@ function AdvisorSection() {
                 </p>
               </motion.div>
 
-              {/* Core Guidance Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                {advisorProfile.indianMarketAdvice.slice(0, 4).map((advice, aIdx) => (
-                  <motion.div
-                    key={advice.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
-                    transition={{ duration: 0.5, delay: 0.3 + aIdx * 0.08 }}
-                    className="p-3.5 rounded-2xl bg-paper border border-ink/10 shadow-xs"
-                  >
-                    <span className="font-display text-xs font-bold text-ink block mb-1">
-                      {advice.title}
-                    </span>
-                    <p className="text-[11px] text-ink/65 leading-relaxed font-light line-clamp-3">
-                      {advice.desc}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
             </div>
           </div>
 

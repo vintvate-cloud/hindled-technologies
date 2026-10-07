@@ -123,7 +123,7 @@ export function EditorialPreloader({ onComplete }: EditorialPreloaderProps) {
                 ease: [0.76, 0, 0.24, 1],
               },
             }}
-            className="absolute inset-0 bg-[#05130D] border-b border-signal/20 pointer-events-none shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
+            className="absolute inset-0 bg-[#05130D] border-b border-signal/20 pointer-events-none"
           />
 
           {/* ======================================================== LAYER 3 (FOREGROUND STAGE CURTAIN) */}
@@ -137,33 +137,8 @@ export function EditorialPreloader({ onComplete }: EditorialPreloaderProps) {
                 ease: [0.76, 0, 0.24, 1],
               },
             }}
-            className="absolute inset-0 bg-[#070707] flex flex-col justify-between p-7 sm:p-12 md:p-16 overflow-hidden border-b border-signal/35 shadow-[0_25px_60px_rgba(16,185,129,0.3)] pointer-events-auto"
+            className="absolute inset-0 bg-[#070707] flex flex-col justify-between p-7 sm:p-12 md:p-16 overflow-hidden border-b border-signal/35 pointer-events-auto"
           >
-            {/* Ambient Solar Photon Corona */}
-            <motion.div
-              animate={
-                isCentering
-                  ? {
-                      scale: [1, 1.45, 1.25],
-                      opacity: [0.3, 0.65, 0.5],
-                    }
-                  : {
-                      scale: [0.85, 1.05, 0.9],
-                      opacity: [0.2, 0.35, 0.25],
-                    }
-              }
-              transition={{
-                duration: isCentering ? 1.0 : 2.8,
-                repeat: isCentering ? 0 : Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] rounded-full pointer-events-none blur-[120px]"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(16, 185, 129, 0.45) 0%, rgba(5, 150, 105, 0.15) 40%, transparent 70%)",
-              }}
-            />
-
             {/* Top Header Label */}
             <motion.div
               animate={isCentering ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
@@ -188,11 +163,9 @@ export function EditorialPreloader({ onComplete }: EditorialPreloaderProps) {
                     isCentering
                       ? {
                           scale: 1.35,
-                          filter: "drop-shadow(0 0 28px rgba(16, 185, 129, 0.6)) brightness(1.15)",
                         }
                       : {
                           scale: 1,
-                          filter: "drop-shadow(0 4px 20px rgba(16, 185, 129, 0.25)) brightness(1.05)",
                         }
                   }
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -230,7 +203,7 @@ export function EditorialPreloader({ onComplete }: EditorialPreloaderProps) {
                   <img
                     src="/logo_wordmark.png"
                     alt="HINDLED"
-                    className="h-8 sm:h-10 md:h-11 w-auto max-w-[260px] sm:max-w-[320px] object-contain brightness-110"
+                    className="h-8 sm:h-10 md:h-11 w-auto max-w-[260px] sm:max-w-[320px] object-contain"
                   />
                 </motion.div>
               </motion.div>
@@ -242,30 +215,13 @@ export function EditorialPreloader({ onComplete }: EditorialPreloaderProps) {
                 className="relative mt-8 w-44 sm:w-56 h-[1.5px] bg-white/10 rounded-full overflow-hidden"
               >
                 <motion.div
-                  className="absolute left-0 top-0 bottom-0 bg-signal shadow-[0_0_10px_rgba(16,185,129,0.85)]"
+                  className="absolute left-0 top-0 bottom-0 bg-signal"
                   style={{ width: `${percent}%` }}
                 />
               </motion.div>
             </div>
 
-            {/* Bottom Footer Info & Minimalist Counter (Fades away during centering) */}
-            <motion.div
-              animate={isCentering ? { opacity: 0, y: 10 } : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="relative z-10 flex items-center justify-between w-full font-mono text-[11px] sm:text-[12px] tracking-widest text-white/40"
-            >
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-signal/70 animate-pulse" />
-                <span className="text-[10px] sm:text-[11px] tracking-[0.2em] text-white/30 uppercase">
-                  INITIALIZING
-                </span>
-              </div>
-
-              <div className="tabular-nums font-medium">
-                <span className="text-white/80">{String(percent).padStart(3, "0")}</span>
-                <span className="text-white/20"> / 100</span>
-              </div>
-            </motion.div>
+            {/* Bottom spacer / empty footer */}
           </motion.div>
         </motion.div>
       )}
