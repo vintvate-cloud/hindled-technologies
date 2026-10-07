@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   featured,
-  type CatalogueItem,
   enrichProduct,
   type EnrichedProduct
 } from "@/assets/products";
@@ -13,211 +12,299 @@ import {
   Sun,
   ZapOff,
   ShieldCheck,
-  Cpu,
-  Eye,
-  Layers,
   ArrowRight,
-  Info,
-  CheckCircle2,
-  Maximize2
+  Radio,
+  Sparkles,
+  Layers
 } from "lucide-react";
+
+// Curated highlight cards for each of the 4 featured products
+const productHighlights: Record<string, { badge1: string; badge2: string; icon1: any; title1: string; desc1: string; icon2: any; title2: string; desc2: string }> = {
+  "tejas-smart-pole": {
+    badge1: "100% Without Electricity",
+    badge2: "Integrated CCTV + Solar Light",
+    icon1: Camera,
+    title1: "Off-Grid Security Camera",
+    desc1: "24/7 continuous wireless recording & 4G/Wi-Fi live cloud feed powered entirely by vertical PV battery backup.",
+    icon2: Sun,
+    title2: "High-Output Solar Lighting",
+    desc2: "170 lm/W optical LED illumination with 4-step autonomous dimming and 5+ rainy days weather backup.",
+  },
+  "hl-gaj": {
+    badge1: "Up to 360,000 Lumens",
+    badge2: "HDTV Broadcast Ready",
+    icon1: Radio,
+    title1: "Broadcast-Grade HDTV 4K/8K",
+    desc1: "Flicker-free TLCI >90 sports optics, up to 360,000 lm output, and precision DMX512 / DALI arena controls.",
+    icon2: ShieldCheck,
+    title2: "5° Anti-Glare Forward Tilt",
+    desc2: "Modular die-cast thermal chimney cooling and 56-increment precision vertical & horizontal aiming scale.",
+  },
+  "hl-aditi": {
+    badge1: "100% Without Electricity",
+    badge2: "All-In-Two Solar Luminaire",
+    icon1: ZapOff,
+    title1: "Zero Grid Power Required",
+    desc1: "Internal high-capacity LiFePO4 battery matrix & intelligent MPPT controller with 4-step adaptive dimming.",
+    icon2: Sun,
+    title2: "High-Efficacy Roadway Optics",
+    desc2: "160–170 lm/W optical LED engine with Type II & Type III highway distributions from 4m to 12m poles.",
+  },
+  "sandhya": {
+    badge1: "100% Without Electricity",
+    badge2: "Heritage Architectural Luminaire",
+    icon1: Sun,
+    title1: "360° Monocrystalline PV Column",
+    desc1: "Vertical wrap solar capture seamlessly integrated into classic heritage architectural column aesthetics.",
+    icon2: Sparkles,
+    title2: "360° Low-Glare Illumination",
+    desc2: "Delivers soft, glare-free 360° warm illumination for heritage promenades, royal hotels, and civic plazas.",
+  },
+};
 
 export function FeaturedProductsSection() {
   const { openDrawer } = useContactDrawer();
   const [selectedProduct, setSelectedProduct] = useState<EnrichedProduct | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Enriched featured items
+  // Enriched featured items (4 products: TEJAS, HL GAJ, HL ADITI, SANDHYA)
   const enrichedList = featured.map(enrichProduct);
-  const tejasProduct = enrichedList.find((p) => p.slug === "tejas-smart-pole")!;
-  const otherFeatured = enrichedList.filter((p) => p.slug !== "tejas-smart-pole");
+
+  const goToSlide = (index: number) => {
+    setDirection(index > currentIndex ? 1 : -1);
+    setCurrentIndex(index);
+  };
+
+  // Auto-advance carousel every 3 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % enrichedList.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isPaused, enrichedList.length]);
+
+  const currentProd = enrichedList[currentIndex];
+  const highlights = productHighlights[currentProd.slug] || {
+    badge1: "100% Without Electricity",
+    badge2: `${currentProd.series} Series`,
+    icon1: Sun,
+    title1: "High Performance Optics",
+    desc1: "Engineered with precision LED drivers and ultra-high efficiency luminous flux.",
+    icon2: ShieldCheck,
+    title2: "Industrial Grade Build",
+    desc2: "Corrosion-resistant housing rated for harsh outdoor environments.",
+  };
+
+  const slideVariants: any = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 80 : -80,
+      opacity: 0,
+      scale: 0.98,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 260, damping: 28 },
+        opacity: { duration: 0.35 },
+        scale: { duration: 0.35 },
+      },
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -80 : 80,
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        x: { type: "spring", stiffness: 260, damping: 28 },
+        opacity: { duration: 0.25 },
+        scale: { duration: 0.25 },
+      },
+    }),
+  };
 
   return (
-    <section id="featured-products" className="relative bg-paper py-28 lg:py-40 hairline-t overflow-hidden">
+    <section id="featured-products" className="relative bg-paper py-24 lg:py-36 hairline-t overflow-hidden">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 sm:mb-20">
+        {/* Section Header with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 sm:mb-14"
+        >
           <div>
-            <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-3">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-3"
+            >
               — BENCHMARK HARDWARE
-            </span>
+            </motion.span>
             <h2 className="text-display text-ink text-[9vw] leading-[0.92] tracking-[-0.04em] md:text-[5vw] font-bold">
-              Featured <span className="text-signal">Platforms.</span>
+              Featured <span className="text-signal">Products.</span>
             </h2>
             <p className="mt-4 max-w-xl text-sm sm:text-base text-ink/70 font-light leading-relaxed">
               Flagship luminaires engineered for critical municipal highways, professional stadiums, royal heritage sites, and zero-grid autonomous smart security.
             </p>
           </div>
 
-          <Link
-            to="/products"
-            className="text-mono text-xs font-bold uppercase tracking-wider text-ink inline-flex items-center gap-3 border-b-2 border-signal pb-1 hover:border-ink hover:text-signal transition-colors shrink-0 self-start md:self-end"
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="self-start md:self-end"
           >
-            Full 21-Platform Catalogue
-            <span>→</span>
-          </Link>
-        </div>
-
-        {/* 1. HERO SPOTLIGHT CARD: TEJAS SERIES (CAMERA + SOLAR LIGHT WITHOUT ELECTRICITY) */}
-        <div className="mb-16 rounded-[36px] bg-stone border-2 border-signal/40 p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden group">
-          {/* Subtle Accent Glow */}
-          <div className="absolute -right-20 -top-20 w-96 h-96 bg-signal/15 rounded-full blur-[100px] pointer-events-none" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
-            {/* Left Image Showcase */}
-            <div className="lg:col-span-6 relative w-full rounded-[28px] overflow-hidden bg-paper border border-ink/10 p-6 sm:p-8 flex items-center justify-center min-h-[360px] sm:min-h-[420px] shadow-sm">
-              <img
-                src={tejasProduct.image}
-                alt={tejasProduct.name}
-                className="max-h-[360px] sm:max-h-[420px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-md"
-              />
-
-              {/* Zero Electricity Badge */}
-              <div className="absolute top-4 left-4 flex flex-col gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-signal text-white shadow-lg">
-                  <ZapOff className="w-3.5 h-3.5" />
-                  100% Without Electricity
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-ink text-paper shadow-md">
-                  <Camera className="w-3 h-3 text-signal" />
-                  Integrated CCTV + Solar Light
-                </span>
-              </div>
-
-              <span className="absolute bottom-4 right-4 text-mono text-xs bg-paper/90 backdrop-blur-md px-3 py-1 rounded-full text-ink font-bold border border-ink/10 shadow-sm">
-                Series 11 · TEJAS
-              </span>
-            </div>
-
-            {/* Right Story & Dual System Breakdown */}
-            <div className="lg:col-span-6 space-y-6">
-              <div>
-                <span className="text-mono text-xs font-extrabold uppercase tracking-widest text-signal block mb-2">
-                  ★ SPECIAL HIGHLIGHT PLATFORM
-                </span>
-                <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.05]">
-                  {tejasProduct.name}
-                </h3>
-                <p className="text-sm font-mono text-ink/60 mt-1 uppercase font-bold">
-                  {tejasProduct.tagline}
-                </p>
-              </div>
-
-              <p className="text-base sm:text-lg text-ink/80 leading-relaxed font-light">
-                A breakthrough in off-grid infrastructure: TEJAS combines <strong className="font-bold text-ink">continuous HD security surveillance</strong> and <strong className="font-bold text-ink">high-lumen solar area illumination</strong> on a single unified pole — <strong className="text-signal font-bold">operating 100% without electricity</strong>. Zero conduit trenching, zero grid dependency, and zero monthly electric bills.
-              </p>
-
-              {/* Dual System Capabilities Callout */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-2xl bg-paper border border-ink/10 shadow-sm space-y-1.5">
-                  <div className="flex items-center gap-2 text-signal font-bold text-xs uppercase font-mono">
-                    <Camera className="w-4 h-4" />
-                    <span>Off-Grid Security Camera</span>
-                  </div>
-                  <p className="text-xs text-ink/70 leading-relaxed font-light">
-                    24/7 continuous wireless recording & 4G/Wi-Fi live cloud feed powered entirely by vertical PV battery backup.
-                  </p>
-                </div>
-
-                <div className="p-4 rounded-2xl bg-paper border border-ink/10 shadow-sm space-y-1.5">
-                  <div className="flex items-center gap-2 text-signal font-bold text-xs uppercase font-mono">
-                    <Sun className="w-4 h-4" />
-                    <span>High-Output Solar Lighting</span>
-                  </div>
-                  <p className="text-xs text-ink/70 leading-relaxed font-light">
-                    170 lm/W optical LED illumination with 4-step autonomous dimming and 5+ rainy days weather backup.
-                  </p>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="pt-4 flex flex-wrap items-center gap-4">
-                <button
-                  onClick={() => setSelectedProduct(tejasProduct)}
-                  className="rounded-full bg-ink hover:bg-signal px-8 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
-                >
-                  Inspect Specifications
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={openDrawer}
-                  className="rounded-full border border-ink/20 hover:border-signal bg-paper px-6 py-4 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm"
-                >
-                  Consult Engineering
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-        {/* 2. THREE COMPANION FEATURED PRODUCTS: HL GAJ, HL ADITI, SANDHYA */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {otherFeatured.map((prod) => (
-            <motion.div
-              key={prod.slug}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-col justify-between rounded-[32px] bg-stone border border-ink/10 p-6 sm:p-8 hover:border-signal hover:shadow-xl transition-all group"
+            <Link
+              to="/products"
+              className="text-mono text-xs font-bold uppercase tracking-wider text-ink inline-flex items-center gap-3 border-b-2 border-signal pb-1 hover:border-ink hover:text-signal transition-colors shrink-0"
             >
-              <div>
-                {/* Product Image */}
-                <div className="relative aspect-[4/3] w-full rounded-[24px] overflow-hidden bg-paper border border-ink/5 p-4 flex items-center justify-center mb-6">
+              Full 21-Product Catalogue
+              <span>→</span>
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Sliding Featured Product Showcase Card Container with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="relative min-h-[540px]"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentProd.slug}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="rounded-[36px] bg-stone border-2 border-signal/30 p-6 sm:p-10 lg:p-14 shadow-2xl relative overflow-hidden group"
+            >
+              {/* Subtle Accent Glow */}
+              <div className="absolute -right-20 -top-20 w-96 h-96 bg-signal/15 rounded-full blur-[100px] pointer-events-none" />
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                
+                {/* Left Image Showcase */}
+                <div className="lg:col-span-6 relative w-full rounded-[28px] overflow-hidden bg-paper border border-ink/10 p-6 sm:p-8 flex items-center justify-center min-h-[340px] sm:min-h-[420px] shadow-sm">
                   <img
-                    src={prod.image}
-                    alt={prod.name}
-                    className="w-full h-full max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-sm"
+                    src={currentProd.image}
+                    alt={currentProd.name}
+                    className="max-h-[340px] sm:max-h-[400px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-md"
                   />
-                  <span className="absolute top-3 left-3 text-[9px] font-mono font-bold uppercase tracking-wider bg-ink text-paper px-2.5 py-1 rounded-full">
-                    {prod.code} · {prod.series}
-                  </span>
-                  {prod.highlightBadge && (
-                    <span className="absolute bottom-3 right-3 text-[9px] font-mono font-bold uppercase tracking-wider bg-signal text-white px-2.5 py-0.5 rounded-full shadow-sm">
-                      {prod.highlightBadge.split("·")[0]}
+
+                  {/* Badges Over Image */}
+                  <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-signal text-white shadow-lg">
+                      <ZapOff className="w-3.5 h-3.5" />
+                      {highlights.badge1}
                     </span>
-                  )}
+                    {highlights.badge2 && (
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-ink text-paper shadow-md">
+                        <Layers className="w-3 h-3 text-signal" />
+                        {highlights.badge2}
+                      </span>
+                    )}
+                  </div>
+
+                  <span className="absolute bottom-4 right-4 text-mono text-xs bg-paper/90 backdrop-blur-md px-3.5 py-1 rounded-full text-ink font-bold border border-ink/10 shadow-sm">
+                    Series {currentProd.code} · {currentProd.series}
+                  </span>
                 </div>
 
-                <span className="text-mono text-[10px] font-extrabold uppercase tracking-widest text-signal block mb-1">
-                  {prod.series} PLATFORM
-                </span>
-                <h3 className="font-display text-2xl font-bold text-ink tracking-tight">
-                  {prod.name}
-                </h3>
-                <p className="mt-2 text-xs text-ink/70 line-clamp-3 leading-relaxed font-light">
-                  {prod.description}
-                </p>
+                {/* Right Story & Dynamic System Breakdown */}
+                <div className="lg:col-span-6 space-y-6">
+                  <div>
+                    <span className="text-mono text-xs font-extrabold uppercase tracking-widest text-signal block mb-2">
+                      ★ FEATURED PRODUCT SPOTLIGHT · 0{currentIndex + 1} OF 0{enrichedList.length}
+                    </span>
+                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.05]">
+                      {currentProd.name}
+                    </h3>
+                    <p className="text-sm font-mono text-ink/60 mt-1 uppercase font-bold">
+                      {currentProd.tagline}
+                    </p>
+                  </div>
 
-                {/* Specs Pill List */}
-                <div className="mt-4 pt-4 border-t border-ink/10 space-y-1.5">
-                  {Object.entries(prod.specs).slice(0, 3).map(([k, v]) => (
-                    <div key={k} className="flex items-center justify-between text-[11px] font-mono">
-                      <span className="text-ink/50 uppercase">{k}:</span>
-                      <span className="font-bold text-ink truncate max-w-[60%]">{v}</span>
+                  <p className="text-base sm:text-lg text-ink/80 leading-relaxed font-light">
+                    {currentProd.description}
+                  </p>
+
+                  {/* Dual System Capabilities Callout */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div className="p-4 rounded-2xl bg-paper border border-ink/10 shadow-sm space-y-1.5">
+                      <div className="flex items-center gap-2 text-signal font-bold text-xs uppercase font-mono">
+                        <highlights.icon1 className="w-4 h-4" />
+                        <span>{highlights.title1}</span>
+                      </div>
+                      <p className="text-xs text-ink/70 leading-relaxed font-light">
+                        {highlights.desc1}
+                      </p>
                     </div>
-                  ))}
+
+                    <div className="p-4 rounded-2xl bg-paper border border-ink/10 shadow-sm space-y-1.5">
+                      <div className="flex items-center gap-2 text-signal font-bold text-xs uppercase font-mono">
+                        <highlights.icon2 className="w-4 h-4" />
+                        <span>{highlights.title2}</span>
+                      </div>
+                      <p className="text-xs text-ink/70 leading-relaxed font-light">
+                        {highlights.desc2}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="pt-4 flex flex-wrap items-center gap-4">
+                    <button
+                      onClick={() => setSelectedProduct(currentProd)}
+                      className="rounded-full bg-ink hover:bg-signal px-8 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
+                    >
+                      Inspect Specifications
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={openDrawer}
+                      className="rounded-full border border-ink/20 hover:border-signal bg-paper px-6 py-4 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm"
+                    >
+                      Consult Engineering
+                    </button>
+                  </div>
+
                 </div>
+
               </div>
 
-              <div className="mt-6 pt-4 border-t border-ink/10 flex items-center justify-between">
-                <button
-                  onClick={() => setSelectedProduct(prod)}
-                  className="text-mono text-xs font-bold uppercase tracking-wider text-ink hover:text-signal transition-colors cursor-pointer inline-flex items-center gap-1.5"
-                >
-                  Technical Specs →
-                </button>
-                <button
-                  onClick={openDrawer}
-                  className="text-mono text-[10px] font-bold uppercase tracking-wider text-signal hover:underline cursor-pointer"
-                >
-                  Quote
-                </button>
+              {/* Minimal Dot Indicators */}
+              <div className="mt-8 pt-4 flex items-center justify-center gap-2 border-t border-ink/10">
+                {enrichedList.map((_, dotIdx) => (
+                  <button
+                    key={dotIdx}
+                    onClick={() => goToSlide(dotIdx)}
+                    aria-label={`Go to slide ${dotIdx + 1}`}
+                    className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
+                      dotIdx === currentIndex ? "w-8 bg-signal" : "w-2 bg-ink/20 hover:bg-ink/40"
+                    }`}
+                  />
+                ))}
               </div>
+
             </motion.div>
-          ))}
-        </div>
+          </AnimatePresence>
+        </motion.div>
 
       </div>
 
@@ -243,7 +330,7 @@ export function FeaturedProductsSection() {
               <div className="flex-shrink-0 flex items-center justify-between px-8 py-5 border-b border-ink/10 bg-paper">
                 <div className="flex flex-col">
                   <span className="px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest bg-stone text-ink/70 w-fit">
-                    {selectedProduct.category} · Platform {selectedProduct.code}
+                    {selectedProduct.category} · Product {selectedProduct.code}
                   </span>
                   <h3 className="font-display mt-1 text-2xl font-bold tracking-tight text-ink">
                     {selectedProduct.name}

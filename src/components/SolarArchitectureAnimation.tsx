@@ -165,10 +165,22 @@ export function SolarArchitectureAnimation() {
 
       <div className="relative mx-auto max-w-[1600px] px-6 lg:px-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16 border-b border-ink/10 pb-8">
+        {/* Section Header with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16 border-b border-ink/10 pb-8"
+        >
           <div>
-            <div className="flex items-center gap-2 mb-3">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex items-center gap-2 mb-3"
+            >
               <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold">
                 — DISCIPLINE & ENGINEERING
               </span>
@@ -176,7 +188,7 @@ export function SolarArchitectureAnimation() {
                 <ZapOff className="w-3 h-3" />
                 100% Without Electricity
               </span>
-            </div>
+            </motion.div>
             
             <h2 className="text-display text-ink text-[8vw] leading-[0.92] tracking-[-0.04em] md:text-[4.5vw] font-bold">
               Solar Architecture &amp; <span className="text-signal">Optical Physics.</span>
@@ -188,7 +200,13 @@ export function SolarArchitectureAnimation() {
           </div>
 
           {/* Interactive Mode Switcher */}
-          <div className="flex items-center gap-2 p-1.5 rounded-full bg-paper border border-ink/10 shadow-sm self-start md:self-end">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex items-center gap-2 p-1.5 rounded-full bg-paper border border-ink/10 shadow-sm self-start md:self-end"
+          >
             <button
               onClick={() => setActiveTab("layers")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all cursor-pointer ${
@@ -211,28 +229,38 @@ export function SolarArchitectureAnimation() {
               <Compass className="w-3.5 h-3.5" />
               <span>Iso-Lux Curves (Optics)</span>
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Tab 1: 6-Layer Exploded Solar Architecture */}
         {activeTab === "layers" && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left Interactive Exploded Stack Visualization */}
-            <div className="lg:col-span-5 flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.25 }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex flex-col justify-center"
+            >
               <div className="relative p-6 sm:p-8 rounded-[32px] bg-paper border border-ink/10 shadow-lg space-y-3">
                 <div className="text-mono text-[10px] uppercase tracking-widest text-ink/40 font-bold mb-4 flex items-center justify-between">
                   <span>Interactive Exploded Core</span>
                   <span>Click Layer to Inspect</span>
                 </div>
 
-                {solarLayers.map((layer) => {
+                {solarLayers.map((layer, idx) => {
                   const isSelected = selectedLayer === layer.id;
                   const Icon = layer.icon;
                   return (
                     <motion.button
                       key={layer.id}
                       onClick={() => setSelectedLayer(layer.id)}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: false }}
+                      transition={{ delay: 0.1 + idx * 0.08, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex items-center justify-between cursor-pointer ${
@@ -251,7 +279,6 @@ export function SolarArchitectureAnimation() {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-mono text-[10px] font-bold text-signal">{layer.number}</span>
                             <span className="font-display text-sm font-bold text-ink">{layer.title.split("·")[0]}</span>
                           </div>
                           <span className="text-[11px] text-ink/60 font-light block mt-0.5">{layer.subtitle}</span>
@@ -267,10 +294,16 @@ export function SolarArchitectureAnimation() {
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Layer Detailed Inspection Card */}
-            <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, x: 40, scale: 0.97 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.25 }}
+              transition={{ duration: 0.85, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentLayer.id}
@@ -283,14 +316,9 @@ export function SolarArchitectureAnimation() {
                   <div>
                     <div className="flex items-center justify-between gap-4 border-b border-ink/10 pb-6 mb-6">
                       <div className="flex items-center gap-3">
-                        <span className="text-display text-4xl sm:text-5xl font-extrabold text-signal">
-                          {currentLayer.number}
+                        <span className="px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-stone border border-ink/10 text-ink/80 block w-fit">
+                          {currentLayer.tag}
                         </span>
-                        <div>
-                          <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-stone border border-ink/10 text-ink/80 block w-fit">
-                            {currentLayer.tag}
-                          </span>
-                        </div>
                       </div>
                       <div className="w-14 h-14 rounded-2xl bg-stone border border-ink/10 flex items-center justify-center text-signal">
                         {(() => {
@@ -324,7 +352,7 @@ export function SolarArchitectureAnimation() {
 
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </motion.div>
 
           </div>
         )}
@@ -334,7 +362,12 @@ export function SolarArchitectureAnimation() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
             
             {/* Left Beam Selector */}
-            <div className="lg:col-span-4 flex flex-col justify-between space-y-3">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-4 flex flex-col justify-between space-y-3"
+            >
               <div className="p-6 rounded-[28px] bg-paper border border-ink/10 shadow-md space-y-2">
                 <span className="text-mono text-[10px] uppercase tracking-widest text-ink/40 font-bold block mb-3">
                   Select Photometric Profile
@@ -375,10 +408,15 @@ export function SolarArchitectureAnimation() {
                   Calibrated DIALux Simulation Code Compliant
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Live Photometric Curve & Iso-Lux Heatmap */}
-            <div className="lg:col-span-8 flex flex-col">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="lg:col-span-8 flex flex-col"
+            >
               <div className="rounded-[36px] bg-paper border border-ink/10 p-8 sm:p-12 shadow-xl flex-grow flex flex-col justify-between">
                 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-ink/10 pb-6 mb-6">
@@ -485,7 +523,7 @@ export function SolarArchitectureAnimation() {
                 </div>
 
               </div>
-            </div>
+            </motion.div>
 
           </div>
         )}

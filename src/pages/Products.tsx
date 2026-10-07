@@ -115,12 +115,13 @@ export default function ProductsPage() {
   return (
     <div className="relative min-h-screen bg-paper text-ink font-sans selection:bg-signal selection:text-white pt-24 pb-32">
 
-      {/* Minimal Editorial Header */}
+      {/* Minimal Editorial Header with Scroll Reveal */}
       <section className="mx-auto max-w-[1600px] px-6 lg:px-10 pt-12 pb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl"
         >
           <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-3">
@@ -135,7 +136,13 @@ export default function ProductsPage() {
         </motion.div>
 
         {/* Minimal Application Quick Navigation Bar */}
-        <div className="mt-12 flex flex-wrap gap-2 border-t border-b border-ink/10 py-4 no-scrollbar overflow-x-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="mt-12 flex flex-wrap gap-2 border-t border-b border-ink/10 py-4 no-scrollbar overflow-x-auto"
+        >
           {solutionApplications.map((app) => (
             <a
               key={app.id}
@@ -150,7 +157,7 @@ export default function ProductsPage() {
               {app.title}
             </a>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* 8 Application Storytelling Sections */}
@@ -161,11 +168,17 @@ export default function ProductsPage() {
             id={app.id}
             className="scroll-mt-32 pt-8 hairline-t"
           >
-            {/* Storytelling Application Banner */}
+            {/* Storytelling Application Banner with Scroll Reveal */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
 
-              {/* Left Editorial Cover Photo (Full Box Occupancy, Zero Leak) */}
-              <div className="lg:col-span-6 relative w-full h-[280px] sm:h-[340px] lg:h-[380px] rounded-[28px] overflow-hidden border border-ink/10 bg-stone shadow-md group">
+              {/* Left Editorial Cover Photo */}
+              <motion.div
+                initial={{ opacity: 0, x: -35 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:col-span-6 relative w-full h-[280px] sm:h-[340px] lg:h-[380px] rounded-[28px] overflow-hidden border border-ink/10 bg-stone shadow-md group"
+              >
                 <img
                   src={app.projectPic}
                   alt={`${app.title} application field`}
@@ -180,10 +193,16 @@ export default function ProductsPage() {
                     Target: {app.luxRecommendation.split("(")[0]}
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Right Application Story Text */}
-              <div className="lg:col-span-6 flex flex-col justify-between p-2 lg:p-4">
+              <motion.div
+                initial={{ opacity: 0, x: 35 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.85, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="lg:col-span-6 flex flex-col justify-between p-2 lg:p-4"
+              >
                 <div>
                   <span className="text-mono text-[10px] uppercase tracking-widest text-signal font-extrabold block mb-2">
                     0{index + 1} — APPLICATION CATEGORY
@@ -215,16 +234,17 @@ export default function ProductsPage() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
             </div>
 
-            {/* Award-Level Luminaire Cards Grid (2 per row on mobile) */}
+            {/* Award-Level Luminaire Cards Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-              {products.map((p) => (
+              {products.map((p, pIdx) => (
                 <ProductCard
                   key={p.slug}
                   p={p}
+                  idx={pIdx}
                   onLearnMore={() => {
                     setSelectedProduct(p);
                     setIsDetailModalOpen(true);
@@ -263,7 +283,7 @@ export default function ProductsPage() {
               <div className="flex-shrink-0 flex items-center justify-between px-8 py-5 border-b border-ink/10 bg-paper">
                 <div className="flex flex-col">
                   <span className="px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest bg-stone text-ink/70 w-fit">
-                    {selectedProduct.category} · Platform {selectedProduct.code}
+                    {selectedProduct.category} · Product {selectedProduct.code}
                   </span>
                   <h3 className="font-display mt-1 text-2xl font-bold tracking-tight text-ink">
                     {selectedProduct.name}
@@ -404,17 +424,19 @@ export default function ProductsPage() {
 // Award-Level Minimal Product Card (Unclipped Image Container)
 function ProductCard({
   p,
+  idx = 0,
   onLearnMore,
 }: {
   p: EnrichedProduct;
+  idx?: number;
   onLearnMore: () => void;
 }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 35 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.5 }}
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 0.6, delay: (idx % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -6 }}
       className="group flex flex-col justify-between rounded-[24px] border border-ink/10 bg-stone p-4 transition-all hover:border-signal hover:shadow-lg"
     >
