@@ -81,7 +81,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
   }
 
@@ -90,7 +90,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
   }
 
