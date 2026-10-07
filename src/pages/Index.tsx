@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { featured, catalogue, solutionApplications, advisorProfile, type SolutionApplication } from "@/assets/products";
@@ -40,10 +40,13 @@ export default function IndexPage() {
   });
 
   const [heroReady, setHeroReady] = useState(false);
+  const handlePreloaderComplete = useCallback(() => {
+    setHeroReady(true);
+  }, []);
 
   return (
     <>
-      <EditorialPreloader onComplete={() => setHeroReady(true)} />
+      <EditorialPreloader onComplete={handlePreloaderComplete} />
       <Hero isReady={heroReady} />
       <Philosophy />
       <SolarArchitectureAnimation />

@@ -67,67 +67,76 @@ const productHighlights: Record<string, { badge1: string; badge2: string; icon1:
 export function FeaturedProductsSection() {
   const { openDrawer } = useContactDrawer();
   const [selectedProduct, setSelectedProduct] = useState<EnrichedProduct | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
+  const [activeSlide, setActiveSlide] = useState(1);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const isAnimatingRef = useState({ current: false })[0];
 
   // Enriched featured items (4 products: TEJAS, HL GAJ, HL ADITI, SANDHYA)
   const enrichedList = featured.map(enrichProduct);
 
-  const goToSlide = (index: number) => {
-    setDirection(index > currentIndex ? 1 : -1);
-    setCurrentIndex(index);
+  // Seamless infinite loop clones: [last, ...items, first]
+  const slides = [
+    enrichedList[enrichedList.length - 1],
+    ...enrichedList,
+    enrichedList[0]
+  ];
+
+  // Map activeSlide (1..4) to realIndex (0..3)
+  const realIndex = (activeSlide - 1 + enrichedList.length) % enrichedList.length;
+
+  const next = () => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    setTransitionEnabled(true);
+    setActiveSlide((prev) => prev + 1);
   };
 
-  // Auto-advance carousel every 3 seconds
+  const prev = () => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    setTransitionEnabled(true);
+    setActiveSlide((prev) => prev - 1);
+  };
+
+  const goToSlide = (targetRealIndex: number) => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    setTransitionEnabled(true);
+    setActiveSlide(targetRealIndex + 1);
+  };
+
+  const handleAnimationComplete = () => {
+    isAnimatingRef.current = false;
+    if (activeSlide === slides.length - 1) {
+      // Reached clone of first slide (index 5) -> jump to real first slide (index 1) with 0 duration
+      setTransitionEnabled(false);
+      setActiveSlide(1);
+    } else if (activeSlide === 0) {
+      // Reached clone of last slide (index 0) -> jump to real last slide (index 4) with 0 duration
+      setTransitionEnabled(false);
+      setActiveSlide(slides.length - 2);
+    }
+  };
+
+  // After instant zero-duration jump, re-enable transitions for the next slide interaction
+  useEffect(() => {
+    if (!transitionEnabled) {
+      const raf = requestAnimationFrame(() => {
+        setTransitionEnabled(true);
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [transitionEnabled]);
+
+  // Gentle auto-advance every 4.5 seconds
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % enrichedList.length);
-    }, 3000);
+      next();
+    }, 4500);
     return () => clearInterval(interval);
-  }, [isPaused, enrichedList.length]);
-
-  const currentProd = enrichedList[currentIndex];
-  const highlights = productHighlights[currentProd.slug] || {
-    badge1: "100% Without Electricity",
-    badge2: `${currentProd.series} Series`,
-    icon1: Sun,
-    title1: "High Performance Optics",
-    desc1: "Engineered with precision LED drivers and ultra-high efficiency luminous flux.",
-    icon2: ShieldCheck,
-    title2: "Industrial Grade Build",
-    desc2: "Corrosion-resistant housing rated for harsh outdoor environments.",
-  };
-
-  const slideVariants: any = {
-    enter: (dir: number) => ({
-      x: dir > 0 ? 80 : -80,
-      opacity: 0,
-      scale: 0.98,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        x: { type: "spring", stiffness: 260, damping: 28 },
-        opacity: { duration: 0.35 },
-        scale: { duration: 0.35 },
-      },
-    },
-    exit: (dir: number) => ({
-      x: dir > 0 ? -80 : 80,
-      opacity: 0,
-      scale: 0.98,
-      transition: {
-        x: { type: "spring", stiffness: 260, damping: 28 },
-        opacity: { duration: 0.25 },
-        scale: { duration: 0.25 },
-      },
-    }),
-  };
+  }, [isPaused, activeSlide]);
 
   return (
     <section id="featured-products" className="relative bg-paper py-24 lg:py-36 hairline-t overflow-hidden">
@@ -176,19 +185,15 @@ export function FeaturedProductsSection() {
           </motion.div>
         </motion.div>
 
-        {/* Sliding Featured Product Showcase Card Container with Scroll Reveal */}
-        <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="relative min-h-[540px]"
+        {/* Sliding Featured Product Showcase Card Container */}
+        <div
+          className="relative"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Prominent Floating Left Shift Button */}
           <button
-            onClick={() => goToSlide((currentIndex - 1 + enrichedList.length) % enrichedList.length)}
+            onClick={prev}
             aria-label="Previous product"
             className="absolute left-2 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer group"
           >
@@ -197,138 +202,163 @@ export function FeaturedProductsSection() {
 
           {/* Prominent Floating Right Shift Button */}
           <button
-            onClick={() => goToSlide((currentIndex + 1) % enrichedList.length)}
+            onClick={next}
             aria-label="Next product"
             className="absolute right-2 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer group"
           >
             <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
           </button>
 
-          <AnimatePresence initial={false} custom={direction} mode="wait">
-            <motion.div
-              key={currentProd.slug}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="rounded-[36px] sm:rounded-[44px] bg-white border border-ink/10 p-7 sm:p-10 lg:p-14 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group"
-            >
-              {/* Subtle Ambient Solar Glow */}
-              <div className="absolute -right-20 -top-20 w-96 h-96 bg-signal/10 rounded-full blur-[120px] pointer-events-none" />
+          {/* Master Card Frame with Masked Track & Pinned Controls */}
+          <div className="w-full overflow-hidden rounded-[36px] sm:rounded-[44px] bg-white border border-ink/10 shadow-xl hover:shadow-2xl transition-shadow">
+            
+            {/* Sliding Horizontal Viewport */}
+            <div className="w-full overflow-hidden">
+              <motion.div
+                className="flex w-full items-stretch"
+                animate={{ x: `-${activeSlide * 100}%` }}
+                onAnimationComplete={handleAnimationComplete}
+                transition={
+                  transitionEnabled
+                    ? { duration: 0.7, ease: [0.25, 1, 0.5, 1] }
+                    : { duration: 0 }
+                }
+              >
+                {slides.map((prod, slideIdx) => {
+                  const highlights = productHighlights[prod.slug] || {
+                    badge1: "100% Without Electricity",
+                    badge2: `${prod.series} Series`,
+                    icon1: Sun,
+                    title1: "High Performance Optics",
+                    desc1: "Engineered with precision LED drivers and ultra-high efficiency luminous flux.",
+                    icon2: ShieldCheck,
+                    title2: "Industrial Grade Build",
+                    desc2: "Corrosion-resistant housing rated for harsh outdoor environments.",
+                  };
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-                
-                {/* Left Image Showcase - Clean Floating Hero (No Box, No Border) */}
-                <div className="lg:col-span-6 relative w-full flex items-center justify-center py-6 sm:py-8 lg:py-12 min-h-[320px] sm:min-h-[420px]">
-                  <img
-                    src={currentProd.image}
-                    alt={currentProd.name}
-                    className="max-h-[340px] sm:max-h-[420px] lg:max-h-[460px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)]"
+                  return (
+                    <div
+                      key={`${prod.slug}-${slideIdx}`}
+                      className="w-full shrink-0 p-7 sm:p-10 lg:p-14 relative overflow-hidden group select-none"
+                    >
+                      {/* Subtle Ambient Solar Glow */}
+                      <div className="absolute -right-20 -top-20 w-96 h-96 bg-signal/10 rounded-full blur-[120px] pointer-events-none" />
+
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+                        
+                        {/* Left Image Showcase - Clean Floating Hero */}
+                        <div className="lg:col-span-6 relative w-full flex items-center justify-center py-6 sm:py-8 lg:py-12 min-h-[300px] sm:min-h-[380px]">
+                          <img
+                            src={prod.image}
+                            alt={prod.name}
+                            className="max-h-[320px] sm:max-h-[400px] lg:max-h-[440px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)] pointer-events-none"
+                          />
+                        </div>
+
+                        {/* Right Story & Product Details */}
+                        <div className="lg:col-span-6 space-y-6">
+                          <div>
+                            <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.08]">
+                              {prod.name}
+                            </h3>
+                            <p className="text-xs sm:text-sm font-mono text-ink/60 mt-1.5 uppercase tracking-wider font-semibold">
+                              {prod.tagline}
+                            </p>
+                          </div>
+
+                          <p className="text-base sm:text-lg text-ink/75 leading-relaxed font-light">
+                            {prod.description}
+                          </p>
+
+                          {/* Clean Minimal Architectural Highlights */}
+                          <div className="pt-3 pb-3 border-y border-ink/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-xl bg-signal/10 flex items-center justify-center text-signal shrink-0 mt-0.5">
+                                <highlights.icon1 className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="font-display text-sm font-bold text-ink">{highlights.title1}</div>
+                                <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc1}</p>
+                              </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                              <div className="w-8 h-8 rounded-xl bg-signal/10 flex items-center justify-center text-signal shrink-0 mt-0.5">
+                                <highlights.icon2 className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="font-display text-sm font-bold text-ink">{highlights.title2}</div>
+                                <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc2}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Action Buttons */}
+                          <div className="pt-2 flex flex-wrap items-center gap-4">
+                            <button
+                              onClick={() => setSelectedProduct(prod)}
+                              className="rounded-full bg-ink hover:bg-signal px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
+                            >
+                              Inspect Specifications
+                              <ArrowRight className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={openDrawer}
+                              className="rounded-full border border-ink/20 hover:border-signal bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm"
+                            >
+                              Consult Engineering
+                            </button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  );
+                })}
+              </motion.div>
+            </div>
+
+            {/* Pinned Bottom Slide Controls Bar */}
+            <div className="px-7 sm:px-10 lg:px-14 py-5 flex items-center justify-between border-t border-ink/10 bg-white">
+              <div className="text-mono text-xs font-bold text-ink/40 tracking-widest">
+                0{realIndex + 1} <span className="text-ink/20">/</span> 0{enrichedList.length}
+              </div>
+
+              {/* Indicator Dots */}
+              <div className="flex items-center gap-2">
+                {enrichedList.map((_, dotIdx) => (
+                  <button
+                    key={dotIdx}
+                    onClick={() => goToSlide(dotIdx)}
+                    aria-label={`Go to slide ${dotIdx + 1}`}
+                    className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
+                      dotIdx === realIndex ? "w-8 bg-signal" : "w-2 bg-ink/20 hover:bg-ink/40"
+                    }`}
                   />
-                </div>
-
-                {/* Right Story & Product Details */}
-                <div className="lg:col-span-6 space-y-6">
-                  <div>
-                    <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.08]">
-                      {currentProd.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm font-mono text-ink/60 mt-1.5 uppercase tracking-wider font-semibold">
-                      {currentProd.tagline}
-                    </p>
-                  </div>
-
-                  <p className="text-base sm:text-lg text-ink/75 leading-relaxed font-light">
-                    {currentProd.description}
-                  </p>
-
-                  {/* Clean Minimal Architectural Highlights */}
-                  <div className="pt-3 pb-3 border-y border-ink/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-xl bg-signal/10 flex items-center justify-center text-signal shrink-0 mt-0.5">
-                        <highlights.icon1 className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="font-display text-sm font-bold text-ink">{highlights.title1}</div>
-                        <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc1}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-xl bg-signal/10 flex items-center justify-center text-signal shrink-0 mt-0.5">
-                        <highlights.icon2 className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="font-display text-sm font-bold text-ink">{highlights.title2}</div>
-                        <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc2}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="pt-2 flex flex-wrap items-center gap-4">
-                    <button
-                      onClick={() => setSelectedProduct(currentProd)}
-                      className="rounded-full bg-ink hover:bg-signal px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
-                    >
-                      Inspect Specifications
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={openDrawer}
-                      className="rounded-full border border-ink/20 hover:border-signal bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm"
-                    >
-                      Consult Engineering
-                    </button>
-                  </div>
-
-                </div>
-
+                ))}
               </div>
 
-              {/* Minimal Slide Controls */}
-              <div className="mt-8 pt-5 flex items-center justify-between border-t border-ink/10">
-                <div className="text-mono text-xs font-bold text-ink/40 tracking-widest">
-                  0{currentIndex + 1} <span className="text-ink/20">/</span> 0{enrichedList.length}
-                </div>
-
-                {/* Indicator Dots */}
-                <div className="flex items-center gap-2">
-                  {enrichedList.map((_, dotIdx) => (
-                    <button
-                      key={dotIdx}
-                      onClick={() => goToSlide(dotIdx)}
-                      aria-label={`Go to slide ${dotIdx + 1}`}
-                      className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
-                        dotIdx === currentIndex ? "w-8 bg-signal" : "w-2 bg-ink/20 hover:bg-ink/40"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {/* Next / Prev Chevrons */}
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => goToSlide((currentIndex - 1 + enrichedList.length) % enrichedList.length)}
-                    aria-label="Previous product"
-                    className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center text-ink/60 hover:text-ink hover:bg-ink/5 transition-colors cursor-pointer"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => goToSlide((currentIndex + 1) % enrichedList.length)}
-                    aria-label="Next product"
-                    className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center text-ink/60 hover:text-ink hover:bg-ink/5 transition-colors cursor-pointer"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
+              {/* Next / Prev Chevrons */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={prev}
+                  aria-label="Previous product"
+                  className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center text-ink/60 hover:text-ink hover:bg-ink/5 transition-colors cursor-pointer"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={next}
+                  aria-label="Next product"
+                  className="w-9 h-9 rounded-full border border-ink/10 flex items-center justify-center text-ink/60 hover:text-ink hover:bg-ink/5 transition-colors cursor-pointer"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
+            </div>
 
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+          </div>
+        </div>
 
       </div>
 
