@@ -549,7 +549,7 @@ const faqs = [
   },
   {
     q: "What is the difference between Solar and Hybrid Solar + AC platforms?",
-    a: "Our pure solar platforms run 100% off-grid with 4–8 days of autonomy. Hybrid platforms (like Solar + AC Hybrid and HL Pranjal) run on solar power primarily, with automatic AC grid backup during extended severe monsoon periods for 100% guaranteed 365-day uptime.",
+    a: "Our pure solar platforms run 100% off-grid with 4–8 days of autonomy. Hybrid platforms (like HL Voltage and HL Pranjal) run on solar power primarily, with automatic AC grid backup during extended severe monsoon periods for 100% guaranteed 365-day uptime.",
   },
   {
     q: "Do you offer custom OEM / ODM specifications and photometric DIALux planning?",
@@ -653,13 +653,13 @@ function Closer() {
           className="text-display text-ink text-[11vw] sm:text-[9vw] md:text-[7.5vw] font-bold leading-[0.95] tracking-[-0.04em]"
         >
           <div className="overflow-hidden py-1">
-            <span className="closer-line inline-block">Built for the</span>
+            <span className="closer-line inline-block">Illuminating</span>
           </div>
           <div className="overflow-hidden py-1">
-            <span className="closer-line inline-block">world's biggest</span>
+            <span className="closer-line inline-block">India’s next</span>
           </div>
           <div className="overflow-hidden py-1">
-            <span className="closer-line inline-block text-signal">stages.</span>
+            <span className="closer-line inline-block text-signal">chapter.</span>
           </div>
         </h2>
 

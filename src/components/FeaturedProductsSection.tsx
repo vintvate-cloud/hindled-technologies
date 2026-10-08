@@ -62,6 +62,46 @@ const productHighlights: Record<string, { badge1: string; badge2: string; icon1:
     title2: "360° Low-Glare Illumination",
     desc2: "Delivers soft, glare-free 360° warm illumination for heritage promenades, royal hotels, and civic plazas.",
   },
+  "shiva": {
+    badge1: "100% Without Electricity",
+    badge2: "Architectural Solar Bollard",
+    icon1: Sparkles,
+    title1: "Sculptural Twisted Geometry",
+    desc1: "Architectural anodized form casting asymmetric low-glare pools of illumination along luxury paths.",
+    icon2: Sun,
+    title2: "Integrated Cylindrical PV",
+    desc2: "High-efficiency HPBC monocrystalline solar cells with internal LiFePO4 battery for dependable all-night operation.",
+  },
+  "mangal-stambh-wooden": {
+    badge1: "100% Without Electricity",
+    badge2: "Timber Heritage Column",
+    icon1: Layers,
+    title1: "Treated Architectural Timber",
+    desc1: "Blends organic wood-grain aesthetic with heavy-duty structural aluminium 6063 core.",
+    icon2: Sun,
+    title2: "High-Yield Solar Capture",
+    desc2: "Up to 560W monocrystalline PV paired with Philips Lumileds delivering 170 lm/W output.",
+  },
+  "vion-lightning": {
+    badge1: "100% Without Electricity",
+    badge2: "Linear Solar Wall-Wash",
+    icon1: Sparkles,
+    title1: "Façade Grazing Optics",
+    desc1: "Selectable wide, middle, and narrow beam distributions engineered to illuminate exterior walls & textures.",
+    icon2: ShieldCheck,
+    title2: "Adjustable Angle Mounting",
+    desc2: "1-metre aluminium 6063 linear body with integrated 20W solar module and 15Ah LiFePO4 battery.",
+  },
+  "zono-post-top": {
+    badge1: "100% Without Electricity",
+    badge2: "Cylindrical Post-Top",
+    icon1: Sun,
+    title1: "Vertical Wrap Solar PV",
+    desc1: "Seamlessly integrated 200W vertical solar module with 360° sunlight capture and zero wind soot buildup.",
+    icon2: Sparkles,
+    title2: "Glare-Free Ambient Lighting",
+    desc2: "Type II & Type V optical distributions engineered for municipal parks, university campuses, and civic paths.",
+  },
 };
 
 export function FeaturedProductsSection() {
@@ -72,7 +112,7 @@ export function FeaturedProductsSection() {
   const [isPaused, setIsPaused] = useState(false);
   const isAnimatingRef = useState({ current: false })[0];
 
-  // Enriched featured items (4 products: TEJAS, HL GAJ, HL ADITI, SANDHYA)
+  // Enriched featured items (8 products)
   const enrichedList = featured.map(enrichProduct);
 
   // Seamless infinite loop clones: [last, ...items, first]

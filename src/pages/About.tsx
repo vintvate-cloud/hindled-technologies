@@ -15,12 +15,12 @@ export default function AboutPage() {
       <section className="bg-paper pt-40 pb-32">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-8 text-ink/60">— Studio / About</div>
-          <h1 className="text-display text-ink text-[13vw] leading-[0.88] sm:text-[11vw] md:text-[9vw] font-bold">
+          <h1 className="text-display text-ink text-[10.5vw] sm:text-[9vw] md:text-[7.5vw] leading-[1.02] font-bold [word-spacing:0.3em] tracking-normal">
             WE DON'T MAKE
             <br />
             FIXTURES. WE
             <br />
-            <span className="text-signal">SHAPE LIGHT.</span>
+            <span className="text-signal block mt-2 sm:mt-4">SHAPE LIGHT.</span>
           </h1>
         </div>
       </section>
@@ -32,7 +32,7 @@ export default function AboutPage() {
           </div>
           <div className="md:col-span-7">
             <p className="text-display text-2xl sm:text-3xl leading-tight text-ink md:text-5xl font-bold">
-              Light is infrastructure. We engineer it like aerospace — every optic, driver, vertical PV module, and
+              Light is infrastructure. We engineer it like aerospace, every optic, driver, vertical PV module, and
               housing tested against the environments most manufacturers retreat from.
             </p>
             <p className="mt-8 max-w-xl text-sm sm:text-base leading-relaxed text-ink/70 font-light">
