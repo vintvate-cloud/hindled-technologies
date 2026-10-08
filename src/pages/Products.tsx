@@ -97,17 +97,15 @@ export default function ProductsPage() {
   // Map products to their matched application categories
   const appGroupedProducts = useMemo(() => {
     return solutionApplications.map((app) => {
-      const matched = enrichedCatalogue.filter((prod) =>
-        app.matchingSlugs.includes(prod.slug) ||
-        (app.category === "Solar" && prod.category === "Solar") ||
-        (app.category === "Outdoor & Industrial" && prod.category === "Outdoor & Industrial")
-      );
-      const uniqueMatched = Array.from(new Set(matched.map(m => m.slug)))
-        .map(slug => matched.find(m => m.slug === slug)!);
+      const matched = app.matchingSlugs && app.matchingSlugs.length > 0
+        ? app.matchingSlugs
+            .map((slug) => enrichedCatalogue.find((prod) => prod.slug === slug))
+            .filter((p): p is EnrichedProduct => Boolean(p))
+        : enrichedCatalogue.filter((prod) => prod.category === app.category);
 
       return {
         app,
-        products: uniqueMatched.slice(0, 4)
+        products: matched
       };
     });
   }, []);
@@ -122,12 +120,12 @@ export default function ProductsPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl"
+          className="max-w-5xl"
         >
           <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-3">
             — HARDWARE PORTFOLIO
           </span>
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold text-ink tracking-tight leading-[0.95]">
+          <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-ink tracking-tight leading-[0.93]">
             Hardware Inventory by <span className="text-signal">Application.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base text-ink/70 font-light leading-relaxed">

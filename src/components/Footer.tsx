@@ -68,7 +68,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.instagram.com"
+                  href="https://www.instagram.com/hindled7?stkn=ZGdnb2o5ZDJxNGlh"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-signal transition-colors flex items-center gap-1"

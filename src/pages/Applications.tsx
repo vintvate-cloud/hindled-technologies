@@ -22,10 +22,9 @@ export default function AppsPage() {
           <div className="flex items-center gap-2 text-mono mb-6 text-signal font-bold uppercase tracking-widest">
             <Compass className="w-4 h-4" /> Lighting Infrastructure Applications
           </div>
-          <h1 className="text-display text-ink text-[12vw] leading-[0.88] sm:text-[10vw] md:text-[8vw] max-w-6xl font-bold tracking-tight">
-            WHERE THE LIGHT
-            <br />
-            <span className="text-signal">HAS TO PERFORM.</span>
+          <h1 className="text-display text-ink text-[11vw] sm:text-[10vw] md:text-[9vw] lg:text-[8vw] xl:text-[7.5vw] font-bold [word-spacing:0.2em] tracking-tight leading-[0.92]">
+            <span className="block whitespace-nowrap">WHERE THE LIGHT</span>
+            <span className="text-signal block whitespace-nowrap mt-3 sm:mt-5">HAS TO PERFORM.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-ink/75 font-light">
             We consult, engineer, and deploy high-performance illumination solutions across 8 specialized infrastructure categories. Tailored for extreme thermal, electrical, and environmental demands.

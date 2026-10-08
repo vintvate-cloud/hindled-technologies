@@ -21,10 +21,10 @@ export default function TechPage() {
       <section className="bg-paper pt-40 pb-20">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-8 text-ink/60">— Discipline / Technology</div>
-          <h1 className="text-display text-ink text-[13vw] leading-[0.88] sm:text-[11vw] md:text-[9vw]">
-            ENGINEERED
+          <h1 className="text-display text-ink text-[13vw] leading-[1.02] sm:text-[11vw] md:text-[9vw]">
+            INTELLIGENT
             <br />
-            <span className="text-signal">PHOTON BY PHOTON.</span>
+            <span className="text-signal block mt-3 sm:mt-5">ILLUMINATION.</span>
           </h1>
           <p className="mt-8 max-w-xl text-sm leading-relaxed text-ink/70">
             Every HINDLED Technologies luminaire is the sum of six engineering disciplines working in concert.

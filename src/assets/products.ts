@@ -467,8 +467,8 @@ const rawCatalogue: CatalogueItem[] = [
   {
     slug: "solar-ac-hybrid",
     code: "18",
-    series: "SOLAR + AC HYBRID",
-    name: "Solar + AC Power LED Light Solution",
+    series: "HL VOLTAGE",
+    name: "HL Voltage Solar + AC Power LED Light Solution",
     tagline: "Intelligent dual-power hybrid area light · 20W – 50W",
     category: "Hybrid Solar + AC",
     image: solarAcHybridImg,
@@ -590,13 +590,17 @@ const rawCatalogue: CatalogueItem[] = [
 
 export const catalogue: CatalogueItem[] = rawCatalogue;
 
-// Exact 4 Featured Products requested by user:
-// HL GAJ, HL ADITI, SANDHYA series, TEJAS series (Smart Pole with Camera + Solar Light without electricity)
+// Featured Products requested by user:
+// HL GAJ, HL ADITI, SANDHYA, TEJAS, SHIVA, MANGAL STAMBH WOODEN, VION LIGHTNING, ZONO POST-TOP
 export const featured: CatalogueItem[] = [
   catalogue.find((c) => c.slug === "hl-gaj")!,
   catalogue.find((c) => c.slug === "hl-aditi")!,
   catalogue.find((c) => c.slug === "sandhya")!,
   catalogue.find((c) => c.slug === "tejas-smart-pole")!,
+  catalogue.find((c) => c.slug === "shiva")!,
+  catalogue.find((c) => c.slug === "mangal-stambh-wooden")!,
+  catalogue.find((c) => c.slug === "vion-lightning")!,
+  catalogue.find((c) => c.slug === "zono-post-top")!,
 ];
 
 export const products = featured;
