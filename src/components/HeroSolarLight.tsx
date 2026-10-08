@@ -161,50 +161,50 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
             style={{ opacity: coneOpacity }}
             className="absolute inset-0 z-0 flex items-end justify-center pointer-events-none will-change-[opacity]"
           >
-            {/* SVG Illumination Cone - Starts directly under the luminaire bracket (x=240, y=120) and casts downward */}
+            {/* SVG Illumination Cone - Starts directly under the luminaire bracket and casts a wide downward beam */}
             <svg
-              className="absolute bottom-0 w-[420%] h-[115%] -left-[180%] overflow-visible pointer-events-none"
-              viewBox="0 0 600 800"
+              className="absolute -bottom-8 w-[440%] h-[126%] -left-[170%] overflow-visible pointer-events-none"
+              viewBox="0 0 600 860"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
                 <filter id="heroBeamBlurWide" x="-50%" y="-30%" width="200%" height="160%">
-                  <feGaussianBlur stdDeviation="32" />
+                  <feGaussianBlur stdDeviation="34" />
                 </filter>
                 <filter id="heroBeamBlurCore" x="-30%" y="-20%" width="160%" height="140%">
                   <feGaussianBlur stdDeviation="14" />
                 </filter>
                 <filter id="heroGroundBlur" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="18" />
+                  <feGaussianBlur stdDeviation="22" />
                 </filter>
                 <filter id="poleShadowBlur" x="-20%" y="-20%" width="140%" height="140%">
                   <feGaussianBlur stdDeviation="6" />
                 </filter>
 
-                {/* Soft feathered volumetric radial gradient starting cleanly under luminaire neck (x=240, y=120) */}
-                <radialGradient id="heroRadialGrad" cx="240" cy="120" rx="320" ry="680" fx="240" fy="120" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.85" />
-                  <stop offset="18%" stopColor="#fef08a" stopOpacity="0.5" />
+                {/* Soft feathered volumetric radial gradient starting cleanly under luminaire neck */}
+                <radialGradient id="heroRadialGrad" cx="296" cy="40" rx="420" ry="860" fx="296" fy="40" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.88" />
+                  <stop offset="16%" stopColor="#fef08a" stopOpacity="0.52" />
                   <stop offset="45%" stopColor="#f59e0b" stopOpacity="0.18" />
                   <stop offset="78%" stopColor="#d97706" stopOpacity="0.03" />
                   <stop offset="100%" stopColor="#d97706" stopOpacity="0" />
                 </radialGradient>
 
                 {/* Core directional linear beam gradient angled downwards to the left */}
-                <linearGradient id="heroLinearBeamGrad" x1="240" y1="120" x2="190" y2="800" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
-                  <stop offset="14%" stopColor="#fef08a" stopOpacity="0.45" />
+                <linearGradient id="heroLinearBeamGrad" x1="296" y1="40" x2="245" y2="840" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+                  <stop offset="14%" stopColor="#fef08a" stopOpacity="0.48" />
                   <stop offset="45%" stopColor="#f59e0b" stopOpacity="0.16" />
                   <stop offset="80%" stopColor="#d97706" stopOpacity="0.02" />
                   <stop offset="100%" stopColor="#d97706" stopOpacity="0" />
                 </linearGradient>
 
                 {/* Ambient ground pool illumination biased towards the front-left */}
-                <radialGradient id="heroGroundGrad" cx="45%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.8" />
-                  <stop offset="35%" stopColor="#fde68a" stopOpacity="0.45" />
-                  <stop offset="70%" stopColor="#f59e0b" stopOpacity="0.12" />
+                <radialGradient id="heroGroundGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.85" />
+                  <stop offset="35%" stopColor="#fde68a" stopOpacity="0.5" />
+                  <stop offset="70%" stopColor="#f59e0b" stopOpacity="0.15" />
                   <stop offset="100%" stopColor="#000000" stopOpacity="0" />
                 </radialGradient>
 
@@ -218,15 +218,15 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
 
               {/* Directional Ground Shadow under the pole base */}
               <ellipse
-                cx="315"
-                cy="785"
-                rx="60"
-                ry="12"
+                cx="335"
+                cy="830"
+                rx="65"
+                ry="13"
                 fill="url(#poleContactShadow)"
                 filter="url(#poleShadowBlur)"
               />
               <path
-                d="M 285 780 L 410 790 L 390 796 L 275 785 Z"
+                d="M 305 825 L 430 835 L 410 842 L 295 830 Z"
                 fill="#000000"
                 opacity="0.7"
                 filter="url(#poleShadowBlur)"
@@ -234,36 +234,38 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
 
               {/* Layer 1: Wide atmospheric haze cone angled down and left from beneath luminaire */}
               <polygon
-                points="230,120 -30,800 460,800 250,120"
+                points="288,40 -40,845 550,845 304,40"
                 fill="url(#heroRadialGrad)"
-                opacity="0.6"
+                opacity="0.68"
                 filter="url(#heroBeamBlurWide)"
               />
 
               {/* Layer 2: Core luminous focused beam */}
               <polygon
-                points="235,120 50,800 370,800 245,120"
+                points="292,40 50,845 445,845 300,40"
                 fill="url(#heroLinearBeamGrad)"
-                opacity="0.7"
+                opacity="0.78"
                 filter="url(#heroBeamBlurCore)"
               />
 
-              {/* Ground Pool of warm ambient light */}
+              {/* Extended Ground Pool of warm ambient light */}
               <ellipse
-                cx="210"
-                cy="785"
-                rx="220"
-                ry="38"
+                cx="250"
+                cy="830"
+                rx="280"
+                ry="48"
                 fill="url(#heroGroundGrad)"
                 filter="url(#heroGroundBlur)"
               />
 
               {/* Floating luminous dust motes */}
-              <circle cx="210" cy="240" r="2" fill="#fff" opacity="0.75" />
-              <circle cx="160" cy="400" r="2.5" fill="#fef08a" opacity="0.6" />
-              <circle cx="270" cy="530" r="1.5" fill="#fff" opacity="0.65" />
-              <circle cx="130" cy="640" r="2.5" fill="#fde047" opacity="0.45" />
-              <circle cx="300" cy="690" r="2" fill="#fff" opacity="0.55" />
+              <circle cx="275" cy="160" r="2" fill="#fff" opacity="0.8" />
+              <circle cx="215" cy="320" r="2.5" fill="#fef08a" opacity="0.65" />
+              <circle cx="320" cy="460" r="1.5" fill="#fff" opacity="0.65" />
+              <circle cx="165" cy="620" r="2.5" fill="#fde047" opacity="0.5" />
+              <circle cx="345" cy="700" r="2" fill="#fff" opacity="0.55" />
+              <circle cx="110" cy="760" r="2" fill="#fef08a" opacity="0.4" />
+              <circle cx="380" cy="780" r="1.8" fill="#fff" opacity="0.45" />
             </svg>
           </motion.div>
 
@@ -307,6 +309,19 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
                 <span className="w-1.5 h-1.5 rounded-full bg-red-400 shadow-[0_0_6px_#ef4444]" />
               </motion.div>
             </div>
+
+            {/* HL Tejas Smart Pole Product Tag placed closer to the Pole */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+              className="absolute z-30 bottom-8 sm:bottom-12 md:bottom-16 left-1 sm:left-2 -translate-x-full flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/25 shadow-2xl whitespace-nowrap pointer-events-none"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10b981] animate-pulse" />
+              <span className="font-mono text-[9px] sm:text-[11px] font-bold tracking-widest text-white uppercase">
+                HL TEJAS SMART POLE
+              </span>
+            </motion.div>
           </div>
         </div>
 
@@ -325,10 +340,6 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               <span className="w-2 h-2 rounded-full bg-[#f4a41d] animate-pulse" />
               <span className="font-display font-semibold text-[11px] sm:text-xs md:text-sm text-amber-300">
                 सूरज से जलती रोशनी
-              </span>
-              <span className="text-white/40 text-xs">|</span>
-              <span className="font-mono text-[10px] sm:text-[11px] md:text-xs text-white/90 uppercase tracking-widest">
-                HL Tejas Smart Pole
               </span>
             </motion.div>
 
