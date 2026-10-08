@@ -8,31 +8,24 @@ interface HeroSolarLightProps {
 }
 
 function BatteryChargingHUD({ progress }: { progress: MotionValue<number> }) {
-  const [percent, setPercent] = useState(55);
-
-  useEffect(() => {
-    return progress.on("change", (latest: number) => {
-      // Map day-to-night scroll conversion 0 -> 1 to battery charge 55% -> 100%
-      const normalized = Math.min(1, Math.max(0, latest));
-      const val = Math.round(55 + normalized * 45);
-      setPercent(val);
-    });
-  }, [progress]);
-
-  const isFull = percent >= 98;
+  // Pure Framer Motion transform - ZERO React state re-renders during scroll!
+  const fillWidth = useTransform(progress, [0, 1], ["55%", "100%"]);
+  const boltColor = useTransform(progress, [0, 0.95, 1], ["#ffffff", "#ffffff", "#fcd34d"]);
 
   return (
     <div className="relative flex items-center select-none filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)]">
       {/* Bold Battery Shell */}
       <div className="w-14 sm:w-20 md:w-24 h-7 sm:h-9 md:h-11 rounded-lg sm:rounded-xl border-2 border-emerald-400/90 p-[3px] sm:p-1 flex items-center bg-black/80 backdrop-blur-md relative overflow-hidden shadow-[0_0_24px_rgba(16,185,129,0.45)]">
         {/* Animated Green Charge Fill */}
-        <div
-          style={{ width: `${percent}%` }}
-          className="h-full rounded-[4px] sm:rounded-md bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-300 shadow-[0_0_16px_#10B981] transition-all duration-75"
+        <motion.div
+          style={{ width: fillWidth }}
+          className="h-full rounded-[4px] sm:rounded-md bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-300 shadow-[0_0_16px_#10B981] will-change-[width]"
         />
         {/* Pulsing Lightning Bolt Inside Battery */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <Zap className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ${isFull ? "text-amber-300" : "text-white animate-pulse"} drop-shadow-lg`} />
+          <motion.div style={{ color: boltColor }} className="animate-pulse">
+            <Zap className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 drop-shadow-lg" />
+          </motion.div>
         </div>
       </div>
       {/* Battery Positive Terminal Tip */}
@@ -51,48 +44,47 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
     offset: ["start start", "end end"],
   });
 
-  // Fast, responsive spring tailored for buttery mobile touch gestures (120fps / zero jank)
+  // Buttery-smooth spring tuned for mobile touch momentum and desktop scroll wheel
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 220,
-    damping: 28,
-    mass: 0.1,
-    restDelta: 0.0005,
+    stiffness: 120,
+    damping: 24,
+    mass: 0.15,
+    restDelta: 0.001,
   });
 
-  // Complete the Sun-to-Moon day-to-night conversion smoothly in the first 42% of scroll
-  // and hold rock-solid for the rest of the section
-  const p = useTransform(smoothProgress, [0, 0.42], [0, 1]);
+  // Smooth, gradual progression over the hero scroll runway
+  const p = useTransform(smoothProgress, [0, 0.58], [0, 1]);
 
   // Pure GPU-composited opacity transforms - ZERO React state re-renders during scroll!
-  const daySkyOpacity = useTransform(p, [0, 0.38], [1, 0]);
-  const duskSkyOpacity = useTransform(p, [0, 0.3, 0.65], [0, 1, 0]);
-  const nightSkyOpacity = useTransform(p, [0.22, 0.6], [0, 1]);
-  const starsOpacity = useTransform(p, [0.3, 0.7], [0, 0.95]);
+  const daySkyOpacity = useTransform(p, [0, 0.42], [1, 0]);
+  const duskSkyOpacity = useTransform(p, [0.08, 0.38, 0.72], [0, 1, 0]);
+  const nightSkyOpacity = useTransform(p, [0.28, 0.68], [0, 1]);
+  const starsOpacity = useTransform(p, [0.35, 0.75], [0, 0.95]);
 
   // Locked Celestial Orb (Seamless Sun-to-Moon morph in place)
-  const sunOpacity = useTransform(p, [0, 0.42], [1, 0]);
-  const moonOpacity = useTransform(p, [0.16, 0.58], [0, 1]);
-  const moonAuraOpacity = useTransform(p, [0.22, 0.65], [0, 1]);
+  const sunOpacity = useTransform(p, [0, 0.48], [1, 0]);
+  const moonOpacity = useTransform(p, [0.2, 0.65], [0, 1]);
+  const moonAuraOpacity = useTransform(p, [0.28, 0.72], [0, 1]);
 
   // Soft Volumetric Illumination Beam & Ground Pool
-  const coneOpacity = useTransform(p, [0.18, 0.58], [0, 1]);
+  const coneOpacity = useTransform(p, [0.22, 0.68], [0, 1]);
 
   // Ground silhouette cross-fades
-  const dayGroundOpacity = useTransform(p, [0, 0.35], [1, 0]);
-  const nightGroundOpacity = useTransform(p, [0.2, 0.55], [0, 1]);
+  const dayGroundOpacity = useTransform(p, [0, 0.42], [1, 0]);
+  const nightGroundOpacity = useTransform(p, [0.25, 0.62], [0, 1]);
 
   // Solar active harvest pulse overlay
-  const solarPulseOpacity = useTransform(p, [0, 0.28], [0.45, 0]);
+  const solarPulseOpacity = useTransform(p, [0, 0.32], [0.45, 0]);
 
   // Smart CCTV status LED
-  const cctvDayOpacity = useTransform(p, [0, 0.32], [1, 0]);
-  const cctvNightOpacity = useTransform(p, [0.32, 0.48], [0, 1]);
+  const cctvDayOpacity = useTransform(p, [0, 0.38], [1, 0]);
+  const cctvNightOpacity = useTransform(p, [0.38, 0.55], [0, 1]);
 
   return (
     <div
       ref={containerRef}
       id="hero"
-      className="relative w-full h-[180vh] sm:h-[210vh] md:h-[240vh] bg-[#070913] touch-pan-y"
+      className="relative w-full h-[220vh] sm:h-[220vh] md:h-[240vh] bg-[#070913] touch-pan-y"
     >
       {/* Sticky Fullscreen Cinematic Hero Stage */}
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col justify-center select-none bg-[#070913]">
@@ -137,7 +129,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
 
         {/* ============================================================ LOCKED CELESTIAL ORB (MOON/SUN IN OPEN SKY - CLEAR OF POLE) */}
         <div
-          className="absolute z-2 pointer-events-none top-[7vh] sm:top-[10vh] right-[18vw] sm:right-[22vw] md:right-[24vw] lg:right-[26vw] w-16 h-16 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
+          className="absolute z-2 pointer-events-none top-[7.5vh] sm:top-[10vh] right-[14vw] sm:right-[22vw] md:right-[24vw] lg:right-[26vw] w-14 h-14 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
         >
           {/* Sun Layer */}
           <motion.div
@@ -189,7 +181,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         </div>
 
         {/* ============================================================ TEJAS SMART POLE (LIGHT EMANATING NATURALLY FROM UNDER LUMINAIRE WITH ZERO HARSH OVERLAYS) */}
-        <div className="absolute right-2 sm:right-[3vw] md:right-[6vw] lg:right-[10vw] bottom-0 z-10 h-[56vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
+        <div className="absolute right-2 sm:right-[3vw] md:right-[6vw] lg:right-[10vw] bottom-0 z-10 h-[62vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
           
           {/* Volumetric Night Illumination Cone & Ground Shadow/Pool (Placed cleanly BEHIND/UNDER pole fixture) */}
           <motion.div
@@ -345,15 +337,15 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               </motion.div>
             </div>
 
-            {/* HL Tejas Smart Pole Product Tag placed closer to the Pole */}
+            {/* HL Tejas Smart Pole Product Tag placed cleanly */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
-              className="absolute z-30 bottom-8 sm:bottom-12 md:bottom-16 left-1 sm:left-2 -translate-x-full flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/25 shadow-2xl whitespace-nowrap pointer-events-none"
+              className="absolute z-30 bottom-3 sm:bottom-12 md:bottom-16 right-1 sm:right-auto sm:left-2 sm:-translate-x-full flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 shadow-2xl whitespace-nowrap pointer-events-none"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10b981] animate-pulse" />
-              <span className="font-mono text-[9px] sm:text-[11px] font-bold tracking-widest text-white uppercase">
+              <span className="font-mono text-[8px] sm:text-[11px] font-bold tracking-wider sm:tracking-widest text-white uppercase">
                 HL TEJAS SMART POLE
               </span>
             </motion.div>
@@ -361,25 +353,25 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         </div>
 
         {/* ============================================================ HERO CONTENT / TYPOGRAPHY / HEADLINE */}
-        <div className="relative z-20 mx-auto w-full max-w-[1550px] px-5 sm:px-10 lg:px-14 pt-16 sm:pt-28 md:pt-32 pb-8 sm:pb-16 flex flex-col justify-center h-full pointer-events-none">
+        <div className="relative z-20 mx-auto w-full max-w-[1550px] px-4 sm:px-10 lg:px-14 pt-20 sm:pt-28 md:pt-32 pb-6 sm:pb-16 flex flex-col justify-center h-full pointer-events-none">
           {/* Main Headline & Value Proposition */}
-          <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl pointer-events-auto py-3 sm:py-8">
+          <div className="max-w-[82vw] sm:max-w-2xl lg:max-w-3xl pointer-events-auto py-2 sm:py-8">
             
             {/* Heritage Badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white shadow-xl mb-3 sm:mb-6"
+              className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-white shadow-xl mb-2.5 sm:mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-[#f4a41d] animate-pulse" />
-              <span className="font-display font-semibold text-[11px] sm:text-xs md:text-sm text-amber-300">
+              <span className="font-display font-semibold text-[10px] sm:text-xs md:text-sm text-amber-300">
                 सूरज से जलती रोशनी
               </span>
             </motion.div>
 
             {/* Animated Main Headline (Original Text) */}
-            <h1 className="font-display text-white text-[10.5vw] sm:text-[7vw] md:text-[5vw] lg:text-[4.6vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-2xl">
+            <h1 className="font-display text-white text-[8.5vw] sm:text-[7vw] md:text-[5vw] lg:text-[4.6vw] font-extrabold leading-[1.02] sm:leading-[0.92] tracking-[-0.03em] drop-shadow-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
@@ -403,21 +395,21 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-3.5 sm:mt-6 max-w-xl sm:max-w-2xl text-xs sm:text-base md:text-lg text-white/90 font-light leading-relaxed drop-shadow-md"
+              className="mt-3 sm:mt-6 max-w-[92%] sm:max-w-2xl text-[12px] sm:text-base md:text-lg text-white/90 font-normal sm:font-light leading-snug sm:leading-relaxed drop-shadow-md"
             >
               Architectural solar smart poles, off-grid roadway lighting, and high-power solar floodlights engineered to operate <strong className="font-bold text-white underline decoration-[#10B981] decoration-2 underline-offset-4">100% on solar power</strong> with zero electricity bills across roads, campuses, and infrastructure.
             </motion.p>
 
-            {/* Action Buttons (Original Text & Styling) */}
+            {/* Action Buttons (Original Text & Responsive Sizing) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.85, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-5 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
+              className="mt-4 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 max-w-[290px] sm:max-w-none"
             >
               <a
                 href="#featured-products"
-                className="rounded-full bg-[#10B981] hover:bg-[#10B981]/90 text-white font-bold uppercase tracking-widest px-5 sm:px-8 py-3 sm:py-4 text-[11px] sm:text-xs shadow-2xl cursor-pointer inline-flex items-center gap-2 group transition-all"
+                className="rounded-full bg-[#10B981] hover:bg-[#10B981]/90 text-white font-bold uppercase tracking-wider sm:tracking-widest px-5 sm:px-8 py-2.5 sm:py-4 text-[11px] sm:text-xs shadow-2xl cursor-pointer inline-flex items-center justify-center gap-2 group transition-all text-center"
               >
                 <span>Explore Featured Products</span>
                 <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -425,18 +417,18 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
 
               <button
                 onClick={openDrawer}
-                className="rounded-full border border-white/30 hover:border-white bg-black/40 hover:bg-black/60 backdrop-blur-md px-5 sm:px-7 py-3 sm:py-4 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-md"
+                className="rounded-full border border-white/30 hover:border-white bg-black/40 hover:bg-black/60 backdrop-blur-md px-5 sm:px-7 py-2.5 sm:py-4 text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-white transition-all cursor-pointer shadow-md text-center"
               >
                 Get Free Consultation
               </button>
             </motion.div>
 
-            {/* Live Battery Charge Animation under Buttons */}
+            {/* Live Battery Charge Animation */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ duration: 0.85, delay: 0.55, ease: "easeOut" }}
-              className="mt-5 sm:mt-7 flex items-center gap-3"
+              className="mt-4 sm:mt-7 flex items-center"
             >
               <BatteryChargingHUD progress={p} />
             </motion.div>
