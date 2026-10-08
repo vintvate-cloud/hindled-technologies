@@ -1,9 +1,44 @@
-import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useSpring, useTransform, MotionValue } from "framer-motion";
+import { Zap } from "lucide-react";
 import { useContactDrawer } from "./ContactDrawer";
 
 interface HeroSolarLightProps {
   isReady?: boolean;
+}
+
+function BatteryChargingHUD({ progress }: { progress: MotionValue<number> }) {
+  const [percent, setPercent] = useState(55);
+
+  useEffect(() => {
+    return progress.on("change", (latest: number) => {
+      // Map day-to-night scroll conversion 0 -> 1 to battery charge 55% -> 100%
+      const normalized = Math.min(1, Math.max(0, latest));
+      const val = Math.round(55 + normalized * 45);
+      setPercent(val);
+    });
+  }, [progress]);
+
+  const isFull = percent >= 98;
+
+  return (
+    <div className="relative flex items-center select-none filter drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)]">
+      {/* Bold Battery Shell */}
+      <div className="w-14 sm:w-20 md:w-24 h-7 sm:h-9 md:h-11 rounded-lg sm:rounded-xl border-2 border-emerald-400/90 p-[3px] sm:p-1 flex items-center bg-black/80 backdrop-blur-md relative overflow-hidden shadow-[0_0_24px_rgba(16,185,129,0.45)]">
+        {/* Animated Green Charge Fill */}
+        <div
+          style={{ width: `${percent}%` }}
+          className="h-full rounded-[4px] sm:rounded-md bg-gradient-to-r from-emerald-500 via-emerald-400 to-teal-300 shadow-[0_0_16px_#10B981] transition-all duration-75"
+        />
+        {/* Pulsing Lightning Bolt Inside Battery */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <Zap className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ${isFull ? "text-amber-300" : "text-white animate-pulse"} drop-shadow-lg`} />
+        </div>
+      </div>
+      {/* Battery Positive Terminal Tip */}
+      <div className="w-1 sm:w-1.5 h-3.5 sm:h-4.5 md:h-5 rounded-r-md bg-emerald-400/90 ml-[2px] shadow-[0_0_8px_#10b981]" />
+    </div>
+  );
 }
 
 export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
@@ -394,6 +429,16 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               >
                 Get Free Consultation
               </button>
+            </motion.div>
+
+            {/* Live Battery Charge Animation under Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+              transition={{ duration: 0.85, delay: 0.55, ease: "easeOut" }}
+              className="mt-5 sm:mt-7 flex items-center gap-3"
+            >
+              <BatteryChargingHUD progress={p} />
             </motion.div>
           </div>
         </div>
