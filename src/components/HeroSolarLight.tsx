@@ -100,9 +100,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
           <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_80px_120px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_160px_60px,#ffd599,rgba(0,0,0,0)),radial-gradient(2px_2px_at_240px_180px,#ffffff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_320px_90px,#a5c4ff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_420px_220px,#ffffff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_560px_80px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_680px_260px,#ffd599,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_800px_140px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_950px_70px,#a5c4ff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_1100px_210px,#ffffff,rgba(0,0,0,0))] bg-repeat bg-[size:360px_360px] opacity-80" />
         </motion.div>
 
-        {/* ============================================================ LOCKED CELESTIAL ORB (SNAPPY SUN-TO-MOON MORPH) */}
+        {/* ============================================================ LOCKED CELESTIAL ORB (MOON/SUN IN OPEN SKY - CLEAR OF POLE) */}
         <div
-          className="absolute z-2 pointer-events-none top-[8vh] sm:top-[12vh] right-[5vw] sm:right-[10vw] md:right-[14vw] w-18 h-18 sm:w-28 sm:h-28 md:w-[120px] md:h-[120px]"
+          className="absolute z-2 pointer-events-none top-[7vh] sm:top-[10vh] right-[18vw] sm:right-[22vw] md:right-[24vw] lg:right-[26vw] w-16 h-16 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
         >
           {/* Sun Layer */}
           <motion.div
@@ -153,278 +153,161 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
           <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
 
-        {/* ============================================================ HL TEJAS ARCHITECTURAL SMART POLE VECTOR (MOBILE RESPONSIVE & SMOOTH VOLUMETRIC CONE) */}
-        <div className="absolute -right-4 sm:right-[2vw] md:right-[6vw] lg:right-[10vw] bottom-0 z-10 h-[56vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] w-[210px] sm:w-[320px] md:w-[400px] lg:w-[460px] pointer-events-none flex items-end justify-center transform-gpu">
+        {/* ============================================================ TEJAS SMART POLE (LIGHT EMANATING NATURALLY FROM UNDER LUMINAIRE WITH ZERO HARSH OVERLAYS) */}
+        <div className="absolute right-2 sm:right-[3vw] md:right-[6vw] lg:right-[10vw] bottom-0 z-10 h-[56vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
           
-          {/* SVG Smart Pole + Illumination Cone */}
-          <svg
-            className="w-full h-full drop-shadow-2xl overflow-visible"
-            viewBox="0 0 340 700"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          {/* Volumetric Night Illumination Cone & Ground Shadow/Pool (Placed cleanly BEHIND/UNDER pole fixture) */}
+          <motion.div
+            style={{ opacity: coneOpacity }}
+            className="absolute inset-0 z-0 flex items-end justify-center pointer-events-none will-change-[opacity]"
           >
-            <defs>
-              {/* Ultra-soft feathering blur filters for completely seamless gradient beam */}
-              <filter id="beamSoftBlur" x="-60%" y="-20%" width="220%" height="150%">
-                <feGaussianBlur stdDeviation="24" />
-              </filter>
-              <filter id="beamMidBlur" x="-40%" y="-15%" width="180%" height="130%">
-                <feGaussianBlur stdDeviation="14" />
-              </filter>
-              <filter id="coreGlow" x="-30%" y="-15%" width="160%" height="130%">
-                <feGaussianBlur stdDeviation="8" />
-              </filter>
-              <filter id="groundGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="16" />
-              </filter>
-
-              {/* Volumetric Radial Cone Gradient (Smooth falloff in all directions with 0 sharp edges) */}
-              <radialGradient id="volumetricRadialGrad" cx="90" cy="80" rx="300" ry="630" fx="90" fy="80" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                <stop offset="10%" stopColor="#fffbeb" stopOpacity="0.75" />
-                <stop offset="28%" stopColor="#fef08a" stopOpacity="0.45" />
-                <stop offset="55%" stopColor="#f59e0b" stopOpacity="0.2" />
-                <stop offset="82%" stopColor="#d97706" stopOpacity="0.04" />
-                <stop offset="100%" stopColor="#d97706" stopOpacity="0.0" />
-              </radialGradient>
-
-              {/* Soft Linear Beam Gradient */}
-              <linearGradient id="softLinearGrad" x1="90" y1="80" x2="90" y2="700" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
-                <stop offset="15%" stopColor="#fef08a" stopOpacity="0.6" />
-                <stop offset="45%" stopColor="#f59e0b" stopOpacity="0.25" />
-                <stop offset="80%" stopColor="#d97706" stopOpacity="0.05" />
-                <stop offset="100%" stopColor="#d97706" stopOpacity="0.0" />
-              </linearGradient>
-
-              <radialGradient id="groundPoolGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.9" />
-                <stop offset="35%" stopColor="#fde68a" stopOpacity="0.55" />
-                <stop offset="70%" stopColor="#f59e0b" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#000000" stopOpacity="0" />
-              </radialGradient>
-
-              {/* Solar Panel Monocrystalline Texture Pattern */}
-              <pattern id="solarGridPattern" width="16" height="12" patternUnits="userSpaceOnUse">
-                <rect width="16" height="12" fill="#0f172a" stroke="#1e293b" strokeWidth="0.8" />
-                <path d="M0 6h16M8 0v12" stroke="#334155" strokeWidth="0.5" />
-                <circle cx="8" cy="6" r="1" fill="#38bdf8" opacity="0.4" />
-              </pattern>
-
-              {/* Solar Panel Active Energy Harvest Pulse Gradient */}
-              <linearGradient id="solarHarvestGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.6" />
-                <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#10b981" stopOpacity="0.9" />
-              </linearGradient>
-
-              {/* Metal Column Gradient */}
-              <linearGradient id="poleMetalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#1e2433" />
-                <stop offset="35%" stopColor="#3d4960" />
-                <stop offset="70%" stopColor="#1e2433" />
-                <stop offset="100%" stopColor="#0d111a" />
-              </linearGradient>
-
-              {/* Luminaire Glow Filter */}
-              <filter id="lampGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="5" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-
-            {/* ==================== VOLUMETRIC LIGHT BEAM CONE (100% FEATHERED GRADIENT NO SHARP EDGES) ==================== */}
-            <motion.g
-              style={{
-                opacity: coneOpacity,
-              }}
-              className="will-change-[opacity]"
+            {/* SVG Illumination Cone - Starts directly under the luminaire bracket (x=240, y=120) and casts downward */}
+            <svg
+              className="absolute bottom-0 w-[420%] h-[115%] -left-[180%] overflow-visible pointer-events-none"
+              viewBox="0 0 600 800"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Layer 1: Wide atmospheric feathered ambient haze */}
-              <polygon
-                points="75,82 -200,700 420,700 125,82"
-                fill="url(#volumetricRadialGrad)"
-                opacity="0.6"
-                filter="url(#beamSoftBlur)"
-              />
+              <defs>
+                <filter id="heroBeamBlurWide" x="-50%" y="-30%" width="200%" height="160%">
+                  <feGaussianBlur stdDeviation="32" />
+                </filter>
+                <filter id="heroBeamBlurCore" x="-30%" y="-20%" width="160%" height="140%">
+                  <feGaussianBlur stdDeviation="14" />
+                </filter>
+                <filter id="heroGroundBlur" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="18" />
+                </filter>
+                <filter id="poleShadowBlur" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" />
+                </filter>
 
-              {/* Layer 2: Mid diffused soft volumetric beam */}
-              <polygon
-                points="76,82 -120,700 340,700 124,82"
-                fill="url(#volumetricRadialGrad)"
-                opacity="0.75"
-                filter="url(#beamMidBlur)"
-              />
+                {/* Soft feathered volumetric radial gradient starting cleanly under luminaire neck (x=240, y=120) */}
+                <radialGradient id="heroRadialGrad" cx="240" cy="120" rx="320" ry="680" fx="240" fy="120" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.85" />
+                  <stop offset="18%" stopColor="#fef08a" stopOpacity="0.5" />
+                  <stop offset="45%" stopColor="#f59e0b" stopOpacity="0.18" />
+                  <stop offset="78%" stopColor="#d97706" stopOpacity="0.03" />
+                  <stop offset="100%" stopColor="#d97706" stopOpacity="0" />
+                </radialGradient>
 
-              {/* Layer 3: Soft feathered luminous central core (blurred to eliminate hard edges) */}
-              <polygon
-                points="80,82 -40,700 240,700 118,82"
-                fill="url(#softLinearGrad)"
-                opacity="0.7"
-                filter="url(#coreGlow)"
-              />
+                {/* Core directional linear beam gradient angled downwards to the left */}
+                <linearGradient id="heroLinearBeamGrad" x1="240" y1="120" x2="190" y2="800" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                  <stop offset="14%" stopColor="#fef08a" stopOpacity="0.45" />
+                  <stop offset="45%" stopColor="#f59e0b" stopOpacity="0.16" />
+                  <stop offset="80%" stopColor="#d97706" stopOpacity="0.02" />
+                  <stop offset="100%" stopColor="#d97706" stopOpacity="0" />
+                </linearGradient>
 
-              {/* Ground Pool of Light */}
+                {/* Ambient ground pool illumination biased towards the front-left */}
+                <radialGradient id="heroGroundGrad" cx="45%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.8" />
+                  <stop offset="35%" stopColor="#fde68a" stopOpacity="0.45" />
+                  <stop offset="70%" stopColor="#f59e0b" stopOpacity="0.12" />
+                  <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+                </radialGradient>
+
+                {/* Ground Contact Shadow */}
+                <radialGradient id="poleContactShadow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#000000" stopOpacity="0.95" />
+                  <stop offset="60%" stopColor="#000000" stopOpacity="0.55" />
+                  <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+
+              {/* Directional Ground Shadow under the pole base */}
               <ellipse
-                cx="100"
-                cy="685"
-                rx="240"
-                ry="45"
-                fill="url(#groundPoolGrad)"
-                filter="url(#groundGlow)"
-              />
-
-              {/* Floating Light Dust Particles */}
-              <circle cx="85" cy="200" r="2" fill="#fff" opacity="0.8" />
-              <circle cx="40" cy="350" r="2.5" fill="#fef08a" opacity="0.6" />
-              <circle cx="140" cy="480" r="1.5" fill="#fff" opacity="0.7" />
-              <circle cx="-10" cy="580" r="3" fill="#fde047" opacity="0.5" />
-              <circle cx="180" cy="620" r="2" fill="#fff" opacity="0.6" />
-            </motion.g>
-
-            {/* ==================== HL TEJAS STRUCTURAL COLUMN ==================== */}
-
-            {/* Sturdy Base Flange */}
-            <rect x="156" y="660" width="36" height="30" rx="3" fill="#0f131c" />
-            <rect x="148" y="682" width="52" height="10" rx="2" fill="#1c2436" stroke="#2d3b55" strokeWidth="1" />
-            <circle cx="156" cy="687" r="2.5" fill="#64748b" />
-            <circle cx="192" cy="687" r="2.5" fill="#64748b" />
-
-            {/* Main Structural Pole Mast */}
-            <rect x="165" y="80" width="18" height="585" rx="2" fill="url(#poleMetalGrad)" stroke="#0b0e17" strokeWidth="1" />
-
-            {/* ==================== 360° VERTICAL HPBC SOLAR MODULE WRAP ==================== */}
-            <g>
-              {/* Solar Panel Housing Base */}
-              <rect
-                x="161"
-                y="140"
-                width="26"
-                height="340"
-                rx="4"
-                fill="url(#solarGridPattern)"
-                stroke="#38bdf8"
-                strokeWidth="1"
-                strokeOpacity="0.7"
-              />
-
-              {/* Active Sunlight Harvest Energy Overlay (GPU opacity fade during dusk) */}
-              <motion.rect
-                x="162"
-                y="141"
-                width="24"
-                height="338"
-                rx="3"
-                fill="url(#solarHarvestGrad)"
-                style={{ opacity: solarPulseOpacity }}
-                className="animate-pulse will-change-[opacity]"
-              />
-
-              {/* Glass Specular Gloss Highlight */}
-              <line x1="164" y1="145" x2="164" y2="475" stroke="#ffffff" strokeWidth="1.5" strokeOpacity="0.4" strokeLinecap="round" />
-              <line x1="184" y1="145" x2="184" y2="475" stroke="#000000" strokeWidth="1.5" strokeOpacity="0.6" strokeLinecap="round" />
-            </g>
-
-            {/* ==================== INTERNAL LiFePO4 BATTERY CORE ==================== */}
-            <g>
-              <rect x="163" y="500" width="22" height="130" rx="3" fill="#0d111a" stroke="#22c55e" strokeWidth="1" strokeOpacity="0.6" />
-              
-              <rect x="166" y="506" width="16" height="24" rx="2" fill="#15803d" />
-              <rect x="166" y="534" width="16" height="24" rx="2" fill="#15803d" />
-              <rect x="166" y="562" width="16" height="24" rx="2" fill="#15803d" />
-              <rect x="166" y="590" width="16" height="24" rx="2" fill="#15803d" />
-              
-              <circle cx="174" cy="622" r="2.5" fill="#22c55e" className="animate-pulse" />
-            </g>
-
-            {/* ==================== ARCHITECTURAL LUMINAIRE ARM & FIXTURE ==================== */}
-            <g>
-              <path
-                d="M174 100 C174 65, 140 68, 90 74"
-                stroke="#171d2b"
-                strokeWidth="12"
-                strokeLinecap="round"
-                fill="none"
+                cx="315"
+                cy="785"
+                rx="60"
+                ry="12"
+                fill="url(#poleContactShadow)"
+                filter="url(#poleShadowBlur)"
               />
               <path
-                d="M174 100 C174 65, 140 68, 90 74"
-                stroke="#334155"
-                strokeWidth="4"
-                strokeLinecap="round"
-                fill="none"
+                d="M 285 780 L 410 790 L 390 796 L 275 785 Z"
+                fill="#000000"
+                opacity="0.7"
+                filter="url(#poleShadowBlur)"
               />
 
-              <rect x="52" y="66" width="76" height="16" rx="6" fill="#111827" stroke="#374151" strokeWidth="1.5" />
-
-              {/* Day Off Lens */}
-              <rect
-                x="60"
-                y="80"
-                width="60"
-                height="6"
-                rx="2"
-                fill="#cbd5e1"
-                stroke="#64748b"
-                strokeWidth="1"
+              {/* Layer 1: Wide atmospheric haze cone angled down and left from beneath luminaire */}
+              <polygon
+                points="230,120 -30,800 460,800 250,120"
+                fill="url(#heroRadialGrad)"
+                opacity="0.6"
+                filter="url(#heroBeamBlurWide)"
               />
 
-              {/* Night Glowing Active Luminaire Lens */}
-              <motion.rect
-                x="60"
-                y="80"
-                width="60"
-                height="6"
-                rx="2"
-                fill="#fffbeb"
-                stroke="#fde047"
-                strokeWidth="1"
-                filter="url(#lampGlow)"
-                style={{ opacity: coneOpacity }}
-                className="will-change-[opacity]"
+              {/* Layer 2: Core luminous focused beam */}
+              <polygon
+                points="235,120 50,800 370,800 245,120"
+                fill="url(#heroLinearBeamGrad)"
+                opacity="0.7"
+                filter="url(#heroBeamBlurCore)"
               />
 
-              {/* LED Multi-Emitter Array */}
-              <g fill="#475569">
-                <circle cx="68" cy="83" r="1.5" />
-                <circle cx="78" cy="83" r="1.5" />
-                <circle cx="88" cy="83" r="1.5" />
-                <circle cx="98" cy="83" r="1.5" />
-                <circle cx="108" cy="83" r="1.5" />
-              </g>
-            </g>
+              {/* Ground Pool of warm ambient light */}
+              <ellipse
+                cx="210"
+                cy="785"
+                rx="220"
+                ry="38"
+                fill="url(#heroGroundGrad)"
+                filter="url(#heroGroundBlur)"
+              />
 
-            {/* ==================== SMART CCTV SURVEILLANCE & IoT SENSOR TOP HEAD ==================== */}
-            <g>
-              <rect x="162" y="70" width="24" height="12" rx="3" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+              {/* Floating luminous dust motes */}
+              <circle cx="210" cy="240" r="2" fill="#fff" opacity="0.75" />
+              <circle cx="160" cy="400" r="2.5" fill="#fef08a" opacity="0.6" />
+              <circle cx="270" cy="530" r="1.5" fill="#fff" opacity="0.65" />
+              <circle cx="130" cy="640" r="2.5" fill="#fde047" opacity="0.45" />
+              <circle cx="300" cy="690" r="2" fill="#fff" opacity="0.55" />
+            </svg>
+          </motion.div>
 
-              <line x1="174" y1="70" x2="174" y2="40" stroke="#475569" strokeWidth="2.5" strokeLinecap="round" />
-              <circle cx="174" cy="38" r="3" fill="#ef4444" className="animate-pulse" />
+          {/* Smart Pole Image Container */}
+          <div className="relative z-10 h-full flex items-end justify-center">
+            
+            {/* Ground Contact Depth Shadow */}
+            <div className="absolute -bottom-2 w-32 h-6 bg-black/85 rounded-full blur-md pointer-events-none" />
 
-              <rect x="180" y="88" width="14" height="6" fill="#1e293b" />
-              <path d="M192 86 L206 82 L206 100 L192 96 Z" fill="#0f172a" stroke="#334155" strokeWidth="1" />
-              
-              <circle cx="206" cy="91" r="5" fill="#020617" stroke="#38bdf8" strokeWidth="1" />
-              
-              {/* Day CCTV indicator (Green) */}
-              <motion.circle
-                cx="206"
-                cy="91"
-                r="2"
-                fill="#22c55e"
+            {/* Daytime Solar Harvest Pulse Glow */}
+            <motion.div
+              style={{ opacity: solarPulseOpacity }}
+              className="absolute inset-y-16 w-20 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent blur-md pointer-events-none will-change-[opacity]"
+            />
+
+            {/* TEJAS Smart Pole Clean PNG (Crisp Foreground, No Harsh Blobs On Top) */}
+            <img
+              src="/tejas_hero_pole_crop-removebg-preview.png"
+              alt="TEJAS Solar Smart Pole"
+              className="relative z-10 h-full w-auto max-h-full object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)]"
+              loading="eager"
+            />
+
+            {/* Smart CCTV Camera Live Telemetry Indicator (Subtle LED on Camera Lens) */}
+            <div className="absolute z-20 top-[9.6%] left-[34%] -translate-x-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center">
+              {/* Daytime Status (Green Ping) */}
+              <motion.div
                 style={{ opacity: cctvDayOpacity }}
-                className="animate-ping will-change-[opacity]"
-              />
-              {/* Night CCTV indicator (Active Red IR) */}
-              <motion.circle
-                cx="206"
-                cy="91"
-                r="2"
-                fill="#ef4444"
+                className="relative flex items-center justify-center will-change-[opacity]"
+              >
+                <span className="absolute w-2.5 h-2.5 rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 shadow-[0_0_6px_#34d399]" />
+              </motion.div>
+
+              {/* Night Active IR Surveillance (Red Ping) */}
+              <motion.div
                 style={{ opacity: cctvNightOpacity }}
-                className="animate-ping will-change-[opacity]"
-              />
-            </g>
-          </svg>
+                className="absolute inset-0 flex items-center justify-center will-change-[opacity]"
+              >
+                <span className="absolute w-2.5 h-2.5 rounded-full bg-red-500 opacity-75 animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-red-400 shadow-[0_0_6px_#ef4444]" />
+              </motion.div>
+            </div>
+          </div>
         </div>
 
         {/* ============================================================ HERO CONTENT / TYPOGRAPHY / HEADLINE */}
