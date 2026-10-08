@@ -11,8 +11,7 @@ import { FeaturedProductsSection } from "../components/FeaturedProductsSection";
 import { EditorialPreloader } from "../components/EditorialPreloader";
 import { ZapOff, Sun, ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Radio } from "lucide-react";
 
-import heroBgWebp from "@/assets/hero_light_bg_hires.webp";
-import heroBgJpg from "@/assets/hero_light_bg_hires.jpg";
+import { HeroSolarLight } from "../components/HeroSolarLight";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -47,7 +46,7 @@ export default function IndexPage() {
   return (
     <>
       <EditorialPreloader onComplete={handlePreloaderComplete} />
-      <Hero isReady={heroReady} />
+      <HeroSolarLight isReady={heroReady} />
       <Philosophy />
       <SolarArchitectureAnimation />
       <FeaturedProductsSection />
@@ -58,143 +57,6 @@ export default function IndexPage() {
       <FAQ />
       <Closer />
     </>
-  );
-}
-
-/* ============================================================ HERO WITH INSTANT CINEMATIC FADE */
-function Hero({ isReady = true }: { isReady?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const { openDrawer } = useContactDrawer();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.14,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const lineVariants: any = {
-    hidden: { y: "115%", opacity: 0 },
-    visible: {
-      y: "0%",
-      opacity: 1,
-      transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-
-  const fadeUpVariants: any = {
-    hidden: { opacity: 0, y: 28 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-
-  return (
-    <section
-      ref={ref}
-      className="relative min-h-[100vh] lg:min-h-[105vh] w-full overflow-hidden bg-[#0A0A0A] flex flex-col justify-end items-center"
-      style={{
-        backgroundImage: `url(${heroBgWebp}), url(${heroBgJpg}), url('/hero_light_bg_hires.webp'), url('/hero_light_bg_hires.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* High-Resolution Cinematic Image Layer */}
-      <motion.div
-        style={{ scale: bgScale }}
-        className="absolute inset-0 z-0 h-full w-full pointer-events-none"
-      >
-        <picture className="w-full h-full">
-          <source srcSet={heroBgWebp} type="image/webp" />
-          <motion.img
-            src={heroBgJpg}
-            alt="HINDLED Solar Infrastructure Illumination"
-            loading="eager"
-            decoding="sync"
-            fetchPriority="high"
-            initial={{ scale: 1.08, filter: "brightness(0.7)" }}
-            animate={isReady ? { scale: 1, filter: "brightness(1)" } : { scale: 1.08, filter: "brightness(0.7)" }}
-            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-            className="h-full w-full object-cover object-center"
-          />
-        </picture>
-
-        {/* Ambient Solar Photon Glow Bloom */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.6 }}
-          animate={isReady ? { opacity: 0.4, scale: 1 } : { opacity: 0, scale: 0.6 }}
-          transition={{ duration: 1.6, delay: 0.3, ease: "easeOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-signal/25 rounded-full blur-[140px] pointer-events-none z-1"
-        />
-
-        {/* Cinematic Contrast Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/15 z-1" />
-      </motion.div>
-
-      {/* Hero Content Container */}
-      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1600px] flex-col justify-end items-center text-center px-6 pb-20 pt-36 md:pb-28 lg:px-12">
-        <motion.div
-          style={{ y: textY }}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isReady ? "visible" : "hidden"}
-          className="max-w-4xl flex flex-col items-center text-center mx-auto"
-        >
-
-          {/* Headline with Masked Cinematic Slide-up */}
-          <h1 className="font-display text-white text-[11vw] sm:text-[8vw] md:text-[5.5vw] font-extrabold leading-[0.92] tracking-[-0.04em] drop-shadow-2xl text-center">
-            <div className="overflow-hidden py-1">
-              <motion.span variants={lineVariants} className="block">
-                POWERED BY DAY.
-              </motion.span>
-            </div>
-            <div className="overflow-hidden py-1">
-              <motion.span variants={lineVariants} className="block">
-                BRIGHT BY <span className="text-signal">NIGHT.</span>
-              </motion.span>
-            </div>
-          </h1>
-
-          {/* Paragraph */}
-          <motion.p
-            variants={fadeUpVariants}
-            className="mt-6 max-w-2xl text-base sm:text-lg text-white/90 font-light leading-relaxed drop-shadow-md text-center mx-auto"
-          >
-            Architectural solar smart poles, off-grid roadway lighting, and high-power solar floodlights engineered to operate <strong className="font-bold text-white underline decoration-signal decoration-2 underline-offset-4">100% on solar power</strong> with zero electricity bills across roads, campuses, and infrastructure.
-          </motion.p>
-
-          {/* Action Buttons */}
-          <motion.div
-            variants={fadeUpVariants}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
-            <a
-              href="#featured-products"
-              className="rounded-full bg-signal hover:bg-signal/90 text-white font-bold uppercase tracking-widest px-8 py-4 text-xs shadow-2xl cursor-pointer inline-flex items-center gap-2 group transition-all"
-            >
-              Explore Featured Products
-              <span className="transition-transform group-hover:translate-x-1">→</span>
-            </a>
-            
-            <button
-              onClick={openDrawer}
-              className="rounded-full border border-white/30 hover:border-white bg-black/40 hover:bg-black/60 backdrop-blur-md px-7 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-md"
-            >
-              Get Free Consultation
-            </button>
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
   );
 }
 
