@@ -80,7 +80,7 @@ function StackingCard({ layer, index, total }: StackingCardProps) {
   return (
     <div
       ref={cardRef}
-      className={`w-full sticky ${index === total - 1 ? "h-auto mb-16" : "h-[65vh] sm:h-[75vh]"}`}
+      className={`w-full sticky ${index === total - 1 ? "min-h-[50vh] mb-36 sm:mb-48" : "h-[60vh] sm:h-[72vh]"}`}
       style={{
         top: `calc(5.5rem + ${index * 26}px)`,
         zIndex: index + 1,
