@@ -16,7 +16,7 @@ const solarLayers = [
     title: "360° Vertical Solar Panels",
     subtitle: "Continuous All-Day Sunlight Harvest",
     tag: "Energy Generation · 0W Grid Draw",
-    desc: "Vertical solar panels wrap the entire pole to capture direct, reflected, and diffuse sunlight from all 360 degrees. The vertical profile naturally sheds dust and rain without requiring manual cleaning or maintenance.",
+    desc: "Vertical solar panels wrap the pole to capture direct, reflected, and diffuse sunlight from all 360 degrees. The vertical profile naturally sheds dust and rain without requiring manual cleaning or maintenance.",
     specs: ["360° All-Day Solar Capture", "Self-Cleaning Vertical Profile", "Zero Electricity Bills"],
     color: "#10B981", // Signal Emerald
     icon: Sun,
@@ -27,7 +27,7 @@ const solarLayers = [
     title: "Weatherproof Storm Armor",
     subtitle: "Engineered for Harsh Outdoor Climates",
     tag: "Mechanical Armor · IP66 / IK10",
-    desc: "Marine-grade die-cast aluminum alloy paired with high-impact toughened protective glass. Built to withstand high-wind cyclones, coastal salt humidity, and intense summer temperatures without degradation.",
+    desc: "Aluminium 6063 paired with high-impact toughened protective glass. Built to withstand high-wind cyclones, coastal salt humidity, and intense summer temperatures without degradation.",
     specs: ["High Wind Resistance", "Corrosion & Rust Proof Shell", "Impact-Resistant Shield"],
     color: "#3B82F6", // Ocean Blue
     icon: Shield,
@@ -49,19 +49,19 @@ const solarLayers = [
     title: "Long-Life Lithium Battery Storage",
     subtitle: "Multi-Night Continuous Power Reserve",
     tag: "Energy Storage · 3,000+ Cycles",
-    desc: "High-density Lithium Iron Phosphate (LiFePO4) energy cells safely housed inside the core. Delivers up to 7 consecutive nights of uninterrupted illumination during heavy monsoons and overcast winters.",
-    specs: ["Up to 7 Rainy Days Backup", "3,000+ Deep Life Cycles", "Safe Lithium Chemistry"],
+    desc: "High-density Lithium Iron Phosphate (LiFePO4) energy cells safely housed inside the core. Delivers up to 3 consecutive nights of uninterrupted illumination during heavy monsoons and overcast winters.",
+    specs: ["Up to 3 Consecutive Nights Backup", "3,000+ Deep Life Cycles", "Safe Lithium Chemistry"],
     color: "#F59E0B", // Amber Gold
     icon: BatteryCharging,
   },
   {
     id: 5,
     number: "05",
-    title: "Glare-Free Optical Illumination",
+    title: "Low-Glare Optical Illumination",
     subtitle: "Uniform Light Across Roads & Campuses",
-    tag: "Optics · Anti-Glare Precision",
-    desc: "Precision optical lenses shape high-lumen LED light uniformly across roadways, pathways, and large public spaces with zero driver glare, zero dark spots, and zero upward light pollution.",
-    specs: ["Uniform Roadway Coverage", "Zero Driver Glare", "Dark-Sky Compliant"],
+    tag: "Optics · Low-Glare Precision",
+    desc: "Precision optical lenses designed to ensure high luminaire LED light uniformly across roadways, pathways, and large public spaces with low driver glare, no dark spots, and zero upward light pollution.",
+    specs: ["Uniform Roadway Coverage", "Low Driver Glare", "No Dark Spots"],
     color: "#10B981", // Signal Emerald
     icon: Eye,
   },

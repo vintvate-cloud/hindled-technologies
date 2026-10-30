@@ -24,7 +24,7 @@ import {
 const productHighlights: Record<string, { badge1: string; badge2: string; icon1: any; title1: string; desc1: string; icon2: any; title2: string; desc2: string }> = {
   "tejas-smart-pole": {
     badge1: "100% Without Electricity",
-    badge2: "Integrated CCTV + Solar Light",
+    badge2: "Integrated CCTV Camera",
     icon1: Camera,
     title1: "Off-Grid Security Camera",
     desc1: "24/7 continuous wireless recording & 4G/Wi-Fi live cloud feed powered entirely by vertical PV battery backup.",
@@ -36,21 +36,21 @@ const productHighlights: Record<string, { badge1: string; badge2: string; icon1:
     badge1: "Up to 360,000 Lumens",
     badge2: "HDTV Broadcast Ready",
     icon1: Radio,
-    title1: "Broadcast-Grade HDTV 4K/8K",
-    desc1: "Flicker-free TLCI >90 sports optics, up to 360,000 lm output, and precision DMX512 / DALI arena controls.",
+    title1: "Professional Stadium Sports Optics",
+    desc1: "High-performance sports and stadium flood lighting for demanding output applications.",
     icon2: ShieldCheck,
-    title2: "5° Anti-Glare Forward Tilt",
-    desc2: "Modular die-cast thermal chimney cooling and 56-increment precision vertical & horizontal aiming scale.",
+    title2: "5° Low-Glare Forward Tilt",
+    desc2: "Lights engineered for professional sports facilities, stadiums, and large outdoor areas with modular cooling.",
   },
   "hl-aditi": {
     badge1: "100% Solar Powered Lighting",
     badge2: "30W to 150W Luminaire",
     icon1: ZapOff,
     title1: "100% Solar Powered Lighting",
-    desc1: "Robust, die cast aluminium housing with an Aerodynamic design that reduce wind resistance and facilitates rainwater runoff with integrated high capacity lithium batteries, MPPTs and optical sensors.",
+    desc1: "Robust, die cast aluminium housing with an aerodynamic design that reduces wind resistance and facilitates rainwater runoff with integrated high capacity lithium batteries, MPPTs and optical sensors.",
     icon2: Sun,
-    title2: "High Efficiency Optics 160–170 lm/W",
-    desc2: "High efficiency of optics 160-170lm/w with customized optical distribute and diversify roadway application.",
+    title2: "High Efficiency Optics (160–170 lm/W)",
+    desc2: "High efficiency of optics 160–170 lm/W with customized optical distribution and diversified roadway applications.",
   },
   "sandhya": {
     badge1: "100% Without Electricity",
@@ -60,46 +60,46 @@ const productHighlights: Record<string, { badge1: string; badge2: string; icon1:
     desc1: "Vertical wrap solar capture seamlessly integrated into classic heritage architectural column aesthetics.",
     icon2: Sparkles,
     title2: "360° Low-Glare Illumination",
-    desc2: "Delivers soft, glare-free 360° warm illumination for heritage promenades, royal hotels, and civic plazas.",
+    desc2: "Delivers soft, low-glare 360° warm illumination for heritage promenades, royal hotels, and civic plazas.",
   },
   "shiva": {
     badge1: "100% Without Electricity",
     badge2: "Architectural Solar Bollard",
     icon1: Sparkles,
     title1: "Sculptural Twisted Geometry",
-    desc1: "Architectural anodized form casting asymmetric low-glare pools of illumination along luxury paths.",
+    desc1: "Architectural form casting asymmetric low-glare pools of illumination along luxury paths.",
     icon2: Sun,
     title2: "Integrated Cylindrical PV",
     desc2: "High-efficiency HPBC monocrystalline solar cells with internal LiFePO4 battery for dependable all-night operation.",
   },
   "mangal-stambh-wooden": {
     badge1: "100% Without Electricity",
-    badge2: "Timber Heritage Column",
+    badge2: "Wooden & Aluminium Optional",
     icon1: Layers,
-    title1: "Treated Architectural Timber",
-    desc1: "Blends organic wood-grain aesthetic with heavy-duty structural aluminium 6063 core.",
+    title1: "Wooden & Aluminium Optional",
+    desc1: "Architectural timber and heavy-duty aluminium construction provided as optional choices.",
     icon2: Sun,
-    title2: "High-Yield Solar Capture",
-    desc2: "Up to 560W monocrystalline PV paired with Philips Lumileds delivering 170 lm/W output.",
+    title2: "Philips LED Precision Optics",
+    desc2: "High-yield solar capture paired with precision Philips LED optics delivering high-efficiency output.",
   },
   "vion-lightning": {
     badge1: "100% Without Electricity",
-    badge2: "Linear Solar Wall-Wash",
+    badge2: "Linear Solar Luminaire",
     icon1: Sparkles,
     title1: "Façade Grazing Optics",
-    desc1: "Selectable wide, middle, and narrow beam distributions engineered to illuminate exterior walls & textures.",
+    desc1: "Flagship lens with selectable wide, medium, and narrow optics to create distinctive wall washing effects.",
     icon2: ShieldCheck,
-    title2: "Adjustable Angle Mounting",
-    desc2: "1-metre aluminium 6063 linear body with integrated 20W solar module and 15Ah LiFePO4 battery.",
+    title2: "Linear 20W Solar Luminaire",
+    desc2: "Linear 20W solar luminaire with selectable wide, medium, and narrow optics options integrated.",
   },
   "zono-post-top": {
     badge1: "100% Without Electricity",
-    badge2: "Cylindrical Post-Top",
+    badge2: "Premium Pedestrian Luminaire",
     icon1: Sun,
     title1: "Vertical Wrap Solar PV",
-    desc1: "Seamlessly integrated 200W vertical solar module with 360° sunlight capture and zero wind soot buildup.",
+    desc1: "Aesthetic combines with integrated solar PV module for LED suitable outdoor illumination.",
     icon2: Sparkles,
-    title2: "Glare-Free Ambient Lighting",
+    title2: "Low-Glare Ambient Lighting",
     desc2: "Type II & Type V optical distributions engineered for municipal parks, university campuses, and civic paths.",
   },
 };
@@ -196,15 +196,15 @@ export function FeaturedProductsSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-3"
+              className="font-sans text-xs uppercase tracking-wider text-signal font-bold block mb-3"
             >
               — BENCHMARK HARDWARE
             </motion.span>
-            <h2 className="text-display text-ink text-[9vw] leading-[0.92] tracking-[-0.04em] md:text-[5vw] font-bold">
+            <h2 className="text-display text-ink text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-[-0.03em]">
               Featured <span className="text-signal">Products.</span>
             </h2>
-            <p className="mt-4 max-w-xl text-sm sm:text-base text-ink/70 font-light leading-relaxed">
-              Explore our high-performance outdoor and solar lighting systems, built for city roads, highways, stadiums, public parks, and security.
+            <p className="mt-4 max-w-xl text-sm sm:text-base text-ink/75 font-normal leading-relaxed">
+              Explore our leading solar street lights and smart poles, built for roads, campuses, parks, and large outdoor projects — powered 100% by the sun with zero electricity bills.
             </p>
           </div>
 
@@ -217,7 +217,7 @@ export function FeaturedProductsSection() {
           >
             <Link
               to="/products"
-              className="text-mono text-xs font-bold uppercase tracking-wider text-ink inline-flex items-center gap-3 border-b-2 border-signal pb-1 hover:border-ink hover:text-signal transition-colors shrink-0"
+              className="font-sans text-xs font-bold uppercase tracking-wider text-ink inline-flex items-center gap-3 border-b-2 border-signal pb-1 hover:border-ink hover:text-signal transition-colors shrink-0"
             >
               Full 21-Product Catalogue
               <span>→</span>
@@ -301,7 +301,7 @@ export function FeaturedProductsSection() {
                             <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.08]">
                               {prod.name}
                             </h3>
-                            <p className="text-xs sm:text-sm font-mono text-ink/60 mt-1.5 uppercase tracking-wider font-semibold">
+                            <p className="text-xs sm:text-sm font-sans text-ink/60 mt-1.5 uppercase tracking-wider font-semibold">
                               {prod.tagline}
                             </p>
                           </div>

@@ -86,8 +86,8 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-paper/80 font-light">
               <li><Link to="/products" className="hover:text-signal transition-colors">360° Solar Smart Poles</Link></li>
               <li><Link to="/products" className="hover:text-signal transition-colors">Stadium Floodlights (GAJ)</Link></li>
-              <li><Link to="/products" className="hover:text-signal transition-colors">CCTV + Solar Lighting (TEJAS)</Link></li>
-              <li><Link to="/products" className="hover:text-signal transition-colors">Solar Heritage Garden (SANDHYA)</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">CCTV Camera Smart Pole (TEJAS)</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Solar Heritage Luminaire (SANDHYA)</Link></li>
               <li><Link to="/products" className="hover:text-signal transition-colors">Industrial High-Bays (200 lm/W)</Link></li>
             </ul>
           </div>
