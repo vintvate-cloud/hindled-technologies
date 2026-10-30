@@ -85,7 +85,7 @@ export function Footer() {
             <h4 className="text-mono text-[10px] uppercase tracking-widest text-paper/40 mb-6 font-bold">Solutions</h4>
             <ul className="space-y-4 text-sm text-paper/80 font-light">
               <li><Link to="/products" className="hover:text-signal transition-colors">360° Solar Smart Poles</Link></li>
-              <li><Link to="/products" className="hover:text-signal transition-colors">Stadium Floodlights (HL GAJ)</Link></li>
+              <li><Link to="/products" className="hover:text-signal transition-colors">Stadium Floodlights (GAJ)</Link></li>
               <li><Link to="/products" className="hover:text-signal transition-colors">CCTV + Solar Lighting (TEJAS)</Link></li>
               <li><Link to="/products" className="hover:text-signal transition-colors">Solar Heritage Garden (SANDHYA)</Link></li>
               <li><Link to="/products" className="hover:text-signal transition-colors">Industrial High-Bays (200 lm/W)</Link></li>

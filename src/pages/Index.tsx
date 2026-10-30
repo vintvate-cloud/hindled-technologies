@@ -3,13 +3,13 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { featured, catalogue, solutionApplications, advisorProfile, type SolutionApplication } from "@/assets/products";
+import { featured, catalogue, solutionApplications, type SolutionApplication } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
 import { useMeta } from "../hooks/use-meta";
 import { SolarArchitectureAnimation } from "../components/SolarArchitectureAnimation";
 import { FeaturedProductsSection } from "../components/FeaturedProductsSection";
 import { EditorialPreloader } from "../components/EditorialPreloader";
-import { ZapOff, Sun, ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Radio } from "lucide-react";
+import { ZapOff, Sun, ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Radio, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { HeroSolarLight } from "../components/HeroSolarLight";
 
@@ -51,7 +51,6 @@ export default function IndexPage() {
       <SolarArchitectureAnimation />
       <FeaturedProductsSection />
       <SolutionsShowcase />
-      <AdvisorSection />
       <About />
       <Stats />
       <FAQ />
@@ -175,21 +174,21 @@ function Philosophy() {
                   </div>
                 </div>
 
-                <h3 className="font-display text-xl sm:text-2xl text-ink font-bold tracking-tight group-hover:text-signal transition-colors duration-300">
+                <h3 className="font-display text-2xl sm:text-3xl text-ink font-bold tracking-tight group-hover:text-signal transition-colors duration-300">
                   {b.k}
                 </h3>
-                <p className="mt-3.5 text-sm leading-relaxed text-ink/70 font-normal">
+                <p className="mt-4 text-base sm:text-lg leading-relaxed text-ink/85 font-medium">
                   {b.v}
                 </p>
               </div>
 
               {/* Bottom Tag Bar with Interactive Accent */}
-              <div className="relative z-10 mt-8 pt-4 border-t border-ink/10 flex items-center justify-between text-[11px] font-mono font-medium text-ink/50 group-hover:text-ink/80 transition-colors">
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-signal/60 group-hover:bg-signal group-hover:scale-125 transition-all" />
+              <div className="relative z-10 mt-8 pt-5 border-t border-ink/10 flex items-center justify-between text-xs sm:text-sm font-mono font-bold text-ink/70 group-hover:text-ink transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-signal/70 group-hover:bg-signal group-hover:scale-125 transition-all" />
                   <span>{b.tag}</span>
                 </div>
-                <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-signal font-bold">
+                <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-signal font-bold text-base">
                   →
                 </span>
               </div>
@@ -312,115 +311,18 @@ function SolutionsShowcase() {
   );
 }
 
-/* ============================================================ ADVISOR SECTION (MR. BRIJ BHATIA) */
-function AdvisorSection() {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  return (
-    <section className="bg-paper text-ink py-28 lg:py-40 border-t border-ink/10 relative overflow-hidden">
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-        
-        {/* Section Header with Scroll Reveal */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14 border-b border-ink/10 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6"
-        >
-          <div>
-            <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-2">
-              — TECHNICAL LEADERSHIP
-            </span>
-            <h2 className="text-display text-ink text-[8vw] leading-[0.92] tracking-[-0.04em] md:text-[4.5vw] font-bold">
-              Chief Technical <span className="text-signal">Advisory.</span>
-            </h2>
-          </div>
-          <p className="max-w-md text-sm text-ink/70 font-light leading-relaxed">
-            Infrastructure engineering &amp; photometrics tailored for Indian climate extremes, power grids, and municipal standards.
-          </p>
-        </motion.div>
-
-        {/* Premium Editorial Card with Scroll Reveal */}
-        <motion.div
-          ref={cardRef}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-[36px] bg-stone border border-ink/15 p-8 md:p-14 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-        >
-          
-          {/* Large Editorial Portrait Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left"
-          >
-            <div className="relative w-full max-w-[440px] h-[400px] sm:h-[480px] md:h-[540px] lg:h-[580px] rounded-[32px] overflow-hidden border-2 border-ink/20 shadow-2xl bg-paper group">
-              <img
-                src={advisorProfile.image}
-                alt={advisorProfile.name}
-                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80" />
-              <span className="absolute bottom-5 left-5 right-5 text-center font-mono text-xs md:text-sm font-bold uppercase tracking-widest bg-paper/95 backdrop-blur-md text-ink py-3 rounded-2xl border border-ink/10 shadow-lg">
-                {advisorProfile.experienceYears} Industry Leadership
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Editorial Content Column */}
-          <div className="lg:col-span-7 space-y-8 flex flex-col justify-between">
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.6, delay: 0.25 }}
-              >
-                <span className="text-mono text-xs font-bold uppercase tracking-widest text-signal block mb-2">
-                  — BIOGRAPHY &amp; IMPACT
-                </span>
-                <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
-                  {advisorProfile.name}
-                </h3>
-                <p className="text-xs sm:text-sm text-signal font-mono font-bold tracking-wider uppercase mt-2">
-                  {advisorProfile.title}
-                </p>
-              </motion.div>
-
-              {/* Refined Editorial Bio */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false }}
-                transition={{ duration: 0.7, delay: 0.35 }}
-                className="border-l-3 border-signal pl-5 py-1"
-              >
-                <p className="text-base sm:text-lg lg:text-xl text-ink/85 font-light leading-relaxed">
-                  "{advisorProfile.bio}"
-                </p>
-              </motion.div>
-
-            </div>
-          </div>
-
-        </motion.div>
-
-      </div>
-    </section>
-  );
-}
-
 /* ============================================================ ABOUT */
 function About() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const bigY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+
+  const aditiImages = [
+    { src: "/aditi 2.jpg.jpeg", label: "Highway Avenue" },
+    { src: "/ADITI 1.jpg.jpeg", label: "Smart Column" },
+    { src: "/ADITI 3.jpg.jpeg", label: "Expressway Skyline" },
+  ];
+  const [activeAditiIdx, setActiveAditiIdx] = useState(0);
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-paper pt-8 pb-24 lg:pt-12 lg:pb-32 hairline-t">
@@ -438,13 +340,68 @@ function About() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full overflow-hidden rounded-[32px] shadow-2xl border border-ink/10 group"
+            className="w-full h-[380px] sm:h-[460px] lg:h-[500px] overflow-hidden rounded-[32px] shadow-2xl border border-ink/10 group relative bg-stone/40 select-none"
           >
+            {/* Ambient Blurred Backdrop for contained portrait images (e.g. Smart Column) */}
+            {activeAditiIdx === 1 && (
+              <div
+                className="absolute inset-0 bg-cover bg-center blur-2xl scale-125 opacity-70 pointer-events-none"
+                style={{ backgroundImage: `url("${aditiImages[1].src}")` }}
+              />
+            )}
+
             <img
-              src={featured[0].image}
-              alt="HINDLED Technologies engineering"
-              className="w-full h-auto min-h-[380px] sm:min-h-[480px] lg:min-h-[520px] object-cover rounded-[32px] group-hover:scale-105 transition-transform duration-700"
+              key={aditiImages[activeAditiIdx].src}
+              src={aditiImages[activeAditiIdx].src}
+              alt="HINDLED Technologies Aditi Solar Infrastructure"
+              className={`w-full h-full rounded-[32px] transition-all duration-700 ${
+                activeAditiIdx === 1
+                  ? "object-contain relative z-10 py-3 group-hover:scale-102"
+                  : "object-cover group-hover:scale-105"
+              }`}
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none rounded-[32px] z-10" />
+
+            {/* Prev / Next Chevrons on hover */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveAditiIdx((prev) => (prev - 1 + aditiImages.length) % aditiImages.length);
+              }}
+              aria-label="Previous image"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer shadow-md"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveAditiIdx((prev) => (prev + 1) % aditiImages.length);
+              }}
+              aria-label="Next image"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer shadow-md"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Bottom Caption and Pagination Dots */}
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-20">
+              <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider bg-paper/95 backdrop-blur-md text-ink px-3 py-1.5 rounded-full border border-ink/10 shadow-sm">
+                ADITI Solar Infrastructure · {aditiImages[activeAditiIdx].label}
+              </span>
+              <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20">
+                {aditiImages.map((img, i) => (
+                  <button
+                    key={img.src}
+                    onClick={() => setActiveAditiIdx(i)}
+                    aria-label={img.label}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === activeAditiIdx ? "w-6 bg-signal" : "w-2 bg-white/50 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -506,7 +463,7 @@ function About() {
 function Stats() {
   const stats = [
     { v: "200", u: "Lm/W", l: "Peak Efficacy" },
-    { v: "360K", u: "lumens", l: "HL GAJ Stadium Luminaire" },
+    { v: "360K", u: "lumens", l: "GAJ Stadium Luminaire" },
     { v: "IP66", u: "/ IK10", l: "Ingress + Impact Armor" },
     { v: "21", u: "platforms", l: "Catalogue Inventory" },
   ];
@@ -544,12 +501,12 @@ const faqs = [
     a: "TEJAS features an integrated smart bay supporting high-definition PTZ / dome security cameras with 4G LTE/Wi-Fi telemetry. The vertical solar matrix and dedicated LiFePO4 battery power both the camera (24/7 continuous recording) and the luminaire without any external electrical wiring.",
   },
   {
-    q: "What makes HL GAJ the ideal stadium and sports floodlight?",
-    a: "HL GAJ scales from 600W up to 2250W delivering up to 360,000 lumens. It features a 5° forward-tilted optical surface to eliminate backlight and spectator glare, modular convective thermal chimney heat dissipation, ±45° vertical aiming with 56-increment precision scale, and HDTV 4K/8K broadcast compliance with DMX512 / DALI controls.",
+    q: "What makes GAJ the ideal stadium and sports floodlight?",
+    a: "GAJ scales from 600W up to 2250W delivering up to 360,000 lumens. It features a 5° forward-tilted optical surface to eliminate backlight and spectator glare, modular convective thermal chimney heat dissipation, ±45° vertical aiming with 56-increment precision scale, and HDTV 4K/8K broadcast compliance with DMX512 / DALI controls.",
   },
   {
     q: "What is the difference between Solar and Hybrid Solar + AC platforms?",
-    a: "Our pure solar platforms run 100% off-grid with 4–8 days of autonomy. Hybrid platforms (like HL Voltage and HL Pranjal) run on solar power primarily, with automatic AC grid backup during extended severe monsoon periods for 100% guaranteed 365-day uptime.",
+    a: "Our pure solar platforms run 100% off-grid with 4–8 days of autonomy. Hybrid platforms (like Voltage and Pranjal) run on solar power primarily, with automatic AC grid backup during extended severe monsoon periods for 100% guaranteed 365-day uptime.",
   },
   {
     q: "Do you offer custom OEM / ODM specifications and photometric DIALux planning?",

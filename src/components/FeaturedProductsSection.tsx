@@ -43,14 +43,14 @@ const productHighlights: Record<string, { badge1: string; badge2: string; icon1:
     desc2: "Modular die-cast thermal chimney cooling and 56-increment precision vertical & horizontal aiming scale.",
   },
   "hl-aditi": {
-    badge1: "100% Without Electricity",
-    badge2: "All-In-Two Solar Luminaire",
+    badge1: "100% Solar Powered Lighting",
+    badge2: "30W to 150W Luminaire",
     icon1: ZapOff,
-    title1: "Zero Grid Power Required",
-    desc1: "Internal high-capacity LiFePO4 battery matrix & intelligent MPPT controller with 4-step adaptive dimming.",
+    title1: "100% Solar Powered Lighting",
+    desc1: "Robust, die cast aluminium housing with an Aerodynamic design that reduce wind resistance and facilitates rainwater runoff with integrated high capacity lithium batteries, MPPTs and optical sensors.",
     icon2: Sun,
-    title2: "High-Efficacy Roadway Optics",
-    desc2: "160–170 lm/W optical LED engine with Type II & Type III highway distributions from 4m to 12m poles.",
+    title2: "High Efficiency Optics 160–170 lm/W",
+    desc2: "High efficiency of optics 160-170lm/w with customized optical distribute and diversify roadway application.",
   },
   "sandhya": {
     badge1: "100% Without Electricity",
@@ -204,7 +204,7 @@ export function FeaturedProductsSection() {
               Featured <span className="text-signal">Products.</span>
             </h2>
             <p className="mt-4 max-w-xl text-sm sm:text-base text-ink/70 font-light leading-relaxed">
-              Flagship luminaires engineered for critical municipal highways, professional stadiums, royal heritage sites, and zero-grid autonomous smart security.
+              Explore our high-performance outdoor and solar lighting systems, built for city roads, highways, stadiums, public parks, and security.
             </p>
           </div>
 
