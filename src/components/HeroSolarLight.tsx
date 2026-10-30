@@ -66,8 +66,6 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
   const moonOpacity = useTransform(p, [0.2, 0.65], [0, 1]);
   const moonAuraOpacity = useTransform(p, [0.28, 0.72], [0, 1]);
 
-  // Soft Volumetric Illumination Beam & Ground Pool
-  const coneOpacity = useTransform(p, [0.22, 0.68], [0, 1]);
 
   // Ground silhouette cross-fades
   const dayGroundOpacity = useTransform(p, [0, 0.42], [1, 0]);
@@ -127,9 +125,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
           <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_80px_120px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_160px_60px,#ffd599,rgba(0,0,0,0)),radial-gradient(2px_2px_at_240px_180px,#ffffff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_320px_90px,#a5c4ff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_420px_220px,#ffffff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_560px_80px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_680px_260px,#ffd599,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_800px_140px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_950px_70px,#a5c4ff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_1100px_210px,#ffffff,rgba(0,0,0,0))] bg-repeat bg-[size:360px_360px] opacity-80" />
         </motion.div>
 
-        {/* ============================================================ LOCKED CELESTIAL ORB (MOON/SUN IN OPEN SKY - CLEAR OF POLE) */}
+        {/* ============================================================ LOCKED CELESTIAL ORB (MOON/SUN NESTLED BESIDE PILLAR) */}
         <div
-          className="absolute z-2 pointer-events-none top-[7.5vh] sm:top-[10vh] right-[14vw] sm:right-[22vw] md:right-[24vw] lg:right-[26vw] w-14 h-14 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
+          className="absolute z-2 pointer-events-none top-[9vh] sm:top-[12vh] md:top-[13vh] lg:top-[13vh] right-[-4px] sm:right-[0.8vw] md:right-[2.5vw] lg:right-[4.8vw] w-14 h-14 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
         >
           {/* Sun Layer */}
           <motion.div
@@ -183,118 +181,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         {/* ============================================================ TEJAS SMART POLE (LIGHT EMANATING NATURALLY FROM UNDER LUMINAIRE WITH ZERO HARSH OVERLAYS) */}
         <div className="absolute right-2 sm:right-[3vw] md:right-[6vw] lg:right-[10vw] bottom-0 z-10 h-[62vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
           
-          {/* Volumetric Night Illumination Cone & Ground Shadow/Pool (Placed cleanly BEHIND/UNDER pole fixture) */}
-          <motion.div
-            style={{ opacity: coneOpacity }}
-            className="absolute inset-0 z-0 flex items-end justify-center pointer-events-none will-change-[opacity]"
-          >
-            {/* SVG Illumination Cone - Starts directly under the luminaire bracket and casts a wide downward beam */}
-            <svg
-              className="absolute -bottom-8 w-[440%] h-[126%] -left-[170%] overflow-visible pointer-events-none"
-              viewBox="0 0 600 860"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <filter id="heroBeamBlurWide" x="-50%" y="-30%" width="200%" height="160%">
-                  <feGaussianBlur stdDeviation="34" />
-                </filter>
-                <filter id="heroBeamBlurCore" x="-30%" y="-20%" width="160%" height="140%">
-                  <feGaussianBlur stdDeviation="14" />
-                </filter>
-                <filter id="heroGroundBlur" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur stdDeviation="22" />
-                </filter>
-                <filter id="poleShadowBlur" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="6" />
-                </filter>
 
-                {/* Soft feathered volumetric radial gradient starting cleanly under luminaire neck */}
-                <radialGradient id="heroRadialGrad" cx="296" cy="40" rx="420" ry="860" fx="296" fy="40" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.88" />
-                  <stop offset="16%" stopColor="#fef08a" stopOpacity="0.52" />
-                  <stop offset="45%" stopColor="#f59e0b" stopOpacity="0.18" />
-                  <stop offset="78%" stopColor="#d97706" stopOpacity="0.03" />
-                  <stop offset="100%" stopColor="#d97706" stopOpacity="0" />
-                </radialGradient>
-
-                {/* Core directional linear beam gradient angled downwards to the left */}
-                <linearGradient id="heroLinearBeamGrad" x1="296" y1="40" x2="245" y2="840" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                  <stop offset="14%" stopColor="#fef08a" stopOpacity="0.48" />
-                  <stop offset="45%" stopColor="#f59e0b" stopOpacity="0.16" />
-                  <stop offset="80%" stopColor="#d97706" stopOpacity="0.02" />
-                  <stop offset="100%" stopColor="#d97706" stopOpacity="0" />
-                </linearGradient>
-
-                {/* Ambient ground pool illumination biased towards the front-left */}
-                <radialGradient id="heroGroundGrad" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#fffbeb" stopOpacity="0.85" />
-                  <stop offset="35%" stopColor="#fde68a" stopOpacity="0.5" />
-                  <stop offset="70%" stopColor="#f59e0b" stopOpacity="0.15" />
-                  <stop offset="100%" stopColor="#000000" stopOpacity="0" />
-                </radialGradient>
-
-                {/* Ground Contact Shadow */}
-                <radialGradient id="poleContactShadow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#000000" stopOpacity="0.95" />
-                  <stop offset="60%" stopColor="#000000" stopOpacity="0.55" />
-                  <stop offset="100%" stopColor="#000000" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-
-              {/* Directional Ground Shadow under the pole base */}
-              <ellipse
-                cx="335"
-                cy="830"
-                rx="65"
-                ry="13"
-                fill="url(#poleContactShadow)"
-                filter="url(#poleShadowBlur)"
-              />
-              <path
-                d="M 305 825 L 430 835 L 410 842 L 295 830 Z"
-                fill="#000000"
-                opacity="0.7"
-                filter="url(#poleShadowBlur)"
-              />
-
-              {/* Layer 1: Wide atmospheric haze cone angled down and left from beneath luminaire */}
-              <polygon
-                points="288,40 -40,845 550,845 304,40"
-                fill="url(#heroRadialGrad)"
-                opacity="0.68"
-                filter="url(#heroBeamBlurWide)"
-              />
-
-              {/* Layer 2: Core luminous focused beam */}
-              <polygon
-                points="292,40 50,845 445,845 300,40"
-                fill="url(#heroLinearBeamGrad)"
-                opacity="0.78"
-                filter="url(#heroBeamBlurCore)"
-              />
-
-              {/* Extended Ground Pool of warm ambient light */}
-              <ellipse
-                cx="250"
-                cy="830"
-                rx="280"
-                ry="48"
-                fill="url(#heroGroundGrad)"
-                filter="url(#heroGroundBlur)"
-              />
-
-              {/* Floating luminous dust motes */}
-              <circle cx="275" cy="160" r="2" fill="#fff" opacity="0.8" />
-              <circle cx="215" cy="320" r="2.5" fill="#fef08a" opacity="0.65" />
-              <circle cx="320" cy="460" r="1.5" fill="#fff" opacity="0.65" />
-              <circle cx="165" cy="620" r="2.5" fill="#fde047" opacity="0.5" />
-              <circle cx="345" cy="700" r="2" fill="#fff" opacity="0.55" />
-              <circle cx="110" cy="760" r="2" fill="#fef08a" opacity="0.4" />
-              <circle cx="380" cy="780" r="1.8" fill="#fff" opacity="0.45" />
-            </svg>
-          </motion.div>
 
           {/* Smart Pole Image Container */}
           <div className="relative z-10 h-full flex items-end justify-center">
@@ -346,7 +233,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10b981] animate-pulse" />
               <span className="font-mono text-[8px] sm:text-[11px] font-bold tracking-wider sm:tracking-widest text-white uppercase">
-                HL TEJAS SMART POLE
+                TEJAS SMART POLE (CAMERA)
               </span>
             </motion.div>
           </div>
@@ -397,7 +284,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="mt-3 sm:mt-6 max-w-[92%] sm:max-w-2xl text-[12px] sm:text-base md:text-lg text-white/90 font-normal sm:font-light leading-snug sm:leading-relaxed drop-shadow-md"
             >
-              Architectural solar smart poles, off-grid roadway lighting, and high-power solar floodlights engineered to operate <strong className="font-bold text-white underline decoration-[#10B981] decoration-2 underline-offset-4">100% on solar power</strong> with zero electricity bills across roads, campuses, and infrastructure.
+              Make the shift from energy efficiency to complete energy independence — our company range of solar street light, architectural smart poles, and off-grid roadway lighting operates <strong className="font-bold text-white underline decoration-[#10B981] decoration-2 underline-offset-4">100% on solar power</strong>, eliminating electricity bills for modern infrastructure.
             </motion.p>
 
             {/* Action Buttons (Original Text & Responsive Sizing) */}
