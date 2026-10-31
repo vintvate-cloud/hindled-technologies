@@ -71,12 +71,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
   const dayGroundOpacity = useTransform(p, [0, 0.42], [1, 0]);
   const nightGroundOpacity = useTransform(p, [0.25, 0.62], [0, 1]);
 
-  // Solar active harvest pulse overlay
-  const solarPulseOpacity = useTransform(p, [0, 0.32], [0.45, 0]);
+  // Subtle Single-Source Luminaire Night Illumination
+  const luminaireNightGlow = useTransform(p, [0.36, 0.65], [0, 1]);
 
-  // Smart CCTV status LED
-  const cctvDayOpacity = useTransform(p, [0, 0.38], [1, 0]);
-  const cctvNightOpacity = useTransform(p, [0.38, 0.55], [0, 1]);
 
   return (
     <div
@@ -178,53 +175,39 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
           <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         </div>
 
-        {/* ============================================================ TEJAS SMART POLE (LIGHT EMANATING NATURALLY FROM UNDER LUMINAIRE WITH ZERO HARSH OVERLAYS) */}
+        {/* ============================================================ ADITI SOLAR SMART POLE */}
         <div className="absolute right-2 sm:right-[3vw] md:right-[6vw] lg:right-[10vw] bottom-0 z-10 h-[62vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
           
-
-
           {/* Smart Pole Image Container */}
           <div className="relative z-10 h-full flex items-end justify-center">
             
             {/* Ground Contact Depth Shadow */}
             <div className="absolute -bottom-2 w-32 h-6 bg-black/85 rounded-full blur-md pointer-events-none" />
 
-            {/* Daytime Solar Harvest Pulse Glow */}
-            <motion.div
-              style={{ opacity: solarPulseOpacity }}
-              className="absolute inset-y-16 w-20 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent blur-md pointer-events-none will-change-[opacity]"
-            />
-
-            {/* TEJAS Smart Pole Clean PNG (Crisp Foreground, No Harsh Blobs On Top) */}
+            {/* ADITI Solar Smart Luminaire Clean PNG */}
             <img
-              src="/tejas_hero_pole_crop-removebg-preview.png"
-              alt="TEJAS Solar Smart Pole"
-              className="relative z-10 h-full w-auto max-h-full object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)]"
+              src="/removed-aditi-bg.png"
+              alt="ADITI Solar Smart Luminaire"
+              className="relative z-10 h-full w-auto max-h-full object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]"
               loading="eager"
             />
 
-            {/* Smart CCTV Camera Live Telemetry Indicator (Subtle LED on Camera Lens) */}
-            <div className="absolute z-20 top-[9.6%] left-[34%] -translate-x-1/2 -translate-y-1/2 pointer-events-none flex items-center justify-center">
-              {/* Daytime Status (Green Ping) */}
-              <motion.div
-                style={{ opacity: cctvDayOpacity }}
-                className="relative flex items-center justify-center will-change-[opacity]"
-              >
-                <span className="absolute w-2.5 h-2.5 rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 shadow-[0_0_6px_#34d399]" />
-              </motion.div>
+            {/* Single Subtle Light Source (Naturally illuminating the optical lens face) */}
+            <motion.div
+              style={{ opacity: luminaireNightGlow }}
+              className="absolute z-20 top-[4.8%] left-[36%] -translate-x-1/2 -translate-y-1/2 pointer-events-none will-change-[opacity]"
+            >
+              {/* Soft, Angled Optical Lens Glow matching the fixture's physical angle */}
+              <div className="relative rotate-[14deg] flex items-center justify-center">
+                {/* Subtle soft lens illumination */}
+                <div className="w-12 sm:w-16 md:w-20 h-3 sm:h-4.5 rounded-[999px] bg-gradient-to-r from-amber-100/80 via-white/95 to-amber-100/80 blur-[1.5px] shadow-[0_0_8px_rgba(255,255,240,0.6),0_0_16px_rgba(254,240,138,0.25)] mix-blend-screen" />
+                
+                {/* Soft diffused atmospheric halo - pure feathered circle, zero hard edges */}
+                <div className="absolute inset-0 -m-3 sm:-m-5 rounded-full bg-amber-200/20 blur-md pointer-events-none" />
+              </div>
+            </motion.div>
 
-              {/* Night Active IR Surveillance (Red Ping) */}
-              <motion.div
-                style={{ opacity: cctvNightOpacity }}
-                className="absolute inset-0 flex items-center justify-center will-change-[opacity]"
-              >
-                <span className="absolute w-2.5 h-2.5 rounded-full bg-red-500 opacity-75 animate-ping" />
-                <span className="w-1.5 h-1.5 rounded-full bg-red-400 shadow-[0_0_6px_#ef4444]" />
-              </motion.div>
-            </div>
-
-            {/* HL Tejas Smart Pole Product Tag placed cleanly */}
+            {/* ADITI Solar Luminaire Product Tag */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
@@ -233,7 +216,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_8px_#10b981] animate-pulse" />
               <span className="font-mono text-[8px] sm:text-[11px] font-bold tracking-wider sm:tracking-widest text-white uppercase">
-                TEJAS SMART POLE (CAMERA)
+                ADITI SOLAR SMART POLE
               </span>
             </motion.div>
           </div>

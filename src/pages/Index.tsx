@@ -9,7 +9,7 @@ import { useMeta } from "../hooks/use-meta";
 import { SolarArchitectureAnimation } from "../components/SolarArchitectureAnimation";
 import { FeaturedProductsSection } from "../components/FeaturedProductsSection";
 import { EditorialPreloader } from "../components/EditorialPreloader";
-import { ZapOff, Sun, ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Radio } from "lucide-react";
+import { ZapOff, Sun, ArrowRight, ShieldCheck, Sparkles, CheckCircle2, Radio, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { HeroSolarLight } from "../components/HeroSolarLight";
 
@@ -50,6 +50,7 @@ export default function IndexPage() {
       <Philosophy />
       <SolarArchitectureAnimation />
       <FeaturedProductsSection />
+
       <About />
       <Stats />
       <FAQ />
@@ -159,21 +160,21 @@ function Philosophy() {
                   </span>
                 </div>
 
-                <h3 className="font-display text-xl sm:text-2xl text-ink font-bold tracking-tight group-hover:text-signal transition-colors duration-300">
+                <h3 className="font-display text-2xl sm:text-3xl text-ink font-bold tracking-tight group-hover:text-signal transition-colors duration-300">
                   {b.k}
                 </h3>
-                <p className="mt-3.5 text-sm leading-relaxed text-ink/70 font-normal">
+                <p className="mt-4 text-base sm:text-lg leading-relaxed text-ink/85 font-medium">
                   {b.v}
                 </p>
               </div>
 
               {/* Bottom Tag Bar with Interactive Accent */}
-              <div className="relative z-10 mt-8 pt-4 border-t border-ink/10 flex items-center justify-between text-[11px] font-sans font-medium text-ink/50 group-hover:text-ink/80 transition-colors">
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-signal/60 group-hover:bg-signal group-hover:scale-125 transition-all" />
+              <div className="relative z-10 mt-8 pt-5 border-t border-ink/10 flex items-center justify-between text-xs sm:text-sm font-sans font-bold text-ink/70 group-hover:text-ink transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-signal/70 group-hover:bg-signal group-hover:scale-125 transition-all" />
                   <span>{b.tag}</span>
                 </div>
-                <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-signal font-bold">
+                <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 text-signal font-bold text-base">
                   →
                 </span>
               </div>
@@ -216,12 +217,19 @@ function Philosophy() {
 
 
 
+
 /* ============================================================ ABOUT */
 function About() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const imgY = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const bigY = useTransform(scrollYProgress, [0, 1], [60, -60]);
+
+  const aditiImages = [
+    { src: "/aditi 2.jpg.jpeg", label: "Highway Avenue" },
+    { src: "/ADITI 1.jpg.jpeg", label: "Smart Column" },
+    { src: "/ADITI 3.jpg.jpeg", label: "Expressway Skyline" },
+  ];
+  const [activeAditiIdx, setActiveAditiIdx] = useState(0);
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-paper pt-8 pb-24 lg:pt-12 lg:pb-32 hairline-t">
@@ -239,13 +247,68 @@ function About() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full overflow-hidden rounded-[32px] shadow-2xl border border-ink/10 group"
+            className="w-full h-[380px] sm:h-[460px] lg:h-[500px] overflow-hidden rounded-[32px] shadow-2xl border border-ink/10 group relative bg-stone/40 select-none"
           >
+            {/* Ambient Blurred Backdrop for contained portrait images (e.g. Smart Column) */}
+            {activeAditiIdx === 1 && (
+              <div
+                className="absolute inset-0 bg-cover bg-center blur-2xl scale-125 opacity-70 pointer-events-none"
+                style={{ backgroundImage: `url("${aditiImages[1].src}")` }}
+              />
+            )}
+
             <img
-              src={featured[0].image}
-              alt="HINDLED Technologies engineering"
-              className="w-full h-auto min-h-[380px] sm:min-h-[480px] lg:min-h-[520px] object-cover rounded-[32px] group-hover:scale-105 transition-transform duration-700"
+              key={aditiImages[activeAditiIdx].src}
+              src={aditiImages[activeAditiIdx].src}
+              alt="HINDLED Technologies Aditi Solar Infrastructure"
+              className={`w-full h-full rounded-[32px] transition-all duration-700 ${
+                activeAditiIdx === 1
+                  ? "object-contain relative z-10 py-3 group-hover:scale-102"
+                  : "object-cover group-hover:scale-105"
+              }`}
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none rounded-[32px] z-10" />
+
+            {/* Prev / Next Chevrons on hover */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveAditiIdx((prev) => (prev - 1 + aditiImages.length) % aditiImages.length);
+              }}
+              aria-label="Previous image"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer shadow-md"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveAditiIdx((prev) => (prev + 1) % aditiImages.length);
+              }}
+              aria-label="Next image"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer shadow-md"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Bottom Caption and Pagination Dots */}
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-20">
+              <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider bg-paper/95 backdrop-blur-md text-ink px-3 py-1.5 rounded-full border border-ink/10 shadow-sm">
+                ADITI Solar Infrastructure · {aditiImages[activeAditiIdx].label}
+              </span>
+              <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20">
+                {aditiImages.map((img, i) => (
+                  <button
+                    key={img.src}
+                    onClick={() => setActiveAditiIdx(i)}
+                    aria-label={img.label}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === activeAditiIdx ? "w-6 bg-signal" : "w-2 bg-white/50 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -350,7 +413,7 @@ const faqs = [
   },
   {
     q: "What is the difference between Solar and Hybrid Solar + AC platforms?",
-    a: "Our pure solar platforms run 100% off-grid with 4–8 days of autonomy. Hybrid platforms (like HL Voltage and HL Pranjal) run on solar power primarily, with automatic AC grid backup during extended severe monsoon periods for 100% guaranteed 365-day uptime.",
+    a: "Our pure solar platforms run 100% off-grid with 4–8 days of autonomy. Hybrid platforms (like Voltage and Pranjal) run on solar power primarily, with automatic AC grid backup during extended severe monsoon periods for 100% guaranteed 365-day uptime.",
   },
   {
     q: "Do you offer custom OEM / ODM specifications and photometric DIALux planning?",
