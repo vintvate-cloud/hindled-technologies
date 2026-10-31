@@ -125,9 +125,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
           <div className="absolute inset-0 bg-[radial-gradient(1px_1px_at_20px_30px,#fff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_80px_120px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_160px_60px,#ffd599,rgba(0,0,0,0)),radial-gradient(2px_2px_at_240px_180px,#ffffff,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_320px_90px,#a5c4ff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_420px_220px,#ffffff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_560px_80px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_680px_260px,#ffd599,rgba(0,0,0,0)),radial-gradient(1.5px_1.5px_at_800px_140px,#ffffff,rgba(0,0,0,0)),radial-gradient(1px_1px_at_950px_70px,#a5c4ff,rgba(0,0,0,0)),radial-gradient(2px_2px_at_1100px_210px,#ffffff,rgba(0,0,0,0))] bg-repeat bg-[size:360px_360px] opacity-80" />
         </motion.div>
 
-        {/* ============================================================ LOCKED CELESTIAL ORB (MOON/SUN NESTLED BESIDE PILLAR) */}
+        {/* ============================================================ CELESTIAL ORB (SUN & MOON POSITIONED TO THE LEFT) */}
         <div
-          className="absolute z-2 pointer-events-none top-[9vh] sm:top-[12vh] md:top-[13vh] lg:top-[13vh] right-[-4px] sm:right-[0.8vw] md:right-[2.5vw] lg:right-[4.8vw] w-14 h-14 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
+          className="absolute z-2 pointer-events-none top-[8vh] sm:top-[11vh] md:top-[12vh] lg:top-[12vh] right-[28vw] sm:right-[34vw] md:right-[38vw] lg:right-[44vw] w-14 h-14 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
         >
           {/* Sun Layer */}
           <motion.div
@@ -253,7 +253,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
             >
               <span className="w-2 h-2 rounded-full bg-[#f4a41d] animate-pulse" />
               <span className="font-display font-semibold text-[10px] sm:text-xs md:text-sm text-amber-300">
-                सूरज से जलती रोशनी
+                Beyond efficiency total energy independence
               </span>
             </motion.div>
 
