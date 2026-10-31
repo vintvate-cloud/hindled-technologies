@@ -111,7 +111,7 @@ function Philosophy() {
   ];
 
   return (
-    <section ref={sectionRef} className="relative bg-paper py-28 lg:py-44 hairline-t">
+    <section ref={sectionRef} className="relative bg-paper py-28 lg:py-44">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         
         {/* Subtle Category Badge */}
@@ -233,7 +233,7 @@ function About() {
   const [activeAditiIdx, setActiveAditiIdx] = useState(0);
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-paper pt-8 pb-24 lg:pt-12 lg:pb-32 hairline-t">
+    <section ref={ref} className="relative overflow-hidden bg-paper pt-8 pb-24 lg:pt-12 lg:pb-32">
       <motion.div
         style={{ y: bigY }}
         className="text-display pointer-events-none absolute -left-[5vw] top-0 text-[26vw] leading-[0.85] tracking-[-0.05em] text-ink/[0.04]"
@@ -376,7 +376,7 @@ function Stats() {
     { v: "21", u: "platforms", l: "Catalogue Inventory" },
   ];
   return (
-    <section className="bg-stone/60 py-24 border-t border-b border-ink/10">
+    <section className="bg-stone/60 py-24">
       <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
         {stats.map((s, i) => (
           <motion.div
@@ -511,7 +511,7 @@ function Closer() {
   }, []);
 
   return (
-    <section className="bg-paper pb-32 pt-20 lg:pb-48 hairline-t">
+    <section className="bg-paper pb-32 pt-20 lg:pb-48">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         <h2
           ref={headingRef}

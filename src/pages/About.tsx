@@ -43,7 +43,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-stone py-24 border-t border-b border-ink/10">
+      <section className="bg-stone py-24">
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
           {[
             { v: "45+", l: "Years Advisor Leadership" },
@@ -66,7 +66,7 @@ export default function AboutPage() {
       </section>
 
       {/* Chief Technical Advisor Section */}
-      <section className="bg-paper text-ink py-24 border-t border-ink/10 relative overflow-hidden">
+      <section className="bg-paper text-ink py-24 relative overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="mb-12 border-b border-ink/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -123,7 +123,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-paper py-32 hairline-t">
+      <section className="bg-paper py-32">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw] font-bold">
             VENUES WE'VE LIT.

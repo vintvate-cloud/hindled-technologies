@@ -179,7 +179,7 @@ export function FeaturedProductsSection() {
   }, [isPaused, activeSlide]);
 
   return (
-    <section id="featured-products" className="relative bg-paper py-24 lg:py-36 hairline-t overflow-hidden">
+    <section id="featured-products" className="relative bg-paper py-24 lg:py-36 overflow-hidden">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         
         {/* Section Header with Scroll Reveal */}
