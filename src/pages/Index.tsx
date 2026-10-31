@@ -98,15 +98,15 @@ function Philosophy() {
       n: "02",
       icon: Sparkles,
       k: "Brilliant All-Night Illumination",
-      v: "Engineered for high-output, low-glare illumination from dusk until dawn. High-capacity battery storage delivers dependable light even during consecutive rainy or overcast days.",
+      v: "Engineered for high-output, glare-free illumination from dusk until dawn. High-capacity battery storage delivers dependable light even during consecutive rainy or overcast days.",
       tag: "Dusk-to-Dawn Automation · Multi-Day Backup",
     },
     {
       n: "03",
       icon: ShieldCheck,
       k: "Complete Turnkey Solutions",
-      v: "We act as your lighting partner from start to finish — assessing your project, calculating exact lux requirements, and delivering customized lighting solutions built to withstand extreme climates.",
-      tag: "Customized Lighting Solution · Turnkey Projects",
+      v: "We act as your lighting partner from start to finish — assessing your site, calculating exact lux requirements, and delivering custom solar poles built to withstand extreme climates.",
+      tag: "Custom Pole Design · Turnkey Projects",
     },
   ];
 
@@ -153,11 +153,12 @@ function Philosophy() {
               <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full bg-signal/15 blur-[70px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
               <div className="relative z-10">
-                {/* Number graphic placed cleanly on right side */}
+                {/* Top Header: Clean SVG Icon on Right */}
                 <div className="flex items-center justify-end mb-8">
-                  <span className="font-display text-3xl font-extrabold text-signal tracking-tight">
-                    {b.n}
-                  </span>
+                  {/* Circular SVG Icon Container */}
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-stone-100/90 border border-ink/10 flex items-center justify-center text-ink/75 group-hover:text-signal group-hover:border-signal/30 group-hover:bg-signal/10 transition-colors shadow-xs">
+                    <b.icon className="w-4.5 h-4.5 sm:w-5 sm:h-5 stroke-[1.75]" />
+                  </div>
                 </div>
 
                 <h3 className="font-display text-2xl sm:text-3xl text-ink font-bold tracking-tight group-hover:text-signal transition-colors duration-300">
