@@ -404,8 +404,8 @@ const faqs = [
     a: "Platforms like SOLERA, ZONO, and TEJAS integrate 6-sided cylindrical HPBC monocrystalline photovoltaic modules wrapped directly around the pole column. High-density LiFePO4 batteries store generated energy, delivering 100% off-grid autonomy for both high-lumen LED lighting and continuous CCTV security recording without drawing any municipal electricity.",
   },
   {
-    q: "How does the TEJAS series integrate CCTV camera security and lighting simultaneously?",
-    a: "TEJAS features an integrated smart bay supporting high-definition PTZ / dome security cameras with 4G LTE/Wi-Fi telemetry. The vertical solar matrix and dedicated LiFePO4 battery power both the camera (24/7 continuous recording) and the luminaire without any external electrical wiring.",
+    q: "How does the TEJAS Solar Camera Pole operate 100% without electricity?",
+    a: "TEJAS features an integrated smart bay supporting high-definition PTZ / dome security cameras with 4G LTE/Wi-Fi telemetry. The 360° vertical solar matrix and dedicated LiFePO4 battery power continuous 24/7 autonomous security recording without drawing any municipal electricity.",
   },
   {
     q: "What makes GAJ the ideal stadium and sports floodlight?",
