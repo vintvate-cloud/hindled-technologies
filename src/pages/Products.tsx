@@ -164,7 +164,7 @@ export default function ProductsPage() {
           <section
             key={app.id}
             id={app.id}
-            className="scroll-mt-32 pt-8 hairline-t"
+            className="scroll-mt-32 pt-8"
           >
             {/* Storytelling Application Banner with Scroll Reveal */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">

@@ -162,7 +162,7 @@ export function SolarArchitectureAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} id="solar-anatomy" className="relative bg-paper py-28 lg:py-36 hairline-t">
+    <section ref={containerRef} id="solar-anatomy" className="relative bg-paper py-28 lg:py-36">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         
         {/* Section Header */}

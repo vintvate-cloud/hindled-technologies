@@ -208,9 +208,10 @@ function ContactForm() {
         <>
           <Field label="01 / Your Name" name="name" required />
           <Field label="02 / Email" name="email" type="email" required />
-          <Field label="03 / Company / Organization" name="company" required />
-          <Field label="04 / Project Application" name="project" placeholder="Solar smart pole, stadium, highway, campus, CCTV..." required />
-          <Field label="05 / Project Brief & Requirements" name="message" textarea required />
+          <Field label="03 / Phone Number" name="phone" type="tel" placeholder="+91 98765 43210" required />
+          <Field label="04 / Company / Organization" name="company" required />
+          <Field label="05 / Project Application" name="project" placeholder="Solar smart pole, stadium, highway, campus, CCTV..." required />
+          <Field label="06 / Project Brief & Requirements" name="message" textarea required />
           <div className="pt-4">
             <button
               type="submit"

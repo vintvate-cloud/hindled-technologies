@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useMeta } from "../hooks/use-meta";
-import { leadershipTeam, advisorProfile } from "@/assets/products";
-import { CheckCircle2, Award } from "lucide-react";
+import { leadershipTeam } from "@/assets/products";
+import { CheckCircle2 } from "lucide-react";
 import { useContactDrawer } from "../components/ContactDrawer";
 
 export default function AboutPage() {
@@ -85,7 +85,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Leadership Profiles Staggered/Sequential Showcase */}
+          {/* Leadership Profiles Sequential Showcase */}
           <div className="space-y-20">
             {leadershipTeam.map((member, index) => (
               <motion.div
