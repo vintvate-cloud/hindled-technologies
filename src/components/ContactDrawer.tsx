@@ -194,14 +194,58 @@ export function ContactDrawer() {
 
 function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const payload = {
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      phone: String(formData.get("phone") || ""),
+      company: String(formData.get("company") || ""),
+      project: String(formData.get("project") || ""),
+      message: String(formData.get("message") || ""),
+      _subject: `New Project Inquiry — ${String(formData.get("company") || "HINDLED Website")}`,
+      _replyto: String(formData.get("email") || ""),
+      _cc: "info@hindled.com",
+      _template: "table",
+      _captcha: "false",
+    };
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/hindled77@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json().catch(() => null);
+      if (!response.ok || (result && result.success === "false")) {
+        throw new Error(result?.message || "Unable to deliver inquiry right now.");
+      }
+
+      setSent(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Unable to send inquiry right now. Please email hindled77@gmail.com directly."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-      className="space-y-4"
-    >
+    <form onSubmit={handleSubmit} className="space-y-4">
       {sent ? (
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
@@ -212,24 +256,34 @@ function ContactForm() {
             <CheckCircle2 className="w-6 h-6" />
           </div>
           <h4 className="font-display font-semibold text-xl text-ink">Signal received</h4>
-          <p className="text-xs text-ink/60 mt-2 max-w-xs mx-auto font-light">
-            Our engineering desk will review your requirements and reach out within 24 hours.
+          <p className="text-sm text-ink/75 mt-2 max-w-xs mx-auto font-medium">
+            Your inquiry has been dispatched to our engineering desk. We will reach out within 24 hours.
           </p>
         </motion.div>
       ) : (
         <>
+          <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
           <Field label="01 / Your Name" name="name" required />
           <Field label="02 / Email" name="email" type="email" required />
           <Field label="03 / Phone Number" name="phone" type="tel" placeholder="+91 98765 43210" required />
           <Field label="04 / Company / Organization" name="company" required />
           <Field label="05 / Project Application" name="project" placeholder="Solar smart pole, stadium, highway, campus, CCTV..." required />
           <Field label="06 / Project Brief & Requirements" name="message" textarea required />
+          {error && (
+            <p className="rounded-xl bg-red-500/10 border border-red-500/25 px-4 py-2.5 text-xs font-medium text-red-700">
+              {error}{" "}
+              <a href="mailto:hindled77@gmail.com" className="underline font-bold">
+                hindled77@gmail.com
+              </a>
+            </p>
+          )}
           <div className="pt-4">
             <button
               type="submit"
-              className="text-mono group w-full justify-center inline-flex items-center gap-3 border border-ink bg-ink px-6 py-4 text-xs tracking-wider text-paper hover:bg-signal hover:border-signal transition-colors rounded-full cursor-pointer font-bold"
+              disabled={submitting}
+              className="text-mono group w-full justify-center inline-flex items-center gap-3 border border-ink bg-ink px-6 py-4 text-xs tracking-wider text-paper hover:bg-signal hover:border-signal disabled:opacity-60 disabled:cursor-not-allowed transition-colors rounded-full cursor-pointer font-bold"
             >
-              Send Signal
+              {submitting ? "Sending Signal..." : "Send Signal"}
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </button>
           </div>

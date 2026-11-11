@@ -80,7 +80,7 @@ function StackingCard({ layer, index, total }: StackingCardProps) {
   return (
     <div
       ref={cardRef}
-      className={`w-full sticky ${index === total - 1 ? "min-h-[50vh] mb-36 sm:mb-48" : "h-[60vh] sm:h-[72vh]"}`}
+      className={`w-full sticky ${index === total - 1 ? "pb-2 mb-0" : "h-[60vh] sm:h-[72vh]"}`}
       style={{
         top: `calc(5.5rem + ${index * 26}px)`,
         zIndex: index + 1,
@@ -133,7 +133,7 @@ function StackingCard({ layer, index, total }: StackingCardProps) {
           </p>
 
           {/* Short, High-End Description (Not Content Heavy) */}
-          <p className="mt-4 text-base sm:text-lg text-ink/75 leading-relaxed font-light">
+          <p className="mt-4 text-base sm:text-lg text-ink/85 leading-relaxed font-medium">
             {layer.desc}
           </p>
 
@@ -162,7 +162,7 @@ export function SolarArchitectureAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} id="solar-anatomy" className="relative bg-paper py-28 lg:py-36">
+    <section ref={containerRef} id="solar-anatomy" className="relative bg-paper pt-24 pb-8 lg:pt-32 lg:pb-12">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         
         {/* Section Header */}
@@ -184,7 +184,7 @@ export function SolarArchitectureAnimation() {
             Engineered from the <span className="text-signal">inside out.</span>
           </h2>
           
-          <p className="mt-4 text-base sm:text-lg text-ink/70 font-light leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-ink/85 font-medium leading-relaxed">
             Scroll to explore how each layer works together to harvest sunlight, store clean energy, and deliver dependable all-night illumination.
           </p>
         </motion.div>

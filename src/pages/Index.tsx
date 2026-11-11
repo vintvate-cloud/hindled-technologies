@@ -198,7 +198,7 @@ function Philosophy() {
             <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-ink leading-tight tracking-tight">
               We don't just supply lights. We design <span className="text-signal">complete solar illumination systems</span> for your project.
             </h3>
-            <p className="mt-3 text-sm sm:text-base text-ink/70 leading-relaxed font-light">
+            <p className="mt-4 text-base sm:text-lg text-ink/85 leading-relaxed font-medium">
               From project evaluations and lux calculations to customized engineering solutions and turnkey installation across roads, townships, landscapes, and industrial projects.
             </p>
           </div>
@@ -338,7 +338,7 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-4 max-w-2xl text-lg sm:text-xl md:text-2xl leading-relaxed text-ink/80 font-light"
+            className="mt-4 max-w-2xl text-lg sm:text-xl md:text-2xl leading-relaxed text-ink/90 font-medium"
           >
             HINDLED Technologies is a focused engineering collective specializing in precision outdoor lighting, zero-grid solar infrastructure, and broadcast stadium luminaires. Every instrument is calibrated to a project's geometry, DIALux photometric code, and atmosphere.
           </motion.p>
@@ -357,7 +357,7 @@ function About() {
                 transition={{ delay: 0.2 + i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="text-display text-4xl text-ink md:text-5xl font-bold">{s.k}</div>
-                <div className="text-mono mt-2 text-ink/70 text-xs sm:text-sm font-bold uppercase tracking-wider">{s.v}</div>
+                <div className="text-mono mt-2 text-ink/80 text-xs sm:text-sm font-bold uppercase tracking-wider">{s.v}</div>
               </motion.div>
             ))}
           </div>
@@ -390,7 +390,7 @@ function Stats() {
               <span className="text-5xl md:text-7xl">{s.v}</span>
               <span className="text-mono text-signal text-xs md:text-sm font-bold">{s.u}</span>
             </div>
-            <div className="text-mono mt-2 text-ink/60 text-xs font-bold uppercase tracking-wider">{s.l}</div>
+            <div className="text-mono mt-2 text-ink/80 text-xs sm:text-sm font-bold uppercase tracking-wider">{s.l}</div>
           </motion.div>
         ))}
       </div>
@@ -440,7 +440,7 @@ function FAQ() {
           <h2 className="text-display mt-4 text-ink text-[10vw] leading-[0.92] tracking-[-0.04em] md:text-[4.5vw] font-bold">
             Engineering <span className="text-signal">questions,</span> answered.
           </h2>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed text-ink/70 font-light">
+          <p className="mt-6 max-w-md text-base sm:text-lg leading-relaxed text-ink/85 font-medium">
             Zero-electricity solar autonomy, CCTV integration, stadium optics, warranty, and custom DIALux simulations.
           </p>
         </motion.div>
@@ -474,7 +474,7 @@ function FAQ() {
                   className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
                 >
                   <div className="min-h-0 overflow-hidden">
-                    <p className="pb-6 pr-12 text-sm leading-relaxed text-ink/75 font-light">
+                    <p className="pb-6 pr-12 text-base sm:text-lg leading-relaxed text-ink/85 font-medium">
                       {f.a}
                     </p>
                   </div>

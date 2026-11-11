@@ -25,6 +25,11 @@ import hlPranjalImg from "./catalogue/hl_pranjal.jpg";
 import hlGajHeroImg from "./catalogue/hl_gaj_hero.jpg";
 import hlGajImg from "./catalogue/hl_gaj.jpg";
 import hlUltraBeamImg from "./catalogue/hl_ultra_beam.jpg";
+import appSolarUrbanLuminaireImg from "./catalogue/app_solar_urban_luminaire.jpg";
+import appArchitecturalLandscapeLuminaireImg from "./catalogue/app_architectural_landscape_luminaire.jpg";
+import appSolarCameraPoleLuminaireImg from "./catalogue/app_solar_camera_pole_luminaire.jpg";
+import appIndustrialLuminaireImg from "./catalogue/app_industrial_luminaire.jpg";
+import appHybridLuminaireImg from "./catalogue/app_hybrid_luminaire.jpg";
 
 export type CatalogueItem = {
   slug: string;
@@ -761,7 +766,7 @@ export type SolutionApplication = {
   luxRecommendation: string;
   image: string;
   projectPic: string;
-  category: "Solar" | "Outdoor & Industrial" | "Specialty" | "Hybrid Solar + AC";
+  category: CatalogueItem["category"];
   matchingSlugs: string[];
   keySpecs: { label: string; value: string }[];
 };
@@ -774,10 +779,10 @@ export const solutionApplications: SolutionApplication[] = [
     description: "Asymmetric roadway distributions and anti-blackhole optical lenses designed to provide continuous visual adaptation for highway drivers.",
     consultantNote: "Proper luminance transition zones are crucial in arterial expressways to eliminate the dangerous black hole effect.",
     luxRecommendation: "30 - 70 Lux (Luminance L1/L2 Compliant)",
-    image: zonoStreetImg,
+    image: appSolarUrbanLuminaireImg,
     projectPic: hlAditiImg,
     category: "Solar",
-    matchingSlugs: ["solera", "zono-street", "hl-aditi"],
+    matchingSlugs: ["solera", "zono-street", "hl-aditi", "zono-module"],
     keySpecs: [
       { label: "Beam Distribution", value: "Asymmetric Type II / Type III Roadway" },
       { label: "Lifespan", value: "> 100,000 Hours (L70B50)" },
@@ -791,7 +796,7 @@ export const solutionApplications: SolutionApplication[] = [
     description: "Sculpted post-tops, wall-washers, and optical bollards crafted to highlight structural architecture, landscapes, and resort walkways without unsightly cabling.",
     consultantNote: "Architectural and landscape illumination must harmonize with warm thermal tones (2700K - 3000K) while providing weather durability.",
     luxRecommendation: "50 - 150 Lux (Landscape Grazing & Accents)",
-    image: zonoPostTopImg,
+    image: appArchitecturalLandscapeLuminaireImg,
     projectPic: shivaImg,
     category: "Specialty",
     matchingSlugs: [
@@ -821,10 +826,10 @@ export const solutionApplications: SolutionApplication[] = [
     description: "Multi-functional vertical photovoltaic solar poles that harvest clean energy seamlessly from 360 degrees with integrated LiFePO4 battery banks — operating 100% off-grid without electricity for continuous 24/7 security surveillance.",
     consultantNote: "Vertical PV integration increases self-cleaning efficiency by 40% in dusty climates where horizontal panels gather heavy soot.",
     luxRecommendation: "Target: 24/7 Autonomous Surveillance",
-    image: soleraImg,
+    image: appSolarCameraPoleLuminaireImg,
     projectPic: tejasSmartPoleImg,
     category: "Solar",
-    matchingSlugs: ["tejas-smart-pole", "zono-module"],
+    matchingSlugs: ["tejas-smart-pole"],
     keySpecs: [
       { label: "Solar Capture", value: "360° 6-Sided Vertical PV" },
       { label: "Storage", value: "3000+ Cycle LiFePO4" },
@@ -855,7 +860,7 @@ export const solutionApplications: SolutionApplication[] = [
     description: "Extreme ambient-temperature high-bay fixtures and linear luminaires engineered for logistics depots and assembly plants with up to 200 lm/W efficacy.",
     consultantNote: "Manufacturing facilities require heavy thermal dissipation (up to 50°C ambient) and high IP65 dust-proof ratings.",
     luxRecommendation: "300 - 500 Lux (Task & Assembly Lines)",
-    image: hlUltraBeamImg,
+    image: appIndustrialLuminaireImg,
     projectPic: hlUltraBeamImg,
     category: "Industrial Lighting",
     matchingSlugs: ["hl-ultra-beam"],
@@ -872,7 +877,7 @@ export const solutionApplications: SolutionApplication[] = [
     description: "Intelligent hybrid systems combining solar PV generation with AC grid backup for 100% guaranteed year-round uptime.",
     consultantNote: "Ideal for monsoon-heavy zones and critical security perimeters where zero downtime is mandatory.",
     luxRecommendation: "100 - 300 Lux (Perimeter & Campus)",
-    image: solarAcHybridImg,
+    image: appHybridLuminaireImg,
     projectPic: hlPranjalImg,
     category: "Hybrid Solar + AC",
     matchingSlugs: ["solar-ac-hybrid", "hl-pranjal"],

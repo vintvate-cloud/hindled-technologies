@@ -19,7 +19,7 @@ export function Footer() {
                 className="h-9 md:h-11 w-auto max-w-[220px] object-contain transition-transform group-hover:scale-105"
               />
             </Link>
-            <p className="max-w-sm text-paper/70 text-sm leading-relaxed font-light">
+            <p className="max-w-sm text-paper/85 text-base leading-relaxed font-normal">
               Engineering instruments that shape photons into architecture. 
               Precision solar smart poles, stadium floodlighting, and turnkey infrastructure solutions operating 100% without electricity.
             </p>

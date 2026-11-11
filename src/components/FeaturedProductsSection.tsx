@@ -179,7 +179,7 @@ export function FeaturedProductsSection() {
   }, [isPaused, activeSlide]);
 
   return (
-    <section id="featured-products" className="relative bg-paper py-24 lg:py-36 overflow-hidden">
+    <section id="featured-products" className="relative bg-paper pt-10 pb-24 lg:pt-12 lg:pb-28 overflow-hidden">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
         
         {/* Section Header with Scroll Reveal */}
@@ -203,7 +203,7 @@ export function FeaturedProductsSection() {
             <h2 className="text-display text-ink text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-[-0.03em]">
               Featured <span className="text-signal">Products.</span>
             </h2>
-            <p className="mt-4 max-w-xl text-sm sm:text-base text-ink/75 font-normal leading-relaxed">
+            <p className="mt-4 max-w-xl text-base sm:text-lg text-ink/85 font-medium leading-relaxed">
               Explore our leading solar street lights and smart poles, built for roads, campuses, parks, and large outdoor projects — powered 100% by the sun with zero electricity bills.
             </p>
           </div>
@@ -301,12 +301,12 @@ export function FeaturedProductsSection() {
                             <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.08]">
                               {prod.name}
                             </h3>
-                            <p className="text-xs sm:text-sm font-sans text-ink/60 mt-1.5 uppercase tracking-wider font-semibold">
+                            <p className="text-xs sm:text-sm font-sans text-ink/75 mt-1.5 uppercase tracking-wider font-bold">
                               {prod.tagline}
                             </p>
                           </div>
 
-                          <p className="text-base sm:text-lg text-ink/75 leading-relaxed font-light">
+                          <p className="text-base sm:text-lg text-ink/85 leading-relaxed font-medium">
                             {prod.description}
                           </p>
 
@@ -317,8 +317,8 @@ export function FeaturedProductsSection() {
                                 <highlights.icon1 className="w-4 h-4" />
                               </div>
                               <div>
-                                <div className="font-display text-sm font-bold text-ink">{highlights.title1}</div>
-                                <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc1}</p>
+                                <div className="font-display text-base font-bold text-ink">{highlights.title1}</div>
+                                <p className="text-sm sm:text-base text-ink/85 leading-relaxed font-medium mt-1">{highlights.desc1}</p>
                               </div>
                             </div>
 
@@ -327,8 +327,8 @@ export function FeaturedProductsSection() {
                                 <highlights.icon2 className="w-4 h-4" />
                               </div>
                               <div>
-                                <div className="font-display text-sm font-bold text-ink">{highlights.title2}</div>
-                                <p className="text-xs text-ink/65 leading-relaxed font-light mt-0.5">{highlights.desc2}</p>
+                                <div className="font-display text-base font-bold text-ink">{highlights.title2}</div>
+                                <p className="text-sm sm:text-base text-ink/85 leading-relaxed font-medium mt-1">{highlights.desc2}</p>
                               </div>
                             </div>
                           </div>
@@ -456,8 +456,8 @@ export function FeaturedProductsSection() {
                   {/* Right Column Specs & Summary */}
                   <div className="lg:col-span-7 space-y-6">
                     <div>
-                      <h4 className="text-mono text-xs text-ink/40 uppercase tracking-widest font-bold">Engineering Overview</h4>
-                      <p className="mt-2 text-sm text-ink/80 leading-relaxed font-light">
+                      <h4 className="text-mono text-xs text-ink/60 uppercase tracking-widest font-bold">Engineering Overview</h4>
+                      <p className="mt-2 text-base text-ink/85 leading-relaxed font-medium">
                         {selectedProduct.description}
                       </p>
                     </div>

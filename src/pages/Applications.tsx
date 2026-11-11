@@ -61,8 +61,8 @@ export default function AppsPage() {
               {/* Dual Image Box: Luminaire + Project Field Pic */}
               <div className="md:col-span-7">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-paper border border-ink/10 shadow-sm p-3 flex items-center justify-center">
-                    <img src={app.image} alt={app.title} className="w-full h-full max-h-full max-w-full object-contain" />
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
+                    <img src={app.image} alt={app.title} className="w-full h-full object-cover" />
                     <span className="absolute top-2.5 left-2.5 text-[9px] font-bold uppercase tracking-wider bg-ink text-paper px-2 py-0.5 rounded-full shadow-xs">
                       Platform Luminaire
                     </span>
