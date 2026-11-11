@@ -34,6 +34,138 @@ function BatteryChargingHUD({ progress }: { progress: MotionValue<number> }) {
   );
 }
 
+function SolarChargingStreamlines({ sunOpacity }: { sunOpacity: MotionValue<number> }) {
+  return (
+    <motion.div
+      style={{ opacity: sunOpacity }}
+      className="absolute inset-0 pointer-events-none z-[6] overflow-hidden will-change-[opacity]"
+    >
+      <style>{`
+        @keyframes rayBreath {
+          0%, 100% { opacity: 0.38; transform: scale(0.99); }
+          50% { opacity: 0.62; transform: scale(1.01); }
+        }
+        @keyframes pvHarvestScan {
+          0% { transform: translateY(-100%); opacity: 0; }
+          25% { opacity: 0.65; }
+          75% { opacity: 0.65; }
+          100% { transform: translateY(100%); opacity: 0; }
+        }
+      `}</style>
+
+      {/* Desktop / Tablet Atmospheric Sun Rays (Pure Volumetric Gradient Glow — Zero Internal Lines) */}
+      <svg
+        className="hidden sm:block absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          {/* Deep Volumetric Ray Feathering: Renders 100% soft Gaussian gradient light */}
+          <filter id="sunRayFeather" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="14" />
+          </filter>
+
+          {/* Broad Crepuscular Fan Atmosphere Filter */}
+          <filter id="fanAtmosphereBlur" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="24" />
+          </filter>
+
+          {/* Soft Absorption Bloom Diffusion */}
+          <filter id="bloomSoftBlur" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="6" />
+          </filter>
+
+          {/* Radial Bloom for Solar Energy Absorption Nodes */}
+          <radialGradient id="absorptionGlow">
+            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.85" />
+            <stop offset="45%" stopColor="#10b981" stopOpacity="0.45" />
+            <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+          </radialGradient>
+
+          {/* Volumetric Sunray Gradients: Pure continuous gradient with 0% falloff at origin (sun) & target (pole) */}
+          <linearGradient id="volumetricSunRay1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#fffbeb" stopOpacity="0" />
+            <stop offset="10%" stopColor="#fef08a" stopOpacity="0.45" />
+            <stop offset="38%" stopColor="#fde047" stopOpacity="0.35" />
+            <stop offset="68%" stopColor="#38bdf8" stopOpacity="0.28" />
+            <stop offset="92%" stopColor="#10b981" stopOpacity="0.38" />
+            <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+          </linearGradient>
+
+          <linearGradient id="volumetricSunRay2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#fffbeb" stopOpacity="0" />
+            <stop offset="12%" stopColor="#fef08a" stopOpacity="0.4" />
+            <stop offset="42%" stopColor="#fbbf24" stopOpacity="0.3" />
+            <stop offset="72%" stopColor="#67e8f9" stopOpacity="0.28" />
+            <stop offset="92%" stopColor="#34d399" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#34d399" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* 1. BROAD ATMOSPHERIC CREPUSCULAR HAZE (Soft fan of light from Sun toward ADITI pole) */}
+        <g filter="url(#fanAtmosphereBlur)" className="mix-blend-screen origin-top-left" style={{ animation: "rayBreath 5.5s ease-in-out infinite" }}>
+          <polygon points="535,166 825,250 825,430" fill="url(#volumetricSunRay1)" opacity="0.38" />
+          <polygon points="535,166 825,410 825,550" fill="url(#volumetricSunRay2)" opacity="0.34" />
+          <polygon points="535,166 825,530 825,640" fill="url(#volumetricSunRay1)" opacity="0.28" />
+        </g>
+
+        {/* 2. VOLUMETRIC SUNBEAM SHAFTS (Ultra-Soft Seamless Gaussian Rays — Zero Lines, Pure Gradient) */}
+        <g filter="url(#sunRayFeather)" className="mix-blend-screen">
+          <path d="M 535 166 C 630 170, 740 215, 825 265" fill="none" stroke="url(#volumetricSunRay1)" strokeWidth="42" strokeLinecap="round" opacity="0.55" />
+          <path d="M 535 166 C 635 190, 745 275, 825 355" fill="none" stroke="url(#volumetricSunRay2)" strokeWidth="46" strokeLinecap="round" opacity="0.6" />
+          <path d="M 535 166 C 640 215, 750 345, 825 445" fill="none" stroke="url(#volumetricSunRay1)" strokeWidth="44" strokeLinecap="round" opacity="0.55" />
+          <path d="M 535 166 C 650 240, 750 420, 825 535" fill="none" stroke="url(#volumetricSunRay2)" strokeWidth="40" strokeLinecap="round" opacity="0.5" />
+          <path d="M 535 166 C 660 265, 750 495, 825 625" fill="none" stroke="url(#volumetricSunRay1)" strokeWidth="36" strokeLinecap="round" opacity="0.45" />
+        </g>
+
+        {/* 3. PHOTOVOLTAIC ABSORPTION BLOOMS (Soft radial light blooms on the vertical silicon collector) */}
+        <g filter="url(#bloomSoftBlur)" className="mix-blend-screen">
+          <circle cx="825" cy="265" r="10" fill="url(#absorptionGlow)" />
+          <circle cx="825" cy="265" r="15" fill="none" stroke="#38bdf8" strokeWidth="1" opacity="0.35" className="animate-ping" />
+
+          <circle cx="825" cy="355" r="12" fill="url(#absorptionGlow)" />
+          <circle cx="825" cy="355" r="18" fill="none" stroke="#10b981" strokeWidth="1" opacity="0.4" className="animate-ping" />
+
+          <circle cx="825" cy="445" r="11" fill="url(#absorptionGlow)" />
+          <circle cx="825" cy="445" r="16" fill="none" stroke="#34d399" strokeWidth="1" opacity="0.35" className="animate-ping" />
+
+          <circle cx="825" cy="535" r="10" fill="url(#absorptionGlow)" />
+          <circle cx="825" cy="535" r="14" fill="none" stroke="#38bdf8" strokeWidth="1" opacity="0.35" className="animate-ping" />
+
+          <circle cx="825" cy="625" r="9" fill="url(#absorptionGlow)" />
+          <circle cx="825" cy="625" r="13" fill="none" stroke="#fde047" strokeWidth="1" opacity="0.3" className="animate-ping" />
+        </g>
+      </svg>
+
+      {/* Mobile Sun Rays (Pure Volumetric Gradient Glow) */}
+      <svg
+        className="sm:hidden absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="none"
+      >
+        {/* Mobile Volumetric Fan */}
+        <g filter="url(#fanAtmosphereBlur)" className="mix-blend-screen origin-top-left" style={{ animation: "rayBreath 5.5s ease-in-out infinite" }}>
+          <polygon points="720,80 840,350 840,650" fill="url(#volumetricSunRay1)" opacity="0.4" />
+        </g>
+
+        {/* Mobile Volumetric Ray Shafts */}
+        <g filter="url(#sunRayFeather)" className="mix-blend-screen">
+          <path d="M 720 80 C 760 170, 800 280, 840 370" fill="none" stroke="url(#volumetricSunRay1)" strokeWidth="30" strokeLinecap="round" opacity="0.55" />
+          <path d="M 720 80 C 760 220, 800 370, 840 480" fill="none" stroke="url(#volumetricSunRay2)" strokeWidth="32" strokeLinecap="round" opacity="0.6" />
+          <path d="M 720 80 C 770 270, 800 480, 840 590" fill="none" stroke="url(#volumetricSunRay1)" strokeWidth="26" strokeLinecap="round" opacity="0.5" />
+        </g>
+
+        {/* Mobile Absorption Blooms */}
+        <g filter="url(#bloomSoftBlur)" className="mix-blend-screen">
+          <circle cx="840" cy="370" r="9" fill="url(#absorptionGlow)" />
+          <circle cx="840" cy="480" r="10" fill="url(#absorptionGlow)" />
+          <circle cx="840" cy="590" r="8" fill="url(#absorptionGlow)" />
+        </g>
+      </svg>
+    </motion.div>
+  );
+}
+
 export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { openDrawer } = useContactDrawer();
@@ -83,9 +215,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
     >
       {/* Sticky Fullscreen Cinematic Hero Stage */}
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col justify-center select-none bg-[#071538]">
-        
+
         {/* ============================================================ 3 GPU-ACCELERATED SKY LAYERS (0 REFLOWS / 120FPS MOBILE PERFORMANCE) */}
-        
+
         {/* Layer 1: Radiant Azure Day Sky */}
         <motion.div
           className="absolute inset-0 pointer-events-none will-change-[opacity]"
@@ -155,6 +287,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
           </motion.div>
         </div>
 
+        {/* ============================================================ SOLAR CHARGING STREAMLINES (ACTIVE DAYLIGHT ENERGY HARVEST) */}
+        <SolarChargingStreamlines sunOpacity={sunOpacity} />
+
         {/* Ambient Ground Silhouette & Landscape Horizon */}
         <div className="absolute bottom-0 inset-x-0 h-24 sm:h-32 md:h-36 z-3 pointer-events-none">
           {/* Day Horizon */}
@@ -178,10 +313,10 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
 
         {/* ============================================================ ADITI SOLAR SMART POLE */}
         <div className="absolute right-1 sm:right-[1.5vw] md:right-[3vw] lg:right-[4vw] bottom-0 z-10 h-[62vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
-          
+
           {/* Smart Pole Image Container */}
           <div className="relative z-10 h-full flex items-end justify-center">
-            
+
             {/* Ground Contact Depth Shadow */}
             <div className="absolute -bottom-2 w-32 h-6 bg-black/85 rounded-full blur-md pointer-events-none" />
 
@@ -193,6 +328,26 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               loading="eager"
             />
 
+            {/* Photovoltaic Vertical Silicon Absorption Column (Daylight Harvesting Sheen — Exactly over 360° Solar Panels) */}
+            <motion.div
+              style={{ opacity: sunOpacity }}
+              className="absolute z-15 top-[12.8%] bottom-[40.8%] left-[44.6%] w-[10.8%] pointer-events-none overflow-hidden rounded-t-[8px] rounded-b-[4px] will-change-[opacity]"
+            >
+              {/* Ambient Translucent Crystal Luminescence */}
+              <div className="absolute inset-0 bg-gradient-to-b from-amber-200/10 via-cyan-400/15 to-emerald-400/20 mix-blend-screen" />
+
+              {/* Cascading Photon Absorption Sweep across Hexagonal Solar Cells */}
+              <div
+                className="w-full h-full mix-blend-screen opacity-65"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent 0%, rgba(254,240,138,0.25) 20%, rgba(56,189,248,0.5) 50%, rgba(16,185,129,0.5) 80%, transparent 100%)",
+                  animation: "pvHarvestScan 3.2s ease-in-out infinite",
+                }}
+              />
+            </motion.div>
+
+
             {/* Single Subtle Light Source & Volumetric Night Rays (Illuminating from optical lens face) */}
             <motion.div
               style={{ opacity: luminaireNightGlow }}
@@ -202,35 +357,34 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               <div className="relative rotate-[14deg] flex items-center justify-center">
                 {/* Subtle soft lens illumination */}
                 <div className="w-12 sm:w-16 md:w-20 h-3 sm:h-4.5 rounded-[999px] bg-gradient-to-r from-amber-100/80 via-white/95 to-amber-100/80 blur-[2px] shadow-[0_0_10px_rgba(255,255,240,0.5),0_0_20px_rgba(254,240,138,0.2)] mix-blend-screen" />
-                
+
                 {/* Soft diffused atmospheric halo */}
                 <div className="absolute inset-0 -m-3 sm:-m-5 rounded-full bg-amber-200/20 blur-lg pointer-events-none" />
               </div>
 
-              {/* Downward Photometric Volumetric Light Pool - Pure Seamless Gradient (Zero Sharp Edges) */}
+              {/* Downward Photometric Volumetric Light Pool - 100% Seamless Soft Gaussian Radial Falloff (Zero Hard Edges) */}
               <div
-                className="absolute top-2 left-1/2 -translate-x-[54%] w-[280px] sm:w-[420px] md:w-[520px] h-[48vh] sm:h-[58vh] md:h-[66vh] pointer-events-none origin-top rotate-[8deg] mix-blend-screen"
+                className="absolute top-2 left-1/2 -translate-x-[54%] w-[260px] sm:w-[380px] md:w-[460px] h-[46vh] sm:h-[54vh] md:h-[62vh] pointer-events-none origin-top rotate-[8deg] mix-blend-screen rounded-full"
                 style={{
-                  // Ultra-smooth vertical fade: starts at 0% transparent (no sharp top edge) and fades out smoothly to 0%
-                  maskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 65%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 65%, transparent 100%)",
+                  maskImage: "radial-gradient(ellipse 50% 50% at 50% 50%, black 15%, transparent 85%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 50% 50% at 50% 50%, black 15%, transparent 85%)",
                 }}
               >
                 {/* Wide Feathered Photometric Spill Cone */}
                 <div
-                  className="w-full h-full rounded-[50%_50%_45%_45%/15%_15%_85%_85%] blur-[30px] sm:blur-[42px]"
+                  className="w-full h-full rounded-full blur-[32px] sm:blur-[44px]"
                   style={{
                     background:
-                      "radial-gradient(ellipse 55% 75% at 50% 12%, rgba(255,253,240,0.30) 0%, rgba(224,242,254,0.13) 38%, rgba(186,230,253,0.02) 70%, transparent 92%)",
+                      "radial-gradient(ellipse 65% 75% at 50% 20%, rgba(255,253,240,0.30) 0%, rgba(224,242,254,0.12) 36%, rgba(186,230,253,0.02) 60%, transparent 75%)",
                   }}
                 />
 
                 {/* Soft Core Optical Light Column */}
                 <div
-                  className="absolute top-1 left-1/2 -translate-x-1/2 w-[46%] h-[78%] rounded-full blur-[18px] sm:blur-[26px]"
+                  className="absolute top-2 left-1/2 -translate-x-1/2 w-[50%] h-[75%] rounded-full blur-[20px] sm:blur-[28px]"
                   style={{
                     background:
-                      "radial-gradient(ellipse 50% 70% at 50% 15%, rgba(255,254,242,0.38) 0%, rgba(254,249,195,0.12) 42%, transparent 88%)",
+                      "radial-gradient(ellipse 55% 65% at 50% 25%, rgba(255,254,242,0.38) 0%, rgba(254,249,195,0.12) 38%, transparent 70%)",
                   }}
                 />
               </div>
@@ -255,7 +409,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         <div className="relative z-20 mx-auto w-full max-w-[1550px] px-4 sm:px-10 lg:px-14 pt-20 sm:pt-28 md:pt-32 pb-6 sm:pb-16 flex flex-col justify-center h-full pointer-events-none">
           {/* Main Headline & Value Proposition */}
           <div className="max-w-[82vw] sm:max-w-2xl lg:max-w-3xl pointer-events-auto py-2 sm:py-8">
-            
+
             {/* Heritage Badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
