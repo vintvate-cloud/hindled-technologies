@@ -83,9 +83,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
     >
       {/* Sticky Fullscreen Cinematic Hero Stage */}
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col justify-center select-none bg-[#071538]">
-        
+
         {/* ============================================================ 3 GPU-ACCELERATED SKY LAYERS (0 REFLOWS / 120FPS MOBILE PERFORMANCE) */}
-        
+
         {/* Layer 1: Radiant Azure Day Sky */}
         <motion.div
           className="absolute inset-0 pointer-events-none will-change-[opacity]"
@@ -126,76 +126,12 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         <div
           className="absolute z-[4] pointer-events-none top-[8vh] sm:top-[11vh] md:top-[12vh] lg:top-[12vh] right-[28vw] sm:right-[34vw] md:right-[38vw] lg:right-[44vw] w-14 h-14 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
         >
-          {/* Day Mode Subtle Volumetric Solar Rays (Seamless atmospheric glow + crepuscular beams toward ADITI pole) */}
-          <motion.div
-            className="hidden sm:block absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
-            style={{ opacity: sunOpacity }}
-          >
-            {/* Outer Wide Atmospheric Solar Corona (Fades to zero well inside bounds) */}
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-[38%] -translate-y-[44%] w-[62vw] h-[56vh] rotate-[14deg] pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse 46% 32% at 24% 38%, rgba(255,249,214,0.34) 0%, rgba(253,224,71,0.14) 36%, rgba(251,191,36,0.04) 58%, transparent 74%)",
-              }}
-            />
-            {/* Seamless Feathered Crepuscular Sunbeams (Gradient fades smoothly at both ends — zero mask clipping) */}
-            <div
-              className="absolute top-[46%] left-[38%] w-[44vw] h-16 rounded-full blur-[18px] rotate-[8deg] origin-[32px_50%]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(255,252,225,0) 0%, rgba(255,252,225,0.28) 14%, rgba(254,240,138,0.12) 50%, rgba(254,240,138,0) 88%)",
-              }}
-            />
-            <div
-              className="absolute top-[48%] left-[36%] w-[45vw] h-24 rounded-full blur-[22px] rotate-[16deg] origin-[36px_50%]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.32) 16%, rgba(253,224,71,0.14) 52%, rgba(253,224,71,0) 90%)",
-              }}
-            />
-            <div
-              className="absolute top-[50%] left-[34%] w-[42vw] h-16 rounded-full blur-[20px] rotate-[25deg] origin-[32px_50%]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 48%, rgba(251,191,36,0) 86%)",
-              }}
-            />
-          </motion.div>
-
-          {/* Mobile Subtle Solar Rays */}
-          <motion.div
-            className="sm:hidden absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
-            style={{ opacity: sunOpacity }}
-          >
-            <div
-              className="absolute top-1/2 left-1/2 -translate-x-[35%] -translate-y-[38%] w-[54vw] h-[44vh] rotate-[34deg] pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse 46% 32% at 24% 38%, rgba(255,249,214,0.32) 0%, rgba(253,224,71,0.12) 38%, transparent 72%)",
-              }}
-            />
-            <div
-              className="absolute top-[48%] left-[38%] w-[36vw] h-12 rounded-full blur-[16px] rotate-[32deg] origin-[20px_50%]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.30) 16%, rgba(253,224,71,0.12) 52%, rgba(253,224,71,0) 88%)",
-              }}
-            />
-            <div
-              className="absolute top-[50%] left-[36%] w-[34vw] h-14 rounded-full blur-[16px] rotate-[44deg] origin-[20px_50%]"
-              style={{
-                background:
-                  "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 50%, rgba(251,191,36,0) 86%)",
-              }}
-            />
-          </motion.div>
-
           {/* Sun Layer */}
           <motion.div
             className="absolute inset-0 rounded-full will-change-[opacity]"
             style={{
               background: "radial-gradient(circle, #fff6c9 0%, #f4a41d 60%, rgba(244,164,29,0) 72%)",
+              boxShadow: "0 0 24px rgba(251, 191, 36, 0.45), 0 0 48px rgba(245, 158, 11, 0.2)",
               opacity: sunOpacity,
             }}
           />
@@ -242,10 +178,10 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
 
         {/* ============================================================ ADITI SOLAR SMART POLE */}
         <div className="absolute right-1 sm:right-[1.5vw] md:right-[3vw] lg:right-[4vw] bottom-0 z-10 h-[62vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
-          
+
           {/* Smart Pole Image Container */}
           <div className="relative z-10 h-full flex items-end justify-center">
-            
+
             {/* Ground Contact Depth Shadow */}
             <div className="absolute -bottom-2 w-32 h-6 bg-black/85 rounded-full blur-md pointer-events-none" />
 
@@ -265,45 +201,36 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               {/* Soft, Angled Optical Lens Glow matching the fixture's physical angle */}
               <div className="relative rotate-[14deg] flex items-center justify-center">
                 {/* Subtle soft lens illumination */}
-                <div className="w-12 sm:w-16 md:w-20 h-3 sm:h-4.5 rounded-[999px] bg-gradient-to-r from-amber-100/80 via-white/95 to-amber-100/80 blur-[1.5px] shadow-[0_0_8px_rgba(255,255,240,0.6),0_0_16px_rgba(254,240,138,0.25)] mix-blend-screen" />
-                
+                <div className="w-12 sm:w-16 md:w-20 h-3 sm:h-4.5 rounded-[999px] bg-gradient-to-r from-amber-100/80 via-white/95 to-amber-100/80 blur-[2px] shadow-[0_0_10px_rgba(255,255,240,0.5),0_0_20px_rgba(254,240,138,0.2)] mix-blend-screen" />
+
                 {/* Soft diffused atmospheric halo */}
-                <div className="absolute inset-0 -m-3 sm:-m-5 rounded-full bg-amber-200/25 blur-md pointer-events-none" />
+                <div className="absolute inset-0 -m-3 sm:-m-5 rounded-full bg-amber-200/20 blur-lg pointer-events-none" />
               </div>
 
-              {/* Subtle Volumetric Night Light Beam & Feathered Dispersion Rays */}
+              {/* Downward Photometric Volumetric Light Pool - Pure Seamless Gradient (Zero Sharp Edges) */}
               <div
-                className="absolute top-0.5 left-1/2 -translate-x-[56%] w-[200px] sm:w-[300px] md:w-[390px] h-[46vh] sm:h-[56vh] md:h-[64vh] pointer-events-none origin-top rotate-[8deg] mix-blend-screen"
+                className="absolute top-2 left-1/2 -translate-x-[54%] w-[280px] sm:w-[420px] md:w-[520px] h-[48vh] sm:h-[58vh] md:h-[66vh] pointer-events-none origin-top rotate-[8deg] mix-blend-screen"
                 style={{
-                  maskImage: "radial-gradient(ellipse 68% 92% at 50% 4%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 42%, transparent 86%)",
-                  WebkitMaskImage: "radial-gradient(ellipse 68% 92% at 50% 4%, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.55) 42%, transparent 86%)",
+                  // Ultra-smooth vertical fade: starts at 0% transparent (no sharp top edge) and fades out smoothly to 0%
+                  maskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 65%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(180deg, transparent 0%, black 16%, black 65%, transparent 100%)",
                 }}
               >
                 {/* Wide Feathered Photometric Spill Cone */}
                 <div
-                  className="w-full h-full rounded-[50%_50%_45%_45%/10%_10%_90%_90%] blur-[22px] sm:blur-[28px]"
+                  className="w-full h-full rounded-[50%_50%_45%_45%/15%_15%_85%_85%] blur-[30px] sm:blur-[42px]"
                   style={{
-                    background: "radial-gradient(ellipse 65% 90% at 50% 0%, rgba(255,253,240,0.34) 0%, rgba(224,242,254,0.16) 42%, rgba(186,230,253,0.04) 76%, transparent 98%)",
+                    background:
+                      "radial-gradient(ellipse 55% 75% at 50% 12%, rgba(255,253,240,0.30) 0%, rgba(224,242,254,0.13) 38%, rgba(186,230,253,0.02) 70%, transparent 92%)",
                   }}
                 />
-                {/* Soft Inner Optical Beam Core */}
+
+                {/* Soft Core Optical Light Column */}
                 <div
-                  className="absolute top-0 left-1/2 -translate-x-1/2 w-[52%] h-[82%] rounded-full blur-[14px] sm:blur-[18px]"
+                  className="absolute top-1 left-1/2 -translate-x-1/2 w-[46%] h-[78%] rounded-full blur-[18px] sm:blur-[26px]"
                   style={{
-                    background: "linear-gradient(180deg, rgba(255,254,242,0.42) 0%, rgba(254,249,195,0.15) 42%, transparent 92%)",
-                  }}
-                />
-                {/* Subtle Soft Air-Scattered Dispersion Rays */}
-                <div
-                  className="absolute top-1 left-[46%] w-8 sm:w-11 h-[74%] rounded-full blur-[12px] origin-top rotate-[-12deg]"
-                  style={{
-                    background: "linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(224,242,254,0.10) 48%, transparent 92%)",
-                  }}
-                />
-                <div
-                  className="absolute top-1 left-[50%] w-9 sm:w-12 h-[76%] rounded-full blur-[12px] origin-top rotate-[11deg]"
-                  style={{
-                    background: "linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(224,242,254,0.09) 48%, transparent 92%)",
+                    background:
+                      "radial-gradient(ellipse 50% 70% at 50% 15%, rgba(255,254,242,0.38) 0%, rgba(254,249,195,0.12) 42%, transparent 88%)",
                   }}
                 />
               </div>
@@ -328,7 +255,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         <div className="relative z-20 mx-auto w-full max-w-[1550px] px-4 sm:px-10 lg:px-14 pt-20 sm:pt-28 md:pt-32 pb-6 sm:pb-16 flex flex-col justify-center h-full pointer-events-none">
           {/* Main Headline & Value Proposition */}
           <div className="max-w-[82vw] sm:max-w-2xl lg:max-w-3xl pointer-events-auto py-2 sm:py-8">
-            
+
             {/* Heritage Badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
