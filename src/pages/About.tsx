@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useMeta } from "../hooks/use-meta";
-import { advisorProfile } from "@/assets/products";
+import { advisorProfile, leadershipTeam } from "@/assets/products";
 import { useContactDrawer } from "../components/ContactDrawer";
 
 export default function AboutPage() {
@@ -65,23 +65,58 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Chief Technical Advisor Section */}
+      {/* Leadership & Founding Team Section */}
       <section className="bg-paper text-ink py-24 relative overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <div className="mb-12 border-b border-ink/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="mb-14 border-b border-ink/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-2">
-                — TECHNICAL LEADERSHIP & ADVISORY
+                — LEADERSHIP & FOUNDING TEAM
               </span>
               <h2 className="text-display text-ink text-[7vw] leading-[0.92] tracking-[-0.04em] md:text-[3.8vw] font-bold">
-                Guided by 45+ Years of <span className="text-signal">Excellence.</span>
+                Guided by Decades of <span className="text-signal">Excellence.</span>
               </h2>
             </div>
             <p className="max-w-md text-sm text-ink/70 font-light leading-relaxed">
-              Strategic consulting, energy efficiency, industry standards, and sustainable lighting solutions.
+              Strategic mentorship, technical direction, and executive governance driving India's zero-grid solar lighting revolution.
             </p>
           </div>
 
+          {/* 3 Executive Leaders Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {leadershipTeam.map((leader, i) => (
+              <motion.div
+                key={leader.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12 }}
+                className="rounded-[28px] bg-stone border border-ink/10 p-8 flex flex-col justify-between shadow-sm hover:border-signal/40 transition-colors"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-mono text-[10px] font-bold uppercase tracking-widest text-signal bg-signal/10 px-3 py-1 rounded-full">
+                      0{i + 1} // EXECUTIVE
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl font-bold text-ink mb-1">
+                    {leader.name}
+                  </h3>
+                  <div className="text-xs font-mono font-bold uppercase tracking-wider text-signal mb-4">
+                    {leader.designation}
+                  </div>
+                  <p className="text-xs font-mono text-ink/60 mb-3 font-semibold">
+                    {leader.tagline}
+                  </p>
+                  <p className="text-sm text-ink/75 font-light leading-relaxed">
+                    {leader.bio}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Detailed Spotlight on Bhatia Sir */}
           <div className="rounded-[36px] bg-stone border border-ink/15 p-8 md:p-14 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
               <div className="relative w-full max-w-[440px] h-[400px] sm:h-[480px] md:h-[540px] lg:h-[580px] rounded-[32px] overflow-hidden border-2 border-ink/20 shadow-2xl bg-paper group">
@@ -101,7 +136,7 @@ export default function AboutPage() {
               <div className="space-y-6">
                 <div>
                   <span className="text-mono text-xs font-bold uppercase tracking-widest text-signal block mb-2">
-                    — BIOGRAPHY & IMPACT
+                    — FOUNDER & MENTOR SPOTLIGHT
                   </span>
                   <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
                     {advisorProfile.name}

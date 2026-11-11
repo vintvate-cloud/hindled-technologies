@@ -57,12 +57,12 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com"
+                  href="https://x.com/Hindled_7"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-signal transition-colors flex items-center gap-1"
                 >
-                  LinkedIn
+                  X
                   <ExternalLink className="w-3 h-3 text-paper/40" />
                 </a>
               </li>
@@ -74,6 +74,17 @@ export function Footer() {
                   className="hover:text-signal transition-colors flex items-center gap-1"
                 >
                   Instagram
+                  <ExternalLink className="w-3 h-3 text-paper/40" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-signal transition-colors flex items-center gap-1"
+                >
+                  LinkedIn
                   <ExternalLink className="w-3 h-3 text-paper/40" />
                 </a>
               </li>
@@ -118,6 +129,15 @@ export function Footer() {
                   <a href="tel:+919560121310" className="hover:text-signal transition-colors font-mono text-xs">
                     +91 9560121310
                   </a>
+                </div>
+                <div className="flex items-center gap-2 pt-1 border-t border-paper/10">
+                  <Phone className="w-3.5 h-3.5 text-signal" />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] text-paper/50 font-mono uppercase tracking-wider">Technical Support</span>
+                    <a href="tel:+918860410310" className="hover:text-signal transition-colors font-mono text-xs font-semibold text-paper">
+                      +91 8860410310
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

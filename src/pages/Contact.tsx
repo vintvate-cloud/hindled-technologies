@@ -58,7 +58,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="mt-12 hairline-t pt-6 space-y-3">
+            <div className="mt-12 hairline-t pt-6 space-y-4">
               <div className="text-mono text-ink/50 text-xs uppercase tracking-widest font-bold">Direct Channels</div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-signal shrink-0" />
@@ -74,9 +74,21 @@ export default function ContactPage() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-signal shrink-0" />
-                <a href="tel:+919560121310" className="text-sm font-mono font-bold text-ink hover:text-signal">
-                  +91 9560121310
-                </a>
+                <div>
+                  <span className="text-[10px] text-ink/50 uppercase font-mono block">Direct Desk</span>
+                  <a href="tel:+919560121310" className="text-sm font-mono font-bold text-ink hover:text-signal">
+                    +91 9560121310
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center gap-2.5 pt-1 border-t border-ink/10">
+                <Phone className="w-4 h-4 text-signal shrink-0" />
+                <div>
+                  <span className="text-[10px] text-signal uppercase font-mono font-bold block">Technical Support</span>
+                  <a href="tel:+918860410310" className="text-sm font-mono font-bold text-ink hover:text-signal">
+                    +91 8860410310
+                  </a>
+                </div>
               </div>
             </div>
           </div>

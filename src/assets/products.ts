@@ -870,7 +870,7 @@ export const solutionApplications: SolutionApplication[] = [
 
 export const advisorProfile = {
   name: "Mr. Brij Bhatia",
-  title: "Chief Illumination Advisor & Infrastructure Engineering Lead",
+  title: "Co-Founder and Mentor",
   image: "/advisorimagefinal.jpeg",
   experienceYears: "45+ Years",
   bio: "An accomplished Electrical Engineer with over 45 years of experience in the lighting and energy industry, Mr. Brij Bhatia brings extensive expertise in leadership, innovation, business strategy, and sustainable lighting solutions. Having mentored numerous professionals into senior leadership roles, he is passionate about guiding talent, nurturing businesses, and sharing industry knowledge. His experience spans strategic consulting, industry standards, energy efficiency, skill development, and entrepreneurship making him a trusted mentor for professionals and emerging infrastructure businesses alike.",
@@ -901,3 +901,27 @@ export const advisorProfile = {
     },
   ],
 };
+
+export const leadershipTeam = [
+  {
+    name: "Mr. Brij Bhatia",
+    designation: "Co-Founder and Mentor",
+    tagline: "45+ Years Lighting & Energy Leadership",
+    bio: "An accomplished Electrical Engineer with over 45 years of experience in the lighting and energy industry, guiding business strategy, industry standards, energy efficiency, and sustainable lighting solutions.",
+    image: "/advisorimagefinal.jpeg",
+  },
+  {
+    name: "Mr. Khanna",
+    designation: "Co-Founder and Technical Director",
+    tagline: "Technical Systems & Engineering Lead",
+    bio: "Pioneering technical direction, optical engineering, and state-of-the-art zero-grid solar infrastructure solutions across challenging municipal and highway deployments.",
+    image: null,
+  },
+  {
+    name: "Mr. Anitya Kumar Rai",
+    designation: "Managing Director",
+    tagline: "Executive Operations & Corporate Governance",
+    bio: "Leading executive operations, turnkey infrastructure execution, CPWD / NHAI / Smart City tenders, and strategic manufacturing initiatives across India.",
+    image: null,
+  },
+];

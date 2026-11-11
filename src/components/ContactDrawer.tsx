@@ -142,7 +142,7 @@ export function ContactDrawer() {
                   {/* Direct Contact Channels */}
                   <div className="border-t border-ink/10 pt-4">
                     <div className="text-mono text-ink/40 mb-2 uppercase tracking-wider text-[10px] font-bold">Direct Channels</div>
-                    <div className="space-y-2">
+                    <div className="space-y-2.5">
                       <div className="flex items-center gap-2">
                         <Mail className="w-4 h-4 text-signal shrink-0" />
                         <a href="mailto:hindled77@gmail.com" className="font-display text-base font-bold text-ink hover:text-signal transition-colors">
@@ -157,9 +157,21 @@ export function ContactDrawer() {
                       </div>
                       <div className="flex items-center gap-2">
                         <Phone className="w-4 h-4 text-signal shrink-0" />
-                        <a href="tel:+919560121310" className="text-xs font-mono font-bold text-ink hover:text-signal transition-colors">
-                          +91 9560121310
-                        </a>
+                        <div>
+                          <span className="text-[10px] text-ink/50 uppercase font-mono block">Direct</span>
+                          <a href="tel:+919560121310" className="text-xs font-mono font-bold text-ink hover:text-signal transition-colors">
+                            +91 9560121310
+                          </a>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 pt-1 border-t border-ink/10">
+                        <Phone className="w-4 h-4 text-signal shrink-0" />
+                        <div>
+                          <span className="text-[10px] text-signal uppercase font-mono font-bold block">Technical Support</span>
+                          <a href="tel:+918860410310" className="text-xs font-mono font-bold text-ink hover:text-signal transition-colors">
+                            +91 8860410310
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
