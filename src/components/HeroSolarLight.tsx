@@ -215,9 +215,9 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
     >
       {/* Sticky Fullscreen Cinematic Hero Stage */}
       <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex flex-col justify-center select-none bg-[#071538]">
-
+        
         {/* ============================================================ 3 GPU-ACCELERATED SKY LAYERS (0 REFLOWS / 120FPS MOBILE PERFORMANCE) */}
-
+        
         {/* Layer 1: Radiant Azure Day Sky */}
         <motion.div
           className="absolute inset-0 pointer-events-none will-change-[opacity]"
@@ -313,10 +313,10 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
 
         {/* ============================================================ ADITI SOLAR SMART POLE */}
         <div className="absolute right-1 sm:right-[1.5vw] md:right-[3vw] lg:right-[4vw] bottom-0 z-10 h-[62vh] sm:h-[70vh] md:h-[82vh] lg:h-[86vh] pointer-events-none flex items-end justify-center select-none transform-gpu">
-
+          
           {/* Smart Pole Image Container */}
           <div className="relative z-10 h-full flex items-end justify-center">
-
+            
             {/* Ground Contact Depth Shadow */}
             <div className="absolute -bottom-2 w-32 h-6 bg-black/85 rounded-full blur-md pointer-events-none" />
 
@@ -357,7 +357,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               <div className="relative rotate-[14deg] flex items-center justify-center">
                 {/* Subtle soft lens illumination */}
                 <div className="w-12 sm:w-16 md:w-20 h-3 sm:h-4.5 rounded-[999px] bg-gradient-to-r from-amber-100/80 via-white/95 to-amber-100/80 blur-[2px] shadow-[0_0_10px_rgba(255,255,240,0.5),0_0_20px_rgba(254,240,138,0.2)] mix-blend-screen" />
-
+                
                 {/* Soft diffused atmospheric halo */}
                 <div className="absolute inset-0 -m-3 sm:-m-5 rounded-full bg-amber-200/20 blur-lg pointer-events-none" />
               </div>
@@ -409,7 +409,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         <div className="relative z-20 mx-auto w-full max-w-[1550px] px-4 sm:px-10 lg:px-14 pt-20 sm:pt-28 md:pt-32 pb-6 sm:pb-16 flex flex-col justify-center h-full pointer-events-none">
           {/* Main Headline & Value Proposition */}
           <div className="max-w-[82vw] sm:max-w-2xl lg:max-w-3xl pointer-events-auto py-2 sm:py-8">
-
+            
             {/* Heritage Badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
