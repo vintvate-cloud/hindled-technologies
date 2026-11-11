@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useContactDrawer } from "./ContactDrawer";
 
 const links = [
+  { to: "/about", label: "About" },
   { to: "/products", label: "Products" },
   { to: "/technology", label: "Technology" },
   { to: "/applications", label: "Applications" },
-  { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
 

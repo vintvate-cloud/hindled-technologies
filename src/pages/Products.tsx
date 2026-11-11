@@ -68,14 +68,14 @@ const IconRenderer = ({ name, className }: { name: string; className?: string })
 export default function ProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState<EnrichedProduct | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [activeApplicationId, setActiveApplicationId] = useState<string>("solar-smart-poles");
+  const [activeApplicationId, setActiveApplicationId] = useState<string>("solar-urban-lighting");
   const [activeInfoTab, setActiveInfoTab] = useState<"overview" | "specs">("overview");
   const [viewingSpecImage, setViewingSpecImage] = useState(false);
   const { openDrawer } = useContactDrawer();
 
   useMeta({
     title: "Products & Applications Catalogue — HINDLED Technologies",
-    description: "Awards-level technical luminaire inventory categorized by 8 infrastructure applications.",
+    description: "Awards-level technical luminaire inventory categorized by 6 infrastructure applications.",
   });
 
   const lenis = useLenis();
@@ -129,7 +129,7 @@ export default function ProductsPage() {
             Hardware Inventory by <span className="text-signal">Application.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base text-ink/70 font-light leading-relaxed">
-            Precision luminaires and solar smart platforms organized across 8 infrastructure applications.
+            Precision luminaires and solar smart platforms organized across 6 infrastructure applications.
           </p>
         </motion.div>
 

@@ -29,8 +29,8 @@ const productHighlights: Record<string, { badge1: string; badge2: string; icon1:
     title1: "Off-Grid Security Camera",
     desc1: "24/7 continuous wireless recording & 4G/Wi-Fi live cloud feed powered entirely by vertical PV battery backup.",
     icon2: Sun,
-    title2: "High-Output Solar Lighting",
-    desc2: "170 lm/W optical LED illumination with 4-step autonomous dimming and 5+ rainy days weather backup.",
+    title2: "360° Cylindrical Solar Harvesting",
+    desc2: "Vertical wrap monocrystalline PV modules capture daylight seamlessly from all angles with multi-day battery autonomy.",
   },
   "hl-gaj": {
     badge1: "Up to 360,000 Lumens",
@@ -49,8 +49,8 @@ const productHighlights: Record<string, { badge1: string; badge2: string; icon1:
     title1: "100% Solar Powered Lighting",
     desc1: "Robust, die cast aluminium housing with an aerodynamic design that reduces wind resistance and facilitates rainwater runoff with integrated high capacity lithium batteries, MPPTs and optical sensors.",
     icon2: Sun,
-    title2: "High Efficiency Optics (160–170 lm/W)",
-    desc2: "High efficiency of optics 160–170 lm/W with customized optical distribution and diversified roadway applications.",
+    title2: "High Efficiency Optics (130–165 lm/W)",
+    desc2: "High efficiency optics 130–165 lm/W with customized optical distribution and diverse roadway applications.",
   },
   "sandhya": {
     badge1: "100% Without Electricity",

@@ -12,7 +12,7 @@ export default function AppsPage() {
 
   useMeta({
     title: "Applications — HINDLED Technologies Lighting Solutions",
-    description: "Solar Smart Poles, Sports Arenas, Industrial Warehouses, Façades, Tunnels, Airports, and EV Charging Poles engineered for India and global environments.",
+    description: "Solar Urban Lighting, Architectural & Landscape, Solar Camera Poles, Outdoor and Sports Lighting, Industrial Lighting, and Hybrid Solar + AC systems.",
   });
 
   return (
@@ -27,7 +27,7 @@ export default function AppsPage() {
             <span className="text-signal block whitespace-nowrap mt-3 sm:mt-5">HAS TO PERFORM.</span>
           </h1>
           <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-ink/75 font-light">
-            We consult, engineer, and deploy high-performance illumination solutions across 8 specialized infrastructure categories. Tailored for extreme thermal, electrical, and environmental demands.
+            We consult, engineer, and deploy high-performance illumination solutions across 6 specialized infrastructure categories. Tailored for extreme thermal, electrical, and environmental demands.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
