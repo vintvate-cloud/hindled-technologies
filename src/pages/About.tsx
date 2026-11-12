@@ -16,7 +16,7 @@ export default function AboutPage() {
       <section className="bg-paper pt-28 pb-12 sm:pt-40 sm:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-6 sm:mb-8 text-ink/60">— Studio / About</div>
-          <h1 className="text-display text-ink text-[10.5vw] sm:text-[9vw] md:text-[7.5vw] leading-[1.02] font-bold [word-spacing:0.3em] tracking-normal">
+          <h1 className="text-display text-ink text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] leading-[1.04] font-bold [word-spacing:0.12em] tracking-tight">
             WE DON'T MAKE
             <br />
             FIXTURES. WE
@@ -76,7 +76,7 @@ export default function AboutPage() {
               <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-2">
                 — EXECUTIVE LEADERSHIP & TECHNICAL MASTERY
               </span>
-              <h2 className="text-display text-ink text-[7vw] leading-[0.92] tracking-[-0.04em] md:text-[3.8vw] font-bold">
+              <h2 className="text-display text-ink text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.02] tracking-[-0.03em] font-bold">
                 Guided by Over <span className="text-signal">125+ Years</span> of Combined Expertise.
               </h2>
             </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
                     <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-1">
                       — {member.categoryTag}
                     </span>
-                    <h3 className="text-display text-2xl sm:text-3xl md:text-4xl font-bold text-ink">
+                    <h3 className="text-display text-xl sm:text-2xl md:text-3xl font-bold text-ink">
                       {member.headline}
                     </h3>
                   </div>
@@ -139,7 +139,7 @@ export default function AboutPage() {
                         <span className="text-mono text-xs font-bold uppercase tracking-widest text-signal block mb-2">
                           — BIOGRAPHY & IMPACT
                         </span>
-                        <h4 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
+                        <h4 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-ink tracking-tight">
                           {member.name}
                         </h4>
                         <p className="text-xs sm:text-sm text-signal font-mono font-bold tracking-wider uppercase mt-2">
@@ -184,7 +184,7 @@ export default function AboutPage() {
 
       <section className="bg-paper py-20 sm:py-32 overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw] font-bold">
+          <h2 className="text-display text-ink text-3xl sm:text-4xl md:text-5xl leading-[0.95] font-bold">
             VENUES WE'VE LIT.
           </h2>
         </div>

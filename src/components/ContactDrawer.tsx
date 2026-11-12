@@ -110,7 +110,7 @@ export function ContactDrawer() {
                     </span>
                   </div>
 
-                  <h2 className="text-display text-4xl sm:text-5xl lg:text-6xl text-ink leading-[1.05] tracking-[-0.04em] font-bold">
+                  <h2 className="text-display text-3xl sm:text-4xl lg:text-5xl text-ink leading-[1.05] tracking-[-0.04em] font-bold">
                     LET'S BUILD
                     <br />
                     THE FUTURE OF

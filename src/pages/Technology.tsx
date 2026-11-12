@@ -21,7 +21,7 @@ export default function TechPage() {
       <section className="bg-paper pt-40 pb-20">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <div className="text-mono mb-8 text-ink/60">— Discipline / Technology</div>
-          <h1 className="text-display text-ink text-[13vw] leading-[1.02] sm:text-[11vw] md:text-[9vw]">
+          <h1 className="text-display text-ink text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[1.02] font-bold">
             INTELLIGENT
             <br />
             <span className="text-signal block mt-3 sm:mt-5">ILLUMINATION.</span>
@@ -48,7 +48,7 @@ export default function TechPage() {
                 <span className="text-mono text-signal">{p.n}</span>
                 <span className="text-mono text-ink/40">PILLAR</span>
               </div>
-              <h2 className="text-display mt-6 text-3xl text-ink sm:text-4xl md:text-5xl">{p.t}</h2>
+              <h2 className="text-display mt-6 text-2xl text-ink sm:text-3xl md:text-4xl font-bold">{p.t}</h2>
               <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/70">{p.d}</p>
             </motion.div>
           ))}
@@ -57,7 +57,7 @@ export default function TechPage() {
 
       <section className="bg-ink py-32 text-paper">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <h2 className="text-display text-[13vw] leading-[0.9] sm:text-[11vw] md:text-[8vw]">
+          <h2 className="text-display text-4xl sm:text-5xl md:text-6xl leading-[0.95] font-bold">
             STANDARDS WE
             <br />
             <span className="text-signal">EXCEED.</span>

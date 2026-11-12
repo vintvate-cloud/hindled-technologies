@@ -22,9 +22,9 @@ export default function AppsPage() {
           <div className="flex items-center gap-2 text-mono mb-5 sm:mb-6 text-signal font-bold uppercase tracking-widest text-[10px] sm:text-xs">
             <Compass className="w-4 h-4 shrink-0" /> Lighting Infrastructure Applications
           </div>
-          <h1 className="text-display text-ink text-[8vw] sm:text-[10vw] md:text-[9vw] lg:text-[8vw] xl:text-[7.5vw] font-bold [word-spacing:0.06em] sm:[word-spacing:0.2em] tracking-tight leading-[0.98] sm:leading-[0.92]">
+          <h1 className="text-display text-ink text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-bold [word-spacing:0.06em] sm:[word-spacing:0.12em] tracking-tight leading-[1.02]">
             <span className="block sm:whitespace-nowrap">WHERE THE LIGHT</span>
-            <span className="text-signal block sm:whitespace-nowrap mt-2 sm:mt-5">HAS TO PERFORM.</span>
+            <span className="text-signal block sm:whitespace-nowrap mt-2 sm:mt-3">HAS TO PERFORM.</span>
           </h1>
           <p className="mt-6 sm:mt-8 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-ink/75 font-light">
             We consult, engineer, and deploy high-performance illumination solutions across 6 specialized infrastructure categories. Tailored for extreme thermal, electrical, and environmental demands.
@@ -62,13 +62,13 @@ export default function AppsPage() {
               <div className="md:col-span-7 min-w-0">
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
                   <div className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
-                    <img src={app.image} alt={app.title} className="w-full h-full object-cover" />
+                    <img src={app.image} alt={app.title} className="w-full h-full object-cover" loading="eager" />
                     <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 text-[7.5px] sm:text-[9px] font-bold uppercase tracking-wider bg-ink text-paper px-1.5 sm:px-2 py-0.5 rounded-full shadow-xs">
                       Platform Luminaire
                     </span>
                   </div>
                   <div className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
-                    <img src={app.projectPic} alt={`${app.title} field project`} className="w-full h-full object-cover" />
+                    <img src={app.projectPic} alt={`${app.title} field project`} className="w-full h-full object-cover" loading="eager" />
                     <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 text-[7.5px] sm:text-[9px] font-bold uppercase tracking-wider bg-signal text-white px-1.5 sm:px-2 py-0.5 rounded-full shadow-xs">
                       Field Installation
                     </span>
@@ -81,7 +81,7 @@ export default function AppsPage() {
                 <div className="text-mono text-signal font-bold text-xs">
                   {String(i + 1).padStart(2, "0")} · {app.category}
                 </div>
-                <h2 className="text-display text-3xl font-bold text-ink sm:text-4xl md:text-5xl tracking-tight">
+                <h2 className="text-display text-2xl font-bold text-ink sm:text-3xl md:text-4xl tracking-tight">
                   {app.title}
                 </h2>
                 <p className="text-xs font-semibold text-ink/50 uppercase tracking-wider">

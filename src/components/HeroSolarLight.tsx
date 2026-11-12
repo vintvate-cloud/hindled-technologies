@@ -393,7 +393,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
             </motion.div>
 
             {/* Animated Main Headline (Original Text) */}
-            <h1 className="font-display text-white text-[9.5vw] sm:text-[7vw] md:text-[5vw] lg:text-[4.6vw] font-extrabold leading-[0.98] sm:leading-[0.92] tracking-[-0.03em] drop-shadow-2xl">
+            <h1 className="font-display text-white text-[8vw] sm:text-5xl md:text-[4.2vw] lg:text-[3.75rem] font-extrabold leading-[1.02] sm:leading-[0.95] tracking-[-0.03em] drop-shadow-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}

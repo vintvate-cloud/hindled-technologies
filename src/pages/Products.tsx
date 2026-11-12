@@ -125,7 +125,7 @@ export default function ProductsPage() {
           <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-3">
             — HARDWARE PORTFOLIO
           </span>
-          <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-ink tracking-tight leading-[0.93]">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-ink tracking-tight leading-[0.98]">
             Hardware Inventory by <span className="text-signal">Application.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base text-ink/70 font-light leading-relaxed">
@@ -205,7 +205,7 @@ export default function ProductsPage() {
                   <span className="text-mono text-[10px] uppercase tracking-widest text-signal font-extrabold block mb-2">
                     0{index + 1} — APPLICATION CATEGORY
                   </span>
-                  <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight">
+                  <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-ink tracking-tight">
                     {app.title}
                   </h2>
                   <p className="text-xs font-mono text-ink/60 mt-1">{app.subtitle}</p>

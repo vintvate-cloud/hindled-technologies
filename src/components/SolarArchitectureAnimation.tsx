@@ -180,7 +180,7 @@ export function SolarArchitectureAnimation() {
             </span>
           </div>
           
-          <h2 className="text-display text-ink text-[8.5vw] sm:text-[6vw] lg:text-[4.5vw] leading-[1.04] tracking-[-0.04em] font-bold">
+          <h2 className="text-display text-ink text-2xl sm:text-4xl lg:text-5xl leading-[1.04] tracking-[-0.04em] font-bold">
             Engineered from the <span className="text-signal">inside out.</span>
           </h2>
           

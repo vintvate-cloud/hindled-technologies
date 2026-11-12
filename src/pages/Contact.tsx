@@ -30,7 +30,7 @@ export default function ContactPage() {
               100% Zero-Grid Solar Infrastructure
             </span>
           </div>
-          <h1 className="text-display text-ink text-[11vw] leading-[0.88] sm:text-[10vw] md:text-[8vw] font-bold">
+          <h1 className="text-display text-ink text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] leading-[0.95] font-bold">
             LET'S BUILD
             <br />
             THE FUTURE OF

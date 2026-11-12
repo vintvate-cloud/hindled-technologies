@@ -125,7 +125,7 @@ function Philosophy() {
         {/* Proportionate, Bold, Dark & Visible Headline */}
         <h2
           ref={titleRef}
-          className="text-display text-ink text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] leading-[1.08] sm:leading-[1.06] tracking-[-0.03em] font-extrabold max-w-5xl"
+          className="text-display text-ink text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.08] sm:leading-[1.06] tracking-[-0.03em] font-extrabold max-w-5xl"
         >
           {lines.map((line, i) => (
             <div key={i} className="overflow-hidden pb-1.5 sm:pb-2.5 pt-0.5">
@@ -324,7 +324,7 @@ function About() {
             About — The Studio
           </motion.div>
 
-          <h2 className="text-display mt-3 text-[7.5vw] sm:text-[9vw] md:text-[5vw] leading-[0.95] sm:leading-[0.92] tracking-[-0.04em] text-ink font-bold break-words">
+          <h2 className="text-display mt-3 text-2xl sm:text-4xl md:text-[3.25rem] leading-[1.0] sm:leading-[0.95] tracking-[-0.04em] text-ink font-bold break-words">
             <Reveal>A studio of</Reveal>
             <Reveal delay={0.1}>engineers,</Reveal>
             <Reveal delay={0.2}>
@@ -439,7 +439,7 @@ function FAQ() {
           className="md:col-span-4 min-w-0"
         >
           <div className="text-mono text-xs uppercase tracking-widest text-signal font-bold">FAQ</div>
-          <h2 className="text-display mt-4 text-ink text-[8.2vw] sm:text-5xl md:text-[4.5vw] leading-[0.98] md:leading-[0.92] tracking-[-0.03em] md:tracking-[-0.04em] font-bold">
+          <h2 className="text-display mt-4 text-ink text-2xl sm:text-4xl md:text-[3rem] leading-[1.02] md:leading-[0.95] tracking-[-0.03em] md:tracking-[-0.04em] font-bold">
             Engineering <span className="text-signal">questions,</span> answered.
           </h2>
           <p className="mt-4 sm:mt-6 max-w-full sm:max-w-md text-sm sm:text-base md:text-lg leading-relaxed text-ink/85 font-medium">
@@ -517,7 +517,7 @@ function Closer() {
       <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-10">
         <h2
           ref={headingRef}
-          className="text-display text-ink text-[9.5vw] sm:text-[9vw] md:text-[7.5vw] font-bold leading-[0.95] tracking-[-0.04em]"
+          className="text-display text-ink text-3xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold leading-[0.95] tracking-[-0.04em]"
         >
           <div className="overflow-hidden py-1">
             <span className="closer-line inline-block">Illuminating</span>

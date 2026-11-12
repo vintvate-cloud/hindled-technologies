@@ -200,7 +200,7 @@ export function FeaturedProductsSection() {
             >
               — BENCHMARK HARDWARE
             </motion.span>
-            <h2 className="text-display text-ink text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-extrabold leading-[1.08] tracking-[-0.03em]">
+            <h2 className="text-display text-ink text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.08] tracking-[-0.03em]">
               Featured <span className="text-signal">Products.</span>
             </h2>
             <p className="mt-4 max-w-xl text-base sm:text-lg text-ink/85 font-medium leading-relaxed">
