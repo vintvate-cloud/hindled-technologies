@@ -20,7 +20,7 @@ export default function App() {
           <ScrollToTop />
           <CustomCursor />
           <Navbar />
-          <main className="min-h-screen bg-paper text-ink">
+          <main className="min-h-screen bg-paper text-ink overflow-x-clip w-full max-w-full">
             <Routes>
               <Route path="/" element={<IndexPage />} />
               <Route path="/about" element={<AboutPage />} />

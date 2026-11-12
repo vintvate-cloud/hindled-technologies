@@ -91,7 +91,7 @@ function StackingCard({ layer, index, total }: StackingCardProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full relative rounded-[32px] sm:rounded-[44px] bg-white border border-ink/10 p-8 sm:p-12 lg:p-14 shadow-[0_-6px_25px_rgba(0,0,0,0.03),_0_25px_60px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] transition-shadow overflow-hidden group"
+        className="w-full relative rounded-[32px] sm:rounded-[44px] bg-white border border-ink/10 p-6 sm:p-12 lg:p-14 shadow-[0_-6px_25px_rgba(0,0,0,0.03),_0_25px_60px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] transition-shadow overflow-hidden group"
       >
         {/* Subtle Colored Ambient Bloom */}
         <div
@@ -162,8 +162,8 @@ export function SolarArchitectureAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} id="solar-anatomy" className="relative bg-paper pt-24 pb-8 lg:pt-32 lg:pb-12">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+    <section ref={containerRef} id="solar-anatomy" className="relative bg-paper pt-20 pb-8 sm:pt-24 lg:pt-32 lg:pb-12 overflow-x-clip">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10">
         
         {/* Section Header */}
         <motion.div

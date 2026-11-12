@@ -111,8 +111,8 @@ function Philosophy() {
   ];
 
   return (
-    <section ref={sectionRef} className="relative bg-paper py-28 lg:py-44">
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
+    <section ref={sectionRef} className="relative bg-paper py-20 sm:py-28 lg:py-44 overflow-x-clip">
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-10">
         
         {/* Subtle Category Badge */}
         <div className="mb-5 sm:mb-6 flex items-center gap-2.5">
@@ -241,14 +241,14 @@ function About() {
         STUDIO
       </motion.div>
 
-      <div className="relative mx-auto grid max-w-[1600px] grid-cols-12 gap-10 lg:gap-14 px-6 lg:px-10 items-start">
-        <div className="col-span-12 lg:col-span-6 flex items-start -mt-2 lg:-mt-6">
+      <div className="relative mx-auto grid max-w-[1600px] grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-14 px-5 sm:px-6 lg:px-10 items-start">
+        <div className="lg:col-span-6 flex items-start -mt-2 lg:-mt-6 min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full h-[380px] sm:h-[460px] lg:h-[500px] overflow-hidden rounded-[32px] shadow-2xl border border-ink/10 group relative bg-stone/40 select-none"
+            className="w-full h-[220px] sm:h-[460px] lg:h-[500px] overflow-hidden rounded-[24px] sm:rounded-[32px] shadow-2xl border border-ink/10 group relative bg-stone/40 select-none"
           >
             {/* Ambient Blurred Backdrop for contained portrait images (e.g. Smart Column) */}
             {activeAditiIdx === 1 && (
@@ -262,13 +262,13 @@ function About() {
               key={aditiImages[activeAditiIdx].src}
               src={aditiImages[activeAditiIdx].src}
               alt="HINDLED Technologies Aditi Solar Infrastructure"
-              className={`w-full h-full rounded-[32px] transition-all duration-700 ${
+              className={`w-full h-full rounded-[24px] sm:rounded-[32px] transition-all duration-700 ${
                 activeAditiIdx === 1
                   ? "object-contain relative z-10 py-3 group-hover:scale-102"
                   : "object-cover group-hover:scale-105"
               }`}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none rounded-[32px] z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none rounded-[24px] sm:rounded-[32px] z-10" />
 
             {/* Prev / Next Chevrons on hover */}
             <button
@@ -293,18 +293,18 @@ function About() {
             </button>
 
             {/* Bottom Caption and Pagination Dots */}
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-20">
-              <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider bg-paper/95 backdrop-blur-md text-ink px-3 py-1.5 rounded-full border border-ink/10 shadow-sm">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between gap-2 pointer-events-auto z-20">
+              <span className="text-[9px] sm:text-xs font-mono font-bold uppercase tracking-tight sm:tracking-wider bg-paper/95 backdrop-blur-md text-ink px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-ink/10 shadow-sm truncate min-w-0">
                 ADITI Solar Infrastructure · {aditiImages[activeAditiIdx].label}
               </span>
-              <div className="flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/20">
+              <div className="flex items-center gap-1 sm:gap-1.5 bg-black/50 backdrop-blur-md px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full border border-white/20 shrink-0">
                 {aditiImages.map((img, i) => (
                   <button
                     key={img.src}
                     onClick={() => setActiveAditiIdx(i)}
                     aria-label={img.label}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      i === activeAditiIdx ? "w-6 bg-signal" : "w-2 bg-white/50 hover:bg-white"
+                    className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === activeAditiIdx ? "w-4 sm:w-6 bg-signal" : "w-1.5 sm:w-2 bg-white/50 hover:bg-white"
                     }`}
                   />
                 ))}
@@ -313,7 +313,7 @@ function About() {
           </motion.div>
         </div>
 
-        <div className="col-span-12 lg:col-span-6 flex flex-col justify-start -mt-4 lg:-mt-8">
+        <div className="lg:col-span-6 flex flex-col justify-start -mt-2 sm:-mt-4 lg:-mt-8 min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -324,7 +324,7 @@ function About() {
             About — The Studio
           </motion.div>
 
-          <h2 className="text-display mt-3 text-[10vw] leading-[0.92] tracking-[-0.04em] text-ink md:text-[5vw] font-bold">
+          <h2 className="text-display mt-3 text-[7.5vw] sm:text-[9vw] md:text-[5vw] leading-[0.95] sm:leading-[0.92] tracking-[-0.04em] text-ink font-bold break-words">
             <Reveal>A studio of</Reveal>
             <Reveal delay={0.1}>engineers,</Reveal>
             <Reveal delay={0.2}>
@@ -338,12 +338,12 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-4 max-w-2xl text-lg sm:text-xl md:text-2xl leading-relaxed text-ink/90 font-medium"
+            className="mt-4 max-w-2xl text-base sm:text-xl md:text-2xl leading-relaxed text-ink/90 font-medium"
           >
             HINDLED Technologies is a focused engineering collective specializing in precision outdoor lighting, zero-grid solar infrastructure, and broadcast stadium luminaires. Every instrument is calibrated to a project's geometry, DIALux photometric code, and atmosphere.
           </motion.p>
 
-          <div className="mt-6 grid grid-cols-2 gap-8 border-t border-ink/10 pt-5 md:grid-cols-3">
+          <div className="mt-6 grid grid-cols-2 gap-5 sm:gap-8 border-t border-ink/10 pt-5 md:grid-cols-3">
             {[
               { k: "21", v: "Engineered Products" },
               { k: "100%", v: "Solar Grid Autonomy" },
@@ -355,9 +355,10 @@ function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false }}
                 transition={{ delay: 0.2 + i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="min-w-0"
               >
-                <div className="text-display text-4xl text-ink md:text-5xl font-bold">{s.k}</div>
-                <div className="text-mono mt-2 text-ink/80 text-xs sm:text-sm font-bold uppercase tracking-wider">{s.v}</div>
+                <div className="text-display text-3xl sm:text-4xl text-ink md:text-5xl font-bold">{s.k}</div>
+                <div className="text-mono mt-2 text-ink/80 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider">{s.v}</div>
               </motion.div>
             ))}
           </div>
@@ -376,8 +377,8 @@ function Stats() {
     { v: "21", u: "platforms", l: "Catalogue Inventory" },
   ];
   return (
-    <section className="bg-stone/60 py-24">
-      <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
+    <section className="bg-stone/60 py-16 sm:py-24 overflow-x-clip">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-6 sm:gap-10 px-5 sm:px-6 md:grid-cols-4 lg:px-10">
         {stats.map((s, i) => (
           <motion.div
             key={s.l}
@@ -385,12 +386,13 @@ function Stats() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="min-w-0"
           >
-            <div className="text-display flex items-baseline gap-2 text-ink font-bold">
-              <span className="text-5xl md:text-7xl">{s.v}</span>
-              <span className="text-mono text-signal text-xs md:text-sm font-bold">{s.u}</span>
+            <div className="text-display flex flex-wrap items-baseline gap-1.5 sm:gap-2 text-ink font-bold min-w-0">
+              <span className="text-3xl sm:text-5xl md:text-7xl">{s.v}</span>
+              <span className="text-mono text-signal text-[10px] sm:text-xs md:text-sm font-bold">{s.u}</span>
             </div>
-            <div className="text-mono mt-2 text-ink/80 text-xs sm:text-sm font-bold uppercase tracking-wider">{s.l}</div>
+            <div className="text-mono mt-2 text-ink/80 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider">{s.l}</div>
           </motion.div>
         ))}
       </div>
@@ -427,25 +429,25 @@ function FAQ() {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={ref} className="bg-paper py-32 lg:py-48">
-      <div className="mx-auto grid max-w-[1600px] grid-cols-12 gap-10 px-6 lg:px-10">
+    <section ref={ref} className="bg-paper py-20 sm:py-32 lg:py-48 overflow-x-clip">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 px-5 sm:px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="col-span-12 md:col-span-4"
+          className="md:col-span-4 min-w-0"
         >
           <div className="text-mono text-xs uppercase tracking-widest text-signal font-bold">FAQ</div>
-          <h2 className="text-display mt-4 text-ink text-[10vw] leading-[0.92] tracking-[-0.04em] md:text-[4.5vw] font-bold">
+          <h2 className="text-display mt-4 text-ink text-[8.2vw] sm:text-5xl md:text-[4.5vw] leading-[0.98] md:leading-[0.92] tracking-[-0.03em] md:tracking-[-0.04em] font-bold">
             Engineering <span className="text-signal">questions,</span> answered.
           </h2>
-          <p className="mt-6 max-w-md text-base sm:text-lg leading-relaxed text-ink/85 font-medium">
+          <p className="mt-4 sm:mt-6 max-w-full sm:max-w-md text-sm sm:text-base md:text-lg leading-relaxed text-ink/85 font-medium">
             Zero-electricity solar autonomy, CCTV integration, stadium optics, warranty, and custom DIALux simulations.
           </p>
         </motion.div>
 
-        <div className="col-span-12 md:col-span-7 md:col-start-6">
+        <div className="md:col-span-7 md:col-start-6 min-w-0">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -459,13 +461,13 @@ function FAQ() {
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between gap-6 py-6 text-left cursor-pointer"
+                  className="flex w-full items-start sm:items-center justify-between gap-4 sm:gap-6 py-5 sm:py-6 text-left cursor-pointer"
                 >
-                  <span className="text-display text-xl text-ink md:text-2xl font-bold">
+                  <span className="text-display text-lg sm:text-xl md:text-2xl text-ink font-bold leading-snug min-w-0 flex-1">
                     {f.q}
                   </span>
                   <span
-                    className={`text-mono text-signal transition-transform duration-500 font-bold text-xl ${isOpen ? "rotate-45" : ""}`}
+                    className={`text-mono text-signal transition-transform duration-500 font-bold text-xl shrink-0 ${isOpen ? "rotate-45" : ""}`}
                   >
                     +
                   </span>
@@ -474,7 +476,7 @@ function FAQ() {
                   className={`grid overflow-hidden transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
                 >
                   <div className="min-h-0 overflow-hidden">
-                    <p className="pb-6 pr-12 text-base sm:text-lg leading-relaxed text-ink/85 font-medium">
+                    <p className="pb-5 sm:pb-6 pr-2 sm:pr-12 text-sm sm:text-base md:text-lg leading-relaxed text-ink/85 font-medium">
                       {f.a}
                     </p>
                   </div>
@@ -511,11 +513,11 @@ function Closer() {
   }, []);
 
   return (
-    <section className="bg-paper pb-32 pt-20 lg:pb-48">
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
+    <section className="bg-paper pb-20 pt-14 sm:pb-32 sm:pt-20 lg:pb-48 overflow-x-clip">
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-10">
         <h2
           ref={headingRef}
-          className="text-display text-ink text-[11vw] sm:text-[9vw] md:text-[7.5vw] font-bold leading-[0.95] tracking-[-0.04em]"
+          className="text-display text-ink text-[9.5vw] sm:text-[9vw] md:text-[7.5vw] font-bold leading-[0.95] tracking-[-0.04em]"
         >
           <div className="overflow-hidden py-1">
             <span className="closer-line inline-block">Illuminating</span>
