@@ -187,10 +187,6 @@ export default function AboutPage() {
           <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw] font-bold">
             VENUES WE'VE LIT.
           </h2>
-          <div className="text-display marquee mt-10 sm:mt-12 flex gap-12 whitespace-nowrap text-3xl sm:text-4xl text-ink/30 md:text-6xl font-bold">
-            <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
-            <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
-          </div>
         </div>
       </section>
     </>
