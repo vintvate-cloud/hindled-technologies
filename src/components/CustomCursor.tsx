@@ -15,9 +15,9 @@ export function CustomCursor() {
   const ringY = useSpring(mouseY, { damping: 30, stiffness: 250, mass: 0.5 });
 
   useEffect(() => {
-    // Check if device is touch-enabled
+    // Check if device is touch-enabled or narrow phone/tablet viewport
     if (typeof window !== "undefined") {
-      const isTouch = window.matchMedia("(pointer: coarse)").matches;
+      const isTouch = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768;
       if (isTouch) return;
     }
 
