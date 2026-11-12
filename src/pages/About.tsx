@@ -13,9 +13,9 @@ export default function AboutPage() {
 
   return (
     <>
-      <section className="bg-paper pt-40 pb-32">
+      <section className="bg-paper pt-28 pb-12 sm:pt-40 sm:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <div className="text-mono mb-8 text-ink/60">— Studio / About</div>
+          <div className="text-mono mb-6 sm:mb-8 text-ink/60">— Studio / About</div>
           <h1 className="text-display text-ink text-[10.5vw] sm:text-[9vw] md:text-[7.5vw] leading-[1.02] font-bold [word-spacing:0.3em] tracking-normal">
             WE DON'T MAKE
             <br />
@@ -26,8 +26,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-paper pb-32">
-        <div className="mx-auto grid max-w-[1600px] gap-16 px-6 md:grid-cols-12 lg:px-10">
+      <section className="bg-paper pb-12 sm:pb-32">
+        <div className="mx-auto grid max-w-[1600px] gap-8 sm:gap-16 px-6 md:grid-cols-12 lg:px-10">
           <div className="md:col-span-5">
             <div className="text-mono text-ink/50 text-xs uppercase tracking-widest font-bold">Manifesto</div>
           </div>
@@ -44,8 +44,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-stone py-24">
-        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
+      <section className="bg-stone py-12 sm:py-24">
+        <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-6 sm:gap-10 px-6 md:grid-cols-4 lg:px-10">
           {[
             { v: "125+", l: "Years Combined Leadership" },
             { v: "100%", l: "Solar Grid Autonomy" },
@@ -67,11 +67,11 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership & Technical Advisory Section */}
-      <section className="bg-paper text-ink py-24 relative overflow-hidden">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-10 space-y-24">
+      <section className="bg-paper text-ink pt-14 pb-16 sm:py-24 relative overflow-hidden">
+        <div className="mx-auto max-w-[1600px] px-6 lg:px-10 space-y-12 sm:space-y-24">
 
           {/* Main Section Header */}
-          <div className="pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="pb-2 sm:pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6">
             <div>
               <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-2">
                 — EXECUTIVE LEADERSHIP & TECHNICAL MASTERY
@@ -86,7 +86,7 @@ export default function AboutPage() {
           </div>
 
           {/* Leadership Profiles Sequential Showcase */}
-          <div className="space-y-20">
+          <div className="space-y-12 sm:space-y-20">
             {leadershipTeam.map((member, index) => (
               <motion.div
                 key={member.id}
@@ -182,12 +182,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-paper py-32 overflow-hidden">
+      <section className="bg-paper py-20 sm:py-32 overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw] font-bold">
             VENUES WE'VE LIT.
           </h2>
-          <div className="text-display marquee mt-12 flex gap-12 whitespace-nowrap text-3xl sm:text-4xl text-ink/30 md:text-6xl font-bold">
+          <div className="text-display marquee mt-10 sm:mt-12 flex gap-12 whitespace-nowrap text-3xl sm:text-4xl text-ink/30 md:text-6xl font-bold">
             <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
             <span>AL JANOUB · WANKHEDE · OLYMPIA NORD · KING FAHD · NARENDRA MODI · SOFI · ETIHAD · ALLIANZ · </span>
           </div>

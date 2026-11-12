@@ -6,7 +6,7 @@ import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 export function Footer() {
   const { openDrawer } = useContactDrawer();
   return (
-    <footer className="bg-ink text-paper pt-24 pb-8 md:pt-32 md:pb-12 mt-12 rounded-t-[40px] md:rounded-t-[80px] overflow-hidden">
+    <footer className="bg-ink text-paper pt-24 pb-8 md:pt-32 md:pb-12 mt-10 sm:mt-12 rounded-t-[40px] md:rounded-t-[80px] overflow-hidden">
       <div className="mx-auto flex max-w-[1600px] flex-col px-6 lg:px-10">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-16 md:pb-24 border-b border-paper/10">

@@ -17,29 +17,29 @@ export default function AppsPage() {
 
   return (
     <>
-      <section className="bg-paper pt-40 pb-16">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
-          <div className="flex items-center gap-2 text-mono mb-6 text-signal font-bold uppercase tracking-widest">
-            <Compass className="w-4 h-4" /> Lighting Infrastructure Applications
+      <section className="bg-paper pt-28 pb-10 sm:pt-40 sm:pb-16 overflow-x-clip">
+        <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-10">
+          <div className="flex items-center gap-2 text-mono mb-5 sm:mb-6 text-signal font-bold uppercase tracking-widest text-[10px] sm:text-xs">
+            <Compass className="w-4 h-4 shrink-0" /> Lighting Infrastructure Applications
           </div>
-          <h1 className="text-display text-ink text-[11vw] sm:text-[10vw] md:text-[9vw] lg:text-[8vw] xl:text-[7.5vw] font-bold [word-spacing:0.2em] tracking-tight leading-[0.92]">
-            <span className="block whitespace-nowrap">WHERE THE LIGHT</span>
-            <span className="text-signal block whitespace-nowrap mt-3 sm:mt-5">HAS TO PERFORM.</span>
+          <h1 className="text-display text-ink text-[8vw] sm:text-[10vw] md:text-[9vw] lg:text-[8vw] xl:text-[7.5vw] font-bold [word-spacing:0.06em] sm:[word-spacing:0.2em] tracking-tight leading-[0.98] sm:leading-[0.92]">
+            <span className="block sm:whitespace-nowrap">WHERE THE LIGHT</span>
+            <span className="text-signal block sm:whitespace-nowrap mt-2 sm:mt-5">HAS TO PERFORM.</span>
           </h1>
-          <p className="mt-8 max-w-2xl text-base md:text-lg leading-relaxed text-ink/75 font-light">
+          <p className="mt-6 sm:mt-8 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-ink/75 font-light">
             We consult, engineer, and deploy high-performance illumination solutions across 6 specialized infrastructure categories. Tailored for extreme thermal, electrical, and environmental demands.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-4">
+          <div className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4">
             <button
               onClick={openDrawer}
-              className="rounded-full bg-signal px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-ink transition-all cursor-pointer"
+              className="rounded-full bg-signal px-6 sm:px-8 py-3 sm:py-3.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white shadow-md hover:bg-ink transition-all cursor-pointer"
             >
               Request Application Audit →
             </button>
             <Link
               to="/products"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-stone/60 px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-paper transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-stone/60 px-6 sm:px-7 py-3 sm:py-3.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink hover:bg-ink hover:text-paper transition-all cursor-pointer"
             >
               Explore 21 Hardware Platforms →
             </Link>
@@ -47,8 +47,8 @@ export default function AppsPage() {
         </div>
       </section>
 
-      <section className="bg-paper pb-32">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
+      <section className="bg-paper pb-20 sm:pb-32 overflow-x-clip">
+        <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-10">
           {solutionApplications.map((app, i) => (
             <motion.div
               key={app.id}
@@ -56,20 +56,20 @@ export default function AppsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8 }}
-              className={`hairline-t grid items-center gap-10 py-16 md:grid-cols-12 ${i % 2 ? "md:[&>div:first-child]:order-2" : ""}`}
+              className={`hairline-t grid grid-cols-1 items-center gap-6 sm:gap-10 py-10 sm:py-16 md:grid-cols-12 ${i % 2 ? "md:[&>div:first-child]:order-2" : ""}`}
             >
               {/* Dual Image Box: Luminaire + Project Field Pic */}
-              <div className="md:col-span-7">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
+              <div className="md:col-span-7 min-w-0">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
+                  <div className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
                     <img src={app.image} alt={app.title} className="w-full h-full object-cover" />
-                    <span className="absolute top-2.5 left-2.5 text-[9px] font-bold uppercase tracking-wider bg-ink text-paper px-2 py-0.5 rounded-full shadow-xs">
+                    <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 text-[7.5px] sm:text-[9px] font-bold uppercase tracking-wider bg-ink text-paper px-1.5 sm:px-2 py-0.5 rounded-full shadow-xs">
                       Platform Luminaire
                     </span>
                   </div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
+                  <div className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-stone border border-ink/10 shadow-sm">
                     <img src={app.projectPic} alt={`${app.title} field project`} className="w-full h-full object-cover" />
-                    <span className="absolute top-2.5 left-2.5 text-[9px] font-bold uppercase tracking-wider bg-signal text-white px-2 py-0.5 rounded-full shadow-xs">
+                    <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 text-[7.5px] sm:text-[9px] font-bold uppercase tracking-wider bg-signal text-white px-1.5 sm:px-2 py-0.5 rounded-full shadow-xs">
                       Field Installation
                     </span>
                   </div>
@@ -77,7 +77,7 @@ export default function AppsPage() {
               </div>
 
               {/* Application Details */}
-              <div className="md:col-span-5 space-y-4">
+              <div className="md:col-span-5 space-y-4 min-w-0">
                 <div className="text-mono text-signal font-bold text-xs">
                   {String(i + 1).padStart(2, "0")} · {app.category}
                 </div>
