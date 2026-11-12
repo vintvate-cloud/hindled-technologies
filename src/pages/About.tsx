@@ -44,7 +44,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-stone py-24 border-t border-b border-ink/10">
+      <section className="bg-stone py-24">
         <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-10 px-6 md:grid-cols-4 lg:px-10">
           {[
             { v: "125+", l: "Years Combined Leadership" },
@@ -67,11 +67,11 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership & Technical Advisory Section */}
-      <section className="bg-paper text-ink py-24 border-t border-ink/10 relative overflow-hidden">
+      <section className="bg-paper text-ink py-24 relative overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10 space-y-24">
 
           {/* Main Section Header */}
-          <div className="border-b border-ink/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-2">
                 — EXECUTIVE LEADERSHIP & TECHNICAL MASTERY
@@ -97,7 +97,7 @@ export default function AboutPage() {
                 className="space-y-8"
               >
                 {/* Individual Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-ink/10 pb-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4">
                   <div>
                     <span className="text-mono text-xs uppercase tracking-widest text-signal font-bold block mb-1">
                       — {member.categoryTag}
@@ -182,7 +182,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-paper py-32 hairline-t">
+      <section className="bg-paper py-32 overflow-hidden">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
           <h2 className="text-display text-ink text-[10vw] leading-[0.9] md:text-[6vw] font-bold">
             VENUES WE'VE LIT.
