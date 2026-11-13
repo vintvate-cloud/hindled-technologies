@@ -80,18 +80,18 @@ function StackingCard({ layer, index, total }: StackingCardProps) {
   return (
     <div
       ref={cardRef}
-      className={`w-full sticky ${index === total - 1 ? "pb-2 mb-0" : "h-[60vh] sm:h-[72vh]"}`}
+      className={`w-full relative sm:sticky top-auto sm:top-[var(--card-top)] ${index === total - 1 ? "pb-2 mb-0" : "mb-5 sm:mb-0 sm:h-[72vh]"}`}
       style={{
-        top: `calc(5.5rem + ${index * 26}px)`,
+        ["--card-top" as any]: `calc(5.5rem + ${index * 26}px)`,
         zIndex: index + 1,
       }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="w-full relative rounded-[32px] sm:rounded-[44px] bg-white border border-ink/10 p-6 sm:p-12 lg:p-14 shadow-[0_-6px_25px_rgba(0,0,0,0.03),_0_25px_60px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] transition-shadow overflow-hidden group"
+        className="w-full relative rounded-[28px] sm:rounded-[44px] bg-white border border-ink/10 p-5 sm:p-12 lg:p-14 shadow-sm sm:shadow-[0_-6px_25px_rgba(0,0,0,0.03),_0_25px_60px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] transition-shadow overflow-hidden group"
       >
         {/* Subtle Colored Ambient Bloom */}
         <div
@@ -100,15 +100,15 @@ function StackingCard({ layer, index, total }: StackingCardProps) {
         />
 
         {/* Ghost Typography Watermark Number */}
-        <span className="absolute top-6 right-8 sm:right-12 font-mono text-7xl sm:text-8xl lg:text-9xl font-black text-ink/[0.03] select-none pointer-events-none">
+        <span className="absolute top-4 sm:top-6 right-6 sm:right-12 font-mono text-6xl sm:text-8xl lg:text-9xl font-black text-ink/[0.03] select-none pointer-events-none">
           {layer.number}
         </span>
 
         <div className="relative z-10 max-w-3xl">
           {/* Layer Header Badge */}
-          <div className="flex flex-wrap items-center gap-3 mb-6 sm:mb-8">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-8">
             <span
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider"
+              className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider"
               style={{
                 backgroundColor: `${layer.color}15`,
                 color: layer.color,
@@ -119,30 +119,30 @@ function StackingCard({ layer, index, total }: StackingCardProps) {
               <Icon className="w-3.5 h-3.5" />
               LAYER {layer.number}
             </span>
-            <span className="text-xs font-mono text-ink/50 uppercase tracking-widest font-semibold">
+            <span className="text-[11px] sm:text-xs font-mono text-ink/50 uppercase tracking-widest font-semibold">
               {layer.tag}
             </span>
           </div>
 
           {/* Layer Title & Subtitle */}
-          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-ink tracking-tight leading-tight">
+          <h3 className="font-display text-xl sm:text-3xl md:text-4xl font-bold text-ink tracking-tight leading-tight">
             {layer.title}
           </h3>
-          <p className="mt-2 text-xs sm:text-sm font-mono text-signal font-bold uppercase tracking-wider">
+          <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm font-mono text-signal font-bold uppercase tracking-wider">
             {layer.subtitle}
           </p>
 
           {/* Short, High-End Description (Not Content Heavy) */}
-          <p className="mt-4 text-base sm:text-lg text-ink/85 leading-relaxed font-medium">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-ink/85 leading-relaxed font-normal sm:font-medium">
             {layer.desc}
           </p>
 
           {/* Crisp Feature Specs Strip */}
-          <div className="mt-8 pt-6 border-t border-ink/10 flex flex-wrap items-center gap-2.5 sm:gap-3.5">
+          <div className="mt-5 sm:mt-8 pt-4 sm:pt-6 border-t border-ink/10 flex flex-wrap items-center gap-2 sm:gap-3.5">
             {layer.specs.map((spec, sIdx) => (
               <span
                 key={sIdx}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-medium bg-stone/70 border border-ink/10 text-ink/80"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-mono font-medium bg-stone/70 border border-ink/10 text-ink/80"
               >
                 <span
                   className="w-1.5 h-1.5 rounded-full"
@@ -162,7 +162,7 @@ export function SolarArchitectureAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} id="solar-anatomy" className="relative bg-paper pt-20 pb-8 sm:pt-24 lg:pt-32 lg:pb-12 overflow-x-clip">
+    <section ref={containerRef} id="solar-anatomy" className="relative z-0 bg-paper pt-16 sm:pt-24 lg:pt-32 pb-8 sm:pb-8 lg:pb-12 overflow-x-clip">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10">
         
         {/* Section Header */}

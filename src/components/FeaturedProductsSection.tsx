@@ -179,8 +179,8 @@ export function FeaturedProductsSection() {
   }, [isPaused, activeSlide]);
 
   return (
-    <section id="featured-products" className="relative bg-paper pt-10 pb-24 lg:pt-12 lg:pb-28 overflow-hidden">
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-10">
+    <section id="featured-products" className="relative z-10 bg-paper pt-10 pb-20 sm:pb-24 lg:pt-12 lg:pb-28 overflow-hidden">
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-10">
         
         {/* Section Header with Scroll Reveal */}
         <motion.div
@@ -231,26 +231,26 @@ export function FeaturedProductsSection() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Prominent Floating Left Shift Button */}
+          {/* Prominent Floating Left Shift Button - Desktop only */}
           <button
             onClick={prev}
             aria-label="Previous product"
-            className="absolute left-2 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer group"
+            className="hidden sm:flex absolute -left-4 sm:-left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all items-center justify-center cursor-pointer group"
           >
             <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
           </button>
 
-          {/* Prominent Floating Right Shift Button */}
+          {/* Prominent Floating Right Shift Button - Desktop only */}
           <button
             onClick={next}
             aria-label="Next product"
-            className="absolute right-2 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer group"
+            className="hidden sm:flex absolute -right-4 sm:-right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md text-ink hover:text-signal border border-ink/15 shadow-[0_10px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.18)] hover:scale-105 active:scale-95 transition-all items-center justify-center cursor-pointer group"
           >
             <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
           </button>
 
           {/* Master Card Frame with Masked Track & Pinned Controls */}
-          <div className="w-full overflow-hidden rounded-[36px] sm:rounded-[44px] bg-white border border-ink/10 shadow-xl hover:shadow-2xl transition-shadow">
+          <div className="w-full overflow-hidden rounded-[28px] sm:rounded-[44px] bg-white border border-ink/10 shadow-lg sm:shadow-xl hover:shadow-2xl transition-shadow">
             
             {/* Sliding Horizontal Viewport */}
             <div className="w-full overflow-hidden">
@@ -279,39 +279,39 @@ export function FeaturedProductsSection() {
                   return (
                     <div
                       key={`${prod.slug}-${slideIdx}`}
-                      className="w-full shrink-0 p-7 sm:p-10 lg:p-14 relative overflow-hidden group select-none"
+                      className="w-full shrink-0 p-5 sm:p-10 lg:p-14 relative overflow-hidden group select-none"
                     >
                       {/* Subtle Ambient Solar Glow */}
                       <div className="absolute -right-20 -top-20 w-96 h-96 bg-signal/10 rounded-full blur-[120px] pointer-events-none" />
 
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-14 items-center">
                         
                         {/* Left Image Showcase - Clean Floating Hero */}
-                        <div className="lg:col-span-6 relative w-full flex items-center justify-center py-6 sm:py-8 lg:py-12 min-h-[300px] sm:min-h-[380px]">
+                        <div className="lg:col-span-6 relative w-full flex items-center justify-center py-2 sm:py-8 lg:py-12 min-h-0 sm:min-h-[380px]">
                           <img
                             src={prod.image}
                             alt={prod.name}
-                            className="max-h-[320px] sm:max-h-[400px] lg:max-h-[440px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)] pointer-events-none"
+                            className="max-h-[220px] sm:max-h-[400px] lg:max-h-[440px] max-w-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-[0_12px_24px_rgba(0,0,0,0.1)] sm:drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)] pointer-events-none"
                           />
                         </div>
 
                         {/* Right Story & Product Details */}
-                        <div className="lg:col-span-6 space-y-6">
+                        <div className="lg:col-span-6 space-y-4 sm:space-y-6">
                           <div>
-                            <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-[1.08]">
+                            <h3 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold text-ink tracking-tight leading-tight">
                               {prod.name}
                             </h3>
-                            <p className="text-xs sm:text-sm font-sans text-ink/75 mt-1.5 uppercase tracking-wider font-bold">
+                            <p className="text-[11px] sm:text-xs lg:text-sm font-mono text-signal font-bold mt-1.5 uppercase tracking-wider">
                               {prod.tagline}
                             </p>
                           </div>
 
-                          <p className="text-base sm:text-lg text-ink/85 leading-relaxed font-medium">
+                          <p className="text-sm sm:text-base lg:text-lg text-ink/85 leading-relaxed font-normal sm:font-medium">
                             {prod.description}
                           </p>
 
-                          {/* Clean Minimal Architectural Highlights */}
-                          <div className="pt-3 pb-3 border-y border-ink/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {/* Clean Minimal Architectural Highlights - Hidden on mobile per request */}
+                          <div className="hidden sm:grid pt-3 pb-3 border-y border-ink/10 grid-cols-1 sm:grid-cols-2 gap-4">
                             <div className="flex items-start gap-3">
                               <div className="w-8 h-8 rounded-xl bg-signal/10 flex items-center justify-center text-signal shrink-0 mt-0.5">
                                 <highlights.icon1 className="w-4 h-4" />
@@ -334,17 +334,17 @@ export function FeaturedProductsSection() {
                           </div>
 
                           {/* Action Buttons */}
-                          <div className="pt-2 flex flex-wrap items-center gap-4">
+                          <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4">
                             <button
                               onClick={() => setSelectedProduct(prod)}
-                              className="rounded-full bg-ink hover:bg-signal px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
+                              className="w-full sm:w-auto justify-center rounded-full bg-ink hover:bg-signal px-6 sm:px-8 py-3 sm:py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all cursor-pointer shadow-lg inline-flex items-center gap-2"
                             >
                               Inspect Specifications
                               <ArrowRight className="w-4 h-4" />
                             </button>
                             <button
                               onClick={openDrawer}
-                              className="rounded-full border border-ink/20 hover:border-signal bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm"
+                              className="w-full sm:w-auto justify-center rounded-full border border-ink/20 hover:border-signal bg-white px-5 sm:px-6 py-3 sm:py-3.5 text-xs font-bold uppercase tracking-widest text-ink hover:text-signal transition-all cursor-pointer shadow-sm inline-flex items-center"
                             >
                               Consult Engineering
                             </button>
@@ -359,7 +359,7 @@ export function FeaturedProductsSection() {
             </div>
 
             {/* Pinned Bottom Slide Controls Bar */}
-            <div className="px-7 sm:px-10 lg:px-14 py-5 flex items-center justify-between border-t border-ink/10 bg-white">
+            <div className="px-5 sm:px-10 lg:px-14 py-3.5 sm:py-5 flex items-center justify-between border-t border-ink/10 bg-white">
               <div className="text-mono text-xs font-bold text-ink/40 tracking-widest">
                 0{realIndex + 1} <span className="text-ink/20">/</span> 0{enrichedList.length}
               </div>
