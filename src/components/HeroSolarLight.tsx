@@ -262,17 +262,6 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               style={{ opacity: luminaireNightGlow }}
               className="absolute inset-0 z-20 pointer-events-none will-change-[opacity]"
             >
-              {/* Soft, Angled Optical Lens Glow matching the fixture's physical angle */}
-              <div className="absolute top-[4.8%] left-[36%] -translate-x-1/2 -translate-y-1/2">
-                <div className="relative rotate-[14deg] flex items-center justify-center">
-                  {/* Subtle soft lens illumination */}
-                  <div className="w-10 sm:w-16 md:w-20 h-2.5 sm:h-4.5 rounded-[999px] bg-gradient-to-r from-amber-100/85 via-white/95 to-amber-100/85 blur-[1.5px] shadow-[0_0_8px_rgba(255,255,240,0.65),0_0_18px_rgba(254,240,138,0.3)] mix-blend-screen" />
-
-                  {/* Soft diffused atmospheric halo */}
-                  <div className="absolute inset-0 -m-3 sm:-m-5 rounded-full bg-amber-200/25 blur-md pointer-events-none" />
-                </div>
-              </div>
-
               {/* Full-Height Volumetric Conical Canal (Narrow at Lens Top -> Flares Outward -> Circular Pool on Ground) */}
               <svg
                 className="absolute top-[4.6%] bottom-[-2%] left-[-40%] w-[135%] h-[97.4%] pointer-events-none mix-blend-screen overflow-visible"
