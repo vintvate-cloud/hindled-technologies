@@ -91,7 +91,7 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
           className="absolute inset-0 pointer-events-none will-change-[opacity]"
           style={{
             opacity: daySkyOpacity,
-            background: "linear-gradient(180deg, #357ec7 0%, #7dbcf6 45%, #d8eeff 100%)",
+            background: "linear-gradient(180deg, #0082c3 0%, #0098db 38%, #3bb8ed 72%, #82d7fa 100%)",
           }}
         />
 
@@ -126,97 +126,97 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         <div
           className="absolute z-[4] pointer-events-none top-[88px] sm:top-[11vh] md:top-[12vh] lg:top-[12vh] right-[5vw] sm:right-[34vw] md:right-[38vw] lg:right-[44vw] w-10 h-10 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
         >
-  {/* Day Mode Subtle Volumetric Solar Rays (Seamless atmospheric glow + crepuscular beams toward ADITI pole) */ }
-  <motion.div
-    className="hidden sm:block absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
-    style={{ opacity: sunOpacity }}
-  >
-    {/* Outer Wide Atmospheric Solar Corona (Fades to zero well inside bounds) */}
-    <div
-      className="absolute top-1/2 left-1/2 -translate-x-[38%] -translate-y-[44%] w-[62vw] h-[56vh] rotate-[14deg] pointer-events-none"
-      style={{
-        background:
-          "radial-gradient(ellipse 46% 32% at 24% 38%, rgba(255,249,214,0.34) 0%, rgba(253,224,71,0.14) 36%, rgba(251,191,36,0.04) 58%, transparent 74%)",
-      }}
-    />
-    {/* Seamless Feathered Crepuscular Sunbeams (Gradient fades smoothly at both ends — zero mask clipping) */}
-    <div
-      className="absolute top-[46%] left-[38%] w-[44vw] h-16 rounded-full blur-[18px] rotate-[8deg] origin-[32px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,252,225,0) 0%, rgba(255,252,225,0.28) 14%, rgba(254,240,138,0.12) 50%, rgba(254,240,138,0) 88%)",
-      }}
-    />
-    <div
-      className="absolute top-[48%] left-[36%] w-[45vw] h-24 rounded-full blur-[22px] rotate-[16deg] origin-[36px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.32) 16%, rgba(253,224,71,0.14) 52%, rgba(253,224,71,0) 90%)",
-      }}
-    />
-    <div
-      className="absolute top-[50%] left-[34%] w-[42vw] h-16 rounded-full blur-[20px] rotate-[25deg] origin-[32px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 48%, rgba(251,191,36,0) 86%)",
-      }}
-    />
-  </motion.div>
+          {/* Day Mode Subtle Volumetric Solar Rays (Seamless atmospheric glow + crepuscular beams toward ADITI pole) */}
+          <motion.div
+            className="hidden sm:block absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
+            style={{ opacity: sunOpacity }}
+          >
+            {/* Outer Wide Atmospheric Solar Corona (Fades to zero well inside bounds) */}
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-[38%] -translate-y-[44%] w-[62vw] h-[56vh] rotate-[14deg] pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse 46% 32% at 24% 38%, rgba(255,249,214,0.34) 0%, rgba(253,224,71,0.14) 36%, rgba(251,191,36,0.04) 58%, transparent 74%)",
+              }}
+            />
+            {/* Seamless Feathered Crepuscular Sunbeams (Gradient fades smoothly at both ends — zero mask clipping) */}
+            <div
+              className="absolute top-[46%] left-[38%] w-[44vw] h-16 rounded-full blur-[18px] rotate-[8deg] origin-[32px_50%]"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,252,225,0) 0%, rgba(255,252,225,0.28) 14%, rgba(254,240,138,0.12) 50%, rgba(254,240,138,0) 88%)",
+              }}
+            />
+            <div
+              className="absolute top-[48%] left-[36%] w-[45vw] h-24 rounded-full blur-[22px] rotate-[16deg] origin-[36px_50%]"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.32) 16%, rgba(253,224,71,0.14) 52%, rgba(253,224,71,0) 90%)",
+              }}
+            />
+            <div
+              className="absolute top-[50%] left-[34%] w-[42vw] h-16 rounded-full blur-[20px] rotate-[25deg] origin-[32px_50%]"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 48%, rgba(251,191,36,0) 86%)",
+              }}
+            />
+          </motion.div>
 
-  {/* Mobile Subtle Solar Rays (Streaming down softly from Sun toward lower-right ADITI column) */ }
-  <motion.div
-    className="sm:hidden absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
-    style={{ opacity: sunOpacity }}
-  >
-    <div
-      className="absolute top-1/2 left-1/2 -translate-x-[52%] -translate-y-[20%] w-[52vw] h-[48vh] rotate-[86deg] pointer-events-none"
-      style={{
-        background:
-        "radial-gradient(ellipse 46% 32% at 24% 48%, rgba(255,249,214,0.34) 0%, rgba(253,224,71,0.14) 38%, transparent 72%)",
-      }}
-    />
-    <div
-      className="absolute top-[52%] left-[44%] w-[40vh] h-10 rounded-full blur-[16px] rotate-[84deg] origin-[16px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.30) 16%, rgba(253,224,71,0.12) 52%, rgba(253,224,71,0) 88%)",
-      }}
-    />
-    <div
-      className="absolute top-[54%] left-[40%] w-[38vh] h-12 rounded-full blur-[16px] rotate-[102deg] origin-[16px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 50%, rgba(251,191,36,0) 86%)",
-      }}
-    />
-  </motion.div>
+          {/* Mobile Subtle Solar Rays (Streaming down softly from Sun toward lower-right ADITI column) */}
+          <motion.div
+            className="sm:hidden absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
+            style={{ opacity: sunOpacity }}
+          >
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-[52%] -translate-y-[20%] w-[52vw] h-[48vh] rotate-[86deg] pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse 46% 32% at 24% 48%, rgba(255,249,214,0.34) 0%, rgba(253,224,71,0.14) 38%, transparent 72%)",
+              }}
+            />
+            <div
+              className="absolute top-[52%] left-[44%] w-[40vh] h-10 rounded-full blur-[16px] rotate-[84deg] origin-[16px_50%]"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.30) 16%, rgba(253,224,71,0.12) 52%, rgba(253,224,71,0) 88%)",
+              }}
+            />
+            <div
+              className="absolute top-[54%] left-[40%] w-[38vh] h-12 rounded-full blur-[16px] rotate-[102deg] origin-[16px_50%]"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 50%, rgba(251,191,36,0) 86%)",
+              }}
+            />
+          </motion.div>
 
-  {/* Sun Layer */ }
-  <motion.div
-    className="absolute inset-0 rounded-full will-change-[opacity]"
-    style={{
-      background: "radial-gradient(circle, #fff6c9 0%, #f4a41d 60%, rgba(244,164,29,0) 72%)",
-      opacity: sunOpacity,
-    }}
-  />
+          {/* Sun Layer */}
+          <motion.div
+            className="absolute inset-0 rounded-full will-change-[opacity]"
+            style={{
+              background: "radial-gradient(circle, #fff6c9 0%, #f4a41d 60%, rgba(244,164,29,0) 72%)",
+              opacity: sunOpacity,
+            }}
+          />
 
-  {/* Moon Layer */ }
-  <motion.div
-    className="absolute inset-0 rounded-full will-change-[opacity]"
-    style={{
-      background: "radial-gradient(circle, #ffffff 0%, #f1f5f9 28%, #94a3b8 60%, rgba(148,163,184,0) 72%)",
-      opacity: moonOpacity,
-    }}
-  >
-    {/* Soft Celestial Moonlight Aura */}
-    <motion.div
-      className="absolute inset-0 rounded-full will-change-[opacity]"
-      style={{
-        boxShadow: "0 0 28px rgba(255,255,255,0.45), 0 0 60px rgba(203,213,225,0.25)",
-        opacity: moonAuraOpacity,
-      }}
-    />
-  </motion.div>
+          {/* Moon Layer */}
+          <motion.div
+            className="absolute inset-0 rounded-full will-change-[opacity]"
+            style={{
+              background: "radial-gradient(circle, #ffffff 0%, #f1f5f9 28%, #94a3b8 60%, rgba(148,163,184,0) 72%)",
+              opacity: moonOpacity,
+            }}
+          >
+            {/* Soft Celestial Moonlight Aura */}
+            <motion.div
+              className="absolute inset-0 rounded-full will-change-[opacity]"
+              style={{
+                boxShadow: "0 0 28px rgba(255,255,255,0.45), 0 0 60px rgba(203,213,225,0.25)",
+                opacity: moonAuraOpacity,
+              }}
+            />
+          </motion.div>
         </div>
 
         {/* Ambient Ground Silhouette & Landscape Horizon */}
