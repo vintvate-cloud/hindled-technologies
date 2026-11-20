@@ -262,88 +262,119 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               style={{ opacity: luminaireNightGlow }}
               className="absolute inset-0 z-20 pointer-events-none will-change-[opacity]"
             >
-              {/* Full-Height Volumetric Conical Canal (Narrow at Lens Top -> Flares Outward -> Circular Pool on Ground) */}
+              {/* Full-Height Volumetric Conical Canal (Precise Apex "Choch" Under Diodes -> Widely Flared Ground Pool) */}
               <svg
-                className="absolute top-[4.6%] bottom-[-2%] left-[-40%] w-[135%] h-[97.4%] pointer-events-none mix-blend-screen overflow-visible"
-                viewBox="0 0 400 600"
+                className="absolute top-[5.2%] bottom-[-2%] left-[-60%] w-[160%] h-[96.8%] pointer-events-none mix-blend-screen overflow-visible"
+                viewBox="0 0 800 1000"
                 preserveAspectRatio="none"
               >
                 <defs>
                   {/* Soft Outer Atmospheric Cone Blur */}
-                  <filter id="nightConeFeather" x="-40%" y="-20%" width="180%" height="150%">
-                    <feGaussianBlur stdDeviation="24" />
+                  <filter id="nightConeFeather" x="-50%" y="-20%" width="200%" height="150%">
+                    <feGaussianBlur stdDeviation="18" />
                   </filter>
 
-                  {/* Inner Canal & Circular Pool Feather */}
+                  {/* Inner Canal Feather */}
                   <filter id="nightCoreFeather" x="-40%" y="-20%" width="180%" height="150%">
-                    <feGaussianBlur stdDeviation="12" />
+                    <feGaussianBlur stdDeviation="10" />
                   </filter>
 
-                  {/* Top-to-Bottom Photometric Beam Falloff Gradient */}
-                  <linearGradient id="nightConeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#fffef2" stopOpacity="0.62" />
-                    <stop offset="16%" stopColor="#fef9c3" stopOpacity="0.34" />
-                    <stop offset="52%" stopColor="#e0f2fe" stopOpacity="0.16" />
-                    <stop offset="85%" stopColor="#fef9c3" stopOpacity="0.18" />
+                  {/* Wide Ground Ambient Wash Feather */}
+                  <filter id="groundWashFeather" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="32" />
+                  </filter>
+
+                  {/* Ground Mid-Throw Feather */}
+                  <filter id="groundMidFeather" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="18" />
+                  </filter>
+
+                  {/* Ground Core Hotspot Feather */}
+                  <filter id="groundCoreFeather" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="9" />
+                  </filter>
+
+                  {/* Top-to-Bottom Photometric Beam Falloff Gradient (Angled forward to the left) */}
+                  <linearGradient id="nightConeGrad" x1="58%" y1="0%" x2="25%" y2="100%">
+                    <stop offset="0%" stopColor="#fffef2" stopOpacity="0.68" />
+                    <stop offset="15%" stopColor="#fef9c3" stopOpacity="0.38" />
+                    <stop offset="50%" stopColor="#e0f2fe" stopOpacity="0.17" />
+                    <stop offset="82%" stopColor="#fef9c3" stopOpacity="0.20" />
                     <stop offset="100%" stopColor="#fef9c3" stopOpacity="0" />
                   </linearGradient>
 
                   {/* Narrow Focused Center Canal Gradient */}
-                  <linearGradient id="nightCanalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.72" />
-                    <stop offset="22%" stopColor="#fef9c3" stopOpacity="0.36" />
-                    <stop offset="65%" stopColor="#e0f2fe" stopOpacity="0.14" />
-                    <stop offset="92%" stopColor="#fef9c3" stopOpacity="0.14" />
+                  <linearGradient id="nightCanalGrad" x1="58%" y1="0%" x2="28%" y2="100%">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.78" />
+                    <stop offset="20%" stopColor="#fef9c3" stopOpacity="0.42" />
+                    <stop offset="60%" stopColor="#e0f2fe" stopOpacity="0.17" />
+                    <stop offset="90%" stopColor="#fef9c3" stopOpacity="0.17" />
                     <stop offset="100%" stopColor="#fef9c3" stopOpacity="0" />
                   </linearGradient>
 
-                  {/* Smooth Circular Ground Illumination Pool Gradient */}
-                  <radialGradient id="nightGroundPoolGrad" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#fffef5" stopOpacity="0.52" />
-                    <stop offset="32%" stopColor="#fef9c3" stopOpacity="0.28" />
-                    <stop offset="66%" stopColor="#bae6fd" stopOpacity="0.1" />
-                    <stop offset="100%" stopColor="#bae6fd" stopOpacity="0" />
+                  {/* Realistic Roadway Ambient Ground Wash Gradient */}
+                  <radialGradient id="groundWashGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#fffde7" stopOpacity="0.50" />
+                    <stop offset="25%" stopColor="#fef08a" stopOpacity="0.30" />
+                    <stop offset="55%" stopColor="#bae6fd" stopOpacity="0.10" />
+                    <stop offset="80%" stopColor="#60a5fa" stopOpacity="0.03" />
+                    <stop offset="100%" stopColor="#60a5fa" stopOpacity="0" />
+                  </radialGradient>
+
+                  {/* Realistic Roadway Core Hotspot Gradient */}
+                  <radialGradient id="groundCoreGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.65" />
+                    <stop offset="30%" stopColor="#fffbeb" stopOpacity="0.40" />
+                    <stop offset="65%" stopColor="#fef08a" stopOpacity="0.12" />
+                    <stop offset="100%" stopColor="#fef08a" stopOpacity="0" />
                   </radialGradient>
                 </defs>
 
-                {/* Wide Flared Volumetric Spill Cone (Narrow top canal -> wide curved bottom spread) */}
+                {/* Wide Flared Volumetric Spill Cone (Natural outward slope on both left and right flanks) */}
                 <path
-                  d="M 210 12 L 240 12 Q 295 290 352 548 C 356 584 285 594 185 594 C 85 594 16 584 22 548 Q 115 290 210 12 Z"
+                  d="M 455 12 L 490 12 Q 524 450 550 920 C 550 970 350 985 210 985 C 80 985 -40 970 -45 920 Q 220 480 455 12 Z"
                   fill="url(#nightConeGrad)"
                   filter="url(#nightConeFeather)"
                 />
 
-                {/* Concentrated Inner Canal Core (Thin neck at luminaire expanding downward) */}
+                {/* Concentrated Inner Canal Core (Focused forward throw with smooth right-side slope) */}
                 <path
-                  d="M 218 10 L 232 10 Q 262 280 286 544 C 288 575 245 584 185 584 C 125 584 82 575 86 544 Q 145 280 218 10 Z"
+                  d="M 465 10 L 485 10 Q 515 450 536 910 C 536 955 380 970 260 970 C 130 970 35 955 40 910 Q 275 460 465 10 Z"
                   fill="url(#nightCanalGrad)"
                   filter="url(#nightCoreFeather)"
                 />
 
-                {/* Circular Illuminated Light Pool on the Ground */}
+                {/* Realistic Multi-Layer Roadway Ground Light Distribution (Expanded broadly to the left with natural pole grounding) */}
+                {/* Layer 1: Broad feathered ambient ground wash */}
                 <ellipse
-                  cx="185"
-                  cy="562"
-                  rx="168"
-                  ry="52"
-                  fill="url(#nightGroundPoolGrad)"
-                  filter="url(#nightCoreFeather)"
+                  cx="215"
+                  cy="942"
+                  rx="335"
+                  ry="65"
+                  fill="url(#groundWashGrad)"
+                  filter="url(#groundWashFeather)"
                 />
+
+                {/* Layer 2: Mid-intensity forward street throw */}
                 <ellipse
-                  cx="185"
-                  cy="562"
-                  rx="116"
-                  ry="34"
-                  fill="url(#nightGroundPoolGrad)"
-                  opacity="0.9"
+                  cx="255"
+                  cy="940"
+                  rx="250"
+                  ry="48"
+                  fill="url(#groundWashGrad)"
+                  filter="url(#groundMidFeather)"
+                  opacity="0.8"
                 />
+
+                {/* Layer 3: Soft feathered core reflection */}
                 <ellipse
-                  cx="185"
-                  cy="562"
-                  rx="64"
-                  ry="18"
-                  fill="url(#nightGroundPoolGrad)"
-                  opacity="0.85"
+                  cx="305"
+                  cy="938"
+                  rx="145"
+                  ry="28"
+                  fill="url(#groundCoreGrad)"
+                  filter="url(#groundCoreFeather)"
+                  opacity="0.75"
                 />
               </svg>
             </motion.div>
