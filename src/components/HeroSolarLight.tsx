@@ -126,69 +126,129 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
         <div
           className="absolute z-[4] pointer-events-none top-[88px] sm:top-[11vh] md:top-[12vh] lg:top-[12vh] right-[5vw] sm:right-[34vw] md:right-[38vw] lg:right-[44vw] w-10 h-10 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]"
         >
-  {/* Day Mode Subtle Volumetric Solar Rays (Seamless atmospheric glow + crepuscular beams toward ADITI pole) */ }
+  {/* Day Mode Volumetric Conical Sunlight Beam (Spreads from Sun and distributes cleanly across the ADITI Solar Sleeve) */}
   <motion.div
     className="hidden sm:block absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
     style={{ opacity: sunOpacity }}
   >
-    {/* Outer Wide Atmospheric Solar Corona (Fades to zero well inside bounds) */}
+    {/* Outer Wide Atmospheric Solar Corona around Sun */}
     <div
-      className="absolute top-1/2 left-1/2 -translate-x-[38%] -translate-y-[44%] w-[62vw] h-[56vh] rotate-[14deg] pointer-events-none"
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full pointer-events-none"
       style={{
         background:
-          "radial-gradient(ellipse 46% 32% at 24% 38%, rgba(255,249,214,0.34) 0%, rgba(253,224,71,0.14) 36%, rgba(251,191,36,0.04) 58%, transparent 74%)",
+          "radial-gradient(circle, rgba(255,249,214,0.55) 0%, rgba(253,224,71,0.25) 40%, rgba(251,191,36,0.06) 65%, transparent 78%)",
       }}
     />
-    {/* Seamless Feathered Crepuscular Sunbeams (Gradient fades smoothly at both ends — zero mask clipping) */}
-    <div
-      className="absolute top-[46%] left-[38%] w-[44vw] h-16 rounded-full blur-[18px] rotate-[8deg] origin-[32px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,252,225,0) 0%, rgba(255,252,225,0.28) 14%, rgba(254,240,138,0.12) 50%, rgba(254,240,138,0) 88%)",
-      }}
-    />
-    <div
-      className="absolute top-[48%] left-[36%] w-[45vw] h-24 rounded-full blur-[22px] rotate-[16deg] origin-[36px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.32) 16%, rgba(253,224,71,0.14) 52%, rgba(253,224,71,0) 90%)",
-      }}
-    />
-    <div
-      className="absolute top-[50%] left-[34%] w-[42vw] h-16 rounded-full blur-[20px] rotate-[25deg] origin-[32px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 48%, rgba(251,191,36,0) 86%)",
-      }}
-    />
+
+    {/* True Volumetric Conical Sunlight Fan: Apex at Sun -> Expands outward -> Strictly stops at Pole Left Face */}
+    <svg
+      className="absolute top-[35%] left-[45%] w-[26vw] sm:w-[27vw] md:w-[30vw] lg:w-[33.5vw] h-[38vh] sm:h-[40vh] md:h-[44vh] pointer-events-none mix-blend-screen overflow-hidden"
+      viewBox="0 0 500 450"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        {/* Hard Right Boundary Clip to guarantee zero light spill past pole */}
+        <clipPath id="sunBeamRightCut">
+          <rect x="0" y="0" width="485" height="450" />
+        </clipPath>
+
+        {/* Soft Volumetric Atmosphere Blur */}
+        <filter id="sunAtmosphereBlur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="18" />
+        </filter>
+
+        {/* Primary Sunlight Cone Feather */}
+        <filter id="sunPrimaryConeBlur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="12" />
+        </filter>
+
+        {/* Core Intense Sunlight Feather */}
+        <filter id="sunCoreBlur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+
+        {/* Outer Broad Atmospheric Sunbeam Gradient */}
+        <linearGradient id="sunOuterAtmosphereGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#fff9d6" stopOpacity="0.45" />
+          <stop offset="35%" stopColor="#fef08a" stopOpacity="0.22" />
+          <stop offset="68%" stopColor="#fde047" stopOpacity="0.08" />
+          <stop offset="90%" stopColor="#f59e0b" stopOpacity="0.02" />
+          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+        </linearGradient>
+
+        {/* Primary Volumetric Sunlight Cone Gradient */}
+        <linearGradient id="sunPrimaryConeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.82" />
+          <stop offset="14%" stopColor="#fffde7" stopOpacity="0.65" />
+          <stop offset="40%" stopColor="#fef08a" stopOpacity="0.40" />
+          <stop offset="72%" stopColor="#fde047" stopOpacity="0.24" />
+          <stop offset="92%" stopColor="#facc15" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+        </linearGradient>
+
+        {/* High-Luminosity Central Core Photon Beam */}
+        <linearGradient id="sunCoreBeamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.92" />
+          <stop offset="16%" stopColor="#fffbeb" stopOpacity="0.70" />
+          <stop offset="46%" stopColor="#fef08a" stopOpacity="0.34" />
+          <stop offset="80%" stopColor="#fde047" stopOpacity="0.14" />
+          <stop offset="100%" stopColor="#fde047" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+
+      <g clipPath="url(#sunBeamRightCut)">
+        {/* Layer 1: Broad Soft Atmospheric Dispersion Fan */}
+        <path
+          d="M 25 15 Q 240 25 480 35 L 480 410 Q 240 250 25 80 Z"
+          fill="url(#sunOuterAtmosphereGrad)"
+          filter="url(#sunAtmosphereBlur)"
+        />
+
+        {/* Layer 2: Main Volumetric Conical Sunlight Beam (Spreads from Sun and neatly covers the Solar Panel Area) */}
+        <path
+          d="M 30 25 Q 250 35 480 60 L 480 380 Q 250 230 30 65 Z"
+          fill="url(#sunPrimaryConeGrad)"
+          filter="url(#sunPrimaryConeBlur)"
+        />
+
+        {/* Layer 3: Concentrated Core Solar Shaft */}
+        <path
+          d="M 35 35 Q 250 85 475 140 L 475 300 Q 250 190 35 55 Z"
+          fill="url(#sunCoreBeamGrad)"
+          filter="url(#sunCoreBlur)"
+        />
+      </g>
+    </svg>
   </motion.div>
 
-  {/* Mobile Subtle Solar Rays (Streaming down softly from Sun toward lower-right ADITI column) */ }
+  {/* Mobile Volumetric Conical Sunbeam (Streaming down from Sun and expanding over the ADITI column) */}
   <motion.div
     className="sm:hidden absolute inset-0 pointer-events-none mix-blend-screen will-change-[opacity]"
     style={{ opacity: sunOpacity }}
   >
-    <div
-      className="absolute top-1/2 left-1/2 -translate-x-[52%] -translate-y-[20%] w-[52vw] h-[48vh] rotate-[86deg] pointer-events-none"
-      style={{
-        background:
-        "radial-gradient(ellipse 46% 32% at 24% 48%, rgba(255,249,214,0.34) 0%, rgba(253,224,71,0.14) 38%, transparent 72%)",
-      }}
-    />
-    <div
-      className="absolute top-[52%] left-[44%] w-[40vh] h-10 rounded-full blur-[16px] rotate-[84deg] origin-[16px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,250,210,0) 0%, rgba(255,250,210,0.30) 16%, rgba(253,224,71,0.12) 52%, rgba(253,224,71,0) 88%)",
-      }}
-    />
-    <div
-      className="absolute top-[54%] left-[40%] w-[38vh] h-12 rounded-full blur-[16px] rotate-[102deg] origin-[16px_50%]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255,248,200,0) 0%, rgba(255,248,200,0.24) 16%, rgba(251,191,36,0.10) 50%, rgba(251,191,36,0) 86%)",
-      }}
-    />
+    <svg
+      className="absolute top-[40%] left-[30%] -translate-x-1/2 w-[52vw] h-[36vh] pointer-events-none mix-blend-screen overflow-visible"
+      viewBox="0 0 350 450"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <filter id="sunMobileBlur" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="16" />
+        </filter>
+        <linearGradient id="sunMobileGrad" x1="0%" y1="0%" x2="60%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.80" />
+          <stop offset="25%" stopColor="#fffde7" stopOpacity="0.55" />
+          <stop offset="60%" stopColor="#fef08a" stopOpacity="0.30" />
+          <stop offset="92%" stopColor="#fde047" stopOpacity="0.14" />
+          <stop offset="100%" stopColor="#fde047" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M 20 20 Q 140 180 30 420 L 330 420 Q 180 180 60 20 Z"
+        fill="url(#sunMobileGrad)"
+        filter="url(#sunMobileBlur)"
+      />
+    </svg>
   </motion.div>
 
   {/* Sun Layer */ }
@@ -256,6 +316,40 @@ export function HeroSolarLight({ isReady = true }: HeroSolarLightProps) {
               className="relative z-10 h-full w-auto max-h-full object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]"
               loading="eager"
             />
+
+            {/* Daytime Sunbeam Illumination & Focused Solar PV Sleeve Sheen */}
+            <motion.div
+              style={{ opacity: sunOpacity }}
+              className="absolute inset-0 z-20 pointer-events-none will-change-[opacity]"
+            >
+              {/* Photovoltaic Solar Sleeve Sheen (Strictly contained inside the hexagonal PV panel area with zero spill outside) */}
+              <div
+                className="absolute top-[12.5%] h-[34.2%] left-[46.2%] w-[9.4%] overflow-hidden rounded-[1px] pointer-events-none"
+              >
+                {/* Sunward Edge High-Contrast Sunlight Highlight (Sun-facing left facet) */}
+                <div
+                  className="absolute inset-y-0 left-0 w-[42%] opacity-90 mix-blend-screen"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, rgba(255,255,245,0.85) 0%, rgba(254,240,138,0.45) 50%, transparent 100%)",
+                  }}
+                />
+
+                {/* Crystalline Silicon Solar Cell Absorption Glow (Contained within sleeve) */}
+                <div
+                  className="absolute inset-0 mix-blend-screen opacity-75"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 0%, rgba(255,250,210,0.50) 12%, rgba(254,240,138,0.55) 45%, rgba(253,224,71,0.40) 80%, transparent 100%)",
+                  }}
+                />
+
+                {/* Subtle Active Photon Capture Pulse */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-r from-amber-200/20 via-yellow-200/30 to-transparent mix-blend-screen animate-pulse"
+                />
+              </div>
+            </motion.div>
 
             {/* Single Subtle Light Source, Narrow-to-Wide Conical Night Beam & Circular Ground Pool */}
             <motion.div
