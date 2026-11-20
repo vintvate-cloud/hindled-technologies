@@ -1027,11 +1027,11 @@ export const solutionApplications: SolutionApplication[] = [
 ];
 
 export const advisorProfile = {
-  name: "Mr. Brij Bhatia",
+  name: "Brij Bhatia",
   title: "Co-Founder and Mentor",
   image: "/advisorimagefinal.jpeg",
   experienceYears: "45+ Years",
-  bio: "An accomplished Electrical Engineer with over 45 years of experience in the lighting and energy industry, Mr. Brij Bhatia brings extensive expertise in leadership, innovation, business strategy, and sustainable lighting solutions. Having mentored numerous professionals into senior leadership roles, he is passionate about guiding talent, nurturing businesses, and sharing industry knowledge. His experience spans strategic consulting, industry standards, energy efficiency, skill development, and entrepreneurship making him a trusted mentor for professionals and emerging infrastructure businesses alike.",
+  bio: "An accomplished Electrical Engineer with over 45 years of experience in the lighting and energy industry, Brij Bhatia brings extensive expertise in leadership, innovation, business strategy, and sustainable lighting solutions. Having mentored numerous professionals into senior leadership roles, he is passionate about guiding talent, nurturing businesses, and sharing industry knowledge. His experience spans strategic consulting, industry standards, energy efficiency, skill development, and entrepreneurship making him a trusted mentor for professionals and emerging infrastructure businesses alike.",
   indianMarketAdvice: [
     {
       title: "1. 100% Solar Independence & Zero Electricity Grid Reliance",
@@ -1076,14 +1076,14 @@ export type LeadershipMember = {
 export const leadershipTeam: LeadershipMember[] = [
   {
     id: "brij-bhatia",
-    name: "Mr. Brij Bhatia",
+    name: "Brij Bhatia",
     title: "Co-Founder and Mentor",
     image: "/advisorimagefinal.jpeg",
     experienceYears: "45+ Years",
     categoryTag: "CO-FOUNDER & MENTOR",
     headline: "Guided by 45+ Years of Excellence.",
     subhead: "Strategic consulting, energy efficiency, industry standards, and sustainable lighting solutions.",
-    bio: "An accomplished Electrical Engineer with over 45 years of experience in the lighting and energy industry, Mr. Brij Bhatia brings extensive expertise in leadership, innovation, business strategy, and sustainable lighting solutions. Having mentored numerous professionals into senior leadership roles, he is passionate about guiding talent, nurturing businesses, and sharing industry knowledge. His experience spans strategic consulting, industry standards, energy efficiency, skill development, and entrepreneurship making him a trusted mentor for professionals and emerging infrastructure businesses alike.",
+    bio: "An accomplished Electrical Engineer with over 45 years of experience in the lighting and energy industry, Brij Bhatia brings extensive expertise in leadership, innovation, business strategy, and sustainable lighting solutions. Having mentored numerous professionals into senior leadership roles, he is passionate about guiding talent, nurturing businesses, and sharing industry knowledge. His experience spans strategic consulting, industry standards, energy efficiency, skill development, and entrepreneurship making him a trusted mentor for professionals and emerging infrastructure businesses alike.",
     highlights: [
       "Strategic Infrastructure Advisory",
       "National Standards & Energy Efficiency",
@@ -1092,7 +1092,7 @@ export const leadershipTeam: LeadershipMember[] = [
   },
   {
     id: "mahinder-khanna",
-    name: "Mr. Mahinder Khanna",
+    name: "Mahinder Khanna",
     title: "Co-Founder and Technical Director",
     image: "/mahinder_khanna.png?v=2",
     experienceYears: "47+ Years",
@@ -1108,14 +1108,14 @@ export const leadershipTeam: LeadershipMember[] = [
   },
   {
     id: "anitya-kumar-rai",
-    name: "Mr. Anitya Kumar Rai",
+    name: "Anitya Kumar Rai",
     title: "Managing Director",
     image: "/anitya_kumar_rai.jpg?v=2",
     experienceYears: "35+ Years",
     categoryTag: "MANAGING DIRECTOR",
     headline: "35+ Years of Visionary Infrastructure Leadership.",
     subhead: "Large-scale infrastructure lighting, strategic project marketing, and turnkey PSU execution.",
-    bio: "With an illustrious career spanning over 35 years in the lighting and electrical infrastructure industry, Mr. Anitya Kumar Rai brings exceptional leadership and technical vision to the organization. He has spearheaded large-scale infrastructure lighting projects across Central and State Government departments, Public Sector Undertakings (PSUs), and municipal development authorities. Leveraging rich global exposure and international quality benchmarks, Mr. Anitya Kumar Rai specializes in strategic project marketing, turnkey execution, and next-generation energy optimization. His leadership is anchored in delivering cost-effective, high-reliability infrastructure solutions that drive measurable power savings and long-term sustainability.",
+    bio: "With an illustrious career spanning over 35 years in the lighting and electrical infrastructure industry, Anitya Kumar Rai brings exceptional leadership and technical vision to the organization. He has spearheaded large-scale infrastructure lighting projects across Central and State Government departments, Public Sector Undertakings (PSUs), and municipal development authorities. Leveraging rich global exposure and international quality benchmarks, Anitya Kumar Rai specializes in strategic project marketing, turnkey execution, and next-generation energy optimization. His leadership is anchored in delivering cost-effective, high-reliability infrastructure solutions that drive measurable power savings and long-term sustainability.",
     highlights: [
       "Central & State Government / PSU Projects",
       "Turnkey Infrastructure Execution",

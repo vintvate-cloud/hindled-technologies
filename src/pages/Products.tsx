@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState, useEffect } from "react";
 import { useLenis } from "lenis/react";
@@ -72,6 +72,8 @@ export default function ProductsPage() {
   const [activeInfoTab, setActiveInfoTab] = useState<"overview" | "specs">("overview");
   const [viewingSpecImage, setViewingSpecImage] = useState(false);
   const { openDrawer } = useContactDrawer();
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   useMeta({
     title: "Products & Applications Catalogue — HINDLED Technologies",
@@ -79,6 +81,46 @@ export default function ProductsPage() {
   });
 
   const lenis = useLenis();
+
+  useEffect(() => {
+    const productSlug = searchParams.get("product");
+    const rawHash = location.hash.replace("#", "");
+
+    if (productSlug) {
+      const found = enrichedCatalogue.find((p) => p.slug === productSlug);
+      if (found) {
+        setSelectedProduct(found);
+        setIsDetailModalOpen(true);
+        setActiveInfoTab("overview");
+        setViewingSpecImage(false);
+
+        const matchingApp = solutionApplications.find((app) =>
+          app.matchingSlugs?.includes(found.slug) || app.category === found.category
+        );
+        if (matchingApp) {
+          setActiveApplicationId(matchingApp.id);
+        }
+
+        setTimeout(() => {
+          const el = document.getElementById(found.slug) || (matchingApp ? document.getElementById(matchingApp.id) : null);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 200);
+      }
+    } else if (rawHash) {
+      const matchingApp = solutionApplications.find((app) => app.id === rawHash);
+      if (matchingApp) {
+        setActiveApplicationId(matchingApp.id);
+      }
+      setTimeout(() => {
+        const el = document.getElementById(rawHash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 200);
+    }
+  }, [searchParams, location.hash]);
 
   useEffect(() => {
     if (isDetailModalOpen) {
@@ -431,12 +473,13 @@ function ProductCard({
 }) {
   return (
     <motion.article
+      id={p.slug}
       initial={{ opacity: 0, y: 35 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.15 }}
       transition={{ duration: 0.6, delay: (idx % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -6 }}
-      className="group flex flex-col justify-between rounded-[24px] border border-ink/10 bg-stone p-4 transition-all hover:border-signal hover:shadow-lg"
+      className="group flex flex-col justify-between rounded-[24px] border border-ink/10 bg-stone p-4 transition-all hover:border-signal hover:shadow-lg scroll-mt-36"
     >
       <div>
         {/* Product image container using object-contain & p-3 to ensure full image visibility */}
